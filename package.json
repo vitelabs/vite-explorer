@@ -1,12 +1,15 @@
 {
   "name": "vite.net",
-  "dependencies": {
-    "nuxt": "latest"
-  },
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start"
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "p": "npm run build && npm run generate"
+  },
+  "dependencies": {
+    "element-ui": "2.4.1",
+    "nuxt": "latest"
   },
   "devDependencies": {
     "node-sass": "^4.9.0",

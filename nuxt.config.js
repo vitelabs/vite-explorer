@@ -9,6 +9,7 @@ module.exports = {
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
     ]
   },
-  loading: {color: '#3B8070'},
+  loading: {color: '#7FB2FE'},
+  plugins: ['plugins/element-ui.js']
 
 }
