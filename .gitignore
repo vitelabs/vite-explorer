@@ -1,3 +1,9 @@
+npm-debug.log
+.nuxt
+dist
+.idea
+.vscode
+
 # Logs
 logs
 *.log
