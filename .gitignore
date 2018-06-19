@@ -1,7 +1,7 @@
 npm-debug.log
-.nuxt
+.nuxt/
 dist
-.idea
+.idea/
 .vscode
 
 # Logs
