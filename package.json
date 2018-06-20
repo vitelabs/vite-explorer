@@ -1,17 +1,19 @@
 {
   "name": "vite.net",
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "p": "npm run build && npm run generate"
+    "dev": "backpack dev",
+    "build": "nuxt build && backpack build",
+    "start": "cross-env NODE_ENV=production node build/main.js",
+    "generate": "nuxt generate"
   },
   "dependencies": {
+    "cross-env": "^5.2.0",
     "element-ui": "2.4.1",
+    "koa": "^2.5.1",
     "nuxt": "latest"
   },
   "devDependencies": {
+    "backpack-core": "^0.7.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.3"
   }

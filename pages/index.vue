@@ -2,7 +2,7 @@
   <div class="page-home">
     <el-row>
       <el-col :span="24">
-        <el-button>Default Button</el-button>
+        <el-button>Default Button1111</el-button>
       </el-col>
     </el-row>
     <v-footer></v-footer>
