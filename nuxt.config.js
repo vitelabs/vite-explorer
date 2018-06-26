@@ -10,6 +10,8 @@ module.exports = {
     ]
   },
   loading: {color: '#7FB2FE'},
-  plugins: ['plugins/element-ui.js']
-
+  plugins: ['~/plugins/element-ui.js'],
+  build: {
+    vendor: ['axios']
+  },
 }
