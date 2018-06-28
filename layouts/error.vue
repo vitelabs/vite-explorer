@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    props: ['error'],
-    layout: 'blog'
-  }
+    props: ["error"],
+    layout: "blog"
+  };
 </script>

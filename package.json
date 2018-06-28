@@ -8,6 +8,9 @@
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "generate": "nuxt generate"
   },
+  "pre-commit": [
+    "lint"
+  ],
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "2.4.1",
@@ -26,6 +29,7 @@
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
     "node-sass": "^4.9.0",
+    "pre-commit": "^1.2.2",
     "qs": "^6.5.2",
     "sass-loader": "^7.0.3"
   }

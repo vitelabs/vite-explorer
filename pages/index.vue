@@ -10,27 +10,27 @@
 </template>
 
 <script>
-  import Footer from '~/components/Footer.vue';
+  import Footer from "~/components/Footer.vue";
 
 
   export default {
     components: {
       VFooter: Footer,
     },
-    asyncData(ctx) {
-      return {name: 'world'}
+    asyncData() {
+      return {name: "world"};
     },
     data() {
       return {
-        title: 'hahha'
-      }
+        title: "hahha"
+      };
     },
     head() {
       return {
         title: this.title,
-      }
+      };
     }
-  }
+  };
 </script>
 <style lang="scss" rel="stylesheet/scss" scoped>
   .page-home {

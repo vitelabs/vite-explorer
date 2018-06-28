@@ -16,21 +16,21 @@
   </div>
 </template>
 <script>
-  import logoWithoutWords from '~/components/logoWithoutWords.vue'
+  import logoWithoutWords from "~/components/logoWithoutWords.vue";
 
   export default {
     components: {
       logoWithoutWords
     },
     data: function () {
-      return {}
+      return {};
     },
     computed: {},
     methods: {
       onLogoClick() {
       }
     }
-  }
+  };
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
   #home-nav {
