@@ -6,18 +6,22 @@
       <span v-if="!item.link && item.describe" class="describe">{{item.describe}}</span>
       <div v-if="item.list" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
-            class="lab">{{lab}}</span>
+            @click="clickLab(lab, index)" class="lab">{{lab}}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  export default {
+  export default { 
     props: {
       list: {
         type: Array,
         default: []
+      },
+      clickLab: {
+        type: Function,
+        default: ()=>{}
       }
     }
   };

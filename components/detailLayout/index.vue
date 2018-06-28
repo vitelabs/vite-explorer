@@ -1,7 +1,7 @@
 <template>
   <div class="detail-layout-container">
     <page-header :title="title"></page-header>
-    <detail-list :list="list"></detail-list>
+    <detail-list :list="list" :clickLab="clickLab"></detail-list>
   </div>
 </template>
 
@@ -21,6 +21,10 @@
       title: {
         type: String,
         default: ""
+      },
+      clickLab: {
+        type: Function,
+        default: ()=>{}
       }
     }
   };
