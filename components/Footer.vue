@@ -1,34 +1,20 @@
 <template>
   <footer class="footer">
-    <div class="container">
-      <div class="all-rights">
-        <span>
-          Vite Labs Limited, All Rights Reserved.
-          Copyright © 2018 VITE Labs
-        </span>
-      </div>
-    </div>
+    Vite Labs Limited, All Rights Reserved.
+    Copyright © 2018 VITE Labs
   </footer>
 </template>
 
-<script type="text/babel">
-
-
-  export default {
-    components: {
-
-    },
-    data: function () {
-      return {
-
-      };
-    },
-    methods: {
-
-    }
-  };
-</script>
-
 <style rel="stylesheet/scss" lang="scss" scoped>
-
+  .footer {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 9999;
+    padding: 20px;
+    background: #272727;
+    color: #e6b422;
+    text-align: center;
+  }
 </style>
