@@ -12,7 +12,7 @@ module.exports = {
   },
   extends: "eslint:recommended",
   parserOptions: {
-    "ecmaFeatures": {
+    'ecmaFeatures': {
       "jsx": true
     },
     "sourceType": "module"

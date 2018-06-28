@@ -1,17 +1,28 @@
 <template>
   <div class="page-home">
-    我是主页
+    <el-row>
+      <el-col :span="24">
+        <el-button>{{name}} 我是主页</el-button>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
+  import auth from "../services/index";
+
   export default {
-    asyncData() {
-      return {name: "world"};
+    async asyncData() {
+      let data = await auth.getUser();
+
+      console.log(data);
+
+      return {name: data[0].name};
     },
     data() {
       return {
-        title: "hahha"
+        name: this.name
+
       };
     },
     head() {
