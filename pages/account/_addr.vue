@@ -1,50 +1,50 @@
 <template>
-  <div class="block-container">
-    <detail-layout  
-        :title="`${title}: ${blockHash}`"
+  <div class="account-container">
+    <detail-layout 
+        :title="`${title}: ${accountAddress}`"
         :list="list">
     </detail-layout >
   </div>
 </template>
 
-<script>
+<script>  
   import detailLayout from "~/components/detailLayout";
 
   export default {
     components: {
       detailLayout
     },
-    validate ({ params }) {
-      return params.blockHash;
+    validate({ params }) {
+      return params.addr;
     },
     asyncData({ params }) {
       return {
-        blockHash: params.blockHash || "",
+        accountAddress: params.addr || "",
         list: [{
-          name: "快照块高度",
+          name: "账户Hash",
           describe: "2830928023984014810481"
         }, {
-          name: "快照块年龄",
-          describe: "2830928023984014810481"
+          name: "账户持有币种种类",
+          list: [1,2,2]
         }, {
-          name: "打包账户数",
+          name: "余额数量",
           describe: "283"
         }, {
-          name: "快照块Hash",
+          name: "余额价值",
           describe: "2830928023984014810481"
         }, {
-          name: "打包节点",
+          name: "交易次数",
           describe: "2830928023984014810481"
         }, {
-          name: "锻造奖励",
+          name: "所有代币估值",
           describe: "2830928023984014810481"
         }]
       };
     },
     data() {
       return {
-        title: "快照块详情",
-        blockHash: "",
+        title: "账户详情",
+        accountAddress: "",
         list: []
       };
     },
