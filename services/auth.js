@@ -1,7 +1,7 @@
-import { get } from '../api/axios';
+import { get } from "../api/axios";
 
 // get user info
 export function getUser() {
-  return get('/user')
+  return get("/user")
     .then(res => res);
 }

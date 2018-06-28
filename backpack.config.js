@@ -1,8 +1,9 @@
 module.exports = {
-  webpack: (config, options, webpack) => {
-    config.entry.main = './server/index.js';
+  // (config, options, webpack)
+  webpack: (config) => {
+    config.entry.main = "./server/index.js";
 
-    config.resolve.modules = ['./server'];
+    config.resolve.modules = ["./server"];
     return config;
   }
-}
+};

@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
-import qs from 'qs';
-import config from './config';
+import qs from "qs";
+import config from "./config";
 
 if (process.server) {
-  config.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}/api`;
+  config.baseURL = `http://${process.env.HOST || "localhost"}:${process.env.PORT || 3000}/api`;
 }
 
 const service = axios.create(config);
@@ -12,7 +12,7 @@ const service = axios.create(config);
 // POST 传参序列化
 service.interceptors.request.use(
   config => {
-    if (config.method === 'post') {
+    if (config.method === "post") {
       config.data = qs.stringify(config.data);
     }
     return config;
@@ -33,19 +33,20 @@ service.interceptors.response.use(
 );
 
 export function post(url, data) {
-  console.log('post request url', url);
+  console.log("post request url", url);
   return service({
-    method: 'post',
+    method: "post",
     url,
     params: data
   });
 }
 
 export function get(url, data) {
-  console.log('get request url', url);
+  console.log("get request url", url);
   return service({
-    method: 'get',
+    method: "get",
     url,
     params: data
   });
 }
+

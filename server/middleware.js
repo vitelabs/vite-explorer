@@ -1,5 +1,5 @@
-import bodyParser from 'koa-bodyparser';
-import routes from './routes';
+import bodyParser from "koa-bodyparser";
+import routes from "./routes";
 
 export default (app) => {
   app.use(async (ctx, next) => {
@@ -11,4 +11,4 @@ export default (app) => {
 
   app.use(routes(app));
 
-}
+};
