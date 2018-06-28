@@ -2,8 +2,12 @@
   <div class="deatail-list-container">
     <div class="row" v-for="(item, index) in list" :key="index">
       <span class="name">{{item.name}}</span>
-      <span v-if="item.describe" class="describe">{{item.describe}}</span>
-      <!-- <div v-if="item.list" class="describe">{{item.describe}}</div> -->
+      <a v-if="item.link && item.describe" class="describe-link" :href="item.link">{{item.describe}}</a>
+      <span v-if="!item.link && item.describe" class="describe">{{item.describe}}</span>
+      <div v-if="item.list" class="lab-list">
+          <span v-for="(lab, index) in item.list" :key="index"
+            class="lab">{{lab}}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -33,8 +37,23 @@
       color: #333;
       width: 10vw;
     }
+    .describe-link {
+      color: #337ab7;
+    }
     .describe {
       color: #666;
+    }
+    .lab-list {
+      display: inline-block;
+      .lab {
+        &:first-child {
+          margin-left: 0;
+        }
+        padding: 10px;
+        background: #efefef;
+        color: #666;
+        margin-left: 20px;
+      }
     }
   }
 </style>
