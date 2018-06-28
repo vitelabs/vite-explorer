@@ -2,7 +2,7 @@
   <div class="page-home">
     <el-row>
       <el-col :span="24">
-        <el-button>Default Button1111</el-button>
+        <el-button>{{name}}</el-button>
       </el-col>
     </el-row>
     <v-footer></v-footer>
@@ -11,18 +11,22 @@
 
 <script>
   import Footer from '~/components/Footer.vue';
-
+  import auth from '../services/index';
 
   export default {
     components: {
       VFooter: Footer,
     },
-    asyncData(ctx) {
-      return {name: 'world'}
+    async asyncData(ctx) {
+      let data = await auth.getUser();
+
+      console.log(data);
+
+      return {name: data[0].name}
     },
     data() {
       return {
-        title: 'hahha'
+        name: this.name
       }
     },
     head() {

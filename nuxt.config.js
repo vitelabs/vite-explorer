@@ -12,6 +12,6 @@ module.exports = {
   loading: {color: '#7FB2FE'},
   plugins: ['~/plugins/element-ui.js'],
   build: {
-    vendor: ['axios']
+    vendor: ['axios', 'element-ui']
   },
 }

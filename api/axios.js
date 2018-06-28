@@ -4,7 +4,7 @@ import qs from 'qs';
 import config from './config';
 
 if (process.server) {
-  config.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}`;
+  config.baseURL = `http://${process.env.HOST || 'localhost'}:${process.env.PORT || 3000}/api`;
 }
 
 const service = axios.create(config);
@@ -13,9 +13,9 @@ const service = axios.create(config);
 service.interceptors.request.use(
   config => {
     if (config.method === 'post') {
-      config.data = qs.stringify(config.data)
-      return config;
+      config.data = qs.stringify(config.data);
     }
+    return config;
   },
   error => {
     return Promise.reject(error);
@@ -32,21 +32,20 @@ service.interceptors.response.use(
   }
 );
 
-export default {
-  post(url, data) {
-    console.log('post request url', url);
-    return service({
-      method: 'post',
-      url,
-      params: data
-    });
-  },
-  get(url, data) {
-    console.log('get request url', url);
-    return service({
-      method: 'get',
-      url,
-      params: data
-    });
-  }
+export function post(url, data) {
+  console.log('post request url', url);
+  return service({
+    method: 'post',
+    url,
+    params: data
+  });
+}
+
+export function get(url, data) {
+  console.log('get request url', url);
+  return service({
+    method: 'get',
+    url,
+    params: data
+  });
 }

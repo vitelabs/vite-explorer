@@ -6,7 +6,6 @@ export default {
     post: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
     },
-    'X-Requested-With': 'XMLHttpRequest'
   },
   timeout: 10000,
   withCredentials: true,
