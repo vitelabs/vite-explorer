@@ -20,7 +20,6 @@
     data() {
       return {
         name: this.name
-
       };
     },
     head() {

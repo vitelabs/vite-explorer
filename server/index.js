@@ -8,16 +8,13 @@ async function start() {
   const host = process.env.HOST || "127.0.0.1";
   const port = process.env.PORT || config.server.port;
 
-
   let nuxtConfig = require("../nuxt.config.js");
   nuxtConfig.dev = !(app.env === "production");
-
   const nuxt = new Nuxt(nuxtConfig);
 
   // Build in development
   if (nuxtConfig.dev) {
-    const builder = new Builder(nuxt);
-    await builder.build();
+    await new Builder(nuxt).build();
   }
 
   // middlewares are imported here

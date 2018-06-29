@@ -4,7 +4,6 @@ dist
 .idea/
 .vscode
 build/
-package-lock.json
 
 # Logs
 logs

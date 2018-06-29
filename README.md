@@ -8,7 +8,7 @@ Official Block Explorer of Vite
 * node.js
 * yarn
 
-## Building (gulp)
+## Building
 
 `npm run build`
 
