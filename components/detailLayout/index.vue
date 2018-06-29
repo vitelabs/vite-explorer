@@ -14,13 +14,13 @@
       pageHeader, detailList
     },
     props: {
-      list: {
-        type: Array,
-        default: []
-      },
       title: {
         type: String,
         default: ""
+      },
+      list: {
+        type: Array,
+        default: []
       },
       clickLab: {
         type: Function,

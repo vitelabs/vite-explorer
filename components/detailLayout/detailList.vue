@@ -6,7 +6,10 @@
       <span v-if="!item.link && item.describe" class="describe">{{item.describe}}</span>
       <div v-if="item.list" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
-            @click="clickLab(lab, index)" class="lab">{{lab}}</span>
+            @click="_clickLab(lab, index)" :class="{
+                'lab': true,
+                'lab-selected': index == currentLabInx
+            }">{{lab}}</span>
       </div>
     </div>
   </div>
@@ -22,6 +25,17 @@
       clickLab: {
         type: Function,
         default: ()=>{}
+      }
+    },
+    data() {
+      return {
+        currentLabInx: 0
+      };
+    },
+    methods: {
+      _clickLab(lab, index) {
+        this.currentLabInx = index;
+        this.clickLab(lab, index);
       }
     }
   };
@@ -57,6 +71,10 @@
         background: #efefef;
         color: #666;
         margin-left: 20px;
+        &.lab-selected {
+            background: #afafaf;
+            color: #333;
+        }
       }
     }
   }
