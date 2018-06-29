@@ -85,9 +85,6 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .token-container {
-    padding-bottom: 100px;
-  }
   .tab-wrapper {
     padding-top: 20px;
     .tab-pane {
