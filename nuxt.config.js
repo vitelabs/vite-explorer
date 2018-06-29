@@ -1,3 +1,18 @@
+const locales = [
+  {
+    code: "en",
+    name: "English",
+    langFile: "en.js"
+  },
+  {
+    code: "zh",
+    name: "中文",
+    langFile: "zh.js"
+  }
+];
+
+const defaultLocale = "en";
+
 module.exports = {
   head: {
     title: "{{ name }}",
@@ -14,4 +29,28 @@ module.exports = {
   build: {
     vendor: ["axios", "element-ui"]
   },
+  router: {
+    middleware: "i18n"
+  },
+  modules: [
+    ["nuxt-i18n", {
+      locales,
+      defaultLocale,
+      detectBrowserLanguage: true,
+      redirectCookieKey: "redirected",
+      useRedirectCookie: true,
+      loadLanguagesAsync: true,
+      langDir: "locales/",
+      ignorePaths: [],
+      vueI18n: {
+        fallbackLocale: defaultLocale,
+        messages: {
+          /*
+          * make the default locale can work in fallback in ssr.
+          * */
+          en: require("./locales/en.js")
+        }
+      }
+    }]
+  ]
 };

@@ -2,7 +2,7 @@
   <div class="page-home">
     <el-row>
       <el-col :span="24">
-        <el-button>{{name}} 我是主页</el-button>
+        <el-button>{{name}} 我是主页 {{ $t('lang') }}</el-button>
       </el-col>
     </el-row>
   </div>
@@ -14,8 +14,6 @@
   export default {
     async asyncData() {
       let data = await auth.getUser();
-
-      console.log(data);
 
       return {name: data[0].name};
     },
