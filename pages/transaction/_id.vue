@@ -25,7 +25,7 @@
           describe: "2830928023984014810481"
         }, {
           name: "交易类型",
-          list: [1,2,2]
+          describe: "接受"
         }, {
           name: "交易状态",
           describe: "283"

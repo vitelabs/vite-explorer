@@ -53,7 +53,7 @@
     }
   }
   .content-wrapper {
-    padding: 20px 120px;
+    padding: 20px 120px 120px;
   }
 </style>
 
