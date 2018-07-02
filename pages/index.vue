@@ -1,17 +1,17 @@
 <template>
   <div class="page-home">
-    <el-row>
-      <el-col :span="24">
-        <el-button>{{name}} 我是主页 {{ $t('lang') }}</el-button>
-      </el-col>
-    </el-row>
+    <profile></profile>
   </div>
 </template>
 
 <script>
   import auth from "../services/index";
+  import Profile from "~/components/Home/Profile.vue";
 
   export default {
+    components: {
+      Profile
+    },
     async asyncData() {
       let data = await auth.getUser();
 

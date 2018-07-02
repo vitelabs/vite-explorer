@@ -2,6 +2,8 @@
 
 body {
   font-family: $font-family-light;
+  padding: 0px;
+  margin: 0px;
 }
 
 // transition
@@ -12,12 +14,7 @@ body {
 
 // headroom
 .headroom {
-  position: fixed;
-  right: 0;
-  left: 0;
-  top: 0;
-  z-index: 1;
-  transition: transform 0.6s ease;
+
 }
 .headroom.headroom--pinned {
   transform: translateY(0);
