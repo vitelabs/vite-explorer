@@ -1,0 +1,43 @@
+@import "vars";
+
+body {
+  font-family: $font-family-light;
+}
+
+// transition
+
+.text-hover-transition {
+  transition: color 0.4s ease-in-out;
+}
+
+// headroom
+.headroom {
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  transition: transform 0.6s ease;
+}
+.headroom.headroom--pinned {
+  transform: translateY(0);
+}
+.headroom.headroom--unpinned {
+  transform: translateY(-100%);
+}
+
+// input
+
+.input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
+  border-color: $light-blue;
+  box-shadow: 0 0 0 0.125em rgba(54,130,222, 0.25);
+}
+
+.button:focus, .button.is-focused {
+  border-color: $light-blue;
+  color: $light-blue;
+}
+
+.button:focus:not(:active), .button.is-focused:not(:active) {
+  box-shadow: 0 0 0 0.125em rgba(54,130,222, 0.25);
+}

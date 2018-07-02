@@ -22,11 +22,6 @@
         name: this.name
 
       };
-    },
-    head() {
-      return {
-        title: this.title,
-      };
     }
   };
 </script>
