@@ -1,33 +1,37 @@
 <template>
   <div class="account-container">
-    <detail-layout 
-        :title="`${title}: ${accountDetail.accountAddress}`"
-        :list="accountList"
-        :clickLab="clickLab">
-    </detail-layout>
+    <div v-if="!error">
+      <detail-layout 
+          :title="`${title}: ${accountDetail.accountAddress}`"
+          :list="accountList"
+          :clickLab="clickLab">
+      </detail-layout>
 
-    <detail-layout v-if="subTitle"
-        :title="subTitle"
-        :list="tokenDetailList">
-    </detail-layout>
+      <detail-layout v-if="subTitle"
+          :title="subTitle"
+          :list="tokenDetailList">
+      </detail-layout>
 
-    <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
-      <el-tab-pane class="tab-pane" label="交易列表" name="transList">
-        <page-tabel
-          :title="transTabelTitle" 
-          :tabelTitles="transTitles"
-          :tabelData="transData"
-          :total="transNum"
-          :currentChange="transPageChange">
-        </page-tabel>
-      </el-tab-pane>
-    </el-tabs>
+      <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
+        <el-tab-pane class="tab-pane" label="交易列表" name="transList">
+          <page-tabel
+            :title="transTabelTitle" 
+            :tabelTitles="transTitles"
+            :tabelData="transData"
+            :total="transNum"
+            :currentChange="transPageChange">
+          </page-tabel>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+    <error v-else :error="error"></error>
   </div>
 </template>
 
 <script>  
   import detailLayout from "~/components/detailLayout";
   import pageTabel from "~/components/pageTabel";
+  import error from "~/components/error";
   import account from "../../services/account.js";
 
   export default {
@@ -37,7 +41,7 @@
       };
     },
     components: {
-      detailLayout, pageTabel
+      detailLayout, pageTabel, error
     },
     validate({ params }) {
       return params.addr;
@@ -78,7 +82,7 @@
       return {
         title: "账户详情",
         activeTab: "transList",
-  
+        error: "",
         accountDetail: {},
         tokenList: [],
 
@@ -123,13 +127,13 @@
     computed: {
       accountList() {
         let tokenNameList = [];
-        this.tokenList.forEach((token) => {
-          tokenNameList.push(token.name);
+        this.tokenList.forEach((tokenDetail) => {
+          tokenNameList.push(tokenDetail.token.name);
         });
 
         return [{
           name: "账户Hash",
-          describe: this.accountDetail.accountAddres
+          describe: this.accountDetail.accountAddress
         },{
           name: "账户持有代币种类",
           describe: tokenNameList.length
