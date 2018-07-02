@@ -25,9 +25,19 @@ service.interceptors.request.use(
 // 返回状态判断
 service.interceptors.response.use(
   res => {
-    return res.data;
+    let body = res.data || {};
+    if (body.code) {
+      throw body;
+    }
+    return body.data || {};
   },
   error => {
+    if (!error.code) {
+      error = {
+        code: error.response && error.response.status ? error.response.status : "5000",
+        msg: error.response && error.response.statusText ? error.response.statusText : "request error"
+      };
+    }
     return Promise.reject(error);
   }
 );
@@ -49,4 +59,3 @@ export function get(url, data) {
     params: data
   });
 }
-

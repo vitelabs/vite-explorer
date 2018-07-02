@@ -1,8 +1,8 @@
 <template>
   <div class="account-container">
     <detail-layout 
-        :title="`${title}: ${accountAddress}`"
-        :list="list"
+        :title="`${title}: ${accountDetail.accountAddress}`"
+        :list="accountList"
         :clickLab="clickLab">
     </detail-layout>
 
@@ -28,6 +28,7 @@
 <script>  
   import detailLayout from "~/components/detailLayout";
   import pageTabel from "~/components/pageTabel";
+  import account from "../../services/account.js";
 
   export default {
     head() {
@@ -41,27 +42,21 @@
     validate({ params }) {
       return params.addr;
     },
-    asyncData({ params }) {
-      let tokenList = [1, 2, 3];
-
-      return {
-        accountAddress: params.addr || "",
-        list: [{
-          name: "账户Hash",
-          describe: "2830928023984014810481"
-        }, {
-          name: "账户持有币种种类",
-          describe: 23820
-        }, {
-          name: "账户持有代币",
-          list: tokenList
-        }, {
-          name: "所有代币估值",
-          describe: "2830928023984014810481"
-        }],
-        tokenList,
-        subTitle: `代币: ${tokenList && tokenList.length ? tokenList[0] : ""}`
-      };
+    async asyncData({ params }) {
+      try {
+        let accountDetail = await account.getDetail({
+          accountAddres: params.addr
+        });
+        let tokenList = accountDetail.tokenList || [];
+        return {
+          accountDetail,
+          tokenList
+        };
+      } catch(err) {
+        return {
+          error: err.msg || "get account fail"
+        };
+      }
     },
     data() {
       let transData = [];
@@ -82,23 +77,13 @@
 
       return {
         title: "账户详情",
-        accountAddress: "",
-        list: [],
+        activeTab: "transList",
+  
+        accountDetail: {},
         tokenList: [],
 
-        subTitle: "",
-        tokenDetailList: [{
-          name: "余额数量",
-          describe: "2830928023984014810481"
-        }, {
-          name: "余额价值",
-          describe: 23820
-        }, {
-          name: "交易次数",
-          describe: "2830928023984014810481"
-        }],
+        activeTokenIndex: 0,
 
-        activeTab: "transList",
         transTabelTitle: "最近的10笔交易, 总交易笔数2089",
         transTitles: [{
           prop: "transHash",
@@ -135,21 +120,51 @@
         transNum: 10000,
       };
     },
-    methods: {
-      clickLab(lab) {
-        this.subTitle = `代币: ${lab}`;
+    computed: {
+      accountList() {
+        let tokenNameList = [];
+        this.tokenList.forEach((token) => {
+          tokenNameList.push(token.name);
+        });
 
-        // request
-        this.tokenDetailList = [{
+        return [{
+          name: "账户Hash",
+          describe: this.accountDetail.accountAddres
+        },{
+          name: "账户持有代币种类",
+          describe: tokenNameList.length
+        },{
+          name: "账户持有代币",
+          list: tokenNameList
+        }];
+      },
+      subTitle() {
+        return `代币: ${this.tokenList.length ? this.tokenList[this.activeTokenIndex].token.name || "" : ""}`;
+      },
+      tokenDetailList() {
+        let tokenDetail = this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
+        if (!tokenDetail) {
+          return [];
+        }
+
+        return [{
           name: "余额数量",
-          describe: "2830928023984014810481"
+          describe: tokenDetail.balance || 0
         }, {
           name: "余额价值",
-          describe: 23820
+          describe: "----"
         }, {
           name: "交易次数",
-          describe: "2830928023984014810481"
+          describe: tokenDetail.token.transactionNumber
+        }, {
+          name: "所有代币估值",
+          describe: "----"
         }];
+      }
+    },
+    methods: {
+      clickLab(lab, index) {
+        this.activeTokenIndex = index;
       },
 
       transPageChange(currentInx) {
