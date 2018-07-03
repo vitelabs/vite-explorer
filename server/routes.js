@@ -126,6 +126,50 @@ export default () => {
     };
   });
 
+  router.get("/api/block/list", async (ctx) => {
+    ctx.type = "json";
+    ctx.body = {
+      code: 0,
+      msg: "",
+      data: [{
+        prevHash: "sdsdsd",                        // 前一个快照块的hash
+        height: "sdsdsd",                          // 当前快照块高度
+        producer: "sdsdsd",                        // 生产这个快照块的账号地址
+        snapshot: "sdsdsd",           // 当前所有用户的状态快照，为了减小存储空间，只存储发生状态变化的用户的状态快照
+        signature: "sdsdsd",                       // 生产这个快照块的签名
+        amount: "sdsds"
+      },{
+        prevHash: "sdsdsd",                        // 前一个快照块的hash
+        height: "sdsdsd",                          // 当前快照块高度
+        producer: "sdsdsd",                        // 生产这个快照块的账号地址
+        snapshot: "sdsdsd",           // 当前所有用户的状态快照，为了减小存储空间，只存储发生状态变化的用户的状态快照
+        signature: "sdsdsd",                       // 生产这个快照块的签名
+        amount: "sdsds"
+      },{
+        prevHash: "sdsdsd",                        // 前一个快照块的hash
+        height: "sdsdsd",                          // 当前快照块高度
+        producer: "sdsdsd",                        // 生产这个快照块的账号地址
+        snapshot: "sdsdsd",           // 当前所有用户的状态快照，为了减小存储空间，只存储发生状态变化的用户的状态快照
+        signature: "sdsdsd",                       // 生产这个快照块的签名
+        amount: "sdsds"
+      },{
+        prevHash: "sdsdsd",                        // 前一个快照块的hash
+        height: "sdsdsd",                          // 当前快照块高度
+        producer: "sdsdsd",                        // 生产这个快照块的账号地址
+        snapshot: "sdsdsd",           // 当前所有用户的状态快照，为了减小存储空间，只存储发生状态变化的用户的状态快照
+        signature: "sdsdsd",                       // 生产这个快照块的签名
+        amount: "sdsds"
+      },{
+        prevHash: "sdsdsd",                        // 前一个快照块的hash
+        height: "sdsdsd",                          // 当前快照块高度
+        producer: "sdsdsd",                        // 生产这个快照块的账号地址
+        snapshot: "sdsdsd",           // 当前所有用户的状态快照，为了减小存储空间，只存储发生状态变化的用户的状态快照
+        signature: "sdsdsd",                       // 生产这个快照块的签名
+        amount: "sdsds"
+      }]
+    };
+  });
+
   router.get("/api/block/detail", async (ctx) => {
     ctx.type = "json";
     ctx.body = {

@@ -1,17 +1,22 @@
 <template>
   <div class="token-container">
-    <page-tabel
-        :title="blockTabelTitle" 
+    <page-tabel v-if="error"
+        :title="'总区块量：---- (仅展示最近----条数据)'" 
         :tabelTitles="blockTitles"
-        :tabelData="blockData"
-        :total="blockNum"
+        :tabelData="blockPageData"
+        :total="1000"
         :currentChange="blockPageChange">
     </page-tabel>
+    <error v-else :error="error"></error>
   </div>
 </template>
 
 <script>
   import pageTabel from "~/components/pageTabel";
+  import error from "~/components/error";
+  import block from "~/services/block.js";
+
+  const pageSize = 10;
 
   export default {
     head() {
@@ -20,27 +25,29 @@
       };
     },
     components: {
-      pageTabel
+      pageTabel, error
+    },
+    async asyncData() {
+      try {
+        let pageIndex = 0;
+        let blockList = await block.getList({
+          pageIndex, pageSize
+        });
+        return {
+          blockList, pageIndex
+        };
+      } catch(err) {
+        return {
+          error: err.msg || "get blockList fail"
+        };
+      }
     },
     data() {
-      let blockData = [];
-      for(let i=0; i<10; i++) {
-        blockData.push({
-          transHash: "sdsdsdsds",
-          transType: "sdsdsdsd",
-          status: "sdsd",
-          firstBlock: "sdsdsdsd",
-          timestamp: "sdsdsdsd",
-          confirmNum: "sdsdsdsd",
-          outer: "dsdsdsd",
-          inner: "sdsdsdsds",
-          token: "sdsdjsldsd",
-          price: "sdsdsd"
-        });
-      }
-
       return {
-        blockTabelTitle: "总区块量：2382038203 (仅展示最近38203820条数据)",
+        pageIndex: 0,
+        blockList: [],
+        error: "",
+
         blockTitles: [{
           prop: "transHash",
           name: "快照块高度"
@@ -60,25 +67,12 @@
           prop: "confirmNum",
           name: "锻造奖励"
         }],
-        blockData,
-        blockNum: 10000,
+        blockPageData: [],
       };
     },
     methods: {
       blockPageChange(currentInx) {
-        let blockData = [];
-        for(let i=0; i<10; i++) {
-          blockData.push({
-            transHash: "sdsdsdsds" + currentInx,
-            transType: "sdsdsdsd" + currentInx,
-            status: "sdsd" + currentInx,
-            firstBlock: "sdsdsdsd" + currentInx,
-            timestamp: "sdsdsdsd" + currentInx,
-            confirmNum: "sdsdsdsd" + currentInx
-          });
-        }
-        // todo
-        this.blockData = blockData;
+        console.log(currentInx);
       }
     }
   };
