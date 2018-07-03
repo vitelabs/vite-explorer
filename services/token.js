@@ -16,14 +16,16 @@ export default {
    * @returns {Promise}
    */
   getList({
-    index,
-    num,
-    count = 10
-  }, accountAddress, tokenId) {
+    pageIndex,
+    pageSize = 10,
+    pageNum,
+  }) {
     return post(`${PREFIX}/list`, {
-      paging: {index, num, count},
-      accountAddress,
-      tokenId
+      paging: {
+        index: pageIndex, 
+        count: pageSize,
+        num: pageNum,
+      }
     });
   },
 

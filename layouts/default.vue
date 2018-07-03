@@ -86,6 +86,3 @@
     padding: 20px 120px 120px;
   }
 </style>
-
-
-

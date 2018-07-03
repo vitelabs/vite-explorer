@@ -1,17 +1,24 @@
 <template>
   <div class="token-list-container">
-    <page-header :title="title"></page-header>
-    <page-tabel class="token-tabel" :pagination="false" :showOrder="true"
-        :title="tokenTabelTitle" 
-        :tabelTitles="tokenTitles"
-        :tabelData="tokenData">
-    </page-tabel>
+    <div v-if="!error">
+      <page-header :title="title"></page-header>
+      <page-tabel class="token-tabel" :pagination="false" :showOrder="true"
+          :title="tokenTabelTitle" 
+          :tabelTitles="tokenTitles"
+          :tabelData="tokenData">
+      </page-tabel>
+    </div>
+    <error v-else :error="error"></error>
   </div>
 </template>
 
 <script>
   import pageHeader from "~/components/pageHeader.vue";
   import pageTabel from "~/components/pageTabel";
+  import error from "~/components/error";
+  import token from "../../services/token.js";
+
+  const pageSize = 10;
 
   export default {
     head() {
@@ -20,13 +27,38 @@
       };
     },
     components: {
-      pageHeader, pageTabel
+      pageHeader, pageTabel, error
+    },
+    async asyncData() {
+      const pageIndex = 0;
+
+      try {
+        let tokenList = await token.getList({
+          pageIndex, pageSize
+        });
+        return {
+          pageIndex,
+          tokenList
+        };
+      } catch(err) {
+        return {
+          error: err.msg || "get account fail"
+        };
+      }
     },
     data() {
       return {
         title: "Token列表",
-        tokenTabelTitle: "总计有42种token",
-        tokenTitles: [{
+        tokenList: [],
+        error: ""
+      };
+    },
+    computed: {
+      tokenTabelTitle() {
+        return `总计有${this.tokenList.length}种token`;
+      },
+      tokenTitles() {
+        return [{
           prop: "icon",
           name: "图标"
         }, {
@@ -44,58 +76,22 @@
         }, {
           prop: "famc",
           name: "流通市值"
-        }],
-        tokenData: [{
-          icon: "dsjdlsjdlsds",
-          token: "Vite",
-          price: 798,
-          upDown: "sdjlsjdsl",
-          transPrice: 2323232323,
-          famc: 90980890
-        },{
-          icon: "dsjdlsjdlsds",
-          token: "Vite",
-          price: 798,
-          upDown: "sdjlsjdsl",
-          transPrice: 2323232323,
-          famc: 90980890
-        },{
-          icon: "dsjdlsjdlsds",
-          token: "Vite",
-          price: 798,
-          upDown: "sdjlsjdsl",
-          transPrice: 2323232323,
-          famc: 90980890
-        },{
-          icon: "dsjdlsjdlsds",
-          token: "Vite",
-          price: 798,
-          upDown: "sdjlsjdsl",
-          transPrice: 2323232323,
-          famc: 90980890
-        },{
-          icon: "dsjdlsjdlsds",
-          token: "Vite",
-          price: 798,
-          upDown: "sdjlsjdsl",
-          transPrice: 2323232323,
-          famc: 90980890
-        },{
-          icon: "dsjdlsjdlsds",
-          token: "Vite",
-          price: 798,
-          upDown: "sdjlsjdsl",
-          transPrice: 2323232323,
-          famc: 90980890
-        },{
-          icon: "dsjdlsjdlsds",
-          token: "Vite",
-          price: 798,
-          upDown: "sdjlsjdsl",
-          transPrice: 2323232323,
-          famc: 90980890
-        }]
-      };
+        }];
+      },
+      tokenData() {
+        let list = [];
+        this.tokenList.forEach(token => {
+          list.push({
+            icon: "----",
+            token: `<a href="/token/${token.name}}">${token.name} (${token.symbol})</a><br/>${token.introduction}`,
+            price: "----",
+            upDown: "----",
+            transPrice: "----",
+            famc: "----"
+          });
+        });
+        return list;
+      }
     }
   };
 </script>

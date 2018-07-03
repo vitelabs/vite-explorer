@@ -2,14 +2,16 @@ import Router from "koa-trie-router";
 
 const router = new Router();
 
-const users = [
-  {name: "zhoudan"}
-];
-
 export default () => {
   router.get("/api/user", async (ctx) => {
     ctx.type = "json";
-    ctx.body = users;
+    ctx.body = {
+      code: 0,
+      msg: "",
+      data: [{
+        name: "zhoudan"
+      }]
+    };
   });
 
   router.get("/api/account/detail", async (ctx) => {
@@ -63,43 +65,47 @@ export default () => {
 
   router.post("/api/token/list", async (ctx) => {
     ctx.type = "json";
-    ctx.body = [{
-      name: "vite",                        // 代币名称
-      id: "dsdsd",                          // 代币Id
-      introduction: "sdsdsdsd",                // 代币介绍   
-      symbol: "vite",                      // 代币符号
-      owner: "c",                       // 代币拥有者
-      decimals: "sdsdsdsd",                    // 最小精确到小数点后几位
-      totalSupply: "sdsdsdsdsd",                 // 代币总量
-      transactionNumber: "sdsdsdsds",           // 当前交易数量
-    },{
-      name: "vite",                        // 代币名称
-      id: "dsdsd",                          // 代币Id
-      introduction: "sdsdsdsd",                // 代币介绍   
-      symbol: "vite",                      // 代币符号
-      owner: "c",                       // 代币拥有者
-      decimals: "sdsdsdsd",                    // 最小精确到小数点后几位
-      totalSupply: "sdsdsdsdsd",                 // 代币总量
-      transactionNumber: "sdsdsdsds",           // 当前交易数量
-    },{
-      name: "vite",                        // 代币名称
-      id: "dsdsd",                          // 代币Id
-      introduction: "sdsdsdsd",                // 代币介绍   
-      symbol: "vite",                      // 代币符号
-      owner: "c",                       // 代币拥有者
-      decimals: "sdsdsdsd",                    // 最小精确到小数点后几位
-      totalSupply: "sdsdsdsdsd",                 // 代币总量
-      transactionNumber: "sdsdsdsds",           // 当前交易数量
-    },{
-      name: "vite",                        // 代币名称
-      id: "dsdsd",                          // 代币Id
-      introduction: "sdsdsdsd",                // 代币介绍   
-      symbol: "vite",                      // 代币符号
-      owner: "c",                       // 代币拥有者
-      decimals: "sdsdsdsd",                    // 最小精确到小数点后几位
-      totalSupply: "sdsdsdsdsd",                 // 代币总量
-      transactionNumber: "sdsdsdsds",           // 当前交易数量
-    }];    
+    ctx.body = {
+      code: 0,
+      msg: "",
+      data: [{
+        name: "vite",                        // 代币名称
+        id: "dsdsd",                          // 代币Id
+        introduction: "sdsdsdsd",                // 代币介绍   
+        symbol: "vite",                      // 代币符号
+        owner: "c",                       // 代币拥有者
+        decimals: "sdsdsdsd",                    // 最小精确到小数点后几位
+        totalSupply: "sdsdsdsdsd",                 // 代币总量
+        transactionNumber: "sdsdsdsds",           // 当前交易数量
+      },{
+        name: "vite",                        // 代币名称
+        id: "dsdsd",                          // 代币Id
+        introduction: "sdsdsdsd",                // 代币介绍   
+        symbol: "vite",                      // 代币符号
+        owner: "c",                       // 代币拥有者
+        decimals: "sdsdsdsd",                    // 最小精确到小数点后几位
+        totalSupply: "sdsdsdsdsd",                 // 代币总量
+        transactionNumber: "sdsdsdsds",           // 当前交易数量
+      },{
+        name: "vite",                        // 代币名称
+        id: "dsdsd",                          // 代币Id
+        introduction: "sdsdsdsd",                // 代币介绍   
+        symbol: "vite",                      // 代币符号
+        owner: "c",                       // 代币拥有者
+        decimals: "sdsdsdsd",                    // 最小精确到小数点后几位
+        totalSupply: "sdsdsdsdsd",                 // 代币总量
+        transactionNumber: "sdsdsdsds",           // 当前交易数量
+      },{
+        name: "vite",                        // 代币名称
+        id: "dsdsd",                          // 代币Id
+        introduction: "sdsdsdsd",                // 代币介绍   
+        symbol: "vite",                      // 代币符号
+        owner: "c",                       // 代币拥有者
+        decimals: "sdsdsdsd",                    // 最小精确到小数点后几位
+        totalSupply: "sdsdsdsdsd",                 // 代币总量
+        transactionNumber: "sdsdsdsds",           // 当前交易数量
+      }]
+    };    
   });
 
   router.get("/api/token/detail", async (ctx) => {
