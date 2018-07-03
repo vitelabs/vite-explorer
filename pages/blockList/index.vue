@@ -1,11 +1,10 @@
 <template>
   <div class="token-container">
-    <page-tabel v-if="error"
+    <page-tabel v-if="!error"
         :title="'总区块量：---- (仅展示最近----条数据)'" 
         :tabelTitles="blockTitles"
         :tabelData="blockPageData"
-        :total="1000"
-        :currentChange="blockPageChange">
+        :currentChange="pageChange">
     </page-tabel>
     <error v-else :error="error"></error>
   </div>
@@ -67,11 +66,11 @@
           prop: "confirmNum",
           name: "锻造奖励"
         }],
-        blockPageData: [],
+        blockPageData: []
       };
     },
     methods: {
-      blockPageChange(currentInx) {
+      pageChange(currentInx) {
         console.log(currentInx);
       }
     }

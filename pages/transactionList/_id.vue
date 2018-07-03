@@ -1,17 +1,22 @@
 <template>
   <div class="token-container">
-    <page-tabel
-        :title="transTabelTitle" 
+    <page-tabel v-if="!error"
+        :title="'总交易量：---- (仅展示最近----条数据)'" 
         :tabelTitles="transTitles"
         :tabelData="transData"
-        :total="transNum"
         :currentChange="transPageChange">
+        <!-- :total="transNum" -->
     </page-tabel>
+    <error v-else :error="error"></error>
   </div>
 </template>
 
 <script>
   import pageTabel from "~/components/pageTabel";
+  import error from "~/components/error";
+  import transaction from "~/services/transaction.js";
+
+  const pageSize = 10;
 
   export default {
     head() {
@@ -20,7 +25,28 @@
       };
     },
     components: {
-      pageTabel
+      pageTabel, error
+    },
+    validate({ params }) {
+      // [todo]
+      return !params.id || params.id;
+    },
+    async asyncData() {
+      const pageIndex = 0;
+
+      try {
+        let transactionList = await transaction.getList({
+          pageIndex, pageSize
+        });
+        return {
+          pageIndex,
+          transactionList
+        };
+      } catch(err) {
+        return {
+          error: err.msg || "get transactionList fail"
+        };
+      }
     },
     data() {
       let transData = [];
@@ -40,61 +66,47 @@
       }
 
       return {
-        transTabelTitle: "总交易量：2382038203 (仅展示最近38203820条数据)",
+        error: "",
+        pageIndex: 0,
+        transactionList: [],
+
         transTitles: [{
           prop: "transHash",
           name: "交易Hash"
         }, {
-          prop: "transType",
+          prop: "type",
           name: "交易类型"
         }, {
           prop: "status",
           name: "状态"
         }, {
-          prop: "firstBlock",
+          prop: "snapshotBlockHash",
           name: "首次快照块"
         }, {
-          prop: "timestamp",
+          prop: "snapshotBlockTimestamp",
           name: "时间戳"
         }, {
-          prop: "confirmNum",
+          prop: "confirms",
           name: "确认数"
         }, {
-          prop: "outer",
+          prop: "from",
           name: "转出方"
         }, {
-          prop: "inner",
+          prop: "to",
           name: "转入方"
         }, {
           prop: "token",
           name: "Token"
         }, {
-          prop: "price",
+          prop: "amount",
           name: "金额"
         }],
-        transData,
-        transNum: 10000,
+        transData: []
       };
     },
     methods: {
       transPageChange(currentInx) {
-        let transData = [];
-        for(let i=0; i<10; i++) {
-          transData.push({
-            transHash: "sdsdsdsds" + currentInx,
-            transType: "sdsdsdsd" + currentInx,
-            status: "sdsd" + currentInx,
-            firstBlock: "sdsdsdsd" + currentInx,
-            timestamp: "sdsdsdsd" + currentInx,
-            confirmNum: "sdsdsdsd" + currentInx,
-            outer: "dsdsdsd" + currentInx,
-            inner: "sdsdsdsds" + currentInx,
-            token: "sdsdjsldsd" + currentInx,
-            price: "sdsdsd" + currentInx
-          });
-        }
-        // todo
-        this.transData = transData;
+        console.log(currentInx);
       }
     }
   };
