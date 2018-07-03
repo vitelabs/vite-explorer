@@ -3,7 +3,7 @@
     <page-tabel v-if="!error"
         :title="'总交易量：---- (仅展示最近----条数据)'" 
         :tabelTitles="transTitles"
-        :tabelData="transData"
+        :tabelData="[]"
         :currentChange="transPageChange">
         <!-- :total="transNum" -->
     </page-tabel>
@@ -49,22 +49,6 @@
       }
     },
     data() {
-      let transData = [];
-      for(let i=0; i<10; i++) {
-        transData.push({
-          transHash: "sdsdsdsds",
-          transType: "sdsdsdsd",
-          status: "sdsd",
-          firstBlock: "sdsdsdsd",
-          timestamp: "sdsdsdsd",
-          confirmNum: "sdsdsdsd",
-          outer: "dsdsdsd",
-          inner: "sdsdsdsds",
-          token: "sdsdjsldsd",
-          price: "sdsdsd"
-        });
-      }
-
       return {
         error: "",
         pageIndex: 0,
@@ -100,8 +84,7 @@
         }, {
           prop: "amount",
           name: "金额"
-        }],
-        transData: []
+        }]
       };
     },
     methods: {
