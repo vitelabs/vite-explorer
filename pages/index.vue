@@ -18,7 +18,6 @@
   import SnapshotList from "~/components/Home/SnapshotList.vue";
   import TransactionList from "~/components/Home/TransactionList.vue";
   
-
   export default {
     components: {
       Profile,

@@ -3,7 +3,7 @@
     <page-tabel v-if="!error"
         :title="'总区块量：---- (仅展示最近----条数据)'" 
         :tabelTitles="blockTitles"
-        :tabelData="blockPageData"
+        :tabelData="[]"
         :currentChange="pageChange">
     </page-tabel>
     <error v-else :error="error"></error>
@@ -65,8 +65,7 @@
         }, {
           prop: "confirmNum",
           name: "锻造奖励"
-        }],
-        blockPageData: []
+        }]
       };
     },
     methods: {
