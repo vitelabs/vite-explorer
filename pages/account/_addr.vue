@@ -2,25 +2,19 @@
   <div class="account-container">
     <div v-if="!error">
       <detail-layout 
-          :title="`${title}: ${accountDetail.accountAddress}`"
-          :list="accountList"
-          :clickLab="clickLab">
+        :title="`${title}: ${accountDetail.accountAddress}`"
+        :list="accountList"
+        :clickLab="clickLab">
       </detail-layout>
 
       <detail-layout v-if="subTitle"
-          :title="subTitle"
-          :list="tokenDetailList">
+        :title="subTitle"
+        :list="tokenDetailList">
       </detail-layout>
 
       <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
         <el-tab-pane class="tab-pane" label="交易列表" name="transList">
-          <page-tabel
-            :title="transTabelTitle" 
-            :tabelTitles="transTitles"
-            :tabelData="transData"
-            :total="transNum"
-            :currentChange="transPageChange">
-          </page-tabel>
+          <trans-list></trans-list>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -30,9 +24,9 @@
 
 <script>  
   import detailLayout from "~/components/detailLayout";
-  import pageTabel from "~/components/pageTabel";
   import error from "~/components/error";
-  import account from "../../services/account.js";
+  import transList from "~/components/Account/transList.vue";
+  import account from "~/services/account.js";
 
   export default {
     head() {
@@ -41,7 +35,7 @@
       };
     },
     components: {
-      detailLayout, pageTabel, error
+      detailLayout, error, transList
     },
     validate({ params }) {
       return params.addr;
@@ -63,65 +57,13 @@
       }
     },
     data() {
-      let transData = [];
-      for(let i=0; i<10; i++) {
-        transData.push({
-          transHash: "sdsdsdsds",
-          transType: "sdsdsdsd",
-          status: "sdsd",
-          firstBlock: "sdsdsdsd",
-          timestamp: "sdsdsdsd",
-          confirmNum: "sdsdsdsd",
-          outer: "dsdsdsd",
-          inner: "sdsdsdsds",
-          token: "sdsdsds",
-          price: "sdsdsds"
-        });
-      }
-
       return {
         title: "账户详情",
         activeTab: "transList",
         error: "",
         accountDetail: {},
         tokenList: [],
-
-        activeTokenIndex: 0,
-
-        transTabelTitle: "最近的10笔交易, 总交易笔数2089",
-        transTitles: [{
-          prop: "transHash",
-          name: "交易Hash"
-        }, {
-          prop: "transType",
-          name: "交易类型"
-        }, {
-          prop: "status",
-          name: "状态"
-        }, {
-          prop: "firstBlock",
-          name: "首次快照块"
-        }, {
-          prop: "timestamp",
-          name: "时间戳"
-        }, {
-          prop: "confirmNum",
-          name: "确认数"
-        }, {
-          prop: "outer",
-          name: "转出方"
-        }, {
-          prop: "inner",
-          name: "转入方"
-        }, {
-          prop: "token",
-          name: "Token"
-        }, {
-          prop: "price",
-          name: "金额"
-        }],
-        transData,
-        transNum: 10000,
+        activeTokenIndex: 0
       };
     },
     computed: {
@@ -169,26 +111,6 @@
     methods: {
       clickLab(lab, index) {
         this.activeTokenIndex = index;
-      },
-
-      transPageChange(currentInx) {
-        let transData = [];
-        for(let i=0; i<10; i++) {
-          transData.push({
-            transHash: "sdsdsdsds" + currentInx,
-            transType: "sdsdsdsd" + currentInx,
-            status: "sdsd" + currentInx,
-            firstBlock: "sdsdsdsd" + currentInx,
-            timestamp: "sdsdsdsd" + currentInx,
-            confirmNum: "sdsdsdsd" + currentInx,
-            outer: "dsdsdsd" + currentInx,
-            inner: "sdsdsdsds" + currentInx,
-            token: "sdsdsds" + currentInx,
-            price: "sdsdsds" + currentInx
-          });
-        }
-        // todo
-        this.transData = transData;
       }
     }
   };

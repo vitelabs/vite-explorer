@@ -16,7 +16,7 @@
   import pageHeader from "~/components/pageHeader.vue";
   import pageTabel from "~/components/pageTabel";
   import error from "~/components/error";
-  import token from "../../services/token.js";
+  import token from "~/services/token.js";
 
   const pageSize = 10;
 

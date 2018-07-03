@@ -12,7 +12,7 @@
 </template>
 
 <script>
-  import auth from "../services/index";
+  import auth from "~/services/index";
   import Profile from "~/components/Home/Profile.vue";
   import LineChart from "~/components/Home/LineChart.vue";
   import SnapshotList from "~/components/Home/SnapshotList.vue";

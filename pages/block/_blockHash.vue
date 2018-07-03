@@ -12,7 +12,7 @@
 <script>
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
-  import block from "../../services/block.js";
+  import block from "~/services/block.js";
 
   export default {
     components: {
