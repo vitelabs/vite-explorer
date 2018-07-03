@@ -1,6 +1,7 @@
 {
   "name": "vite.net",
   "scripts": {
+    "mock": "node mock",
     "dev": "backpack dev",
     "build": "nuxt build && backpack build",
     "start": "NODE_ENV=production node build/main.js",
