@@ -55,7 +55,6 @@
     margin-top: 10px;
     width: 100%;
     border: 1px solid $border-color;
-    border-radius: 5px;
     border-radius: 3px;
     .profile-row {
       margin: 0 0 30px 0;
