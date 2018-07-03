@@ -14,7 +14,7 @@ module.exports = {
   loading: {color: "#7FB2FE"},
   plugins: ["~/plugins/element-ui.js"],
   build: {
-    vendor: ["axios", "element-ui"]
+    vendor: ["babel-polyfill", "axios", "element-ui"]
   },
   router: {
     middleware: "i18n"

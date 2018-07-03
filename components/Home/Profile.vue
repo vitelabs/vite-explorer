@@ -52,14 +52,14 @@
 @import "assets/css/vars.scss";
 
   .vite-profile {
-    margin-top: 5px;
-    width: 50%;
+    margin-top: 10px;
+    width: 100%;
     border: 1px solid $border-color;
     border-radius: 5px;
     border-radius: 3px;
     .profile-row {
-      margin: 0 0 10px 0;
-      padding: 10px;
+      margin: 0 0 30px 0;
+      padding: 20px;
     }
   }
 </style>

@@ -1,16 +1,22 @@
 <template>
   <div class="page-home">
-    <profile></profile>
+    <el-row :gutter="30">
+      <el-col :span="12"><profile></profile></el-col>
+      <el-col :span="12"><line-chart></line-chart></el-col>
+    </el-row>
+    
   </div>
 </template>
 
 <script>
   import auth from "../services/index";
   import Profile from "~/components/Home/Profile.vue";
+  import LineChart from "~/components/Home/LineChart.vue";
 
   export default {
     components: {
-      Profile
+      Profile,
+      LineChart
     },
     async asyncData() {
       let data = await auth.getUser();

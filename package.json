@@ -14,12 +14,15 @@
   ],
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-polyfill": "^6.26.0",
+    "echarts": "^4.1.0",
     "element-ui": "2.4.1",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
     "koa-trie-router": "^2.1.6",
     "nuxt": "latest",
-    "nuxt-i18n": "^4.1.0"
+    "nuxt-i18n": "^4.1.0",
+    "v-charts": "^1.17.6"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
