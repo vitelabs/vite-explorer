@@ -13,6 +13,9 @@
             <nuxt-link :key="item" :to="localePath(item)" class="nav-item text-hover-transition" v-for="item in navs">
               {{$t(`nav.${item}`)}}
             </nuxt-link>
+            <div class="nav-item">
+                <!-- <lang-select></lang-select> -->
+              </div>
           </div>
         </div>
       </div>
@@ -42,7 +45,7 @@
     },
     data: function() {
       return {
-        navs: ["index", "transaction", "snapshot", "token"],
+        navs: ["index", "transactionList", "blockList", "tokenList"],
       };
     }
   };

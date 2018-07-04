@@ -2,8 +2,8 @@ module.exports = {
   lang: "中文",
   nav: {
     index: "首页",
-    transaction: "交易列表",
-    snapshot: "快照块列表",
-    token: "Token列表"
+    transactionList: "交易列表",
+    blockList: "快照块列表",
+    tokenList: "Token列表"
   }
 };

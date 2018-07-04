@@ -57,7 +57,7 @@
     },
     computed: {
       tokenTabelTitle() {
-        return `总计有${this.tokenList.length}种token`;
+        return `总计有${this.tokenList && this.tokenList.length || 0}种token`;
       },
       tokenTitles() {
         return [{
@@ -82,7 +82,7 @@
       },
       tokenData() {
         let list = [];
-        this.tokenList.forEach(token => {
+        this.tokenList && this.tokenList.forEach(token => {
           list.push({
             icon: "----",
             token: `<a href="/token/${token.id}}">${token.name} (${token.symbol})</a><br/>${token.introduction}`,
