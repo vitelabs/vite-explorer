@@ -35,7 +35,7 @@
       const pageIndex = 0;
 
       try {
-        let transactionList = await transaction.getList({
+        let { transactionList } = await transaction.getList({
           pageIndex, pageSize
         });
         return {

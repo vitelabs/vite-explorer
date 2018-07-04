@@ -29,7 +29,7 @@
     async asyncData() {
       try {
         let pageIndex = 0;
-        let blockList = await block.getList({
+        let { blockList } = await block.getList({
           pageIndex, pageSize
         });
         return {

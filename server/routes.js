@@ -102,12 +102,18 @@ export default () => {
     try {
       let result = await post("/accountchain/blocklist", ctx.query);
       ctx.type = "json";
-      ctx.body = result.data || {
+      ctx.body = result.data ? {
+        code: result.data.code,
+        msg: result.data.msg,
+        data: {
+          transactionList: result.data.data.accountList
+        }
+      } : {
         code: 5000,
         msg: "server error"
       };
     } catch(err) {
-      // console.log(err);
+      console.log(err);
       // console.log(err.code);
     }
   });

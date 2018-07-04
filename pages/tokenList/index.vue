@@ -33,7 +33,7 @@
       const pageIndex = 0;
 
       try {
-        let tokenList = await token.getList({
+        let { tokenList } = await token.getList({
           pageIndex, pageSize
         });
         return {
