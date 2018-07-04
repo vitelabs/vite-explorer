@@ -89,7 +89,7 @@
       float: right;
       .navbar-menu {
         .nav-item {
-          padding: 0.5rem 20px;
+          padding: 0.5rem 40px;
           text-decoration: none;
         }
       }

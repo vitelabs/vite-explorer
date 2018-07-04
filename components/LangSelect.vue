@@ -22,7 +22,7 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .dropdown-item {
-  padding: 0.5rem 20px;
+  padding: 0.5rem 40px;
   text-decoration: none;
   color: #888888
 }
