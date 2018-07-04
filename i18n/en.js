@@ -5,5 +5,11 @@ module.exports = {
     transactionList: "Transactions",
     blockList: "Snapshots",
     tokenList: "Tokens"
+  },
+  lineChart: {
+    title: "Transaction Curve"
+  },
+  account: {
+
   }
 };
