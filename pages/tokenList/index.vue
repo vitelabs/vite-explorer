@@ -3,9 +3,10 @@
     <div v-if="!error">
       <page-header :title="title"></page-header>
       <page-tabel class="token-tabel" :pagination="false" :showOrder="true"
-          :title="tokenTabelTitle" 
-          :tabelTitles="tokenTitles"
-          :tabelData="tokenData">
+        :loading="loading"
+        :title="tokenTabelTitle" 
+        :tabelTitles="tokenTitles"
+        :tabelData="tokenData">
       </page-tabel>
     </div>
     <error v-else :error="error"></error>
@@ -50,7 +51,8 @@
       return {
         title: "Token列表",
         tokenList: [],
-        error: ""
+        error: "",
+        loading: false
       };
     },
     computed: {
@@ -83,7 +85,7 @@
         this.tokenList && this.tokenList.forEach(token => {
           list.push({
             icon: "----",
-            token: `<a href="/token/${token.name}}">${token.name} (${token.symbol})</a><br/>${token.introduction}`,
+            token: `<a href="/token/${token.id}}">${token.name} (${token.symbol})</a><br/>${token.introduction}`,
             price: "----",
             upDown: "----",
             transPrice: "----",
