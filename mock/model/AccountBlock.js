@@ -6,7 +6,7 @@ class AccountBlock {
     this.accountAddress = `accountBlockAccountAddress${parseInt(Math.random()*2309283)}`; 
     this.to = `accountBlockTo${parseInt(Math.random()*2309283)}`;
     this.from = `accountBlockFrom${parseInt(Math.random()*2309283)}`;
-    this.fromHash = `accountBlockFromHash${parseInt(Math.random()*2309283)}`;
+    this.fromHash = parseInt(Math.random()*2);
     this.prevHash = `accountBlockPrevHash${parseInt(Math.random()*2309283)}`;
     this.status = parseInt(Math.random() * 3);
     this.balance = `accountBlockBalance${parseInt(Math.random()*2309283)}`;

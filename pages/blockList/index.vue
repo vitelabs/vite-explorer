@@ -1,9 +1,11 @@
 <template>
   <div class="token-container">
     <page-tabel v-if="!error"
+        :loading="loading"
         :title="'总区块量：---- (仅展示最近----条数据)'" 
         :tabelTitles="blockTitles"
-        :tabelData="[]"
+        :tabelData="blockList"
+        :total="10000"
         :currentChange="pageChange">
     </page-tabel>
     <error v-else :error="error"></error>
@@ -45,10 +47,11 @@
       return {
         pageIndex: 0,
         blockList: [],
+        loading: false,
         error: "",
 
         blockTitles: [{
-          prop: "transHash",
+          prop: "height",
           name: "快照块高度"
         }, {
           prop: "transType",
@@ -60,17 +63,36 @@
           prop: "firstBlock",
           name: "出块节点"
         }, {
-          prop: "timestamp",
+          prop: "signature",
           name: "快照块Hash"
         }, {
-          prop: "confirmNum",
+          prop: "amount",
           name: "锻造奖励"
         }]
       };
     },
     methods: {
       pageChange(currentInx) {
-        console.log(currentInx);
+        this.loading = true;
+        this.pageIndex = currentInx;
+
+        block.getList({
+          pageIndex: currentInx,
+          pageSize
+        }).then(({ blockList })=>{
+          console.log(blockList);
+          if (this.pageIndex !== currentInx) {
+            return;
+          }
+          this.loading = false;
+          this.blockList = blockList;
+        }).catch((err) => {
+          if (this.pageIndex !== currentInx) {
+            return;
+          }
+          this.loading = false;
+          this.$message.error(err.msg || "get blockList fail");
+        });
       }
     }
   };

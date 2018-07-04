@@ -38,12 +38,12 @@
       detailLayout, error, transList, accountList
     },
     validate ({ params }) {
-      return params.name;
+      return params.id;
     },
     async asyncData({ params }) {
       try {
         let tokenDetail = await token.getDetail({
-          tokenName: params.name
+          tokenId: params.id
         });
         return {
           tokenDetail
