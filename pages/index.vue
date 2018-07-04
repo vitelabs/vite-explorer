@@ -1,10 +1,10 @@
 <template>
   <div class="page-home">
-    <el-row :gutter="30">
+    <el-row :gutter="50">
       <el-col :span="12"><profile></profile></el-col>
       <el-col :span="12"><line-chart></line-chart></el-col>
     </el-row>
-    <el-row :gutter="30">
+    <el-row :gutter="50">
       <el-col :span="12"><snapshot-list></snapshot-list></el-col>
       <el-col :span="12"><transaction-list></transaction-list></el-col>
     </el-row>
