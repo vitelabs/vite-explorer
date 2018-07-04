@@ -27,10 +27,6 @@
     components: {
       pageTabel, error
     },
-    validate({ params }) {
-      // [todo]
-      return !params.id || params.id;
-    },
     async asyncData() {
       const pageIndex = 0;
 
