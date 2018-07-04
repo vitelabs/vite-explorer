@@ -9,14 +9,23 @@
           <search></search>
         </div>
         <div class="navbar-menu">
-          <div ref="navbarEnd" class="navbar-end">
+          <el-menu :default-active="defaultActive" mode="horizontal" background-color="#f0f0f0" text-color="#888888"
+            active-text-color="#333333">
+            <el-menu-item :key="index" :index="item" v-for="(item, index) in navs" class="text-hover-transition">
+              <nuxt-link :to="localePath(item)" class="nav-item ">
+              {{$t(`nav.${item}`)}}
+              </nuxt-link>
+            </el-menu-item>
+            <lang-select></lang-select>
+          </el-menu>
+          <!-- <div ref="navbarEnd" class="navbar-end">
             <nuxt-link :key="item" :to="localePath(item)" class="nav-item text-hover-transition" v-for="item in navs">
               {{$t(`nav.${item}`)}}
             </nuxt-link>
             <div class="nav-item">
-                <!-- <lang-select></lang-select> -->
-              </div>
-          </div>
+              <lang-select></lang-select>
+            </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -33,32 +42,37 @@
   import logoWithoutWords from "~/components/logoWithoutWords.vue";
   import viteFooter from "~/components/footer.vue";
   import search from "~/components/search.vue";
+  import LangSelect from "~/components/LangSelect.vue";
 
   export default {
     components: {
-      logoWithoutWords, viteFooter, search
+      logoWithoutWords, viteFooter, search, LangSelect
     },
     head () {
       return {
-        title: "首页"
+        title: "首页",
       };
     },
     data: function() {
       return {
         navs: ["index", "transactionList", "blockList", "tokenList"],
+        defaultActive: "index"
       };
     }
   };
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  .el-menu--horizontal {
+    border-bottom: none;
+  }
   .home-nav {
     position: relative;
     right: 0;
     left: 0;
     top: 0;
     z-index: 9999;
-    padding: 20px;
+    padding: 19px;
     background: #f0f0f0;
     .navbar-brand {
       display: inline-block;
@@ -73,13 +87,10 @@
       bottom: 40px;
       top: 30px;
       float: right;
-      .navbar-end {
-        margin-top: 15px;
-        display: -webkit-flex; /* Safari */
-        display: flex;
-        justify-content: space-between;
+      .navbar-menu {
         .nav-item {
-          padding: 5px;
+          padding: 0.5rem 20px;
+          text-decoration: none;
         }
       }
     }
