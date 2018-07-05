@@ -10,22 +10,14 @@
         </div>
         <div class="navbar-menu">
           <el-menu :default-active="defaultActive" mode="horizontal" background-color="#f0f0f0" text-color="#888888"
-            active-text-color="#333333">
+            active-text-color="#333333" @select="handleSelect">
             <el-menu-item :key="index" :index="item" v-for="(item, index) in navs" class="text-hover-transition">
-              <nuxt-link :to="localePath(item)" class="nav-item ">
+              <nuxt-link :to="localePath(item)" class="nav-item">
               {{$t(`nav.${item}`)}}
               </nuxt-link>
             </el-menu-item>
             <lang-select></lang-select>
           </el-menu>
-          <!-- <div ref="navbarEnd" class="navbar-end">
-            <nuxt-link :key="item" :to="localePath(item)" class="nav-item text-hover-transition" v-for="item in navs">
-              {{$t(`nav.${item}`)}}
-            </nuxt-link>
-            <div class="nav-item">
-              <lang-select></lang-select>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
@@ -53,11 +45,29 @@
         title: "首页",
       };
     },
+    created() {
+      this.keepNavStatus();
+    },
     data: function() {
       return {
         navs: ["index", "transactionList", "blockList", "tokenList"],
         defaultActive: "index"
       };
+    },
+    methods: {
+      handleSelect(key) {
+        if (key === "en" || key === "zh") {
+          this.keepNavStatus();
+        }
+      },
+      keepNavStatus() {
+        if (this.$route.path === "/" || this.$route.path === "/zh") {
+          this.defaultActive = "index";
+        } else {
+          let paths = this.$route.path.split("/");
+          this.defaultActive = paths[paths.length - 1];
+        }
+      }
     }
   };
 </script>
@@ -89,8 +99,10 @@
       float: right;
       .navbar-menu {
         .nav-item {
-          padding: 0.5rem 40px;
+          padding: 0 40px;
           text-decoration: none;
+          height: 60px;
+          display: block;
         }
       }
     }

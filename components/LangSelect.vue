@@ -1,7 +1,7 @@
 <template>
   <el-submenu index="language" text-color="#888888">
     <template slot="title">{{$t('lang')}}</template>
-    <el-menu-item v-for="(item, index) in locales" :key="index" index="item" v-if="item.code !== $i18n.locale" class="nav-item">
+    <el-menu-item v-for="(item, index) in locales" :key="index" :index="item.code" v-if="item.code !== $i18n.locale" class="nav-item">
       <nuxt-link class="dropdown-item" 
                   :to="switchLocalePath(item.code)">
         {{item.name}}
