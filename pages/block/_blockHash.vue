@@ -1,7 +1,7 @@
 <template>
   <div class="block-container">
     <detail-layout v-if="!error"
-        :title="`${title}: ${blockHash}`"
+        :title="`${title}: ${showBlockDetail.hash}`"
         :list="list"
         :error="error">
     </detail-layout>
@@ -27,12 +27,10 @@
           blockHash: params.blockHash
         });
         return {
-          blockHash: params.blockHash || "",
           blockDetail
         };
       } catch(err) {
         return {
-          blockHash: params.blockHash || "",
           error: err.msg || "get block fail"
         };
       }
@@ -40,7 +38,6 @@
     data() {
       return {
         title: "快照块详情",
-        blockHash: "",
         blockDetail: {},
         error: ""
       };
@@ -48,12 +45,11 @@
     computed: {
       showBlockDetail() {
         return {
-          blockHash: this.blockHash,
+          hash: this.blockDetail.hash || "",
           height: this.blockDetail.height || "",
-          time: "",
-          accountNum: 0,
+          accountNum: this.blockDetail.accountNum || 0,
           producer: this.blockDetail.producer || "",
-          amount: this.blockDetail.amount || ""
+          amount: this.blockDetail.amount ? `${this.blockDetail.amount}Vite` : ""
         };
       },
       list() {
@@ -61,15 +57,15 @@
           height: "快照块高度",
           time: "快照块年龄",
           accountNum: "打包账户数",
-          blockHash: "快照块Hash",
+          hash: "快照块Hash",
           producer: "打包节点",
           amount: "锻造奖励"
         };
 
         let list = [];
-        for (let key in this.showBlockDetail) {
+        for (let key in blockDetailMap) {
           list.push({
-            describe: this.showBlockDetail[key],
+            describe: this.showBlockDetail[key] || "----",
             name: blockDetailMap[key]
           });
         }

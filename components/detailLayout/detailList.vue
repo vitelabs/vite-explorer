@@ -2,8 +2,8 @@
   <div class="deatail-list-container">
     <div class="row" v-for="(item, index) in list" :key="index">
       <span class="name">{{item.name}}</span>
-      <a v-if="item.link && item.describe" class="describe-link" :href="item.link">{{item.describe}}</a>
-      <span v-if="!item.link && item.describe" class="describe">{{item.describe}}</span>
+      <a v-if="item.link && !item.list" class="describe-link" :href="item.link">{{item.describe || '----'}}</a>
+      <span v-if="!item.link && !item.list" class="describe">{{item.describe || '----'}}</span>
       <div v-if="item.list" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
             @click="_clickLab(lab, index)" :class="{

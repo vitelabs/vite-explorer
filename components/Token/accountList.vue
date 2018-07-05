@@ -1,9 +1,9 @@
 <template>
   <page-tabel
     :showOrder="true"
-    :title="'总账户数0, (仅展示最近的5000条数据)'" 
+    :title="'总账户数----, (仅展示最近的----条数据)'" 
     :tabelTitles="accountTitles"
-    :tabelData="accountData"
+    :tabelData="[]"
     :total="0"
     :currentChange="accountPageChange">
     <!-- :total="accountNum" -->
@@ -32,9 +32,6 @@
           prop: "transNum",
           name: "账户交易次数"
         }];
-      },
-      accountData() {
-        return [];
       }
     },
     methods: {

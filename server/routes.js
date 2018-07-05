@@ -60,10 +60,39 @@ export default () => {
     try {
       let result = await post("/snapshotchain/blocklist", ctx.query);
       ctx.type = "json";
-      ctx.body = result.data || {
+      let body = result.data || {
         code: 5000,
         msg: "server error"
       };
+
+      if (body.code !== 0) {
+        ctx.body = body;
+        return;
+      }
+
+      let rawBlockList = body.data.blockList || [];
+      let blockList = [];
+ 
+      rawBlockList.forEach((block) => {
+        let accountNum = 0;
+        /* eslint-disable */
+        for(let key in block.snapshot || {}) {
+          accountNum++;
+        }
+
+        blockList.push({
+          height: block.height,
+          producer: block.producer,
+          accountNum,
+          hash: block.hash,
+          amount: block.amount
+        });
+      });
+      rawBlockList = [];
+      body.data = {
+        blockList
+      };
+      ctx.body = body;
     } catch(err) {
       console.log(err);
       // console.log(err.code);
@@ -74,10 +103,32 @@ export default () => {
     try {
       let result = await get("/snapshotchain/block", ctx.query);
       ctx.type = "json";
-      ctx.body = result.data || {
+      let body = result.data || {
         code: 5000,
         msg: "server error"
       };
+
+      if (body.code !== 0) {
+        ctx.body = body;
+        return;
+      }
+
+      let block = body.data || {};
+      let accountNum = 0;
+      /* eslint-disable */
+      for(let key in block.snapshot || {}) {
+        accountNum++;
+      }
+      block = {
+        height: block.height,
+        accountNum,
+        producer: block.producer, 
+        hash: block.hash,
+        amount: block.amount
+      }
+
+      body.data = block;
+      ctx.body = body;
     } catch(err) {
       // console.log(err);
       // console.log(err.code);
@@ -88,10 +139,34 @@ export default () => {
     try {
       let result = await get("/accountchain/block", ctx.query);
       ctx.type = "json";
-      ctx.body = result.data || {
+      let body = result.data || {
         code: 5000,
         msg: "server error"
       };
+
+      if (body.code !== 0) {
+        ctx.body = body;
+        return;
+      }
+
+      let transaction = body.data || {};
+      transaction = {
+        hash: transaction.hash,
+        amount: transaction.amount,
+        from: transaction.from,
+        to: transaction.to,
+        fromHash: transaction.fromHash,
+        status: transaction.status,
+        timestamp: transaction.timestamp,
+        confirmTimes: transaction.confirmTimes,
+        snapshotTimestamp: transaction.snapshotTimestamp,
+        tokenName: transaction.token.name,
+        tokenSymbol: transaction.token.symbol || "",
+        tokenId: transaction.token.id
+      }
+
+      body.data = transaction;
+      ctx.body = body;
     } catch(err) {
       // console.log(err);
       // console.log(err.code);
@@ -116,24 +191,26 @@ export default () => {
       let transactionList = [];
       rawTransactionList.forEach((transaction) => {
         transactionList.push({
-          signature: transaction.signature,
+          hash: transaction.hash,
           amount: transaction.amount,
           from: transaction.from,
           to: transaction.to,
           fromHash: transaction.fromHash,
           status: transaction.status,
+          timestamp: transaction.timestamp,
+          confirmTimes: transaction.confirmTimes,
           snapshotTimestamp: transaction.snapshotTimestamp,
           tokenName: transaction.token.name,
           tokenSymbol: transaction.token.symbol || "",
-          tokenId: transaction.token.id,
-          tokenIntroduction: transaction.token.introduction || ""
+          tokenId: transaction.token.id
         });
-        rawTransactionList = [];
-        body.data = {
-          transactionList
-        };
-        ctx.body = body;
       });
+
+      rawTransactionList = [];
+      body.data = {
+        transactionList
+      };
+      ctx.body = body;
     } catch(err) {
       console.log(err);
       // console.log(err.code);

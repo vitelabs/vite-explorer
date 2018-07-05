@@ -8,13 +8,13 @@
           <el-table-column v-for="(tT, index) in tabelTitles" :key="index"
             :label="tT.name" :width="tT.width || ''">
             <template slot-scope="scope">
-              <span v-html="scope.row[tT.prop]"></span>
+              <span v-html="scope.row[tT.prop] || '----'"></span>
             </template>
           </el-table-column>
       </el-table>
     </div>
 
-    <div v-if="pagination" class="pagination">
+    <div v-if="pagination" v-show="total" class="pagination">
       <el-pagination layout="prev, pager, next" prev-text="上一页" next-text="下一页"
         :background="true" @current-change="_currentChange"
         :page-size="pageSize" :current-page="currentInx"
@@ -62,12 +62,21 @@
       currentChange: {
         type: Function,
         default: ()=>{}
+      },
+      currentPage: {
+        type: Number,
+        default: 1
       }
     },
     data() {
       return {
-        currentInx: 1
+        currentInx: this.currentPage
       };
+    },
+    watch: {
+      currentPage() {
+        this.currentInx = this.currentPage;
+      }
     },
     methods: {
       indexMethod(index) {
