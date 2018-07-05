@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="default-container headroom">
     <div class="home-nav">
       <a class="navbar-brand" href="/">
@@ -48,7 +48,7 @@
     created() {
       this.keepNavStatus();
     },
-    data: function() {
+    data() {
       return {
         navs: ["index", "transactionList", "blockList", "tokenList"],
         defaultActive: "index"
@@ -88,7 +88,7 @@
       display: inline-block;
       text-decoration: none;
       padding: 0;
-      margin: 0; 
+      margin: 0;
       color: #000;
     }
     .nav-content {
@@ -106,7 +106,7 @@
         }
       }
     }
-    
+
   }
   .content-wrapper {
     padding: 20px 120px 120px;

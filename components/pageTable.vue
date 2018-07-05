@@ -1,11 +1,11 @@
 <template>
-  <div class="page-tabel-container">
+  <div class="page-table-container">
     <div class="title" v-html="title"></div>
 
-    <div class="tabel">
-      <el-table v-loading="loading" border :data="tabelData" style="width: 100%">
+    <div class="table">
+      <el-table v-loading="loading" border :data="tableData" style="width: 100%">
         <el-table-column v-if="showOrder" type="index" :index="indexMethod" label="序号" width="50"></el-table-column>
-          <el-table-column v-for="(tT, index) in tabelTitles" :key="index"
+          <el-table-column v-for="(tT, index) in tableTitles" :key="index"
             :label="tT.name" :width="tT.width || ''">
             <template slot-scope="scope">
               <span v-html="scope.row[tT.prop] || '----'"></span>
@@ -19,13 +19,13 @@
         :background="true" @current-change="_currentChange"
         :page-size="pageSize" :current-page="currentInx"
         :total="total">
-      </el-pagination> 
+      </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
-  export default { 
+  export default {
     props: {
       loading: {
         type: Boolean,
@@ -35,11 +35,11 @@
         type: String,
         default: ""
       },
-      tabelTitles: {
+      tableTitles: {
         type: Array,
         default: []
       },
-      tabelData: {
+      tableData: {
         type: Array,
         default: []
       },
@@ -94,7 +94,7 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .page-tabel-container {
+  .page-table-container {
     width: 100%;
   }
   .title {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div> {{lineChart.title}} </div>
+    <div> {{ $t('lineChart.title')}} </div>
     <div class="vite-transaction">
       <ve-line :data="chartData"></ve-line>
     </div>
@@ -9,7 +9,6 @@
 
 <script>
   import VeLine from "v-charts/lib/line";
-  import { lineChart } from "~/i18n/en";
 
   export default {
     components: {
@@ -20,7 +19,6 @@
     },
     data () {
       return {
-        lineChart,
         chartData: {
           columns: ["date", "PV"],
           rows: [

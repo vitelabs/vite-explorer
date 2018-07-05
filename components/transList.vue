@@ -1,7 +1,7 @@
 <template>
   <page-tabel :pagination="pagination"
     :loading="loading"
-    :title="'总交易笔数----'" 
+    :title="'总交易笔数----'"
     :tabelTitles="transactionsTitles"
     :tabelData="transactionsData"
     :current-change="fetchTransList"
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-  import pageTabel from "~/components/pageTabel";
+  import pageTable from "~/components/pageTable";
   import transaction from "~/services/transaction.js";
 
   export default {
@@ -40,7 +40,7 @@
       }
     },
     components: {
-      pageTabel
+      pageTable
     },
     mounted() {
       this.fetchTransList();
@@ -121,8 +121,8 @@
     },
     methods: {
       isRightRequest(currentIndex, accountAddress, tokenId) {
-        if (this.pageIndex !== currentIndex || 
-            this.tokenId !== tokenId || 
+        if (this.pageIndex !== currentIndex ||
+            this.tokenId !== tokenId ||
             this.accountAddress !== accountAddress) {
           return false;
         }

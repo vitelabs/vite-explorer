@@ -2,7 +2,7 @@
   <div class="token-container">
     <page-tabel v-if="!error"
         :loading="loading"
-        :title="'总区块量：---- (仅展示最近----条数据)'" 
+        :title="'总区块量：---- (仅展示最近----条数据)'"
         :tabelTitles="blockTitles"
         :tabelData="showBlockList"
         :total="10000"
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-  import pageTabel from "~/components/pageTabel";
+  import pageTable from "~/components/pageTable";
   import error from "~/components/error";
   import block from "~/services/block.js";
 
@@ -26,7 +26,7 @@
       };
     },
     components: {
-      pageTabel, error
+      pageTable, error
     },
     async asyncData() {
       try {
