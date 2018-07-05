@@ -1,9 +1,11 @@
 <template>
   <div class="token-container">
     <page-tabel v-if="!error"
+        :loading="loading"
         :title="'总交易量：---- (仅展示最近----条数据)'" 
         :tabelTitles="transTitles"
-        :tabelData="[]"
+        :tabelData="transactionsData"
+        :total="12192019"
         :currentChange="transPageChange">
         <!-- :total="transNum" -->
     </page-tabel>
@@ -14,7 +16,7 @@
 <script>
   import pageTabel from "~/components/pageTabel";
   import error from "~/components/error";
-  import transaction from "~/services/transaction.js";
+  import transaction from "~/services/transaction";
 
   const pageSize = 10;
 
@@ -48,10 +50,11 @@
       return {
         error: "",
         pageIndex: 0,
+        loading: false,
         transactionList: [],
 
         transTitles: [{
-          prop: "transHash",
+          prop: "signature",
           name: "交易Hash"
         }, {
           prop: "type",
@@ -60,10 +63,10 @@
           prop: "status",
           name: "状态"
         }, {
-          prop: "snapshotBlockHash",
+          prop: "snapshotTimestamp",
           name: "首次快照块"
         }, {
-          prop: "snapshotBlockTimestamp",
+          prop: "snapshotTimestamp",
           name: "时间戳"
         }, {
           prop: "confirms",
@@ -75,7 +78,7 @@
           prop: "to",
           name: "转入方"
         }, {
-          prop: "token",
+          prop: "tokenName",
           name: "Token"
         }, {
           prop: "amount",
@@ -83,9 +86,43 @@
         }]
       };
     },
+    computed: {
+      transactionsData() {
+        let list = [];
+        this.transactionList.forEach((transaction) => {
+          transaction.type = transaction.fromHash ? "发送" : "接收";
+          transaction.amount = transaction.fromHash ? `-${transaction.amount}` : transaction.amount;
+          transaction.status = +transaction.status === 0 ? "unknown" : 
+            +transaction.status === 1 ? "open" : 
+              "closed";
+          list.push(transaction);
+        });
+        return list;
+      }
+    },
     methods: {
       transPageChange(currentInx) {
         console.log(currentInx);
+        this.loading = true;
+        this.pageIndex = currentInx;
+
+        transaction.getList({
+          pageIndex: currentInx,
+          pageSize
+        }).then(({ transactionList })=>{
+          console.log(transactionList);
+          if (this.pageIndex !== currentInx) {
+            return;
+          }
+          this.loading = false;
+          this.transactionList = transactionList;
+        }).catch((err) => {
+          if (this.pageIndex !== currentInx) {
+            return;
+          }
+          this.loading = false;
+          this.$message.error(err.msg || "get transactionList fail");
+        });
       }
     }
   };

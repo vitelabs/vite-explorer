@@ -65,7 +65,7 @@ export default () => {
         msg: "server error"
       };
     } catch(err) {
-      // console.log(err);
+      console.log(err);
       // console.log(err.code);
     }
   });
@@ -102,16 +102,38 @@ export default () => {
     try {
       let result = await post("/accountchain/blocklist", ctx.query);
       ctx.type = "json";
-      ctx.body = result.data ? {
-        code: result.data.code,
-        msg: result.data.msg,
-        data: {
-          transactionList: result.data.data.accountList
-        }
-      } : {
+      let body = result.data || {
         code: 5000,
         msg: "server error"
       };
+
+      if (body.code !== 0) {
+        ctx.body = body;
+        return;
+      }
+
+      let rawTransactionList = body.data.accountList || [];
+      let transactionList = [];
+      rawTransactionList.forEach((transaction) => {
+        transactionList.push({
+          signature: transaction.signature,
+          amount: transaction.amount,
+          from: transaction.from,
+          to: transaction.to,
+          fromHash: transaction.fromHash,
+          status: transaction.status,
+          snapshotTimestamp: transaction.snapshotTimestamp,
+          tokenName: transaction.token.name,
+          tokenSymbol: transaction.token.symbol || "",
+          tokenId: transaction.token.id,
+          tokenIntroduction: transaction.token.introduction || ""
+        });
+        rawTransactionList = [];
+        body.data = {
+          transactionList
+        };
+        ctx.body = body;
+      });
     } catch(err) {
       console.log(err);
       // console.log(err.code);

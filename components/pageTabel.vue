@@ -3,7 +3,7 @@
     <div class="title" v-html="title"></div>
 
     <div class="tabel">
-      <el-table border :data="tabelData" style="width: 100%">
+      <el-table v-loading="loading" border :data="tabelData" style="width: 100%">
         <el-table-column v-if="showOrder" type="index" :index="indexMethod" label="序号" width="50"></el-table-column>
           <el-table-column v-for="(tT, index) in tabelTitles" :key="index"
             :label="tT.name" :width="tT.width || ''">
@@ -27,6 +27,10 @@
 <script>
   export default { 
     props: {
+      loading: {
+        type: Boolean,
+        default: false
+      },
       title: {
         type: String,
         default: ""
