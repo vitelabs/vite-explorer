@@ -75,8 +75,13 @@
       showBlockList() {
         let list = [];
         this.blockList.forEach((block)=>{
-          block.amount = `${block.amount}Vite`;
-          list.push(block);
+          list.push({
+            height: `<a href="/block/${block.hash}">${block.height}</a>`,
+            hash: `<a href="/block/${block.hash}">${block.hash}</a>`,
+            amount: `${block.amount}Vite`,
+            accountNum: block.accountNum,
+            producer: block.producer
+          });
         });
         return list;
       }

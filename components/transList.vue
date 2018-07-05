@@ -6,7 +6,7 @@
     :tabelData="transactionsData"
     :current-change="fetchTransList"
     :currentPage="pageIndex"
-    :total="12121212">
+    :total="0">
   </page-tabel>
 </template>
 
@@ -34,7 +34,9 @@
       },
       transactions: {
         type: Array,
-        default: []
+        default: () => {
+          return [];
+        }
       }
     },
     components: {
@@ -93,12 +95,18 @@
         }
         let list = [];
         this.transactionList.forEach((transaction) => {
-          transaction.type = transaction.fromHash ? "发送" : "接收";
-          transaction.amount = transaction.fromHash ? `-${transaction.amount}` : transaction.amount;
-          transaction.status = +transaction.status === 0 ? "unknown" : 
-            +transaction.status === 1 ? "open" : 
-              "closed";
-          list.push(transaction);
+          list.push({
+            hash: `<a href="/transaction/${transaction.hash}">${transaction.hash}</a>`,
+            timestamp: `<a href="/block/${transaction.timestamp}">${transaction.timestamp}</a>`,
+            snapshotTimestamp: `<a href="/block/${transaction.snapshotTimestamp}">${transaction.snapshotTimestamp}</a>`,
+            to: `<a href="/account/${transaction.to}">${transaction.to}</a>`,
+            from: `<a href="/account/${transaction.from}">${transaction.from}</a>`,
+            type: transaction.fromHash ? "发送" : "接收",
+            amount: transaction.fromHash ? `-${transaction.amount}` : transaction.amount,
+            status: ["unkown", "open", "closed"][transaction.status],
+            confirmTimes: transaction.confirmTimes,
+            tokenName: transaction.tokenName
+          });
         });
         return list;
       }
