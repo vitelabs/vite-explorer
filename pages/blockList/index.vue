@@ -4,7 +4,7 @@
         :loading="loading"
         :title="'总区块量：---- (仅展示最近----条数据)'" 
         :tabelTitles="blockTitles"
-        :tabelData="blockList"
+        :tabelData="showBlockList"
         :total="10000"
         :currentChange="pageChange">
     </page-tabel>
@@ -54,22 +54,37 @@
           prop: "height",
           name: "快照块高度"
         }, {
-          prop: "transType",
+          prop: "years",
           name: "快照块年龄"
         }, {
-          prop: "status",
+          prop: "accountNum",
           name: "打包账户数"
         }, {
-          prop: "firstBlock",
+          prop: "producer",
           name: "出块节点"
         }, {
-          prop: "signature",
+          prop: "hash",
           name: "快照块Hash"
         }, {
           prop: "amount",
           name: "锻造奖励"
         }]
       };
+    },
+    computed: {
+      showBlockList() {
+        let list = [];
+        this.blockList.forEach((block)=>{
+          list.push({
+            height: `<a href="/block/${block.hash}">${block.height}</a>`,
+            hash: `<a href="/block/${block.hash}">${block.hash}</a>`,
+            amount: `${block.amount}Vite`,
+            accountNum: block.accountNum,
+            producer: block.producer
+          });
+        });
+        return list;
+      }
     },
     methods: {
       pageChange(currentInx) {

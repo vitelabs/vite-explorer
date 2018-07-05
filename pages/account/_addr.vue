@@ -12,9 +12,12 @@
         :list="tokenDetailList">
       </detail-layout>
 
-      <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
+      <el-tabs v-if="tokenList.length" class="tab-wrapper" v-model="activeTab" type="card">
         <el-tab-pane class="tab-pane" label="交易列表" name="transList">
-          <trans-list></trans-list>
+          <trans-list
+            :tokenId="activeToken ? activeToken.token.id : ''"
+            :accountAddress="accountDetail.accountAddress">
+          </trans-list>
         </el-tab-pane>
       </el-tabs>
     </div>
@@ -25,7 +28,7 @@
 <script>  
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
-  import transList from "~/components/Account/transList.vue";
+  import transList from "~/components/transList.vue";
   import account from "~/services/account.js";
 
   export default {
@@ -67,6 +70,9 @@
       };
     },
     computed: {
+      activeToken() {
+        return this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
+      }, 
       accountList() {
         let tokenNameList = [];
         this.tokenList.forEach((tokenDetail) => {
@@ -85,7 +91,7 @@
         }];
       },
       subTitle() {
-        return `代币: ${this.tokenList.length ? this.tokenList[this.activeTokenIndex].token.name || "" : ""}`;
+        return `代币: ${this.activeToken ? this.activeToken.token.name : ""}`;
       },
       tokenDetailList() {
         let tokenDetail = this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;

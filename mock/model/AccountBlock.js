@@ -2,6 +2,7 @@ const Token = require("./Token");
 
 class AccountBlock {
   constructor() {
+    this.hash = `accountBlockHash${parseInt(Math.random()*2309283)}`;
     this.height = `accountBlockHeight${parseInt(Math.random()*2309283)}`;
     this.accountAddress = `accountBlockAccountAddress${parseInt(Math.random()*2309283)}`; 
     this.to = `accountBlockTo${parseInt(Math.random()*2309283)}`;
@@ -13,7 +14,10 @@ class AccountBlock {
     this.amount = `accountBlockAmount${parseInt(Math.random()*2309283)}`;
     this.token = new Token();
     this.data = `accountBlockData${parseInt(Math.random()*2309283)}`;
+    this.timestamp = parseInt(Math.random() * 23829032);
     this.snapshotTimestamp = `accountBlockSnapshotTimestamp${parseInt(Math.random()*2309283)}`;
+    this.confirmBlockHash = `accountBlockConfirmBlockHash${parseInt(Math.random()*2309283)}`;
+    this.confirmTimes = `accountBlockConfirmTimes${parseInt(Math.random()*2309283)}`;
     this.signature = `accountBlockSignature${parseInt(Math.random()*2309283)}`;
     this.nounce = `accountBlockNounce${parseInt(Math.random()*2309283)}`;
     this.difficulty = parseInt(Math.random()*2309283);

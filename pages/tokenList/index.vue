@@ -43,7 +43,7 @@
         };
       } catch(err) {
         return {
-          error: err.msg || "get account fail"
+          error: err.msg || "get tokenList fail"
         };
       }
     },
@@ -84,12 +84,7 @@
         let list = [];
         this.tokenList && this.tokenList.forEach(token => {
           list.push({
-            icon: "----",
-            token: `<a href="/token/${token.id}}">${token.name} (${token.symbol})</a><br/>${token.introduction}`,
-            price: "----",
-            upDown: "----",
-            transPrice: "----",
-            famc: "----"
+            token: `<a href="/token/${token.id}}">${token.name} (${token.symbol})</a>`
           });
         });
         return list;

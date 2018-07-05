@@ -12,7 +12,7 @@ class Account {
         balance: parseInt(Math.random()*10000)
       });
     }
-    this.tokenList;
+    this.tokenList = tokenList;
   }
 }
 

@@ -8,7 +8,9 @@
 
       <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
         <el-tab-pane class="tab-pane" label="交易列表" name="transList">
-          <trans-list></trans-list>
+          <trans-list :tokenTitle="false" :pagination="false"
+            :tokenId="tokenDetail.id">
+          </trans-list>
         </el-tab-pane>
 
         <el-tab-pane class="tab-pane" label="账户列表" name="accountList">
@@ -23,7 +25,7 @@
 <script>  
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
-  import transList from "~/components/Token/transList.vue";
+  import transList from "~/components/transList.vue";
   import accountList from "~/components/Token/accountList.vue";
 
   import token from "~/services/token.js";
@@ -65,16 +67,12 @@
     computed: {
       showTokenDetail() {
         return {
-          totalSupply: this.tokenDetail.totalSupply,
-          owner: this.tokenDetail.owner,
-          price: "----",
-          addressNumber: "----",
-          transactionNumber: this.tokenDetail.transactionNumber
+          owner: this.tokenDetail.owner
         };
       },
       list() {
         const tokenDetailMap = {
-          totalSupply: "流通额度",
+          circulationLines: "流通额度",
           owner: "所有者地址",
           price: "价格",
           addressNumber: "地址数量",
@@ -82,9 +80,9 @@
         };
 
         let list = [];
-        for (let key in this.showTokenDetail) {
+        for (let key in tokenDetailMap) {
           list.push({
-            describe: this.showTokenDetail[key],
+            describe: this.showTokenDetail[key] || "----",
             name: tokenDetailMap[key],
             link: key === "owner" ? `/account/${this.showTokenDetail[key]}` : ""
           });
