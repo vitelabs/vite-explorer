@@ -8,16 +8,16 @@ module.exports = {
   },
   search: {
     btn: "Search",
-    placeholder: "Search for blocks, transactions, accounts and token"
+    placeholder: "Search by Block / Transaction / Account / Token"
   },
   profile: {
     title: "Profile",
     market: "Market value of Vite",
     tps: "System TPS",
     price: "Current price of Vite",
-    totalTrans: "Total volume of history transaction",
+    totalTrans: "Total History Transaction",
     latestHeight: "Latest block height",
-    nearMonth: "Transaction volume in recent 30 days",
+    nearMonth: " 30 day Transaction History",
   },
   lineChart: {
     title: "Transaction Curve"
@@ -26,10 +26,11 @@ module.exports = {
     title: "Snapshot List",
     height: "Snapshot Block Height: ",
     node: "Block generation node: ",
-    pack: "Packing ",
+    pack: "Packed ",
     account: " account(s)",
-    cost: "Time-consuming ",
+    cost: "Cost ",
     sec: " sec(s)",
+    secAgo: " sec ago",
   },
   transactionList: {
     title: "Transaction List",

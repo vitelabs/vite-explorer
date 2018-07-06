@@ -30,6 +30,7 @@ module.exports = {
     account: "账户",
     cost: "耗时",
     sec: "秒",
+    secAgo: "秒前",
   },
   transactionList: {
     title: "交易列表",

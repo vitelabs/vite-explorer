@@ -1,5 +1,5 @@
 <template>
-  <page-tabel :pagination="pagination"
+  <page-table :pagination="pagination"
     :loading="loading"
     :title="'总交易笔数----'"
     :tabelTitles="transactionsTitles"
@@ -7,7 +7,7 @@
     :current-change="fetchTransList"
     :currentPage="pageIndex"
     :total="0">
-  </page-tabel>
+  </page-table>
 </template>
 
 <script>

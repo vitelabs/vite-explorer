@@ -1,5 +1,5 @@
 <template>
-  <page-tabel
+  <page-table
     :showOrder="true"
     :title="'总账户数----, (仅展示最近的----条数据)'"
     :tabelTitles="accountTitles"
@@ -7,7 +7,7 @@
     :total="0"
     :currentChange="accountPageChange">
     <!-- :total="accountNum" -->
-  </page-tabel>
+  </page-table>
 </template>
 
 <script>

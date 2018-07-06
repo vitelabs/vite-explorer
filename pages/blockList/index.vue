@@ -1,13 +1,13 @@
 <template>
   <div class="token-container">
-    <page-tabel v-if="!error"
+    <page-table v-if="!error"
         :loading="loading"
         :title="'总区块量：---- (仅展示最近----条数据)'"
         :tabelTitles="blockTitles"
         :tabelData="showBlockList"
         :total="10000"
         :currentChange="pageChange">
-    </page-tabel>
+    </page-table>
     <error v-else :error="error"></error>
   </div>
 </template>
