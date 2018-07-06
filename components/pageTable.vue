@@ -37,11 +37,15 @@
       },
       tableTitles: {
         type: Array,
-        default: []
+        default: () =>{
+          return []
+        }
       },
       tableData: {
         type: Array,
-        default: []
+        default: () =>{
+          return []
+        }
       },
       pagination: {
         type: Boolean,
