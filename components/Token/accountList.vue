@@ -1,7 +1,7 @@
 <template>
   <page-tabel
     :showOrder="true"
-    :title="'总账户数----, (仅展示最近的----条数据)'" 
+    :title="'总账户数----, (仅展示最近的----条数据)'"
     :tabelTitles="accountTitles"
     :tabelData="[]"
     :total="0"
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-  import pageTabel from "~/components/pageTabel";
+  import pageTable from "~/components/pageTable";
 
   export default {
     components: {
-      pageTabel
+      pageTable
     },
     computed: {
       accountTitles() {

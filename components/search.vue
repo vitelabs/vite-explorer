@@ -1,7 +1,7 @@
 <template>
   <div class="search-container">
-    <el-input class="search-input" placeholder="支持搜索区块、交易、账户、Token"></el-input>
-    <el-button class="search-btn" type="primary">搜索</el-button>
+    <el-input class="search-input" :placeholder="$t('search.placeholder')"></el-input>
+    <el-button class="search-btn" type="primary">{{$t('search.btn')}}</el-button>
   </div>
 </template>
 

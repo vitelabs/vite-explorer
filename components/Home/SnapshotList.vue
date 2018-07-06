@@ -1,23 +1,23 @@
 <template>
   <div>
-    <div>快照块列表</div>
-    <div class="more"><nuxt-link :to="localePath('blockList')">更多 ></nuxt-link></div>
+    <div>{{$t('snapshotList.title')}}</div>
+    <div class="more"><nuxt-link :to="localePath('blockList')">more ></nuxt-link></div>
     <div class="snapshot-list">
       <div class="snapshot-item" v-for="(item, index) in list" :key="index">
         <el-row :gutter="20">
           <el-col :span="12" class="snapshot-item-left">
-            <div>快照块高度：{{item.height}}</div>
-            <div>> 14秒前</div>
+            <div>{{ $t('snapshotList.height')}}：{{item.height}}</div>
+            <div>> 14s</div>
           </el-col>
           <el-col :span="12">
-            <div>出块节点：FirstNode</div>
-            <div>打包329账户，耗时3秒</div>
+            <div>{{ $t('snapshotList.node')}} FirstNode</div>
+            <div>{{ $t('snapshotList.pack')}} 329 {{ $t('snapshotList.account')}} {{ $t('snapshotList.cost')}}3{{ $t('snapshotList.sec')}}</div>
           </el-col>
         </el-row>
       </div>
     </div>
   </div>
-  
+
 </template>
 <script>
 

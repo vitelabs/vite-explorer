@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import pageTabel from "~/components/pageTabel";
+  import pageTable from "~/components/pageTable";
   import error from "~/components/error";
   import transList from "~/components/transList.vue";
   import transaction from "~/services/transaction";
@@ -22,7 +22,7 @@
       };
     },
     components: {
-      pageTabel, error, transList
+      pageTable, error, transList
     },
     async asyncData() {
       const pageIndex = 0;

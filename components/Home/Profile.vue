@@ -1,34 +1,34 @@
 <template>
   <div>
-    <div>概况</div>
+    <div>{{$t('profile.title')}}</div>
     <div class="vite-profile">
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
-          <div>Vite流通市值</div>
+          <div>{{$t('profile.market')}}</div>
           <div>--</div>
         </el-col>
         <el-col :span="12">
-          <div>系统TPS</div>
-          <div>--</div>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20" class="profile-row">
-        <el-col :span="12">
-          <div>Vite流通价格</div>
-          <div>--</div>
-        </el-col>
-        <el-col :span="12">
-          <div>历史总交易量</div>
+          <div>{{$t('profile.tps')}}</div>
           <div>--</div>
         </el-col>
       </el-row>
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
-          <div>最新区块高度</div>
+          <div>{{$t('profile.price')}}</div>
           <div>--</div>
         </el-col>
         <el-col :span="12">
-          <div>近30天交易量</div>
+          <div>{{$t('profile.totalTrans')}}</div>
+          <div>--</div>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20" class="profile-row">
+        <el-col :span="12">
+          <div>{{$t('profile.latestHeight')}}</div>
+          <div>--</div>
+        </el-col>
+        <el-col :span="12">
+          <div>{{$t('profile.nearMonth')}}</div>
           <div>--</div>
         </el-col>
       </el-row>
@@ -37,12 +37,16 @@
 </template>
 
 <script>
-
   export default {
+    data() {
+      return {
+
+      };
+    },
     components: {
     },
     props: {
-      
+
     }
   };
 </script>
