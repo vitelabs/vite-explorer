@@ -4,7 +4,7 @@
       <page-header :title="title"></page-header>
       <page-tabel class="token-tabel" :pagination="false" :showOrder="true"
         :loading="loading"
-        :title="tokenTabelTitle" 
+        :title="tokenTabelTitle"
         :tabelTitles="tokenTitles"
         :tabelData="tokenData">
       </page-tabel>
@@ -15,7 +15,7 @@
 
 <script>
   import pageHeader from "~/components/pageHeader.vue";
-  import pageTabel from "~/components/pageTabel";
+  import pageTable from "~/components/pageTable";
   import error from "~/components/error";
   import token from "~/services/token.js";
 
@@ -28,7 +28,7 @@
       };
     },
     components: {
-      pageHeader, pageTabel, error
+      pageHeader, pageTable, error
     },
     async asyncData() {
       const pageIndex = 0;
@@ -95,6 +95,6 @@
 
 <style lang="scss" rel="stylesheet/scss" scoped>
   .token-tabel {
-    padding-top: 20px; 
+    padding-top: 20px;
   }
 </style>

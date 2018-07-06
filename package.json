@@ -20,9 +20,12 @@
     "element-ui": "2.4.1",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
+    "koa-convert": "^1.2.0",
+    "koa-proxy": "^0.9.0",
     "koa-trie-router": "^2.1.6",
     "nuxt": "latest",
     "nuxt-i18n": "^4.1.0",
+    "regenerator-runtime": "^0.12.0",
     "v-charts": "^1.17.6"
   },
   "devDependencies": {

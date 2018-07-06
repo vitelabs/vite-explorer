@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="default-container headroom">
     <div class="home-nav">
       <a class="navbar-brand" href="/">
@@ -10,7 +10,7 @@
         </div>
         <div class="navbar-menu">
           <el-menu :default-active="defaultActive" mode="horizontal" background-color="#f0f0f0" text-color="#888888"
-            active-text-color="#333333" @select="handleSelect">
+            active-text-color="#333333">
             <el-menu-item :key="index" :index="item" v-for="(item, index) in navs" class="text-hover-transition">
               <nuxt-link :to="localePath(item)" class="nav-item">
               {{$t(`nav.${item}`)}}
@@ -48,18 +48,18 @@
     created() {
       this.keepNavStatus();
     },
-    data: function() {
+    watch: {
+      "$route.path": function() {
+        this.keepNavStatus();
+      }
+    },
+    data() {
       return {
         navs: ["index", "transactionList", "blockList", "tokenList"],
-        defaultActive: "index"
+        defaultActive: "index",
       };
     },
     methods: {
-      handleSelect(key) {
-        if (key === "en" || key === "zh") {
-          this.keepNavStatus();
-        }
-      },
       keepNavStatus() {
         if (this.$route.path === "/" || this.$route.path === "/zh") {
           this.defaultActive = "index";
@@ -88,7 +88,7 @@
       display: inline-block;
       text-decoration: none;
       padding: 0;
-      margin: 0; 
+      margin: 0;
       color: #000;
     }
     .nav-content {
@@ -106,7 +106,7 @@
         }
       }
     }
-    
+
   }
   .content-wrapper {
     padding: 20px 120px 120px;

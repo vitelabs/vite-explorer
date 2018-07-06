@@ -1,12 +1,12 @@
 <template>
   <div class="detail-error-container">
     <div class="error-text">{{error}}</div>
-    <el-button @click="reload" type="primary">点击重新加载</el-button>
+    <el-button @click="reload" type="primary">{{$t('error.reload')}}</el-button>
   </div>
 </template>
 
 <script>
-  export default { 
+  export default {
     props: {
       error: {
         type: String,

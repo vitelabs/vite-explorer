@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>交易量曲线</div>
+    <div> {{ $t('lineChart.title')}} </div>
     <div class="vite-transaction">
       <ve-line :data="chartData"></ve-line>
     </div>
@@ -15,7 +15,7 @@
       VeLine
     },
     props: {
-      
+
     },
     data () {
       return {
