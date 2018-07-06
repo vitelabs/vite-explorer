@@ -6,7 +6,7 @@
         <el-row :gutter="20">
           <el-col :span="12" class="snapshot-item-left">
             <div>{{ $t('snapshotList.height')}} 5875</div>
-            <div>> 14s</div>
+            <div>> 14 {{ $t('snapshotList.secAgo')}}</div>
           </el-col>
           <el-col :span="12">
             <div>{{ $t('snapshotList.node')}} FirstNode</div>
