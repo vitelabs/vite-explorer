@@ -6,7 +6,7 @@ import middleware from "./middleware";
 async function start() {
   const app = new Koa();
   const host = process.env.HOST || "127.0.0.1";
-  const port = process.env.PORT || config.server.port;
+  const port = process.env.PORT || config.port;
 
   let nuxtConfig = require("../nuxt.config.js");
   nuxtConfig.dev = !(app.env === "production");
@@ -18,19 +18,7 @@ async function start() {
   }
 
   // middlewares are imported here
-  middleware(app);
-
-  app.use(async (ctx, next) => {
-    await next();
-    ctx.status = 200;
-    return new Promise((resolve, reject) => {
-      ctx.res.on("close", resolve);
-      ctx.res.on("finish", resolve);
-      nuxt.render(ctx.req, ctx.res, promise => {
-        promise.then(resolve).catch(reject);
-      });
-    });
-  });
+  middleware(app, nuxt);
 
   app.listen(port, host);
   console.log("Server listening on " + host + ":" + port);

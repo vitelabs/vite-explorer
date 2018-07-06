@@ -1,11 +1,12 @@
 <template>
   <div>
     <div>快照块列表</div>
+    <div class="more"><nuxt-link :to="localePath('blockList')">更多 ></nuxt-link></div>
     <div class="snapshot-list">
       <div class="snapshot-item" v-for="(item, index) in list" :key="index">
         <el-row :gutter="20">
           <el-col :span="12" class="snapshot-item-left">
-            <div>快照块高度：57857</div>
+            <div>快照块高度：{{item.height}}</div>
             <div>> 14秒前</div>
           </el-col>
           <el-col :span="12">
@@ -24,11 +25,14 @@
     components: {
     },
     props: {
-      
+      list: {
+        type: Array,
+        default: []
+      },
     },
     data() {
       return {
-        list: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+        
       };
     }
   };
@@ -36,6 +40,12 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
+
+.more {
+  float: right;
+  margin-top: -20px; 
+  margin-right: 20px; 
+}
 
 .snapshot-list {
   margin-top: 10px;

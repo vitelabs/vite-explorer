@@ -1,6 +1,7 @@
 <template>
   <div>
     <div>交易列表</div>
+    <div class="more"><nuxt-link :to="localePath('transactionList')">更多 ></nuxt-link></div>
     <div class="transaction-list">
       <div class="transaction-item" v-for="(item, index) in list" :key="index">
         <el-row :gutter="20">
@@ -26,11 +27,13 @@
     components: {
     },
     props: {
-      
+      list: {
+        type: Array,
+        default: []
+      },
     },
     data() {
       return {
-        list: [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
       };
     }
   };
@@ -38,6 +41,11 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
+.more {
+  float: right;
+  margin-top: -20px; 
+  margin-right: 20px; 
+}
 
 .transaction-list {
   margin-top: 10px;
