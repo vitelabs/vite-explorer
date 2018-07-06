@@ -23,9 +23,24 @@ module.exports = {
     title: "Transaction Curve"
   },
   snapshotList: {
-    title: "Snapshot List"
+    title: "Snapshot List",
+    height: "Snapshot Block Height: ",
+    node: "Block generation node: ",
+    pack: "Packing ",
+    account: " account(s)",
+    cost: "Time-consuming ",
+    sec: " sec(s)",
   },
-  account: {
-
+  transactionList: {
+    title: "Transaction List",
+    hash: "Transaction Hash",
+    from: "From",
+    to: "To",
+  },
+  error: {
+    reload: "Click to reload"
+  },
+  footer: {
+    official: "Official Website"
   }
 };

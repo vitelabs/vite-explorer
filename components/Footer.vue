@@ -1,7 +1,7 @@
 <template>
   <footer @click="hideWxCode" class="footer">
     © 2018 VITE Labs
-    <a href="https://www.vite.org/">Vite 官网</a>
+    <a href="https://www.vite.org/">Vite {{$t('footer.official')}}</a>
     <a class="img-wrapper" href="https://github.com/vitelabs">
       <img src="~assets/images/github.png"/>
     </a>

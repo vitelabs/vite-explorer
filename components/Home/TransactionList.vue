@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>交易列表</div>
+    <div>{{$t('transactionList.title')}}</div>
     <div class="transaction-list">
       <div class="transaction-item" v-for="(item, index) in list" :key="index">
         <el-row :gutter="20">
@@ -8,17 +8,17 @@
             <div>1000 Vite</div>
           </el-col>
           <el-col :span="12">
-            <div>交易Hash: 0x78912891289</div>
+            <div>{{$t('transactionList.hash')}} 0x78912891289</div>
           </el-col>
         </el-row>
         <div class="transaction-item-down">
-          <div>转出 0x8797988</div>
-          <div>转入 0x8797988</div>
+          <div>{{$t('transactionList.from')}} 0x8797988</div>
+          <div>{{$t('transactionList.to')}} 0x8797988</div>
         </div>
       </div>
     </div>
   </div>
-  
+
 </template>
 <script>
 
@@ -26,7 +26,7 @@
     components: {
     },
     props: {
-      
+
     },
     data() {
       return {

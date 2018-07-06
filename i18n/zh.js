@@ -23,6 +23,24 @@ module.exports = {
     title: "交易曲线"
   },
   snapshotList: {
-    title: "快照块列表"
+    title: "快照块列表",
+    height: "快照块高度：",
+    node: "出块节点：",
+    pack: "打包",
+    account: "账户",
+    cost: "耗时",
+    sec: "秒",
   },
+  transactionList: {
+    title: "交易列表",
+    hash: "交易Hash",
+    from: "转入",
+    to: "转出",
+  },
+  error: {
+    reload: "点击重新加载"
+  },
+  footer: {
+    official: "官网"
+  }
 };

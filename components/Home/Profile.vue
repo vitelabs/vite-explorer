@@ -41,7 +41,7 @@
     data() {
       return {
 
-      }
+      };
     },
     components: {
     },
