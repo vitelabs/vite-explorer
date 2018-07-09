@@ -64,6 +64,7 @@
         if (this.$route.path === "/" || this.$route.path === "/zh") {
           this.defaultActive = "index";
         } else {
+          //TODO fix
           let paths = this.$route.path.split("/");
           this.defaultActive = paths[paths.length - 1];
         }

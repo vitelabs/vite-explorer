@@ -210,7 +210,7 @@ export default () => {
     try {
       let transactionDetail = await get("/accountchain/block", { blockHash: ctx.query.addr });
       let blockDetail = await get("/snapshotchain/block", { blockHash: ctx.query.addr });
-      let judgeString = ''; 
+      let judgeString = 'null'; 
       if (transactionDetail.data.data && !blockDetail.data.data) {
         judgeString = 'transaction';
       }
@@ -222,6 +222,7 @@ export default () => {
         data: judgeString,
         msg: 'ok'
       }
+      return;
     } catch(err) {
       console.log('err', err);
     }
