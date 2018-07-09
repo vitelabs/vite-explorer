@@ -1,7 +1,6 @@
 import bodyParser from "koa-bodyparser";
 import routes from "./routes";
 
-
 export default (app, nuxt) => {
   app.use(async (ctx, next) => {
     await next();

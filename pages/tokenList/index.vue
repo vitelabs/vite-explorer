@@ -2,12 +2,12 @@
   <div class="token-list-container">
     <div v-if="!error">
       <page-header :title="title"></page-header>
-      <page-tabel class="token-tabel" :pagination="false" :showOrder="true"
+      <page-table class="token-tabel" :pagination="false" :showOrder="true"
         :loading="loading"
         :title="tokenTabelTitle"
         :tabelTitles="tokenTitles"
         :tabelData="tokenData">
-      </page-tabel>
+      </page-table>
     </div>
     <error v-else :error="error"></error>
   </div>
