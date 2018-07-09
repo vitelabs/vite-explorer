@@ -24,6 +24,7 @@
     "koa-trie-router": "^2.1.6",
     "nuxt": "latest",
     "nuxt-i18n": "^4.1.0",
+    "regenerator-runtime": "^0.12.0",
     "v-charts": "^1.17.6"
   },
   "devDependencies": {

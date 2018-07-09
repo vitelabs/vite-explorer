@@ -4,7 +4,6 @@ import routes from "./routes";
 // import config from "./config";
 // import apiProxyMiddleware from "./middlewares/apiProxyMiddleware";
 
-
 export default (app, nuxt) => {
   app.use(async (ctx, next) => {
     await next();
@@ -12,14 +11,9 @@ export default (app, nuxt) => {
 
   app.use(bodyParser());
 
+
   app.use(routes(app));
 
-  // app.use(apiProxyMiddleware);
-
-  // app.use(proxy({
-  //   host: config.apiConfig[0].server,
-  //   map: config.apiConfig[0].map,
-  // }));
 
   app.use(async (ctx, next) => {
     await next();

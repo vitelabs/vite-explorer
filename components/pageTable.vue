@@ -38,13 +38,13 @@
       tableTitles: {
         type: Array,
         default: () =>{
-          return []
+          return [];
         }
       },
       tableData: {
         type: Array,
         default: () =>{
-          return []
+          return [];
         }
       },
       pagination: {
