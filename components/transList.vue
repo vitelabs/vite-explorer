@@ -1,12 +1,12 @@
 <template>
   <page-table :pagination="pagination"
     :loading="loading"
-    :title="'总交易笔数----'"
-    :tabelTitles="transactionsTitles"
-    :tabelData="transactionsData"
+    :title="$t('transList.title')"
+    :tableTitles="transactionsTitles"
+    :tableData="transactionsData"
     :current-change="fetchTransList"
     :currentPage="pageIndex"
-    :total="0">
+    :total="100">
   </page-table>
 </template>
 
@@ -56,36 +56,46 @@
       transactionsTitles() {
         let titles = [{
           prop: "hash",
-          name: "交易Hash"
+          name: "交易Hash",
+          nameEn: "TxHash"
         }, {
           prop: "type",
-          name: "交易类型"
+          name: "交易类型",
+          nameEn: "TxType"
         }, {
           prop: "status",
-          name: "状态"
+          name: "状态",
+          nameEn: "Status"
         },{
           prop: "snapshotTimestamp",
-          name: "首次快照块"
+          name: "首次快照块",
+          nameEn: "First Snapshot"
         }, {
           prop: "timestamp",
-          name: "时间戳"
+          name: "时间戳",
+          nameEn: "Timestamp"
         }, {
           prop: "confirmTimes",
-          name: "确认数"
+          name: "确认数",
+          nameEn: "Confirmations"
         }, {
           prop: "from",
-          name: "转出方"
+          name: "转出方",
+          nameEn: "From"
         }, {
           prop: "to",
-          name: "转入方"
+          name: "转入方",
+          nameEn: "To"
         }];
         this.tokenTitle && titles.push({
           prop: "tokenName",
-          name: "Token"
+          name: "代币",
+          nameEn: "Token"
         });
         titles.push({
           prop: "amount",
-          name: "金额"
+          name: "金额",
+          nameEn: "Amount"
         });
         return titles;
       },
@@ -101,9 +111,9 @@
             snapshotTimestamp: `<a href="/block/${transaction.snapshotTimestamp}">${transaction.snapshotTimestamp}</a>`,
             to: `<a href="/account/${transaction.to}">${transaction.to}</a>`,
             from: `<a href="/account/${transaction.from}">${transaction.from}</a>`,
-            type: transaction.fromHash ? "发送" : "接收",
+            type: transaction.fromHash ? "send" : "receive",
             amount: transaction.fromHash ? `-${transaction.amount}` : transaction.amount,
-            status: ["unkown", "open", "closed"][transaction.status],
+            status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,
             tokenName: transaction.tokenName
           });
@@ -148,7 +158,7 @@
             return;
           }
           this.loading = false;
-          this.$message.error(err.msg || "get transList fail");
+          this.$message.error(err.msg || "get transList failed");
         });
       }
     }

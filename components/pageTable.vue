@@ -4,9 +4,9 @@
 
     <div class="table">
       <el-table v-loading="loading" border :data="tableData" style="width: 100%">
-        <el-table-column v-if="showOrder" type="index" :index="indexMethod" label="序号" width="50"></el-table-column>
+        <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTitle.num')" width="50"></el-table-column>
           <el-table-column v-for="(tT, index) in tableTitles" :key="index"
-            :label="tT.name" :width="tT.width || ''">
+            :label="$i18n.locale ==='zh' ? tT.name : tT.nameEn" :width="tT.width || ''">
             <template slot-scope="scope">
               <span v-html="scope.row[tT.prop] || '----'"></span>
             </template>
@@ -15,7 +15,7 @@
     </div>
 
     <div v-if="pagination" v-show="total" class="pagination">
-      <el-pagination layout="prev, pager, next" prev-text="上一页" next-text="下一页"
+      <el-pagination layout="prev, pager, next" :prev-text="$t('pageTable.pre')" :next-text="$t('pageTable.next')"
         :background="true" @current-change="_currentChange"
         :page-size="pageSize" :current-page="currentInx"
         :total="total">
