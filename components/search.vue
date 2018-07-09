@@ -11,7 +11,7 @@
 
   export default {
     props: {
-   
+
     },
     data() {
       return {
@@ -26,7 +26,7 @@
         let str = this.searchStr.trim();
         if (/vite_[A-Za-z0-9]+/.test(str)) {
         // match account
-        
+
           return;
         }
         if (/tti_[A-Za-z0-9]+/.test(str)) {
@@ -36,7 +36,7 @@
         if (/[A-Za-z0-9]+/.test(str)) {
         // match transaction and block
           search.judgeTransOrBlock({
-            addr: str 
+            addr: str
           })
             .then((data)=> {
               if (data === "transaction") {
@@ -46,7 +46,7 @@
                 // jump to blockList
               }
               if (data === "") {
-                // can not search
+                // cannot search
               }
               console.log("judge data", data);
             }).catch(err=> {
