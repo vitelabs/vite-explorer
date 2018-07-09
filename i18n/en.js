@@ -43,5 +43,8 @@ module.exports = {
   },
   footer: {
     official: "Official Website"
+  },
+  utils: {
+    more: "more"
   }
 };

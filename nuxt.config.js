@@ -12,9 +12,9 @@ module.exports = {
     ]
   },
   loading: {color: "#7FB2FE"},
-  plugins: ["~/plugins/element-ui.js"],
+  plugins: [{ src: "~/plugins/element-ui.js", ssr: true }],
   build: {
-    vendor: ["babel-polyfill", "axios", "element-ui"]
+    vendor: ["babel-polyfill", "axios", "~/plugins/element-ui.js"]
   },
   router: {
     middleware: "i18n"

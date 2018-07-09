@@ -43,5 +43,8 @@ module.exports = {
   },
   footer: {
     official: "官网"
+  },
+  utils: {
+    more: "更多"
   }
 };
