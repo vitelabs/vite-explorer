@@ -3,7 +3,7 @@
     <page-table v-if="!error"
         :loading="loading"
         :title="$t('blkList.title')"
-        :tableTitles="blockTitles"
+        :tableTitles="blockTitle"
         :tableData="showBlockList"
         :total="10000"
         :currentChange="pageChange">
@@ -49,39 +49,15 @@
         blockList: [],
         loading: false,
         error: "",
-
-        blockTitles: [{
-          prop: "height",
-          name: "快照块高度",
-          nameEn: "Snapshot Height",
-        }, {
-          prop: "years",
-          name: "快照块年龄",
-          nameEn: "Snapshot Age",
-
-        }, {
-          prop: "accountNum",
-          name: "打包账户数",
-          nameEn: "Packing Accounts",
-
-        }, {
-          prop: "producer",
-          name: "出块节点",
-          nameEn: "Generation Node",
-
-        }, {
-          prop: "hash",
-          name: "快照块Hash",
-          nameEn: "Snapshot Hash",
-
-        }, {
-          prop: "amount",
-          name: "锻造奖励",
-          nameEn: "Forging Rewards",
-        }]
       };
     },
     computed: {
+      blockTitle(){
+        if(this.$i18n.locale === 'zh'){
+          return this.$i18n.messages.zh.blockTitles;
+        }
+        return this.$i18n.messages.en.blockTitles;
+      },
       showBlockList() {
         let list = [];
         this.blockList.forEach((block)=>{

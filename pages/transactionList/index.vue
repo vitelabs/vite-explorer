@@ -17,7 +17,7 @@
   export default {
     head() {
       return {
-        title: "所有交易"
+        title: "All Transactions"
       };
     },
     components: {

@@ -47,6 +47,48 @@ module.exports = {
   blkList: {
     title: "总区块量----, (仅展示最近的----条数据)"
   },
+  blockTitles: [{
+    prop: "height",
+    name: "快照块高度",
+  }, {
+    prop: "years",
+    name: "快照块年龄",
+
+  }, {
+    prop: "accountNum",
+    name: "打包账户数",
+
+  }, {
+    prop: "producer",
+    name: "出块节点",
+
+  }, {
+    prop: "hash",
+    name: "快照块Hash",
+
+  }, {
+    prop: "amount",
+    name: "锻造奖励",
+  }],
+  tokenTitles: [{
+    prop: "icon",
+    name: "图标",
+  }, {
+    prop: "token",
+    name: "代币",
+  }, {
+    prop: "price",
+    name: "价格",
+  }, {
+    prop: "upDown",
+    name: "涨跌",
+  }, {
+    prop: "transPrice",
+    name: "交易金额",
+  }, {
+    prop: "famc",
+    name: "流通市值",
+  }],
   pageTable: {
     pre: "上一页",
     next: "下一页",

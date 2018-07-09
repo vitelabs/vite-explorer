@@ -49,6 +49,48 @@ module.exports = {
   accList: {
     title: "Total Accounts----, (Only shows ---- data in recent)"
   },
+  blockTitles: [{
+    prop: "height",
+    name: "Snapshot Height",
+  }, {
+    prop: "years",
+    name: "Snapshot Age",
+
+  }, {
+    prop: "accountNum",
+    name: "Packing Accounts",
+
+  }, {
+    prop: "producer",
+    name: "Generation Node",
+
+  }, {
+    prop: "hash",
+    name: "Snapshot Hash",
+
+  }, {
+    prop: "amount",
+    name: "Forging Rewards",
+  }],
+  tokenTitles: [{
+    prop: "icon",
+    name: "Icon",
+  }, {
+    prop: "token",
+    name: "Token",
+  }, {
+    prop: "price",
+    name: "Price",
+  }, {
+    prop: "upDown",
+    name: "Up & Down",
+  }, {
+    prop: "transPrice",
+    name: "Transaction Amount",
+  }, {
+    prop: "famc",
+    name: "Circulation Market Value",
+  }],
   blkList: {
     title: "Total Blocks----, (Only shows ---- data in recent)"
   },

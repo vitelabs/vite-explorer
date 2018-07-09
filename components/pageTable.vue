@@ -6,7 +6,7 @@
       <el-table v-loading="loading" border :data="tableData" style="width: 100%">
         <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTable.num')" width="50"></el-table-column>
           <el-table-column v-for="(tT, index) in tableTitles" :key="index"
-            :label="$i18n.locale ==='zh' ? tT.name : tT.nameEn" :width="tT.width || ''">
+            :label="tT.name" :width="tT.width || ''">
             <template slot-scope="scope">
               <span v-html="scope.row[tT.prop] || '----'"></span>
             </template>

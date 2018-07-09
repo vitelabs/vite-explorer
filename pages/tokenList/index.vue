@@ -66,31 +66,10 @@
         return `${this.tokenList && this.tokenList.length || 0} tokens in total`;
       },
       tokenTitles() {
-        return [{
-          prop: "icon",
-          name: "图标",
-          nameEn: "Icon",
-        }, {
-          prop: "token",
-          name: "代币",
-          nameEn: "Token",
-        }, {
-          prop: "price",
-          name: "价格",
-          nameEn: "Price",
-        }, {
-          prop: "upDown",
-          name: "涨跌",
-          nameEn: "Up & Down",
-        }, {
-          prop: "transPrice",
-          name: "交易金额",
-          nameEn: "Transaction Amount",
-        }, {
-          prop: "famc",
-          name: "流通市值",
-          nameEn: "Circulation Market Value",
-        }];
+        if(this.$i18n.locale === 'zh'){
+          return this.$i18n.messages.zh.tokenTitles;
+        }
+        return this.$i18n.messages.en.tokenTitles;
       },
       tokenData() {
         let list = [];
