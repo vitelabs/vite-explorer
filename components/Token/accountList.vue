@@ -1,9 +1,9 @@
 <template>
   <page-table
     :showOrder="true"
-    :title="'总账户数----, (仅展示最近的----条数据)'"
-    :tabelTitles="accountTitles"
-    :tabelData="[]"
+    :title="$t('accList.title')"
+    :tableTitles="accountTitles"
+    :tableData="[]"
     :total="0"
     :currentChange="accountPageChange">
     <!-- :total="accountNum" -->
@@ -21,16 +21,20 @@
       accountTitles() {
         return [{
           prop: "accountAddress",
-          name: "账户地址"
+          name: "账户地址",
+          nameEn: "Account Address",
         }, {
           prop: "balance",
-          name: "账户余额"
+          name: "账户余额",
+          nameEn: "Account Balance",
         }, {
           prop: "percent",
-          name: "占总流通比例"
+          name: "占总流通比例",
+          nameEn: "Proportion",
         }, {
           prop: "transNum",
-          name: "账户交易次数"
+          name: "账户交易次数",
+          nameEn: "Transaction Times",
         }];
       }
     },

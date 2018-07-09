@@ -46,8 +46,16 @@ module.exports = {
     next: "Next",
     num: "No.",
   },
+  accList: {
+    title: "Total Accounts----, (Only shows ---- data in recent)"
+  },
+  blkList: {
+    title: "Total Blocks----, (Only shows ---- data in recent)"
+  },
   error: {
-    reload: "Click to reload"
+    reload: "Click to reload",
+    home: "Back to Home",
+    exception: "Error Exception Occurs",
   },
   footer: {
     official: "Official Website"

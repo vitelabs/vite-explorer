@@ -2,9 +2,9 @@
   <div class="token-container">
     <page-table v-if="!error"
         :loading="loading"
-        :title="'总区块量：---- (仅展示最近----条数据)'"
-        :tabelTitles="blockTitles"
-        :tabelData="showBlockList"
+        :title="$t('blkList.title')"
+        :tableTitles="blockTitles"
+        :tableData="showBlockList"
         :total="10000"
         :currentChange="pageChange">
     </page-table>
@@ -22,7 +22,7 @@
   export default {
     head() {
       return {
-        title: "所有区块"
+        title: "All Blocks"
       };
     },
     components: {
@@ -39,7 +39,7 @@
         };
       } catch(err) {
         return {
-          error: err.msg || "get blockList fail"
+          error: err.msg || "get blockList failed"
         };
       }
     },
@@ -52,22 +52,32 @@
 
         blockTitles: [{
           prop: "height",
-          name: "快照块高度"
+          name: "快照块高度",
+          nameEn: "Snapshot Height",
         }, {
           prop: "years",
-          name: "快照块年龄"
+          name: "快照块年龄",
+          nameEn: "Snapshot Age",
+
         }, {
           prop: "accountNum",
-          name: "打包账户数"
+          name: "打包账户数",
+          nameEn: "Packing Accounts",
+
         }, {
           prop: "producer",
-          name: "出块节点"
+          name: "出块节点",
+          nameEn: "Generation Node",
+
         }, {
           prop: "hash",
-          name: "快照块Hash"
+          name: "快照块Hash",
+          nameEn: "Snapshot Hash",
+
         }, {
           prop: "amount",
-          name: "锻造奖励"
+          name: "锻造奖励",
+          nameEn: "Forging Rewards",
         }]
       };
     },
@@ -106,7 +116,7 @@
             return;
           }
           this.loading = false;
-          this.$message.error(err.msg || "get blockList fail");
+          this.$message.error(err.msg || "get blockList failed");
         });
       }
     }

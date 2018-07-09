@@ -1,8 +1,8 @@
 <template>
   <div class="error-container">
     <h1 class="error" v-if="error.statusCode === 404">404</h1>
-    <h1 v-else>应用发生错误异常</h1>
-    <nuxt-link class="go-home" to="/">点击返回首页</nuxt-link>
+    <h1 v-else>{{$t('error.exception')}}</h1>
+    <nuxt-link class="go-home" to="/">{{$t('error.home')}}</nuxt-link>
   </div>
 </template>
 

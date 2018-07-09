@@ -11,7 +11,7 @@
 
   export default {
     props: {
-   
+
     },
     data() {
       return {
@@ -40,7 +40,7 @@
           this.judgeTransOrBlock(str, langStrPath);
         }
       },
-
+      
       judgeTransOrBlock(str, langStrPath) {
         search.judgeTransOrBlock({
           addr: str 
