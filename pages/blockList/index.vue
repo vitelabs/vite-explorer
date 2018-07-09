@@ -53,7 +53,7 @@
     },
     computed: {
       blockTitle(){
-        if(this.$i18n.locale === 'zh'){
+        if(this.$i18n.locale === "zh"){
           return this.$i18n.messages.zh.blockTitles;
         }
         return this.$i18n.messages.en.blockTitles;

@@ -58,7 +58,7 @@
     },
     computed: {
       tokenTableTitle() {
-        if(this.$i18n.locale === 'zh'){
+        if(this.$i18n.locale === "zh"){
           this.title = "代币列表";
           return `总计有${this.tokenList && this.tokenList.length || 0}种代币`;
         }
@@ -66,7 +66,7 @@
         return `${this.tokenList && this.tokenList.length || 0} tokens in total`;
       },
       tokenTitles() {
-        if(this.$i18n.locale === 'zh'){
+        if(this.$i18n.locale === "zh"){
           return this.$i18n.messages.zh.tokenTitles;
         }
         return this.$i18n.messages.en.tokenTitles;
