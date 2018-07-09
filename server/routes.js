@@ -35,10 +35,7 @@ export default () => {
     try {
       let result = await get("/token/detail", ctx.query);
       ctx.type = "json";
-      ctx.body = result.data || {
-        code: 5000,
-        msg: "server error"
-      };
+      ctx.body = result.data;
     } catch(err) {
       // console.log(err);
       // console.log(err.code);

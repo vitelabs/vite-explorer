@@ -7,7 +7,9 @@
 
 <script>
   import search from "~/services/search";
-
+  import account from "~/services/account";
+  import token from "~/services/token";
+  
 
   export default {
     props: {
@@ -22,23 +24,51 @@
       search() {
         let str = this.searchStr.trim();
         let langStrPath = "";
-        if (this.$i18n.locale === "zh") {
-          langStrPath = "/zh";
+        if (this.$i18n.locale !== "en") {
+          langStrPath = `/${this.$i18n.locale}`;
         }
         if (/vite_[A-Za-z0-9]+/.test(str)) {
         // match account
-          this.$router.push({path: `${langStrPath}/account/${str}`});
+          this.getAccountDetail(str, langStrPath);
           return;
         }
         if (/tti_[A-Za-z0-9]+/.test(str)) {
         // match token
-          this.$router.push({path: `${langStrPath}/token/${str}`});
+          this.getTokenDetail(str, langStrPath);
           return;
         }
         if (/[A-Za-z0-9]+/.test(str)) {
         // match transaction and block
           this.judgeTransOrBlock(str, langStrPath);
         }
+      },
+
+      getTokenDetail(str, langStrPath) {
+        token.getDetail({
+          tokenId: str
+        })
+          .then(data=> {
+            data ? this.$router.push({path: `${langStrPath}/token/${str}`}) 
+              : this.$router.push({path: `${langStrPath}/searchError`});
+
+          })
+          .catch(err=> {
+            console.log(err);
+          });
+      },
+
+      getAccountDetail(str, langStrPath) {
+        account.getDetail({
+          accountAddres: str
+        })
+          .then(data=> {
+            data ? this.$router.push({path: `${langStrPath}/account/${str}`}) 
+              : this.$router.push({path: `${langStrPath}/searchError`});
+
+          })
+          .catch(err=> {
+            console.log(err);
+          });
       },
       
       judgeTransOrBlock(str, langStrPath) {
