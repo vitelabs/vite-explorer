@@ -38,6 +38,14 @@ module.exports = {
     from: "转入",
     to: "转出",
   },
+  transList:{
+    title: "总交易笔数----"
+  },
+  pageTable: {
+    pre: "上一页",
+    next: "下一页",
+    num: "序号",
+  },
   error: {
     reload: "点击重新加载"
   },

@@ -5,7 +5,7 @@ const PREFIX = "transaction";
 export default {
 
   /**
-   * get accountchain blocklist
+   * get account chain block list
    *
    * @param {Object} {
    *   index,  -- from the beginning of the page，start from 0.
@@ -32,7 +32,7 @@ export default {
     });
   },
 
-  // get accountchain block
+  // get account chain block
   getDetail({blockHash}) {
     return get(`${PREFIX}/detail`, {
       blockHash

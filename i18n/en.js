@@ -38,6 +38,14 @@ module.exports = {
     from: "From",
     to: "To",
   },
+  transList: {
+    title: "Total amount of transactions----"
+  },
+  pageTable: {
+    pre: "Prev",
+    next: "Next",
+    num: "No.",
+  },
   error: {
     reload: "Click to reload"
   },

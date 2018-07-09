@@ -7,7 +7,7 @@ config.baseURL = "http://localhost:3001/api";
 
 const service = axios.create(config);
 
-// POST 传参序列化
+// POST  Stringify parameters
 service.interceptors.request.use(
   config => {
     if (config.method === "post") {
@@ -20,7 +20,7 @@ service.interceptors.request.use(
   }
 );
 
-// 返回状态判断
+// Judge return value
 service.interceptors.response.use(
   res => {
     return res;

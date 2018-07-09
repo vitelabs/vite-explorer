@@ -1,5 +1,8 @@
 import bodyParser from "koa-bodyparser";
 import routes from "./routes";
+// import proxy from "koa-proxy";
+// import config from "./config";
+// import apiProxyMiddleware from "./middlewares/apiProxyMiddleware";
 
 export default (app, nuxt) => {
   app.use(async (ctx, next) => {
