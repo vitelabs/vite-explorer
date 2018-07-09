@@ -41,13 +41,21 @@ module.exports = {
   transList:{
     title: "总交易笔数----"
   },
+  accList: {
+    title: "总账户数----, (仅展示最近的----条数据)"
+  },
+  blkList: {
+    title: "总区块量----, (仅展示最近的----条数据)"
+  },
   pageTable: {
     pre: "上一页",
     next: "下一页",
     num: "序号",
   },
   error: {
-    reload: "点击重新加载"
+    reload: "点击重新加载",
+    home: "点击返回首页",
+    exception: "发生错误异常",
   },
   footer: {
     official: "官网"

@@ -2,11 +2,11 @@
   <div class="token-list-container">
     <div v-if="!error">
       <page-header :title="title"></page-header>
-      <page-table class="token-tabel" :pagination="false" :showOrder="true"
+      <page-table class="token-table" :pagination="false" :showOrder="true"
         :loading="loading"
-        :title="tokenTabelTitle"
-        :tabelTitles="tokenTitles"
-        :tabelData="tokenData">
+        :title="tokenTableTitle"
+        :tableTitles="tokenTitles"
+        :tableData="tokenData">
       </page-table>
     </div>
     <error v-else :error="error"></error>
@@ -49,35 +49,46 @@
     },
     data() {
       return {
-        title: "Token列表",
+        title: "",
         tokenList: [],
         error: "",
         loading: false
       };
     },
     computed: {
-      tokenTabelTitle() {
-        return `总计有${this.tokenList && this.tokenList.length || 0}种token`;
+      tokenTableTitle() {
+        if(this.$i18n.locale === 'zh'){
+          this.title = "代币列表";
+          return `总计有${this.tokenList && this.tokenList.length || 0}种代币`;
+        }
+        this.title = "Token List";
+        return `${this.tokenList && this.tokenList.length || 0} tokens in total`;
       },
       tokenTitles() {
         return [{
           prop: "icon",
-          name: "图标"
+          name: "图标",
+          nameEn: "Icon",
         }, {
           prop: "token",
-          name: "Token"
+          name: "代币",
+          nameEn: "Token",
         }, {
           prop: "price",
-          name: "价格"
+          name: "价格",
+          nameEn: "Price",
         }, {
           prop: "upDown",
-          name: "涨跌"
+          name: "涨跌",
+          nameEn: "Up & Down",
         }, {
           prop: "transPrice",
-          name: "交易金额"
+          name: "交易金额",
+          nameEn: "Transaction Amount",
         }, {
           prop: "famc",
-          name: "流通市值"
+          name: "流通市值",
+          nameEn: "Circulation Market Value",
         }];
       },
       tokenData() {
@@ -94,7 +105,7 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .token-tabel {
+  .token-table {
     padding-top: 20px;
   }
 </style>
