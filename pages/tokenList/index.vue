@@ -58,7 +58,7 @@
     },
     computed: {
       tokenTableTitle() {
-        if(this.$i18n.locale === 'zh'){
+        if(this.$i18n.locale === "zh"){
           this.title = "代币列表";
           return `总计有${this.tokenList && this.tokenList.length || 0}种代币`;
         }
