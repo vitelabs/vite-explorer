@@ -1,17 +1,17 @@
 <template>
   <div>
-    <div>{{$t('snapshotList.title')}}</div>
-    <div class="more"><nuxt-link :to="localePath('blockList')">more ></nuxt-link></div>
+    <div>{{ $t('snapshotList.title') }}</div>
+    <div class="more"><nuxt-link :to="localePath('blockList')">{{ $t('utils.more') }} ></nuxt-link></div>
     <div class="snapshot-list">
       <div class="snapshot-item" v-for="(item, index) in list" :key="index">
         <el-row :gutter="20">
           <el-col :span="12" class="snapshot-item-left">
-            <div>{{ $t('snapshotList.height')}} {{item.height}}</div>
-            <div>> 14 {{ $t('snapshotList.secAgo')}}</div>
+            <div>{{ $t('snapshotList.height') }} {{ item.height }}</div>
+            <div>> 14 {{ $t('snapshotList.secAgo') }}</div>
           </el-col>
           <el-col :span="12">
             <div>{{ $t('snapshotList.node')}} FirstNode</div>
-            <div>{{ $t('snapshotList.pack')}} 329 {{ $t('snapshotList.account')}} {{ $t('snapshotList.cost')}}3{{ $t('snapshotList.sec')}}</div>
+            <div>{{ $t('snapshotList.pack')}} 329 {{ $t('snapshotList.account') }} {{ $t('snapshotList.cost') }}3{{ $t('snapshotList.sec') }}</div>
           </el-col>
         </el-row>
       </div>

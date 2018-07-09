@@ -37,6 +37,7 @@
         let { tokenList } = await token.getList({
           pageIndex, pageSize
         });
+        console.log("tokenList", tokenList);
         return {
           pageIndex,
           tokenList

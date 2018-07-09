@@ -4,17 +4,6 @@ import {get, post} from "../api/server.js";
 const router = new Router();
 
 export default () => {
-  router.get("/api/user", async (ctx) => {
-    ctx.type = "json";
-    ctx.body = {
-      code: 0,
-      msg: "",
-      data: [{
-        name: "zhoudan"
-      }]
-    };
-  });
-
   router.get("/api/account/detail", async (ctx) => {
     try {
       let result = await get("/account", ctx.query);
@@ -30,7 +19,7 @@ export default () => {
 
   router.post("/api/token/list", async (ctx) => {
     try {
-      let result = await post("/token/list", ctx.query);
+      let result = await post("/token/list", ctx.request.body);
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
@@ -58,7 +47,7 @@ export default () => {
 
   router.post("/api/block/list", async (ctx) => {
     try {
-      let result = await post("/snapshotchain/blocklist", ctx.query);
+      let result = await post("/snapshotchain/blocklist", ctx.request.body);
       ctx.type = "json";
       let body = result.data || {
         code: 5000,
@@ -175,7 +164,7 @@ export default () => {
 
   router.post("/api/transaction/list", async (ctx) => {
     try {
-      let result = await post("/accountchain/blocklist", ctx.query);
+      let result = await post("/accountchain/blocklist", ctx.request.body);
       ctx.type = "json";
       let body = result.data || {
         code: 5000,
@@ -214,6 +203,27 @@ export default () => {
     } catch(err) {
       console.log(err);
       // console.log(err.code);
+    }
+  });
+
+  router.get("/api/search/judgeTransOrBlock", async (ctx) => {
+    try {
+      let transactionDetail = await get("/accountchain/block", { blockHash: ctx.query.addr });
+      let blockDetail = await get("/snapshotchain/block", { blockHash: ctx.query.addr });
+      let judgeString = ''; 
+      if (transactionDetail.data.data && !blockDetail.data.data) {
+        judgeString = 'transaction';
+      }
+      if (!transactionDetail.data.data && blockDetail.data.data) {
+        judgeString = 'block';
+      }
+      ctx.body = {
+        code: 0,
+        data: judgeString,
+        msg: 'ok'
+      }
+    } catch(err) {
+      console.log('err', err);
     }
   });
 
