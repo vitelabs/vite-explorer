@@ -29,11 +29,13 @@
         }
         if (/vite_[A-Za-z0-9]+/.test(str)) {
         // match account
+          console.log("match account");
           this.getAccountDetail(str, langStrPath);
           return;
         }
         if (/tti_[A-Za-z0-9]+/.test(str)) {
         // match token
+          console.log("match token");
           this.getTokenDetail(str, langStrPath);
           return;
         }
@@ -59,7 +61,7 @@
 
       getAccountDetail(str, langStrPath) {
         account.getDetail({
-          accountAddres: str
+          accountAddress: str
         })
           .then(data=> {
             data ? this.$router.push({path: `${langStrPath}/account/${str}`}) 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import config from "./config";
 
-config.baseURL = "http://10.2.16.37:8081/api";
+config.baseURL = "http://10.2.16.89:8081/api";
 
 const service = axios.create(config);
 

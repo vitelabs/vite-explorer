@@ -6,7 +6,8 @@ const router = new Router();
 export default () => {
   router.get("/api/account/detail", async (ctx) => {
     try {
-      let result = await get("/account", ctx.query);
+      let result = await get("/account/detail", ctx.query);
+      console.log("accountDetail", result.data);
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,

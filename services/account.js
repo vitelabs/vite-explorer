@@ -3,9 +3,9 @@ import { get } from "../api/axios";
 const PREFIX = "account";
 
 export default {
-  getDetail({accountAddres}) {
+  getDetail({ accountAddress }) {
     return get(`${PREFIX}/detail`, {
-      accountAddres
+      accountAddress
     });
   }
 };
