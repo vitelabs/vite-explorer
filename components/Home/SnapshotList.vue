@@ -7,11 +7,11 @@
         <el-row :gutter="20">
           <el-col :span="12" class="snapshot-item-left">
             <div>{{ $t('snapshotList.height') }} {{ item.height }}</div>
-            <div>> 14 {{ $t('snapshotList.secAgo') }}</div>
+            <div>> {{ item.timestamp }} {{ $t('snapshotList.secAgo') }}</div>
           </el-col>
           <el-col :span="12">
-            <div>{{ $t('snapshotList.node')}} FirstNode</div>
-            <div>{{ $t('snapshotList.pack')}} 329 {{ $t('snapshotList.account') }} {{ $t('snapshotList.cost') }}3{{ $t('snapshotList.sec') }}</div>
+            <div>{{ $t('snapshotList.node')}} {{ item.producer }}</div>
+            <div>{{ $t('snapshotList.pack')}} {{ item.accountNum }} {{ $t('snapshotList.account') }} {{ $t('snapshotList.cost') }} -- {{ $t('snapshotList.sec') }}</div>
           </el-col>
         </el-row>
       </div>

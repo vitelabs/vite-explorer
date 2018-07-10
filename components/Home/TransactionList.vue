@@ -1,20 +1,20 @@
 <template>
   <div>
-    <div>{{$t('transactionList.title')}}</div>
-    <div class="more"><nuxt-link :to="localePath('transactionList')">more ></nuxt-link></div>
+    <div>{{ $t('transactionList.title') }}</div>
+    <div class="more"><nuxt-link :to="localePath('transactionList')">{{ $t('utils.more') }} ></nuxt-link></div>
     <div class="transaction-list">
       <div class="transaction-item" v-for="(item, index) in list" :key="index">
         <el-row :gutter="20">
           <el-col :span="12">
-            <div>1000 Vite</div>
+            <div>{{ item.amount }} {{ item.tokenName }}</div>
           </el-col>
           <el-col :span="12">
-            <div>{{$t('transactionList.hash')}} 0x78912891289</div>
+            <div>{{ $t('transactionList.hash') }} {{ item.hash }}</div>
           </el-col>
         </el-row>
         <div class="transaction-item-down">
-          <div>{{$t('transactionList.from')}} 0x8797988</div>
-          <div>{{$t('transactionList.to')}} 0x8797988</div>
+          <div>{{ $t('transactionList.from') }} {{ item.from }}</div>
+          <div>{{ $t('transactionList.to') }} {{ item.to }}</div>
         </div>
       </div>
     </div>

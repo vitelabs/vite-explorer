@@ -35,7 +35,10 @@ export default () => {
     try {
       let result = await get("/token/detail", ctx.query);
       ctx.type = "json";
-      ctx.body = result.data;
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "server error"
+      };
     } catch(err) {
       // console.log(err);
       // console.log(err.code);
@@ -71,7 +74,8 @@ export default () => {
           producer: block.producer,
           accountNum,
           hash: block.hash,
-          amount: block.amount
+          amount: block.amount,
+          timestamp: Date.now() / 1000 - block.timestamp
         });
       });
       rawBlockList = [];
@@ -143,12 +147,13 @@ export default () => {
         to: transaction.to,
         fromHash: transaction.fromHash,
         status: transaction.status,
-        timestamp: transaction.timestamp,
+        timestamp: Date.now() / 1000 - transaction.timestamp,
         confirmTimes: transaction.confirmTimes,
         snapshotTimestamp: transaction.snapshotTimestamp,
-        tokenName: transaction.token.name,
-        tokenSymbol: transaction.token.symbol || "",
-        tokenId: transaction.token.id
+        tokenName: transaction.token && transaction.token.name,
+        tokenSymbol: transaction.token && transaction.token.symbol || "",
+        tokenId: transaction.token && transaction.token.id,
+        fAmount: transaction.fAmount
       }
 
       body.data = transaction;
@@ -172,8 +177,7 @@ export default () => {
         ctx.body = body;
         return;
       }
-
-      let rawTransactionList = body.data.accountList || [];
+      let rawTransactionList = body.data.blockList || [];
       let transactionList = [];
       rawTransactionList.forEach((transaction) => {
         transactionList.push({
@@ -183,12 +187,13 @@ export default () => {
           to: transaction.to,
           fromHash: transaction.fromHash,
           status: transaction.status,
-          timestamp: transaction.timestamp,
+          timestamp: Date.now() / 1000 - transaction.timestamp,
           confirmTimes: transaction.confirmTimes,
           snapshotTimestamp: transaction.snapshotTimestamp,
-          tokenName: transaction.token.name,
-          tokenSymbol: transaction.token.symbol || "",
-          tokenId: transaction.token.id
+          tokenName: transaction.token && transaction.token.name || "",
+          tokenSymbol: transaction.token && transaction.token.symbol || "",
+          tokenId: transaction.token && transaction.token.id || null,
+          fAmount: transaction.fAmount,
         });
       });
 

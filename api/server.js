@@ -1,18 +1,13 @@
 import axios from "axios";
-
-import qs from "qs";
 import config from "./config";
 
-config.baseURL = "http://localhost:3001/api";
+config.baseURL = "http://10.2.16.37:8081/api";
 
 const service = axios.create(config);
 
 // POST  Stringify parameters
 service.interceptors.request.use(
   config => {
-    if (config.method === "post") {
-      config.data = qs.stringify(config.data);
-    }
     return config;
   },
   error => {
@@ -35,7 +30,7 @@ export function post(url, data) {
   return service({
     method: "post",
     url,
-    params: data
+    data
   });
 }
 

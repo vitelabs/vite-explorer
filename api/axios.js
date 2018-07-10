@@ -1,6 +1,4 @@
 import axios from "axios";
-
-import qs from "qs";
 import config from "./config";
 
 // if (process.server) {
@@ -12,9 +10,6 @@ const service = axios.create(config);
 // POST 传参序列化
 service.interceptors.request.use(
   config => {
-    if (config.method === "post") {
-      config.data = qs.stringify(config.data);
-    }
     return config;
   },
   error => {
@@ -47,7 +42,7 @@ export function post(url, data) {
   return service({
     method: "post",
     url,
-    params: data
+    data
   });
 }
 

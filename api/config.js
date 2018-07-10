@@ -4,7 +4,7 @@ import https from "https";
 export default {
   headers: {
     post: {
-      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      "Content-Type": "application/json;charset=UTF-8"
     },
     "X-Requested-With": "XMLHttpRequest"
   },
