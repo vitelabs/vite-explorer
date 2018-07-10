@@ -54,49 +54,10 @@
     },
     computed: {
       transactionsTitles() {
-        let titles = [{
-          prop: "hash",
-          name: "交易Hash",
-          nameEn: "TxHash"
-        }, {
-          prop: "type",
-          name: "交易类型",
-          nameEn: "TxType"
-        }, {
-          prop: "status",
-          name: "状态",
-          nameEn: "Status"
-        },{
-          prop: "snapshotTimestamp",
-          name: "首次快照块",
-          nameEn: "First Snapshot"
-        }, {
-          prop: "timestamp",
-          name: "时间戳",
-          nameEn: "Timestamp"
-        }, {
-          prop: "confirmTimes",
-          name: "确认数",
-          nameEn: "Confirmations"
-        }, {
-          prop: "from",
-          name: "转出方",
-          nameEn: "From"
-        }, {
-          prop: "to",
-          name: "转入方",
-          nameEn: "To"
-        }];
-        this.tokenTitle && titles.push({
-          prop: "tokenName",
-          name: "代币",
-          nameEn: "Token"
-        });
-        titles.push({
-          prop: "amount",
-          name: "金额",
-          nameEn: "Amount"
-        });
+        let titles = this.$t("transTitles");
+        if(this.tokenTitle){
+          titles = titles.concat(this.$t("addedTitle"));
+        }
         return titles;
       },
       transactionsData() {

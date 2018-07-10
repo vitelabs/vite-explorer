@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>{{$t('transactionList.title')}}</div>
-    <div class="more"><nuxt-link :to="localePath('transactionList')">more ></nuxt-link></div>
+    <div class="more"><nuxt-link :to="localePath('transactionList')">{{ $t('utils.more') }} ></nuxt-link></div>
     <div class="transaction-list">
       <div class="transaction-item" v-for="(item, index) in list" :key="index">
         <el-row :gutter="20">
@@ -22,7 +22,6 @@
 
 </template>
 <script>
-
   export default {
     components: {
     },
@@ -43,8 +42,8 @@
 @import "assets/css/vars.scss";
 .more {
   float: right;
-  margin-top: -20px; 
-  margin-right: 20px; 
+  margin-top: -20px;
+  margin-right: 20px;
 }
 
 .transaction-list {

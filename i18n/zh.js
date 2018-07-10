@@ -1,15 +1,7 @@
 module.exports = {
   lang: "中文",
-  nav: {
-    index: "首页",
-    transactionList: "交易列表",
-    blockList: "快照块列表",
-    tokenList: "Token列表"
-  },
-  search: {
-    btn: "搜索",
-    placeholder: "支持搜索区块、交易、账户、代币"
-  },
+
+  // components/Home
   profile: {
     title: "概况",
     market: "Vite流通市值",
@@ -38,12 +30,87 @@ module.exports = {
     from: "转入",
     to: "转出",
   },
-  transList:{
-    title: "总交易笔数----"
-  },
+
+  // components/Token
   accList: {
     title: "总账户数----, (仅展示最近的----条数据)"
   },
+
+  // Basic components part: components/
+  footer: {
+    official: "官网"
+  },
+  nav: {
+    index: "首页",
+    transactionList: "交易列表",
+    blockList: "快照块列表",
+    tokenList: "Token列表"
+  },
+  pageTable: {
+    pre: "上一页",
+    next: "下一页",
+    num: "序号",
+  },
+  search: {
+    btn: "搜索",
+    placeholder: "支持搜索区块、交易、账户、代币"
+  },
+  utils: {
+    more: "更多"
+  },
+
+
+  // components/transList.vue
+  transList: {
+    title: "总交易笔数----",
+    label: "交易列表"
+  },
+  transTitles: [{
+    prop: "hash",
+    name: "交易Hash",
+  }, {
+    prop: "type",
+    name: "交易类型",
+  }, {
+    prop: "status",
+    name: "状态",
+  }, {
+    prop: "snapshotTimestamp",
+    name: "首次快照块",
+  }, {
+    prop: "timestamp",
+    name: "时间戳",
+  }, {
+    prop: "confirmTimes",
+    name: "确认数",
+  }, {
+    prop: "from",
+    name: "转出方",
+  }, {
+    prop: "to",
+    name: "转入方",
+  }],
+  addedTitle: {
+    prop: "tokenName",
+    name: "代币"
+  },
+
+
+  // layouts/
+  error: {
+    reload: "点击重新加载",
+    home: "点击返回首页",
+    exception: "发生错误异常",
+  },
+
+
+  // pages/account
+  account: {
+    title: "账户详情"
+  },
+
+
+  // pages/blockList
   blkList: {
     title: "总区块量----, (仅展示最近的----条数据)"
   },
@@ -70,6 +137,14 @@ module.exports = {
     prop: "amount",
     name: "锻造奖励",
   }],
+
+
+  // pages/tokenList
+  tokenList: {
+    title: "代币列表",
+    cut1: "总计有",
+    cut2: "种代币",
+  },
   tokenTitles: [{
     prop: "icon",
     name: "图标",
@@ -89,20 +164,13 @@ module.exports = {
     prop: "famc",
     name: "流通市值",
   }],
-  pageTable: {
-    pre: "上一页",
-    next: "下一页",
-    num: "序号",
-  },
-  error: {
-    reload: "点击重新加载",
-    home: "点击返回首页",
-    exception: "发生错误异常",
-  },
-  footer: {
-    official: "官网"
-  },
-  utils: {
-    more: "更多"
+
+
+
+  // Head titles of all pages
+  head: {
+    home: "首页",
+    blockList: "所有区块",
+    transTitle: "所有交易",
   }
 };

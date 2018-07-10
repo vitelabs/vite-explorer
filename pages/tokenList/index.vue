@@ -50,26 +50,16 @@
     },
     data() {
       return {
-        title: "",
+        title: this.$t("tokenList.title"),
         tokenList: [],
+        tokenTitles: this.$t("tokenTitles"),
         error: "",
         loading: false
       };
     },
     computed: {
       tokenTableTitle() {
-        if(this.$i18n.locale === "zh"){
-          this.title = "代币列表";
-          return `总计有${this.tokenList && this.tokenList.length || 0}种代币`;
-        }
-        this.title = "Token List";
-        return `${this.tokenList && this.tokenList.length || 0} tokens in total`;
-      },
-      tokenTitles() {
-        if(this.$i18n.locale === "zh"){
-          return this.$i18n.messages.zh.tokenTitles;
-        }
-        return this.$i18n.messages.en.tokenTitles;
+        return this.$t("tokenList.cut1")+`${this.tokenList && this.tokenList.length || 0}`+ this.$t("tokenList.cut2");
       },
       tokenData() {
         let list = [];
