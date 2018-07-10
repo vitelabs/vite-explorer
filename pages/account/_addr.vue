@@ -1,7 +1,7 @@
 <template>
   <div class="account-container">
     <div v-if="!error">
-      <detail-layout 
+      <detail-layout
         :title="`${title}: ${accountDetail.accountAddress}`"
         :list="accountList"
         :clickLab="clickLab">
@@ -13,7 +13,7 @@
       </detail-layout>
 
       <el-tabs v-if="tokenList.length" class="tab-wrapper" v-model="activeTab" type="card">
-        <el-tab-pane class="tab-pane" label="交易列表" name="transList">
+        <el-tab-pane class="tab-pane" :label="$t('transList.label')" name="transList">
           <trans-list
             :tokenId="activeToken.token ? activeToken.token.id : ''"
             :accountAddress="accountDetail.accountAddress">
@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script>  
+<script>
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
   import transList from "~/components/transList.vue";
@@ -61,7 +61,7 @@
     },
     data() {
       return {
-        title: "账户详情",
+        title: this.$t("account.title"),
         activeTab: "transList",
         error: "",
         accountDetail: {},
@@ -72,7 +72,7 @@
     computed: {
       activeToken() {
         return this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
-      }, 
+      },
       accountList() {
         let tokenNameList = [];
         this.tokenList.forEach((tokenDetail) => {

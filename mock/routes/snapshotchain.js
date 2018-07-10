@@ -6,8 +6,6 @@ for (let i=0; i<10; i++) {
   blockList.push(new SnapshotBlock());
 }
 
-console.log();
-
 module.exports = {
   "/block": {
     method: "get",

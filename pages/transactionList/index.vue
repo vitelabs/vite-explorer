@@ -17,7 +17,7 @@
   export default {
     head() {
       return {
-        title: "All Transactions"
+        title: this.$t("head.transTitle")
       };
     },
     components: {

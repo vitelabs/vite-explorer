@@ -1,5 +1,5 @@
 <template>
-  <div class="deatail-list-container">
+  <div class="detail-list-container">
     <div class="row" v-for="(item, index) in list" :key="index">
       <span class="name">{{item.name}}</span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link">{{item.describe || '----'}}</a>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  export default { 
+  export default {
     props: {
       list: {
         type: Array,
@@ -42,7 +42,7 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .deatail-list-container {
+  .detail-list-container {
     width: 100%;
     padding-top: 20px;
   }
