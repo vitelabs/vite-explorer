@@ -80,18 +80,18 @@
         });
 
         return [{
-          name: "账户Hash",
+          name: this.$t('account.accHash'),
           describe: this.accountDetail.accountAddress
         },{
-          name: "账户持有代币种类",
+          name: this.$t('account.accType'),
           describe: tokenNameList.length
         },{
-          name: "账户持有代币",
+          name: this.$t('account.accToken'),
           list: tokenNameList
         }];
       },
       subTitle() {
-        return `代币: ${this.activeToken ? this.activeToken.token.name : ""}`;
+        return this.$t('account.token')+`: ${this.activeToken ? this.activeToken.token.name : ""}`;
       },
       tokenDetailList() {
         let tokenDetail = this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
@@ -100,16 +100,16 @@
         }
 
         return [{
-          name: "余额数量",
+          name: this.$t('account.bAmount'),
           describe: tokenDetail.balance || 0
         }, {
-          name: "余额价值",
+          name: this.$t('account.bValue'),
           describe: "----"
         }, {
-          name: "交易次数",
+          name: this.$t('account.tNum'),
           describe: tokenDetail.token.transactionNumber
         }, {
-          name: "所有代币估值",
+          name: this.$t('account.allToken'),
           describe: "----"
         }];
       }

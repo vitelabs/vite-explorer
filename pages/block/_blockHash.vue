@@ -37,7 +37,7 @@
     },
     data() {
       return {
-        title: "快照块详情",
+        title: this.$t('block.title'),
         blockDetail: {},
         error: ""
       };
@@ -53,14 +53,7 @@
         };
       },
       list() {
-        const blockDetailMap = {
-          height: "快照块高度",
-          time: "快照块年龄",
-          accountNum: "打包账户数",
-          hash: "快照块Hash",
-          producer: "打包节点",
-          amount: "锻造奖励"
-        };
+        const blockDetailMap = this.$t('blockDetailMap');
 
         let list = [];
         for (let key in blockDetailMap) {

@@ -1,17 +1,17 @@
 <template>
   <div class="search-error">
-    <div class="error-text"> 竟然没有搜索到，换个词试试~ </div>
-    
+    <div class="error-text"> {{ $t('sError.text') }} </div>
+
   </div>
 </template>
 
 <script>
- 
+
 
 export default {
    head() {
      return {
-       title: "搜索无结果"
+       title: this.$t('head.sError')
      };
    },
    components: {
@@ -21,7 +21,7 @@ export default {
      };
    },
    methods: {
-     
+
    }
  };
 </script>

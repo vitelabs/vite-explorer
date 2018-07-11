@@ -21,7 +21,7 @@
 
     },
     data(){
-      this.$t("accTitles");
+      accTitles: this.$t("account.title");
     },
     methods: {
       accountPageChange(currentInx) {
