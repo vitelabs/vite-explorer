@@ -1,13 +1,13 @@
 <template>
   <div class="account-container">
-    <detail-layout 
+    <detail-layout
         :title="`${title}: ${showTransactionDetail.hash}`"
         :list="list">
     </detail-layout >
   </div>
 </template>
 
-<script>  
+<script>
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
   import transaction from "~/services/transaction.js";
@@ -42,7 +42,7 @@
     },
     data() {
       return {
-        title: "交易详情",
+        title: this.$t("head.transDetail"),
         transactionDetail: {}
       };
     },
@@ -51,7 +51,7 @@
         let tokenName = this.transactionDetail.tokenName;
         return {
           hash: this.transactionDetail.hash,
-          type: this.transactionDetail.fromHash ? "发送" : "接收",
+          type: this.transactionDetail.fromHash ? this.$t("transaction.send") : this.$t("transaction.receive"),
           status: ["unkown", "open", "closed"][this.transactionDetail.status],
           confirmTimes: this.transactionDetail.confirmTimes,
           snapshotBlockHash: this.transactionDetail.snapshotTimestamp,
@@ -59,24 +59,12 @@
           from: this.transactionDetail.from,
           to: this.transactionDetail.to,
           tokenName: tokenName,
-          amount: this.transactionDetail.amount ? 
+          amount: this.transactionDetail.amount ?
             `${this.transactionDetail.amount}${tokenName}` : ""
         };
       },
       list() {
-        const transactionDetailMap = {
-          hash: "交易Hash",
-          type: "交易类型",
-          status: "交易状态",
-          confirmTimes: "确认数",
-          snapshotBlockHash: "首次快照块",
-          timestamp: "时间戳",
-          from: "转出方地址",
-          to: "转入方地址",
-          tokenName: "Token",
-          amount: "数额",
-          introduction: "附带的文本资料"
-        };
+        const transactionDetailMap = this.$t("transactionDetailMap");
 
         let list = [];
         for(let key in transactionDetailMap) {

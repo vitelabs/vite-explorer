@@ -1,28 +1,28 @@
 <template>
   <div class="search-error">
-    <p class="error-text"> 竟然没有搜索到，换个词试试~ </p>
+    <div class="error-text"> {{ $t('sError.text') }} </div>
   </div>
 </template>
 
 <script>
- 
+
 
 export default {
-   head() {
-     return {
-       title: "搜索无结果"
-     };
-   },
-   components: {
-   },
-   data() {
-     return {
-     };
-   },
-   methods: {
-     
-   }
- };
+  head() {
+    return {
+      title: this.$t("head.sError")
+    };
+  },
+  components: {
+  },
+  data() {
+    return {
+    };
+  },
+  methods: {
+
+  }
+};
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>

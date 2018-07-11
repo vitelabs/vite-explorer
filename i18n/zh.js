@@ -106,7 +106,29 @@ module.exports = {
 
   // pages/account
   account: {
-    title: "账户详情"
+    title: "账户详情",
+    accHash: "账户Hash",
+    accType: "账户持有代币种类",
+    accToken: "账户持有代币",
+    token: "代币",
+    bAmount: "余额数量",
+    bValue: "余额价值",
+    tTimes: "交易次数",
+    allToken: "所有代币估值",
+  },
+
+
+  // pages/block
+  block: {
+    title: "快照快详情",
+  },
+  blockDetailMap: {
+    height: "快照块高度",
+    time: "快照块年龄",
+    accountNum: "打包账户数",
+    hash: "快照块Hash",
+    producer: "打包节点",
+    amount: "锻造奖励"
   },
 
 
@@ -139,6 +161,26 @@ module.exports = {
   }],
 
 
+  // pages/searchError
+  sError: {
+    text: "竟然没有搜索到，换个词试试"
+  },
+
+
+  // pages/token
+  token: {
+    aLabel: "账户列表",
+    tLabel: "交易列表",
+  },
+  tokenDetailMap: {
+    circulationLines: "流通额度",
+    owner: "所有者地址",
+    price: "价格",
+    addressNumber: "地址数量",
+    transactionNumber: "交易数量"
+  },
+
+
   // pages/tokenList
   tokenList: {
     title: "代币列表",
@@ -166,11 +208,33 @@ module.exports = {
   }],
 
 
+  // pages/transaction
+  transaction: {
+    send: "发送",
+    receive: "接收",
+  },
+  transactionDetailMap: {
+    hash: "交易Hash",
+    type: "交易类型",
+    status: "交易状态",
+    confirmTimes: "确认数",
+    snapshotBlockHash: "首次快照块",
+    timestamp: "时间戳",
+    from: "转出方地址",
+    to: "转入方地址",
+    tokenName: "Token",
+    amount: "数额",
+    introduction: "附带的文本资料"
+  },
+
 
   // Head titles of all pages
   head: {
     home: "首页",
     blockList: "所有区块",
     transTitle: "所有交易",
+    sError: "搜索无结果",
+    tTitle: "代币详情",
+    transDetail: "交易详情",
   }
 };

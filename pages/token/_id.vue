@@ -1,19 +1,19 @@
 <template>
   <div class="token-container">
     <div v-if="!error">
-      <detail-layout  
+      <detail-layout
         :title="`${title}: ${tokenDetail.name}`"
         :list="list">
       </detail-layout>
 
       <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
-        <el-tab-pane class="tab-pane" label="交易列表" name="transList">
+        <el-tab-pane class="tab-pane" :label="$t('token.tLabel')" name="transList">
           <trans-list :tokenTitle="false" :pagination="false"
             :tokenId="tokenDetail.id">
           </trans-list>
         </el-tab-pane>
 
-        <el-tab-pane class="tab-pane" label="账户列表" name="accountList">
+        <el-tab-pane class="tab-pane" :label="$t('token.aLabel')" name="accountList">
           <account-list></account-list>
         </el-tab-pane>
       </el-tabs>
@@ -22,7 +22,7 @@
   </div>
 </template>
 
-<script>  
+<script>
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
   import transList from "~/components/transList.vue";
@@ -58,7 +58,7 @@
     },
     data() {
       return {
-        title: "Token详情",
+        title: this.$t("head.tTitle"),
         tokenDetail: {},
         error: "",
         activeTab: "transList"
@@ -71,13 +71,7 @@
         };
       },
       list() {
-        const tokenDetailMap = {
-          circulationLines: "流通额度",
-          owner: "所有者地址",
-          price: "价格",
-          addressNumber: "地址数量",
-          transactionNumber: "交易数量"
-        };
+        const tokenDetailMap = this.$t("tokenDetailMap");
 
         let list = [];
         for (let key in tokenDetailMap) {

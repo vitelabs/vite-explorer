@@ -125,7 +125,29 @@ module.exports = {
 
   // pages/account
   account: {
-    title: "Account Detail"
+    title: "Account Detail",
+    accHash: "Account Hash",
+    accType: "Account Hold Token Types",
+    accToken: "Account Hold Tokens",
+    token: "Token",
+    bAmount: "Balance Amount",
+    bValue: "Balance Value",
+    tNum: "Number of Transactions",
+    allToken: "All Token Valuation",
+  },
+
+
+  // pages/block
+  block: {
+    title: "Snapshot Block Detail",
+  },
+  blockDetailMap: {
+    height: "Snapshot Block Height",
+    time: "Snapshot Block Age",
+    accountNum: "Number of Account",
+    hash: "Snapshot Block Hash",
+    producer: "Packing Node",
+    amount: "Forging Rewards"
   },
 
 
@@ -158,6 +180,26 @@ module.exports = {
   }],
 
 
+  // pages/searchError
+  sError: {
+    text: "No content found, Please switch another word."
+  },
+
+
+  // pages/token
+  token: {
+    aLabel: "Account List",
+    tLabel: "Transaction List",
+  },
+  tokenDetailMap: {
+    circulationLines: "Circulation Limit",
+    owner: "Owner Address",
+    price: "Price",
+    addressNumber: "Number of Address",
+    transactionNumber: "Number of Transactions"
+  },
+
+
   // pages/tokenList
   tokenList: {
     title: "Token List",
@@ -185,10 +227,32 @@ module.exports = {
   }],
 
 
+  // pages/transaction
+  transaction: {
+    send: "Send",
+    receive: "Receive",
+  },
+  transactionDetailMap: {
+    hash: "Transaction Hash",
+    type: "Transaction Type",
+    status: "Transaction Status",
+    confirmTimes: "Confirmations",
+    snapshotBlockHash: "First Snapshot Block",
+    timestamp: "Timestamp",
+    from: "From",
+    to: "To",
+    tokenName: "Token",
+    amount: "Amount",
+    introduction: "Attachments"
+  },
+
+
   // Head titles of all pages
   head: {
     home: "Home",
     blockList: "All Blocks",
     transTitle: "All Transactions",
+    sError: "Nothing Found",
+    tTitle: "Token Detail",
   }
 };
