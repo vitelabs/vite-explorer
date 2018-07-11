@@ -80,18 +80,18 @@
         });
 
         return [{
-          name: this.$t('account.accHash'),
+          name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress
         },{
-          name: this.$t('account.accType'),
+          name: this.$t("account.accType"),
           describe: tokenNameList.length
         },{
-          name: this.$t('account.accToken'),
+          name: this.$t("account.accToken"),
           list: tokenNameList
         }];
       },
       subTitle() {
-        return this.$t('account.token')+`: ${this.activeToken ? this.activeToken.token.name : ""}`;
+        return this.$t("account.token")+`: ${this.activeToken ? this.activeToken.token.name : ""}`;
       },
       tokenDetailList() {
         let tokenDetail = this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
@@ -100,16 +100,16 @@
         }
 
         return [{
-          name: this.$t('account.bAmount'),
+          name: this.$t("account.bAmount"),
           describe: tokenDetail.balance || 0
         }, {
-          name: this.$t('account.bValue'),
+          name: this.$t("account.bValue"),
           describe: "----"
         }, {
-          name: this.$t('account.tNum'),
+          name: this.$t("account.tNum"),
           describe: tokenDetail.token.transactionNumber
         }, {
-          name: this.$t('account.allToken'),
+          name: this.$t("account.allToken"),
           describe: "----"
         }];
       }

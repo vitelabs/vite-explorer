@@ -42,7 +42,7 @@
     },
     data() {
       return {
-        title: this.$t('head.transDetail'),
+        title: this.$t("head.transDetail"),
         transactionDetail: {}
       };
     },
@@ -51,7 +51,7 @@
         let tokenName = this.transactionDetail.tokenName;
         return {
           hash: this.transactionDetail.hash,
-          type: this.transactionDetail.fromHash ? this.$t('transaction.send') : this.$t('transaction.receive'),
+          type: this.transactionDetail.fromHash ? this.$t("transaction.send") : this.$t("transaction.receive"),
           status: ["unkown", "open", "closed"][this.transactionDetail.status],
           confirmTimes: this.transactionDetail.confirmTimes,
           snapshotBlockHash: this.transactionDetail.snapshotTimestamp,
@@ -64,7 +64,7 @@
         };
       },
       list() {
-        const transactionDetailMap = this.$t('transactionDetailMap');
+        const transactionDetailMap = this.$t("transactionDetailMap");
 
         let list = [];
         for(let key in transactionDetailMap) {

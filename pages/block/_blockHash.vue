@@ -37,7 +37,7 @@
     },
     data() {
       return {
-        title: this.$t('block.title'),
+        title: this.$t("block.title"),
         blockDetail: {},
         error: ""
       };
@@ -53,7 +53,7 @@
         };
       },
       list() {
-        const blockDetailMap = this.$t('blockDetailMap');
+        const blockDetailMap = this.$t("blockDetailMap");
 
         let list = [];
         for (let key in blockDetailMap) {

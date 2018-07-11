@@ -9,21 +9,21 @@
 
 
 export default {
-   head() {
-     return {
-       title: this.$t('head.sError')
-     };
-   },
-   components: {
-   },
-   data() {
-     return {
-     };
-   },
-   methods: {
+  head() {
+    return {
+      title: this.$t("head.sError")
+    };
+  },
+  components: {
+  },
+  data() {
+    return {
+    };
+  },
+  methods: {
 
-   }
- };
+  }
+};
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>

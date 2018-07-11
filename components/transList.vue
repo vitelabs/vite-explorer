@@ -72,7 +72,7 @@
             snapshotTimestamp: `<a href="/block/${transaction.snapshotTimestamp}">${transaction.snapshotTimestamp}</a>`,
             to: `<a href="/account/${transaction.to}">${transaction.to}</a>`,
             from: `<a href="/account/${transaction.from}">${transaction.from}</a>`,
-            type: transaction.fromHash ? this.$t('transaction.send') : this.$t('transaction.receive'),
+            type: transaction.fromHash ? this.$t("transaction.send") : this.$t("transaction.receive"),
             amount: transaction.fromHash ? `-${transaction.amount}` : transaction.amount,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,

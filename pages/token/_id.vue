@@ -58,7 +58,7 @@
     },
     data() {
       return {
-        title: this.$t('head.tTitle'),
+        title: this.$t("head.tTitle"),
         tokenDetail: {},
         error: "",
         activeTab: "transList"
@@ -71,7 +71,7 @@
         };
       },
       list() {
-        const tokenDetailMap = this.$t('tokenDetailMap');
+        const tokenDetailMap = this.$t("tokenDetailMap");
 
         let list = [];
         for (let key in tokenDetailMap) {
