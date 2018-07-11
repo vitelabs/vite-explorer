@@ -65,7 +65,7 @@
         let list = [];
         this.tokenList && this.tokenList.forEach(token => {
           list.push({
-            token: `<a href="/token/${token.id}}">${token.name} (${token.symbol})</a>`
+            token: `<a href="/token/${token.id}">${token.name} (${token.symbol})</a>`
           });
         });
         return list;

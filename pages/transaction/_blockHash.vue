@@ -67,6 +67,8 @@
         const transactionDetailMap = this.$t("transactionDetailMap");
 
         let list = [];
+        let lang;
+        this.$i18n.locale !== 'en' ? lang = this.$i18n.locale : lang = '';
         for(let key in transactionDetailMap) {
           let item = {
             name: transactionDetailMap[key],
@@ -75,14 +77,14 @@
           switch(key) {
           case "snapshotBlockHash":
           case "timestamp":
-            item.link = `/block/${this.showTransactionDetail.snapshotBlockHash}`;
+            item.link = `${lang}/block/${this.showTransactionDetail.snapshotBlockHash}`;
             break;
           case "from":
           case "to":
-            item.link = `/account/${this.showTransactionDetail[key]}`;
+            item.link = `${lang}/account/${this.showTransactionDetail[key]}`;
             break;
           case "tokenName":
-            item.link = `/token/${this.transactionDetail.tokenId}`;
+            item.link = `${lang}/token/${this.transactionDetail.tokenId}`;
             break;
           default: break;
           }
