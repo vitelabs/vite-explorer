@@ -67,7 +67,7 @@
         let list = [];
         this.transactionList.forEach((transaction) => {
           let lang;
-          this.$i18n.locale !== 'en' ? lang = this.$i18n.locale : lang = '';
+          this.$i18n.locale !== "en" ? lang = this.$i18n.locale : lang = "";
           list.push({
             hash: `<a href="${lang}/transaction/${transaction.hash}">${transaction.hash}</a>`,
             timestamp: `<a href="${lang}/block/${transaction.timestamp}">${transaction.timestamp}</a>`,

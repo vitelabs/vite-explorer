@@ -68,7 +68,7 @@
 
         let list = [];
         let lang;
-        this.$i18n.locale !== 'en' ? lang = this.$i18n.locale : lang = '';
+        this.$i18n.locale !== "en" ? lang = this.$i18n.locale : lang = "";
         for(let key in transactionDetailMap) {
           let item = {
             name: transactionDetailMap[key],
