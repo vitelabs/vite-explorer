@@ -254,5 +254,6 @@ module.exports = {
     transTitle: "All Transactions",
     sError: "Nothing Found",
     tTitle: "Token Detail",
+    transDetail: "Transaction Detail",
   }
 };

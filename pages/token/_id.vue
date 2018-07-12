@@ -72,13 +72,14 @@
       },
       list() {
         const tokenDetailMap = this.$t("tokenDetailMap");
-
         let list = [];
         for (let key in tokenDetailMap) {
+          let lang;
+          this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
             describe: this.showTokenDetail[key] || "----",
             name: tokenDetailMap[key],
-            link: key === "owner" ? `/account/${this.showTokenDetail[key]}` : ""
+            link: key === "owner" ? `${lang}/account/${this.showTokenDetail[key]}` : ""
           });
         }
         return list;

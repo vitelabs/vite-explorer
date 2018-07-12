@@ -6,7 +6,10 @@
       <div class="snapshot-item" v-for="(item, index) in list" :key="index">
         <el-row :gutter="20">
           <el-col :span="12" class="snapshot-item-left">
-            <div>{{ $t('snapshotList.height') }} {{ item.height }}</div>
+            <div>
+              {{ $t('snapshotList.height') }} 
+              <nuxt-link :to="`${locales}/block/${item.hash}`">{{ item.height }}</nuxt-link>
+            </div>
             <div>> {{ item.timestamp }} {{ $t('snapshotList.secAgo') }}</div>
           </el-col>
           <el-col :span="12">
@@ -32,7 +35,7 @@
     },
     data() {
       return {
-
+        locales: this.$i18n.locale === "en" ? "" : this.$i18n.locale
       };
     }
   };

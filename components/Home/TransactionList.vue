@@ -9,12 +9,20 @@
             <div>{{ item.amount }} {{ item.tokenName }}</div>
           </el-col>
           <el-col :span="12">
-            <div>{{ $t('transactionList.hash') }} {{ item.hash }}</div>
+            <div>{{ $t('transactionList.hash') }} 
+              <nuxt-link :to="`${locales}/transaction/${item.hash}`">{{ item.hash }}</nuxt-link>
+            </div>
           </el-col>
         </el-row>
         <div class="transaction-item-down">
-          <div>{{ $t('transactionList.from') }} {{ item.from }}</div>
-          <div>{{ $t('transactionList.to') }} {{ item.to }}</div>
+          <div>
+            {{ $t('transactionList.from') }}
+            <nuxt-link :to="`${locales}/account/${item.from}`"> {{ item.from }}</nuxt-link>
+          </div>
+          <div>
+            {{ $t('transactionList.to') }}
+            <nuxt-link :to="`${locales}/account/${item.to}`"> {{ item.to }}</nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -33,6 +41,7 @@
     },
     data() {
       return {
+        locales: this.$i18n.locale === "en" ? "" : this.$i18n.locale
       };
     }
   };
