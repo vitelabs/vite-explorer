@@ -8,15 +8,14 @@ Official Block Explorer of Vite
 * node.js
 * yarn
 
-## Building
-
-`npm run build`
-
 ## start
 
-1. `npm install`
+1. `yarn`
 2. Configure eslint in your editor, rules like '.eslintrc'.
 3. `npm run dev`
+
+## start mock server
+1. `npm run mock`
 
 ### branches
 

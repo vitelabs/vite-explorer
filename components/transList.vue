@@ -6,7 +6,7 @@
     :tableData="transactionsData"
     :current-change="fetchTransList"
     :currentPage="pageIndex"
-    :total="100">
+    :total="total">
   </page-table>
 </template>
 
@@ -16,6 +16,10 @@
 
   export default {
     props: {
+      total: {
+        type: Number,
+        default: 0
+      },
       pagination: {
         type: Boolean,
         default: true

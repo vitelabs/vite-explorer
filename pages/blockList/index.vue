@@ -5,7 +5,7 @@
         :title="$t('blkList.title')"
         :tableTitles="blockTitles"
         :tableData="showBlockList"
-        :total="10000"
+        :total="totalNumber"
         :currentChange="pageChange">
     </page-table>
     <error v-else :error="error"></error>
@@ -31,11 +31,11 @@
     async asyncData() {
       try {
         let pageIndex = 0;
-        let { blockList } = await block.getList({
+        let { blockList, totalNumber } = await block.getList({
           pageIndex, pageSize
         });
         return {
-          blockList, pageIndex
+          blockList, pageIndex, totalNumber
         };
       } catch(err) {
         return {
@@ -46,6 +46,7 @@
     data() {
       return {
         pageIndex: 0,
+        totalNumber: 0,
         blockList: [],
         loading: false,
         blockTitles: this.$t("blockTitles"),

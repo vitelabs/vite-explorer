@@ -6,7 +6,8 @@
         :loading="loading"
         :title="tokenTableTitle"
         :tableTitles="tokenTitles"
-        :tableData="tokenData">
+        :tableData="tokenData"
+        :total="totalNumber">
       </page-table>
     </div>
     <error v-else :error="error"></error>
@@ -49,12 +50,13 @@
       }
       
       try {
-        let { tokenList } = await token.getList({
+        let { tokenList, totalNumber} = await token.getList({
           pageIndex, pageSize
         });
         return {
           pageIndex,
-          tokenList
+          tokenList,
+          totalNumber
         };
       } catch(err) {
         return {
@@ -68,7 +70,8 @@
         tokenList: [],
         tokenTitles: this.$t("tokenTitles"),
         error: "",
-        loading: false
+        loading: false,
+        totalNumber: 0
       };
     },
     computed: {

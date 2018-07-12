@@ -1,9 +1,9 @@
 const AccountBlock = require("../model/AccountBlock");
 const parseBody = require("./parseBody");
 
-let accountList = [];
+let blockList = [];
 for (let i=0; i<10; i++) {
-  accountList.push(new AccountBlock());
+  blockList.push(new AccountBlock());
 }
 
 module.exports = {
@@ -13,7 +13,8 @@ module.exports = {
   },
   "/blocklist": {
     body: parseBody({
-      accountList
+      blockList,
+      totalNumber: 100
     })
   }
 };

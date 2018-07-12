@@ -1,7 +1,8 @@
 <template>
   <div class="token-container">
     <trans-list v-if="!error"
-        :transactions="transactionList">
+        :transactions="transactionList"
+        :total="totalNumber">
     </trans-list>
     <error v-else :error="error"></error>
   </div>
@@ -27,12 +28,13 @@
       const pageIndex = 0;
 
       try {
-        let { transactionList } = await transaction.getList({
+        let { transactionList, totalNumber} = await transaction.getList({
           pageIndex, pageSize
         });
         return {
           pageIndex,
-          transactionList
+          transactionList,
+          totalNumber
         };
       } catch(err) {
         return {
@@ -43,7 +45,8 @@
     data() {
       return {
         error: "",
-        transactionList: []
+        transactionList: [],
+        totalNumber: 0
       };
     }
   };

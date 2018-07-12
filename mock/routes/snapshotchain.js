@@ -13,7 +13,8 @@ module.exports = {
   },
   "/blocklist": {
     body: parseBody({
-      blockList
+      blockList,
+      totalNumber: 100
     })
   }
 };

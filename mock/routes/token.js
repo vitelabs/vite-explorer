@@ -13,7 +13,8 @@ module.exports = {
   },
   "/list": {
     body: parseBody({
-      tokenList
+      tokenList,
+      totalNumber: 100
     })
   }
 };

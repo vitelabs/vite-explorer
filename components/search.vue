@@ -78,6 +78,7 @@
 
           })
           .catch(err=> {
+            this.$router.push({path: `${langStrPath}/searchError`});
             console.log(err);
           });
       },
@@ -92,6 +93,7 @@
 
           })
           .catch(err=> {
+            this.$router.push({path: `${langStrPath}/searchError`});
             console.log(err);
           });
       },

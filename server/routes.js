@@ -27,7 +27,7 @@ export default () => {
         msg: "server error"
       };
     } catch(err) {
-      // console.log(err);
+      console.log(err);
       // console.log(err.code);
     }  
   });
@@ -41,7 +41,7 @@ export default () => {
         msg: "server error"
       };
     } catch(err) {
-      // console.log(err);
+      console.log(err);
       // console.log(err.code);
     }  
   });
@@ -81,7 +81,8 @@ export default () => {
       });
       rawBlockList = [];
       body.data = {
-        blockList
+        blockList,
+        totalNumber: body.data.totalNumber
       };
       ctx.body = body;
     } catch(err) {
@@ -121,7 +122,7 @@ export default () => {
       body.data = block;
       ctx.body = body;
     } catch(err) {
-      // console.log(err);
+      console.log(err);
       // console.log(err.code);
     }
   });
@@ -160,7 +161,7 @@ export default () => {
       body.data = transaction;
       ctx.body = body;
     } catch(err) {
-      // console.log(err);
+      console.log(err);
       // console.log(err.code);
     }
   });
@@ -200,7 +201,8 @@ export default () => {
 
       rawTransactionList = [];
       body.data = {
-        transactionList
+        transactionList,
+        totalNumber: body.data.totalNumber
       };
       ctx.body = body;
     } catch(err) {
@@ -214,6 +216,12 @@ export default () => {
       let transactionDetail = await get("/accountchain/block", { blockHash: ctx.query.addr });
       let blockDetail = await get("/snapshotchain/block", { blockHash: ctx.query.addr });
       let judgeString = 'null'; 
+      if (transactionDetail.data.code !== 0) {
+        transactionDetail.data.data = null;
+      }
+      if (blockDetail.data.code !== 0) {
+        blockDetail.data.data = null;
+      }
       if (transactionDetail.data.data && !blockDetail.data.data) {
         judgeString = 'transaction';
       }
@@ -236,8 +244,15 @@ export default () => {
       let nameResult = await get("/token/detail", { tokenName: ctx.query.str });
       let symbolResult= await get("/token/detail", { tokenSymbol: ctx.query.str });
       
-      let tokenNameList = nameResult.data.data.tokenList || [];
-      let tokenSymbolList = symbolResult.data.data.tokenList || [];
+      let tokenNameList = [];
+      let tokenSymbolList = [];
+
+      if (nameResult.data.code === 0) {
+        tokenNameList = nameResult.data.data.tokenList || [];
+      }
+      if (symbolResult.data.code === 0) {
+        tokenSymbolList = symbolResult.data.data.tokenList || [];
+      }
       
       let tokenList = tokenNameList.concat(tokenSymbolList) || [];
       if (tokenNameList.length === 1 && !tokenSymbolList.length) {
