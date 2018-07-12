@@ -1,7 +1,7 @@
 <template>
   <div class="account-container">
     <div v-if="!error">
-      <detail-layout 
+      <detail-layout
         :title="`${title}: ${accountDetail.accountAddress}`"
         :list="accountList"
         :clickLab="clickLab">
@@ -13,7 +13,7 @@
       </detail-layout>
 
       <el-tabs v-if="tokenList.length" class="tab-wrapper" v-model="activeTab" type="card">
-        <el-tab-pane class="tab-pane" label="交易列表" name="transList">
+        <el-tab-pane class="tab-pane" :label="$t('transList.label')" name="transList">
           <trans-list
             :tokenId="activeToken.token ? activeToken.token.id : ''"
             :accountAddress="accountDetail.accountAddress">
@@ -25,7 +25,7 @@
   </div>
 </template>
 
-<script>  
+<script>
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
   import transList from "~/components/transList.vue";
@@ -61,7 +61,7 @@
     },
     data() {
       return {
-        title: "账户详情",
+        title: this.$t("account.title"),
         activeTab: "transList",
         error: "",
         accountDetail: {},
@@ -72,7 +72,7 @@
     computed: {
       activeToken() {
         return this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
-      }, 
+      },
       accountList() {
         let tokenNameList = [];
         this.tokenList.forEach((tokenDetail) => {
@@ -82,18 +82,18 @@
         });
 
         return [{
-          name: "账户Hash",
+          name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress
         },{
-          name: "账户持有代币种类",
+          name: this.$t("account.accType"),
           describe: tokenNameList.length
         },{
-          name: "账户持有代币",
+          name: this.$t("account.accToken"),
           list: tokenNameList
         }];
       },
       subTitle() {
-        return `代币: ${this.activeToken && this.activeToken.token ? this.activeToken.token.name : ""}`;
+        return this.$t("account.token")+`: ${this.activeToken ? this.activeToken.token.name : ""}`;
       },
       tokenDetailList() {
         let tokenDetail = this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
@@ -102,16 +102,16 @@
         }
 
         return [{
-          name: "余额数量",
+          name: this.$t("account.bAmount"),
           describe: tokenDetail.balance || 0
         }, {
-          name: "余额价值",
+          name: this.$t("account.bValue"),
           describe: "----"
         }, {
-          name: "交易次数",
-          describe: tokenDetail.token && tokenDetail.token.transactionNumber
+          name: this.$t("account.tNum"),
+          describe: tokenDetail.token.transactionNumber
         }, {
-          name: "所有代币估值",
+          name: this.$t("account.allToken"),
           describe: "----"
         }];
       }

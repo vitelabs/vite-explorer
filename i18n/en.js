@@ -1,15 +1,8 @@
 module.exports = {
   lang: "English",
-  nav: {
-    index: "Home",
-    transactionList: "Transactions",
-    blockList: "Snapshots",
-    tokenList: "Tokens"
-  },
-  search: {
-    btn: "Search",
-    placeholder: "Search by Block / Transaction / Account / Token"
-  },
+
+
+  // components/Home
   profile: {
     title: "Profile",
     market: "Market value of Vite",
@@ -38,16 +31,129 @@ module.exports = {
     from: "From",
     to: "To",
   },
-  transList: {
-    title: "Total amount of transactions----"
+
+
+  // components/Token
+  accList: {
+    title: "Total Accounts----, (Only shows ---- data in recent)",
+  },
+  accTitles: [{
+    prop: "accountAddress",
+    name: "Account Address",
+  }, {
+    prop: "balance",
+    name: "Account Balance",
+  }, {
+    prop: "percent",
+    name: "Proportion",
+  }, {
+    prop: "transNum",
+    name: "Transaction Times",
+  }],
+
+
+  // Basic components part: components/
+  footer: {
+    official: "Official Website"
+  },
+  nav: {
+    index: "Home",
+    transactionList: "Transactions",
+    blockList: "Snapshots",
+    tokenList: "Tokens"
   },
   pageTable: {
     pre: "Prev",
     next: "Next",
     num: "No.",
   },
-  accList: {
-    title: "Total Accounts----, (Only shows ---- data in recent)"
+  search: {
+    btn: "Search",
+    placeholder: "Search by Block / Transaction / Account / Token"
+  },
+  utils: {
+    more: "more"
+  },
+
+
+  // components/transList.vue
+  transList: {
+    title: "Total amount of transactions----",
+    label: "Transaction List"
+  },
+  transTitles: [{
+    prop: "hash",
+    name: "TxHash"
+  }, {
+    prop: "type",
+    name: "TxType"
+  }, {
+    prop: "status",
+    name: "Status"
+  }, {
+    prop: "snapshotTimestamp",
+    name: "First Snapshot"
+  }, {
+    prop: "timestamp",
+    name: "Timestamp"
+  }, {
+    prop: "confirmTimes",
+    name: "Confirmations"
+  }, {
+    prop: "from",
+    name: "From"
+  }, {
+    prop: "to",
+    name: "To"
+  }],
+  addedTitle: [{
+    prop: "tokenName",
+    name: "Token"
+  }, {
+    prop: "amount",
+    name: "Amount"
+  }],
+
+
+  // layouts/
+  error: {
+    reload: "Click to reload",
+    home: "Back to Home",
+    exception: "Error Exception Occurs",
+  },
+
+
+  // pages/account
+  account: {
+    title: "Account Detail",
+    accHash: "Account Hash",
+    accType: "Account Hold Token Types",
+    accToken: "Account Hold Tokens",
+    token: "Token",
+    bAmount: "Balance Amount",
+    bValue: "Balance Value",
+    tNum: "Number of Transactions",
+    allToken: "All Token Valuation",
+  },
+
+
+  // pages/block
+  block: {
+    title: "Snapshot Block Detail",
+  },
+  blockDetailMap: {
+    height: "Snapshot Block Height",
+    time: "Snapshot Block Age",
+    accountNum: "Number of Account",
+    hash: "Snapshot Block Hash",
+    producer: "Packing Node",
+    amount: "Forging Rewards"
+  },
+
+
+  // pages/blockList
+  blkList: {
+    title: "Total Blocks----, (Only shows ---- data in recent)"
   },
   blockTitles: [{
     prop: "height",
@@ -72,6 +178,34 @@ module.exports = {
     prop: "amount",
     name: "Forging Rewards",
   }],
+
+
+  // pages/searchError
+  sError: {
+    text: "No content found, Please switch another word."
+  },
+
+
+  // pages/token
+  token: {
+    aLabel: "Account List",
+    tLabel: "Transaction List",
+  },
+  tokenDetailMap: {
+    circulationLines: "Circulation Limit",
+    owner: "Owner Address",
+    price: "Price",
+    addressNumber: "Number of Address",
+    transactionNumber: "Number of Transactions"
+  },
+
+
+  // pages/tokenList
+  tokenList: {
+    title: "Token List",
+    cut1: "",
+    cut2: " Tokens in total",
+  },
   tokenTitles: [{
     prop: "icon",
     name: "Icon",
@@ -91,18 +225,34 @@ module.exports = {
     prop: "famc",
     name: "Circulation Market Value",
   }],
-  blkList: {
-    title: "Total Blocks----, (Only shows ---- data in recent)"
+
+
+  // pages/transaction
+  transaction: {
+    send: "Send",
+    receive: "Receive",
   },
-  error: {
-    reload: "Click to reload",
-    home: "Back to Home",
-    exception: "Error Exception Occurs",
+  transactionDetailMap: {
+    hash: "Transaction Hash",
+    type: "Transaction Type",
+    status: "Transaction Status",
+    confirmTimes: "Confirmations",
+    snapshotBlockHash: "First Snapshot Block",
+    timestamp: "Timestamp",
+    from: "From",
+    to: "To",
+    tokenName: "Token",
+    amount: "Amount",
+    introduction: "Attachments"
   },
-  footer: {
-    official: "Official Website"
-  },
-  utils: {
-    more: "more"
+
+
+  // Head titles of all pages
+  head: {
+    home: "Home",
+    blockList: "All Blocks",
+    transTitle: "All Transactions",
+    sError: "Nothing Found",
+    tTitle: "Token Detail",
   }
 };

@@ -22,7 +22,6 @@
 
 </template>
 <script>
-
   export default {
     components: {
     },
@@ -43,8 +42,8 @@
 @import "assets/css/vars.scss";
 .more {
   float: right;
-  margin-top: -20px; 
-  margin-right: 20px; 
+  margin-top: -20px;
+  margin-right: 20px;
 }
 
 .transaction-list {

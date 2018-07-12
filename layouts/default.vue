@@ -42,7 +42,7 @@
     },
     head () {
       return {
-        title: "首页",
+        title: this.$t("head.home"),
       };
     },
     created() {

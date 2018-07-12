@@ -54,49 +54,10 @@
     },
     computed: {
       transactionsTitles() {
-        let titles = [{
-          prop: "hash",
-          name: "交易Hash",
-          nameEn: "TxHash"
-        }, {
-          prop: "type",
-          name: "交易类型",
-          nameEn: "TxType"
-        }, {
-          prop: "status",
-          name: "状态",
-          nameEn: "Status"
-        },{
-          prop: "snapshotTimestamp",
-          name: "首次快照块",
-          nameEn: "First Snapshot"
-        }, {
-          prop: "timestamp",
-          name: "时间戳",
-          nameEn: "Timestamp"
-        }, {
-          prop: "confirmTimes",
-          name: "确认数",
-          nameEn: "Confirmations"
-        }, {
-          prop: "from",
-          name: "转出方",
-          nameEn: "From"
-        }, {
-          prop: "to",
-          name: "转入方",
-          nameEn: "To"
-        }];
-        this.tokenTitle && titles.push({
-          prop: "tokenName",
-          name: "代币",
-          nameEn: "Token"
-        });
-        titles.push({
-          prop: "amount",
-          name: "金额",
-          nameEn: "Amount"
-        });
+        let titles = this.$t("transTitles");
+        if(this.tokenTitle){
+          titles = titles.concat(this.$t("addedTitle"));
+        }
         return titles;
       },
       transactionsData() {
@@ -105,13 +66,15 @@
         }
         let list = [];
         this.transactionList.forEach((transaction) => {
+          let lang;
+          this.$i18n.locale !== "en" ? lang = this.$i18n.locale : lang = "";
           list.push({
-            hash: `<a href="/transaction/${transaction.hash}">${transaction.hash}</a>`,
-            timestamp: `<a href="/block/${transaction.timestamp}">${transaction.timestamp}</a>`,
-            snapshotTimestamp: `<a href="/block/${transaction.snapshotTimestamp}">${transaction.snapshotTimestamp}</a>`,
-            to: `<a href="/account/${transaction.to}">${transaction.to}</a>`,
-            from: `<a href="/account/${transaction.from}">${transaction.from}</a>`,
-            type: transaction.fromHash ? "send" : "receive",
+            hash: `<a href="${lang}/transaction/${transaction.hash}">${transaction.hash}</a>`,
+            timestamp: `<a href="${lang}/block/${transaction.timestamp}">${transaction.timestamp}</a>`,
+            snapshotTimestamp: `<a href="${lang}/block/${transaction.snapshotTimestamp}">${transaction.snapshotTimestamp}</a>`,
+            to: `<a href="${lang}/account/${transaction.to}">${transaction.to}</a>`,
+            from: `<a href="${lang}/account/${transaction.from}">${transaction.from}</a>`,
+            type: transaction.fromHash ? this.$t("transaction.send") : this.$t("transaction.receive"),
             amount: transaction.fromHash ? `-${transaction.amount}` : transaction.amount,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,

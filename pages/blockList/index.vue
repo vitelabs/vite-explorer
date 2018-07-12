@@ -3,7 +3,7 @@
     <page-table v-if="!error"
         :loading="loading"
         :title="$t('blkList.title')"
-        :tableTitles="blockTitle"
+        :tableTitles="blockTitles"
         :tableData="showBlockList"
         :total="10000"
         :currentChange="pageChange">
@@ -22,7 +22,7 @@
   export default {
     head() {
       return {
-        title: "All Blocks"
+        title: this.$t("head.blockList")
       };
     },
     components: {
@@ -48,16 +48,11 @@
         pageIndex: 0,
         blockList: [],
         loading: false,
+        blockTitles: this.$t("blockTitles"),
         error: "",
       };
     },
     computed: {
-      blockTitle(){
-        if(this.$i18n.locale === "zh"){
-          return this.$i18n.messages.zh.blockTitles;
-        }
-        return this.$i18n.messages.en.blockTitles;
-      },
       showBlockList() {
         let list = [];
         this.blockList.forEach((block)=>{
@@ -81,7 +76,6 @@
           pageIndex: currentInx,
           pageSize
         }).then(({ blockList })=>{
-          console.log(blockList);
           if (this.pageIndex !== currentInx) {
             return;
           }
