@@ -61,7 +61,7 @@
     },
     methods: {
       keepNavStatus() {
-        if (this.$route.path === "/" || this.$route.path === "/zh") {
+        if (this.$route.path === "/" || this.$route.path === `/${this.$i18n.locale}`) {
           this.defaultActive = "index";
         } else {
           //TODO fix

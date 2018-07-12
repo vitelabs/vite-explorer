@@ -9,7 +9,7 @@ for (let i=0; i<10; i++) {
 module.exports = {
   "/detail": {
     method: "get",
-    body: parseBody(new Token())
+    body: parseBody({ tokenList: [new Token()] })
   },
   "/list": {
     body: parseBody({

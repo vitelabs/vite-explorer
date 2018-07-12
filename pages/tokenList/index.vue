@@ -18,6 +18,7 @@
   import pageTable from "~/components/pageTable";
   import error from "~/components/error";
   import token from "~/services/token.js";
+  import search from "~/services/search.js";
 
   const pageSize = 10;
 
@@ -30,14 +31,27 @@
     components: {
       pageHeader, pageTable, error
     },
-    async asyncData() {
+    async asyncData(ctx) {
       const pageIndex = 0;
-
+      if (ctx.query.filter) {
+        try {
+          let data = await search.judgeTokenName({ str: ctx.query.filter });
+          console.log(data);
+          return {
+            pageIndex,
+            tokenList: data
+          };
+        } catch(err) {
+          return {
+            error: err.msg || "get filter tokenList fail"
+          };
+        }
+      }
+      
       try {
         let { tokenList } = await token.getList({
           pageIndex, pageSize
         });
-        console.log("tokenList", tokenList);
         return {
           pageIndex,
           tokenList

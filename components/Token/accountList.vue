@@ -2,7 +2,7 @@
   <page-table
     :showOrder="true"
     :title="$t('accList.title')"
-    :tableTitles="accTitles"
+    :tableTitles="$t('accTitles')"
     :tableData="[]"
     :total="0"
     :currentChange="accountPageChange">
@@ -21,7 +21,8 @@
 
     },
     data(){
-      this.$t("account.title");
+      return {
+      };
     },
     methods: {
       accountPageChange(currentInx) {

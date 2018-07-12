@@ -34,18 +34,41 @@
           return;
         }
         if (/tti_[A-Za-z0-9]+/.test(str)) {
-        // match token
-          console.log("match token");
-          this.getTokenDetail(str, langStrPath);
+        // match tokenid
+          console.log("match tokenId");
+          this.getTokenDetailById(str, langStrPath);
           return;
         }
-        if (/[A-Za-z0-9]+/.test(str)) {
+        if (/[A-Za-z0-9]+/.test(str) && str.length === 40) {
         // match transaction and block
           this.judgeTransOrBlock(str, langStrPath);
+        } else {
+          // match tokenName or tokenSymbol
+          console.log("match tokenName or tokenSymbol");
+          this.judgeTokenName(str, langStrPath);
         }
       },
 
-      getTokenDetail(str, langStrPath) {
+      judgeTokenName(str, langStrPath) {
+        search.judgeTokenName({
+          str
+        })
+          .then((data)=> {
+            if (data.length === 1) {
+              // jump to detail
+              let { id } = data[0];
+              this.$router.push({path: `${langStrPath}/token/${id}`});
+            } else if (data.length > 1){
+              // jump to list
+              this.$router.push({path: `${langStrPath}/tokenList?filter=${str}`});
+            } else {
+              this.$router.push({path: `${langStrPath}/searchError`});
+            }
+          }).catch(err=> {
+            console.log(err);
+          });
+      },
+      getTokenDetailById(str, langStrPath) {
         token.getDetail({
           tokenId: str
         })
@@ -87,7 +110,6 @@
             if (data === "null") {
               this.$router.push({path: `${langStrPath}/searchError`});
             }
-            console.log("judge data", data);
           }).catch(err=> {
             console.log(err);
           });

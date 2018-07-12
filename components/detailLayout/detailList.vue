@@ -20,7 +20,7 @@
     props: {
       list: {
         type: Array,
-        default: []
+        default: ()=>[]
       },
       clickLab: {
         type: Function,

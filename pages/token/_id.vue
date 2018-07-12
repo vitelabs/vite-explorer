@@ -44,11 +44,11 @@
     },
     async asyncData({ params }) {
       try {
-        let tokenDetail = await token.getDetail({
+        let data = await token.getDetail({
           tokenId: params.id
         });
         return {
-          tokenDetail
+          tokenDetail: data.tokenList[0]
         };
       } catch(err) {
         return {
