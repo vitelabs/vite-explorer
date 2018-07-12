@@ -1,35 +1,35 @@
 <template>
   <div>
-    <div>{{$t('profile.title')}}</div>
+    <div>{{ $t('profile.title') }}</div>
     <div class="vite-profile">
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
-          <div>{{$t('profile.market')}}</div>
-          <div>--</div>
+          <div>{{ $t('profile.market') }}</div>
+          <div>{{ generalDetail && generalDetail.ffmCap || '--' }}</div>
         </el-col>
         <el-col :span="12">
           <div>{{$t('profile.tps')}}</div>
-          <div>--</div>
+          <div>{{ generalDetail && generalDetail.sysTps || '--' }}</div>
         </el-col>
       </el-row>
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
           <div>{{$t('profile.price')}}</div>
-          <div>--</div>
+          <div>{{ generalDetail && generalDetail.cirPrice || '--' }}</div>
         </el-col>
         <el-col :span="12">
           <div>{{$t('profile.totalTrans')}}</div>
-          <div>--</div>
+          <div>{{ generalDetail && generalDetail.txTotalTAmount || '--' }}</div>
         </el-col>
       </el-row>
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
-          <div>{{$t('profile.latestHeight')}}</div>
-          <div>--</div>
+          <div>{{ $t('profile.latestHeight') }}</div>
+          <div>{{ generalDetail && generalDetail.chainHeight || '--' }}</div>
         </el-col>
         <el-col :span="12">
-          <div>{{$t('profile.nearMonth')}}</div>
-          <div>--</div>
+          <div>{{ $t('profile.nearMonth') }}</div>
+          <div>{{ generalDetail && generalDetail.txMonAmount || '--' }}</div>
         </el-col>
       </el-row>
     </div>
@@ -38,15 +38,11 @@
 
 <script>
   export default {
-    data() {
-      return {
-
-      };
-    },
-    components: {
-    },
     props: {
-
+      generalDetail: {
+        type: Object,
+        default: {}
+      }
     }
   };
 </script>

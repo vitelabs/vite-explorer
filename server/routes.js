@@ -7,7 +7,6 @@ export default () => {
   router.get("/api/account/detail", async (ctx) => {
     try {
       let result = await get("/account/detail", ctx.query);
-      console.log("accountDetail", result.data);
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
@@ -208,6 +207,19 @@ export default () => {
     } catch(err) {
       console.log(err);
       // console.log(err.code);
+    }
+  });
+
+  router.get("/api/general/detail", async (ctx) => {
+    try {
+      let result = await get("/general/detail");
+      ctx.type = "json";
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "server error"
+      };
+    } catch(err) {
+      console.log(err.code);
     }
   });
 

@@ -1,7 +1,7 @@
 <template>
   <div class="page-home">
     <el-row :gutter="50">
-      <el-col :span="12"><profile></profile></el-col>
+      <el-col :span="12"><profile :general-detail="generalDetail"></profile></el-col>
       <el-col :span="12"><line-chart></line-chart></el-col>
     </el-row>
     <el-row :gutter="50">
@@ -19,6 +19,7 @@
 
   import block from "~/services/block.js";
   import transaction from "~/services/transaction.js";
+  import general from "~/services/general.js";
   
   export default {
     components: {
@@ -37,9 +38,15 @@
         let { transactionList } = await transaction.getList({
           pageIndex, pageSize
         });
+        
+        let generalDetail = await general.getGeneralDetail();
+
+        console.log("generalDetail", generalDetail);
+        
         return {
           blockList,
-          transactionList
+          transactionList,
+          generalDetail
         };
       } catch(err) {
         return {
@@ -51,7 +58,8 @@
       return {
         name: this.name,
         blockList: [],
-        transactionList: []
+        transactionList: [],
+        generalDetail: {}
       };
     },
     methods: {
