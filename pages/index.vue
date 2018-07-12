@@ -40,8 +40,6 @@
         });
         
         let generalDetail = await general.getGeneralDetail();
-
-        console.log("generalDetail", generalDetail);
         
         return {
           blockList,

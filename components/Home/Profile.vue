@@ -8,17 +8,17 @@
           <div>{{ generalDetail && generalDetail.ffmCap || '--' }}</div>
         </el-col>
         <el-col :span="12">
-          <div>{{$t('profile.tps')}}</div>
+          <div>{{ $t('profile.tps') }}</div>
           <div>{{ generalDetail && generalDetail.sysTps || '--' }}</div>
         </el-col>
       </el-row>
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
-          <div>{{$t('profile.price')}}</div>
+          <div>{{ $t('profile.price') }}</div>
           <div>{{ generalDetail && generalDetail.cirPrice || '--' }}</div>
         </el-col>
         <el-col :span="12">
-          <div>{{$t('profile.totalTrans')}}</div>
+          <div>{{ $t('profile.totalTrans') }}</div>
           <div>{{ generalDetail && generalDetail.txTotalTAmount || '--' }}</div>
         </el-col>
       </el-row>

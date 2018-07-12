@@ -64,9 +64,16 @@
         if (this.$route.path === "/" || this.$route.path === `/${this.$i18n.locale}`) {
           this.defaultActive = "index";
         } else {
-          //TODO fix
           let paths = this.$route.path.split("/");
-          this.defaultActive = paths[paths.length - 1];
+          if (this.navs.indexOf(paths[paths.length - 1]) > -1) {
+            this.defaultActive = paths[paths.length - 1];
+          } else {
+            if (this.$i18n.locale === "en") {
+              this.defaultActive = paths[1] + "List";
+            } else {
+              this.defaultActive = paths[2] + "List";
+            }
+          }
         }
       }
     }
