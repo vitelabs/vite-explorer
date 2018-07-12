@@ -51,7 +51,7 @@
     height: 40px;
     line-height: 40px;
     .name {
-      display: inline-block;
+      // display: inline-block;
       color: #333;
       width: 10vw;
     }
@@ -60,6 +60,7 @@
     }
     .describe {
       color: #666;
+      margin-left: 30px;
     }
     .lab-list {
       display: inline-block;
