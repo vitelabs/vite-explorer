@@ -89,7 +89,7 @@
     right: 0;
     left: 0;
     top: 0;
-    z-index: 9999;
+    z-index: 0;
     padding: 19px;
     background: #f0f0f0;
     .navbar-brand {

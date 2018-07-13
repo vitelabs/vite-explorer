@@ -1,6 +1,6 @@
 <template>
   <div class="search-container">
-    <el-input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr"></el-input>
+    <el-input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr" @keyup.enter.native="search"></el-input>
     <el-button class="search-btn" type="primary" @click="search">{{$t('search.btn')}}</el-button>
   </div>
 </template>
@@ -23,6 +23,11 @@
     methods: {
       search() {
         let str = this.searchStr.trim();
+        if (!str) {
+          console.log("aaaa");
+          this.$message("不能为空");
+          return;
+        }
         let langStrPath = "";
         if (this.$i18n.locale !== "en") {
           langStrPath = `/${this.$i18n.locale}`;

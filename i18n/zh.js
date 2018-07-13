@@ -35,6 +35,19 @@ module.exports = {
   accList: {
     title: "总账户数----, (仅展示最近的----条数据)"
   },
+  accTitles: [{
+    prop: "accountAddress",
+    name: "账户地址",
+  }, {
+    prop: "balance",
+    name: "账户余额",
+  }, {
+    prop: "percent",
+    name: "占总流通比例",
+  }, {
+    prop: "transNum",
+    name: "账户交易次数",
+  }],
 
   // Basic components part: components/
   footer: {

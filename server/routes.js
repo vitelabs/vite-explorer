@@ -81,7 +81,7 @@ export default () => {
       rawBlockList = [];
       body.data = {
         blockList,
-        totalNumber: body.data.totalNumber
+        totalNumber: +body.data.totalNumber
       };
       ctx.body = body;
     } catch(err) {
@@ -201,7 +201,7 @@ export default () => {
       rawTransactionList = [];
       body.data = {
         transactionList,
-        totalNumber: body.data.totalNumber
+        totalNumber: +body.data.totalNumber
       };
       ctx.body = body;
     } catch(err) {

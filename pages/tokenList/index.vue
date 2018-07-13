@@ -56,7 +56,7 @@
         return {
           pageIndex,
           tokenList,
-          totalNumber
+          totalNumber: +totalNumber
         };
       } catch(err) {
         return {
