@@ -32,7 +32,7 @@
 
 <script>
   import logoWithoutWords from "~/components/logoWithoutWords.vue";
-  import viteFooter from "~/components/footer.vue";
+  import viteFooter from "~/components/Footer.vue";
   import search from "~/components/search.vue";
   import LangSelect from "~/components/LangSelect.vue";
 
