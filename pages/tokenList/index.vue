@@ -84,7 +84,7 @@
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
-            token: `<a href="${lang}/token/${token.id}">${token.name} (${token.symbol})</a>`
+            token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.symbol})</a>`
           });
         });
         return list;

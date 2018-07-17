@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>{{ $t('transactionList.title') }}</div>
-    <div class="more"><nuxt-link :to="localePath('transactionList')">{{ $t('utils.more') }} ></nuxt-link></div>
+    <div class="more"><nuxt-link :to="localePath('transactionList')" target="_blank">{{ $t('utils.more') }} ></nuxt-link></div>
     <div class="transaction-list">
       <div class="transaction-item" v-for="(item, index) in list" :key="index">
         <el-row :gutter="20">
@@ -10,18 +10,18 @@
           </el-col>
           <el-col :span="12">
             <div>{{ $t('transactionList.hash') }} 
-              <nuxt-link :to="`${locales}/transaction/${item.hash}`">{{ item.hash }}</nuxt-link>
+              <nuxt-link :to="`${locales}/transaction/${item.hash}`" target="_blank">{{ item.hash }}</nuxt-link>
             </div>
           </el-col>
         </el-row>
         <div class="transaction-item-down">
           <div>
             {{ $t('transactionList.from') }}
-            <nuxt-link :to="`${locales}/account/${item.from}`"> {{ item.from }}</nuxt-link>
+            <nuxt-link :to="`${locales}/account/${item.from}`" target="_blank"> {{ item.from }}</nuxt-link>
           </div>
           <div>
             {{ $t('transactionList.to') }}
-            <nuxt-link :to="`${locales}/account/${item.to}`"> {{ item.to }}</nuxt-link>
+            <nuxt-link :to="`${locales}/account/${item.to}`" target="_blank"> {{ item.to }}</nuxt-link>
           </div>
         </div>
       </div>

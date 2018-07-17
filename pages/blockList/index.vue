@@ -60,8 +60,8 @@
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
-            height: `<a href="${lang}/block/${block.hash}">${block.height}</a>`,
-            hash: `<a href="${lang}/block/${block.hash}">${block.hash}</a>`,
+            height: `<a href="${lang}/block/${block.hash}" target="_blank">${block.height}</a>`,
+            hash: `<a href="${lang}/block/${block.hash}" target="_blank">${block.hash}</a>`,
             amount: `${block.amount}Vite`,
             accountNum: block.accountNum,
             producer: block.producer

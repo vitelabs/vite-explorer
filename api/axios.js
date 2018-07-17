@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "./config";
 
 // if (process.server) {
-config.baseURL = `http://${process.env.HOST || "localhost"}:${process.env.PORT || 8080}/api`;
+config.baseURL = `http://${process.env.HOST || "10.2.16.45"}:${process.env.PORT || 8080}/api`;
 // }
 
 const service = axios.create(config);
@@ -38,7 +38,7 @@ service.interceptors.response.use(
 );
 
 export function post(url, data) {
-  console.log("post request url", url);
+  // console.log("post request url", url);
   return service({
     method: "post",
     url,
@@ -47,7 +47,7 @@ export function post(url, data) {
 }
 
 export function get(url, data) {
-  console.log("get request url", url);
+  // console.log("get request url", url);
   return service({
     method: "get",
     url,
