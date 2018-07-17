@@ -32,15 +32,19 @@
       try {
         let pageIndex = 0;
         let pageSize = 10;
+        let generalDetail = {};
         let { blockList } = await block.getList({
           pageIndex, pageSize
         });
         let { transactionList } = await transaction.getList({
           pageIndex, pageSize
         });
-        
-        let generalDetail = await general.getGeneralDetail();
-        
+        try{
+          generalDetail = await general.getGeneralDetail();
+        }catch(err) {
+          console.log(err);
+        }
+      
         return {
           blockList,
           transactionList,
