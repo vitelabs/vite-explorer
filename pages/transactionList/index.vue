@@ -26,7 +26,6 @@
     },
     async asyncData() {
       const pageIndex = 0;
-
       try {
         let { transactionList, totalNumber} = await transaction.getList({
           pageIndex, pageSize

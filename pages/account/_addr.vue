@@ -16,7 +16,8 @@
         <el-tab-pane class="tab-pane" :label="$t('transList.label')" name="transList">
           <trans-list
             :tokenId="activeToken.token ? activeToken.token.id : ''"
-            :accountAddress="accountDetail.accountAddress">
+            :accountAddress="accountDetail.accountAddress"
+            >
           </trans-list>
         </el-tab-pane>
       </el-tabs>
@@ -119,7 +120,7 @@
     methods: {
       clickLab(lab, index) {
         this.activeTokenIndex = index;
-      }
+      },
     }
   };
 </script>

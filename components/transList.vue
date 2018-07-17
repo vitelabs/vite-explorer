@@ -1,12 +1,13 @@
 <template>
   <page-table :pagination="pagination"
     :loading="loading"
-    :title="$t('transList.title')"
+    :title="title"
     :tableTitles="transactionsTitles"
     :tableData="transactionsData"
-    :current-change="fetchTransList"
+    :current-change="total ? fetchList : fetchTransList"
     :currentPage="pageIndex"
-    :total="total">
+    :total="totalNumber"
+    :page-size="pageSize">
   </page-table>
 </template>
 
@@ -47,16 +48,22 @@
       pageTable
     },
     mounted() {
-      this.fetchTransList();
+      this.totalNumber = this.total;
+      !this.total && this.fetchTransList();
     },
     data() {
       return {
         transactionList: this.transactions,
         pageIndex: 0,
-        loading: false
+        loading: false,
+        totalNumber: 0,
+        pageSize: 10
       };
     },
     computed: {
+      title() {
+        return this.$t("transList.title") + this.totalNumber;
+      },
       transactionsTitles() {
         let titles = this.$t("transTitles");
         if(this.tokenTitle){
@@ -105,21 +112,43 @@
         }
         return true;
       },
-      fetchTransList(currentIndex = 0) {
+      fetchList(currentIndex = 1) {
+        const pageSize = 10;
+
+        this.loading = true;
+        this.pageIndex = currentIndex;
+        this.pageSize = pageSize ;
+        transaction.getList({
+          pageIndex: currentIndex -1,
+          pageSize
+        }).then(({ transactionList, totalNumber }) => {
+          this.loading = false;
+          this.transactionList = transactionList;
+          this.totalNumber = totalNumber;
+        }).catch((err) => {
+          this.$message.error(err.msg || "get transList failed");
+        });
+      },
+
+      fetchTransList(currentIndex = 1) {
+        const pageSize = 6;
+        this.pageSize = pageSize;
+
         this.loading = true;
         this.pageIndex = currentIndex;
         let tokenId = this.tokenId;
         let accountAddress = this.accountAddress;
 
         transaction.getList({
-          pageIndex: 0,
-          pageSize: 6
-        }, accountAddress, tokenId).then(({ transactionList }) => {
+          pageIndex: currentIndex -1,
+          pageSize
+        }, accountAddress, tokenId).then(({ transactionList, totalNumber }) => {
           if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
             return;
           }
           this.loading = false;
           this.transactionList = transactionList;
+          this.totalNumber = totalNumber;
         }).catch((err) => {
           if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
             return;

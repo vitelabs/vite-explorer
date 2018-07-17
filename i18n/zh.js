@@ -75,7 +75,7 @@ module.exports = {
 
   // components/transList.vue
   transList: {
-    title: "总交易笔数----",
+    title: "总交易笔数 ",
     label: "交易列表"
   },
   transTitles: [{
@@ -126,7 +126,7 @@ module.exports = {
     token: "代币",
     bAmount: "余额数量",
     bValue: "余额价值",
-    tTimes: "交易次数",
+    tNum: "交易次数",
     allToken: "所有代币估值",
   },
 
@@ -147,13 +147,17 @@ module.exports = {
 
   // pages/blockList
   blkList: {
-    title: "总区块量----, (仅展示最近的----条数据)"
+    title: {
+      total: "总区块量 ",
+      recentTotalFirst: "，（仅展示最近的 ",
+      recentTotalEnd: " 条数据）"
+    } 
   },
   blockTitles: [{
     prop: "height",
     name: "快照块高度",
   }, {
-    prop: "years",
+    prop: "timestamp",
     name: "快照块年龄",
 
   }, {

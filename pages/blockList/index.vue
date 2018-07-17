@@ -2,10 +2,10 @@
   <div class="token-container">
     <page-table v-if="!error"
         :loading="loading"
-        :title="$t('blkList.title')"
+        :title="title"
         :tableTitles="blockTitles"
         :tableData="showBlockList"
-        :total="totalNumber"
+        :total="100"
         :currentChange="pageChange">
     </page-table>
     <error v-else :error="error"></error>
@@ -54,6 +54,9 @@
       };
     },
     computed: {
+      title() {
+        return this.$t("blkList.title.total") + this.totalNumber + this.$t("blkList.title.recentTotalFirst") + 100 + this.$t("blkList.title.recentTotalEnd");
+      },
       showBlockList() {
         let list = [];
         this.blockList.forEach((block)=>{
@@ -64,7 +67,8 @@
             hash: `<a href="${lang}/block/${block.hash}" target="_blank">${block.hash}</a>`,
             amount: `${block.amount}Vite`,
             accountNum: block.accountNum,
-            producer: block.producer
+            producer: block.producer,
+            timestamp: block.timestamp
           });
         });
         return list;

@@ -78,7 +78,7 @@ module.exports = {
 
   // components/transList.vue
   transList: {
-    title: "Total amount of transactions----",
+    title: "Total amount of transactions ",
     label: "Transaction List"
   },
   transTitles: [{
@@ -153,13 +153,17 @@ module.exports = {
 
   // pages/blockList
   blkList: {
-    title: "Total Blocks----, (Only shows ---- data in recent)"
+    title: {
+      total: "Total Blocks ",
+      recentTotalFirst: "，（Only shows ",
+      recentTotalEnd: " data in recent）"
+    } 
   },
   blockTitles: [{
     prop: "height",
     name: "Snapshot Height",
   }, {
-    prop: "years",
+    prop: "timestamp",
     name: "Snapshot Age",
 
   }, {
