@@ -136,7 +136,7 @@ module.exports = {
 
   // pages/block
   block: {
-    title: "快照快详情",
+    title: "快照块详情",
   },
   blockDetailMap: {
     height: "快照块高度",
