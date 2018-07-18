@@ -5,7 +5,7 @@ import middleware from "./middleware";
 
 async function start() {
   const app = new Koa();
-  const host = process.env.HOST || "0.0.0.0";
+  const host = process.env.HOST || "127.0.0.1";
   const port = process.env.PORT || config.port;
 
   let nuxtConfig = require("../nuxt.config.js");
