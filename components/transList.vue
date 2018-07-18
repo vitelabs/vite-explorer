@@ -79,17 +79,20 @@
         this.transactionList.forEach((transaction) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
+          let fromAddr = transaction.fromHash ? transaction.from : transaction.accountAddress;
+          let toAddr = transaction.fromHash ? transaction.accountAddress : transaction.to;
           list.push({
             hash: `<a href="${lang}/transaction/${transaction.hash}" target="_blank">${transaction.hash}</a>`,
             timestamp: `<a href="${lang}/block/${transaction.timestamp}" target="_blank">${transaction.timestamp}</a>`,
             snapshotTimestamp: `<a href="${lang}/block/${transaction.snapshotTimestamp}" target="_blank">${transaction.snapshotTimestamp}</a>`,
-            to: `<a href="${lang}/account/${transaction.to}" target="_blank">${transaction.to}</a>`,
-            from: `<a href="${lang}/account/${transaction.from}" target="_blank">${transaction.from}</a>`,
-            type: transaction.fromHash ? this.$t("transaction.send") : this.$t("transaction.receive"),
-            amount: transaction.fromHash ? `-${transaction.amount}` : transaction.amount,
+            to: `<a href="${lang}/account/${toAddr}" target="_blank">${toAddr}</a>`,
+            from: `<a href="${lang}/account/${fromAddr}" target="_blank">${fromAddr}</a>`,
+            type: transaction.fromHash ? this.$t("transaction.receive") : this.$t("transaction.send"),
+            amount: transaction.fromHash ?  transaction.amount : `-${transaction.amount}`,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,
-            tokenName: transaction.tokenName
+            tokenName: transaction.tokenName,
+            accountAddress: `<a href="${lang}/account/${transaction.accountAddress}" target="_blank">${transaction.accountAddress}</a>`,
           });
         });
         return list;

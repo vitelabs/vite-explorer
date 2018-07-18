@@ -2,7 +2,7 @@ import axios from "axios";
 import config from "./config";
 
 // if (process.server) {
-config.baseURL = `http://${process.env.HOST || "10.2.16.45"}:${process.env.PORT || 8080}/api`;
+config.baseURL = `http://${process.env.HOST || "localhost"}:${process.env.PORT || 80}/api`;
 // }
 
 const service = axios.create(config);

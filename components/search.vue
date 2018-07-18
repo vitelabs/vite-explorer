@@ -46,6 +46,7 @@
         }
         if (/[A-Za-z0-9]+/.test(str) && str.length === 40) {
         // match transaction and block
+          console.log("transaction and block");
           this.judgeTransOrBlock(str, langStrPath);
         } else {
           // match tokenName or tokenSymbol

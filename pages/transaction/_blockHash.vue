@@ -49,15 +49,17 @@
     computed: {
       showTransactionDetail() {
         let tokenName = this.transactionDetail.tokenName;
+        let fromAddr = this.transactionDetail.fromHash ? this.transactionDetail.from : this.transactionDetail.accountAddress;
+        let toAddr = this.transactionDetail.fromHash ? this.transactionDetail.accountAddress : this.transactionDetail.to;
         return {
           hash: this.transactionDetail.hash,
-          type: this.transactionDetail.fromHash ? this.$t("transaction.send") : this.$t("transaction.receive"),
+          type: this.transactionDetail.fromHash ? this.$t("transaction.receive") : this.$t("transaction.send"),
           status: ["unkown", "open", "closed"][this.transactionDetail.status],
           confirmTimes: this.transactionDetail.confirmTimes,
           snapshotBlockHash: this.transactionDetail.snapshotTimestamp,
           timestamp: this.transactionDetail.timestamp,
-          from: this.transactionDetail.from,
-          to: this.transactionDetail.to,
+          from: fromAddr,
+          to: toAddr,
           tokenName: tokenName,
           amount: this.transactionDetail.amount ?
             `${this.transactionDetail.amount}${tokenName}` : ""

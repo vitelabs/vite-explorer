@@ -115,7 +115,8 @@ export default () => {
         accountNum,
         producer: block.producer, 
         hash: block.hash,
-        amount: block.amount
+        amount: block.amount,
+        timestamp: block.timestamp
       }
 
       body.data = block;
@@ -146,6 +147,7 @@ export default () => {
         amount: transaction.amount,
         from: transaction.from,
         to: transaction.to,
+        accountAddress: transaction.accountAddress,
         fromHash: transaction.fromHash,
         status: transaction.status,
         timestamp: Date.now() / 1000 - transaction.timestamp,
@@ -184,6 +186,7 @@ export default () => {
         transactionList.push({
           hash: transaction.hash,
           amount: transaction.amount,
+          accountAddress: transaction.accountAddress,
           from: transaction.from,
           to: transaction.to,
           fromHash: transaction.fromHash,

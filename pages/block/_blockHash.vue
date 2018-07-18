@@ -49,7 +49,8 @@
           height: this.blockDetail.height || "",
           accountNum: this.blockDetail.accountNum || 0,
           producer: this.blockDetail.producer || "",
-          amount: this.blockDetail.amount ? `${this.blockDetail.amount}Vite` : ""
+          amount: this.blockDetail.amount ? `${this.blockDetail.amount}Vite` : "",
+          timestamp: this.blockDetail.timestamp
         };
       },
       list() {

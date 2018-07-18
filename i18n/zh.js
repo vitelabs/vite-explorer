@@ -103,10 +103,13 @@ module.exports = {
     prop: "to",
     name: "转入方",
   }],
-  addedTitle: {
+  addedTitle: [{
     prop: "tokenName",
     name: "代币"
-  },
+  }, {
+    prop: "amount",
+    name: "金额"
+  }],
 
 
   // layouts/
@@ -137,7 +140,7 @@ module.exports = {
   },
   blockDetailMap: {
     height: "快照块高度",
-    time: "快照块年龄",
+    timestamp: "快照块年龄",
     accountNum: "打包账户数",
     hash: "快照块Hash",
     producer: "打包节点",

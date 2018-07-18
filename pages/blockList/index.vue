@@ -75,12 +75,12 @@
       }
     },
     methods: {
-      pageChange(currentInx) {
+      pageChange(currentInx = 1) {
         this.loading = true;
         this.pageIndex = currentInx;
 
         block.getList({
-          pageIndex: currentInx,
+          pageIndex: currentInx -1,
           pageSize
         }).then(({ blockList })=>{
           if (this.pageIndex !== currentInx) {

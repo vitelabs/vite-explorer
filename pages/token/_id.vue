@@ -8,7 +8,8 @@
 
       <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
         <el-tab-pane class="tab-pane" :label="$t('token.tLabel')" name="transList">
-          <trans-list :tokenTitle="false" :pagination="false"
+          <trans-list 
+            :tokenTitle="false"
             :tokenId="tokenDetail.id">
           </trans-list>
         </el-tab-pane>
