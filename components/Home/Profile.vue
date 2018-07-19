@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>{{ $t('profile.title') }}</div>
     <div class="vite-profile">
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
@@ -51,10 +50,7 @@
 @import "assets/css/vars.scss";
 
   .vite-profile {
-    margin-top: 10px;
     width: 100%;
-    border: 1px solid $border-color;
-    border-radius: 3px;
     .profile-row {
       margin: 0 0 30px 0;
       padding: 20px;

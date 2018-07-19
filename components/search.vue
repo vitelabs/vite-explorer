@@ -2,7 +2,7 @@
   <div class="search-container">
     <input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr" @keyup.enter.native="search" />
     <span class="img-wrapper" @click="search">
-      <img src="~assets/images/search.png"/>
+      <img src="~assets/images/search.svg"/>
     </span>
   </div>
 </template>

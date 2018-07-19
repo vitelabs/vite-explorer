@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div> {{ $t('lineChart.title')}} </div>
-    <div class="vite-transaction">
-      <ve-line :data="chartData"></ve-line>
-    </div>
+    <ve-line :data="chartData" height="313px"></ve-line>
   </div>
 </template>
 
@@ -27,7 +24,7 @@
             { "date": "01-03", "PV": 2123 },
             { "date": "01-04", "PV": 4123 },
             { "date": "01-05", "PV": 3123 },
-            { "date": "01-06", "PV": 7123 }
+            { "date": "01-06", "PV": 5123 }
           ]
         }
       };
@@ -36,10 +33,4 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import "assets/css/vars.scss";
-
-  .vite-transaction {
-    margin-top: 10px;
-    width: 100%;
-  }
 </style>

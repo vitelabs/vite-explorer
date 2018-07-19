@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>{{ $t('transactionList.title') }}</div>
     <div class="more"><nuxt-link :to="localePath('transactionList')" target="_blank">{{ $t('utils.more') }} ></nuxt-link></div>
     <div class="transaction-list">
       <div class="transaction-item" v-for="(item, index) in list" :key="index">
@@ -56,11 +55,6 @@
 }
 
 .transaction-list {
-  margin-top: 10px;
-  width: 100%;
-  border: 1px solid $border-color;
-  border-radius: 3px;
-  height: 600px;
   overflow: scroll;
   box-sizing: border-box;
   padding: 10px;

@@ -1,7 +1,7 @@
 <template>
   <el-dropdown>
     <span class="el-dropdown-link">
-      {{ $t('lang') }}<i class="el-icon-arrow-down el-icon--right"></i>
+      {{ $t('lang') }}
     </span>
     <el-dropdown-menu slot="dropdown">
       <el-dropdown-item v-for="(item, index) in locales" :key="index" v-if="item.code !== $i18n.locale">
@@ -25,10 +25,16 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
+.el-dropdown {
+    display: inline-block;
+    position: relative;
+    color: #000000;
+    font-size: 14px;
+}
 .dropdown-item {
   padding: 0.5rem 20px;
   text-decoration: none;
-  color: #888888
+  color: #000000;
 }
 
 </style>

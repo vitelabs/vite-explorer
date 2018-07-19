@@ -6,7 +6,7 @@
       </nuxt-link>
       <div class="nav-content">
         <div class="navbar-menu">
-          <el-menu :default-active="defaultActive" mode="horizontal" background-color="#ffffff" text-color="#888888"
+          <el-menu :default-active="defaultActive" mode="horizontal" background-color="#ffffff" text-color="#000000"
             active-text-color="#005CC7">
             <el-menu-item :key="index" :index="item" v-for="(item, index) in navs" class="text-hover-transition">
               <nuxt-link :to="localePath(item)" class="nav-item">
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <nuxt/>
+      <nuxt class="content"/>
     </div>
 
     <vite-footer></vite-footer>
@@ -80,6 +80,8 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  @import "assets/css/vars.scss";
+
   .el-menu--horizontal {
     border-bottom: none;
   }
@@ -90,6 +92,8 @@
     top: 0;
     z-index: 0;
     padding: 15px 143px 10px 140px;  // phone and pad and pc
+    background: #FFFFFF;
+    box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
     .nav-content {
       position: absolute;
       left: 250px;
@@ -112,7 +116,6 @@
         }
       }
     }
-
   }
   .search-wrapper {
     position: absolute;
@@ -120,20 +123,27 @@
     right: 143px;
     height: 64px;
     line-height: 64px;
+    box-sizing: border-box;
     .search {
       float: right;
     }
     .lang-select {
+      padding-left: 20px;
+      padding-right: 20px;
       float: right;
-      margin-left: 20px;
       &:hover {
         cursor: pointer;
+        border-bottom: 2px solid $common-color;
       }
     }
   }
   .content-wrapper {
     background-color: #fafcff;
-    padding: 30px 140px 140px;
+    padding: 30px 0;
+    .content {
+      width: 1160px;
+      margin: 0 auto;
+    }
   }
   
 </style>

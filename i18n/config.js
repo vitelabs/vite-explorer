@@ -4,7 +4,7 @@ module.exports = {
   defaultLocale,
   locales: [
     { code: "en", iso: "en-US", file: "en.js" , name: "English"},
-    { code: "zh", iso: "zh-ZH", file: "zh.js" , name: "ZH"}
+    { code: "zh", iso: "zh-ZH", file: "zh.js" , name: "CH"}
   ],
   detectBrowserLanguage: {
     useCookie: true,

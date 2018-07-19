@@ -1,5 +1,5 @@
 module.exports = {
-  lang: "ZH",
+  lang: "CH",
 
   // components/Home
   profile: {
