@@ -1,7 +1,9 @@
 <template>
   <div class="search-container">
-    <el-input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr" @keyup.enter.native="search"></el-input>
-    <el-button class="search-btn" type="primary" @click="search">{{$t('search.btn')}}</el-button>
+    <input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr" @keyup.enter.native="search" />
+    <span class="img-wrapper" @click="search">
+      <img src="~assets/images/search.png"/>
+    </span>
   </div>
 </template>
 
@@ -127,11 +129,39 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+@import "assets/css/vars.scss";
+
+.search-container {
+  position: relative;
   .search-input {
-    width: 60vw;
-    height: 40px;
+    width: 300px;
+    height: 64px;
+    box-sizing: border-box;
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
-  .search-btn {
-    margin-left: 20px;
+  input {
+    border: 1px solid #E5EDF3;
+    border-top: 0; 
+    border-bottom: 0; 
+    padding: 0 50px 0;
+    margin: 0;
+    font-size: 14px;
+    padding-left: 23px; 
+    &:focus {
+      border-left: 1px solid $common-color;
+      border-right: 1px solid $common-color;
+      outline: none;
+    }
   }
+  
+  .img-wrapper {
+    position: absolute;
+    left: 264px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
 </style>

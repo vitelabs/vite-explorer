@@ -1,13 +1,17 @@
 <template>
-  <el-submenu index="language" text-color="#888888">
-    <template slot="title">{{ $t('lang') }}</template>
-    <el-menu-item v-for="(item, index) in locales" :key="index" :index="item.code" class="nav-item" v-if="item.code !== $i18n.locale">
-      <nuxt-link class="dropdown-item"
+  <el-dropdown>
+    <span class="el-dropdown-link">
+      {{ $t('lang') }}<i class="el-icon-arrow-down el-icon--right"></i>
+    </span>
+    <el-dropdown-menu slot="dropdown">
+      <el-dropdown-item v-for="(item, index) in locales" :key="index" v-if="item.code !== $i18n.locale">
+        <nuxt-link class="dropdown-item"
                   :to="switchLocalePath(item.code)">
-        {{ item.name }}
-      </nuxt-link>
-    </el-menu-item>
-  </el-submenu>
+          {{ item.name }}
+        </nuxt-link>
+      </el-dropdown-item>
+    </el-dropdown-menu>
+  </el-dropdown>
 </template>
 
 <script type="text/babel">
@@ -20,9 +24,9 @@
   };
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss">
 .dropdown-item {
-  padding: 0.5rem 40px;
+  padding: 0.5rem 20px;
   text-decoration: none;
   color: #888888
 }

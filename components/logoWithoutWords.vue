@@ -1,21 +1,28 @@
 <template>
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 170 88" style="enable-background:new 0 0 170 88;" xml:space="preserve">
-    <g fill="currentColor">
-      <polygon class="st0" points="0,21.6 26.1,88.1 29,15.1 	"/>
-      <polygon class="st0" points="35.6,13.9 27,88.2 93.6,0.2 	"/>
-      <polygon class="st0" points="85.3,64.3 85.2,64.3 75.4,39.6 73.5,39.6 84.2,65.7 86.2,65.7 97,39.6 95.2,39.6 	"/>
-      <rect x="106.9" y="39.6" class="st0" width="1.8" height="26"/>
-      <polygon class="st0" points="118.7,41 128.7,41 128.7,65.7 130.5,65.7 130.5,41 140.6,41 140.6,39.6 118.7,39.6 	"/>
-      <polygon class="st0" points="152.4,64.3 152.4,52.8 168.8,52.8 168.8,51.4 152.4,51.4 152.4,41 169.8,41 169.8,39.6 150.6,39.6
-      150.6,65.7 170,65.7 170,64.3 	"/>
-    </g>
+	 viewBox="0 0 66 34" style="enable-background:new 0 0 66 34;" xml:space="preserve">
+      <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+          <g id="home" transform="translate(-140.000000, -15.000000)" fill="#3F3F3F">
+              <g id="header">
+                  <g id="Page-1" transform="translate(140.000000, 15.000000)">
+                      <polygon id="Fill-1" points="0 8.26842569 10.0518349 33.9059853 11.1644771 5.7596"></polygon>
+                      <polygon id="Fill-2" points="13.7158183 5.27651927 10.4047174 33.9431982 36.0790844 -3.11926606e-05"></polygon>
+                      <g id="Group-2" transform="translate(27.818182, 14.424242)">
+                          <polygon id="Fill-3" points="5.06661818 10.2992787 5.03573745 10.2992787 1.24738882 0.789260328 0.536196163 0.789260328 4.64926038 10.833609 5.43781084 10.833609 9.56615947 0.789260328 8.88584754 0.789260328"></polygon>
+                          <polygon id="Fill-4" points="13.4163319 10.8337025 14.0966439 10.8337025 14.0966439 0.789041979 13.4163319 0.789041979"></polygon>
+                          <polygon id="Fill-5" points="17.9468475 1.32393372 21.8278384 1.32393372 21.8278384 10.8336401 22.5081503 10.8336401 22.5081503 1.32393372 26.4047374 1.32393372 26.4047374 0.789291521 17.9468475 0.789291521"></polygon>
+                          <polygon id="Fill-6" points="30.2547228 0.789260328 30.2547228 10.833609 37.7540622 10.833609 37.7540622 10.2992787 30.9350347 10.2992787 30.9350347 5.88177409 37.274631 5.88177409 37.274631 5.34713189 30.9350347 5.34713189 30.9350347 1.32421446 37.6767044 1.32421446 37.6767044 0.789260328"></polygon>
+                      </g>
+                  </g>
+              </g>
+          </g>
+      </g>
   </svg>
 </template>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   svg {
-    width: 170px;
-    height: 88px;
+    width: 66px;
+    height: 34px;
   }
 </style>

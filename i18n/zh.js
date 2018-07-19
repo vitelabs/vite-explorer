@@ -1,5 +1,5 @@
 module.exports = {
-  lang: "中文",
+  lang: "ZH",
 
   // components/Home
   profile: {
@@ -250,9 +250,9 @@ module.exports = {
 
   // Head titles of all pages
   head: {
-    home: "首页",
-    blockList: "所有区块",
-    transTitle: "所有交易",
+    home: "Vite区块链浏览器",
+    blockList: "Vite区块",
+    transTitle: "Vite交易信息",
     sError: "搜索无结果",
     tTitle: "代币详情",
     transDetail: "交易详情",

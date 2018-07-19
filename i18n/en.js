@@ -253,9 +253,9 @@ module.exports = {
 
   // Head titles of all pages
   head: {
-    home: "Home",
-    blockList: "All Blocks",
-    transTitle: "All Transactions",
+    home: "Vite BlockChain Explorer",
+    blockList: "Vite Blocks",
+    transTitle: "Vite Transactions Information",
     sError: "Nothing Found",
     tTitle: "Token Detail",
     transDetail: "Transaction Detail",

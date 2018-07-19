@@ -12,17 +12,9 @@ body {
   transition: color 0.4s ease-in-out;
 }
 
-// headroom
-.headroom {
-
+a:hover{
+  cursor: pointer;
 }
-.headroom.headroom--pinned {
-  transform: translateY(0);
-}
-.headroom.headroom--unpinned {
-  transform: translateY(-100%);
-}
-
 // input
 
 .input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
