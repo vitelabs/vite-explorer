@@ -2,7 +2,8 @@
   <div class="token-container">
     <trans-list v-if="!error"
         :transactions="transactionList"
-        :total="totalNumber">
+        :total="totalNumber"
+        :page-size="pageSize">
     </trans-list>
     <error v-else :error="error"></error>
   </div>
@@ -13,7 +14,7 @@
   import transList from "~/components/transList.vue";
   import transaction from "~/services/transaction";
 
-  const pageSize = 10;
+  const pageSize = 50;
 
   export default {
     head() {
@@ -25,7 +26,7 @@
       error, transList
     },
     async asyncData() {
-      const pageIndex = 0;
+      let pageIndex = 0;
       try {
         let { transactionList, totalNumber} = await transaction.getList({
           pageIndex, pageSize
@@ -33,7 +34,8 @@
         return {
           pageIndex,
           transactionList,
-          totalNumber
+          totalNumber,
+          pageSize
         };
       } catch(err) {
         return {
@@ -45,7 +47,8 @@
       return {
         error: "",
         transactionList: [],
-        totalNumber: 0
+        totalNumber: 0,
+        pageSize: 0
       };
     }
   };

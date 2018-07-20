@@ -82,7 +82,6 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import "assets/css/vars.scss";
-
   .el-menu--horizontal {
     border-bottom: none;
   }
@@ -147,6 +146,7 @@
     }
   }
   .content-wrapper {
+    min-height: 780px;
     background-color: #fafcff;
     padding: 30px 0;
     .content {

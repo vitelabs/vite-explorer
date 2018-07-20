@@ -1,6 +1,6 @@
 <template>
   <div class="search-container">
-    <input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr" @keyup.enter.native="search" />
+    <input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr" @keyup.enter="search" />
     <span class="img-wrapper" @click="search">
       <img src="~assets/images/search.svg"/>
     </span>

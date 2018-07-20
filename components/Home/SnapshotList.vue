@@ -21,7 +21,7 @@
           </el-col>
           <el-col :span="12">
             <div>{{ $t('snapshotList.node')}} {{ item.producer }}</div>
-            <div>{{ $t('snapshotList.pack')}} {{ item.accountNum }} {{ $t('snapshotList.account') }} {{ $t('snapshotList.cost') }} -- {{ $t('snapshotList.sec') }}</div>
+            <div>{{ $t('snapshotList.pack')}} {{ item.accountNum }} {{ $t('snapshotList.account') }}</div>
           </el-col>
         </el-row>
       </div>

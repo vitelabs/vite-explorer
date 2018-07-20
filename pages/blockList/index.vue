@@ -5,7 +5,7 @@
         :title="title"
         :tableTitles="blockTitles"
         :tableData="showBlockList"
-        :total="100"
+        :total="totalNumber"
         :currentChange="pageChange">
     </page-table>
     <error v-else :error="error"></error>
@@ -55,7 +55,7 @@
     },
     computed: {
       title() {
-        return this.$t("blkList.title.total") + this.totalNumber + this.$t("blkList.title.recentTotalFirst") + 100 + this.$t("blkList.title.recentTotalEnd");
+        return this.$t("blkList.title.total") + this.totalNumber;
       },
       showBlockList() {
         let list = [];
@@ -68,7 +68,7 @@
             amount: `${block.amount}Vite`,
             accountNum: block.accountNum,
             producer: block.producer,
-            timestamp: block.timestamp
+            age: block.age
           });
         });
         return list;

@@ -42,6 +42,10 @@
         default: () => {
           return [];
         }
+      },
+      pageSize: {
+        type: Number,
+        default: 50
       }
     },
     components: {
@@ -56,8 +60,7 @@
         transactionList: this.transactions,
         pageIndex: 0,
         loading: false,
-        totalNumber: 0,
-        pageSize: 10
+        totalNumber: 0
       };
     },
     computed: {
@@ -83,7 +86,7 @@
           let toAddr = transaction.fromHash ? transaction.accountAddress : transaction.to;
           list.push({
             hash: `<a href="${lang}/transaction/${transaction.hash}" target="_blank">${transaction.hash}</a>`,
-            timestamp: `<a href="${lang}/block/${transaction.timestamp}" target="_blank">${transaction.timestamp}</a>`,
+            timestamp: `${transaction.timestamp}`,
             snapshotTimestamp: `<a href="${lang}/block/${transaction.snapshotTimestamp}" target="_blank">${transaction.snapshotTimestamp}</a>`,
             to: `<a href="${lang}/account/${toAddr}" target="_blank">${toAddr}</a>`,
             from: `<a href="${lang}/account/${fromAddr}" target="_blank">${fromAddr}</a>`,
@@ -116,14 +119,11 @@
         return true;
       },
       fetchList(currentIndex = 1) {
-        const pageSize = 10;
-
         this.loading = true;
         this.pageIndex = currentIndex;
-        this.pageSize = pageSize ;
         transaction.getList({
           pageIndex: currentIndex -1,
-          pageSize
+          pageSize: this.pageSize
         }).then(({ transactionList, totalNumber }) => {
           this.loading = false;
           this.transactionList = transactionList;

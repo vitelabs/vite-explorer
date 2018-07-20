@@ -75,7 +75,7 @@ export default () => {
           accountNum,
           hash: block.hash,
           amount: block.amount,
-          timestamp: Date.now() / 1000 - block.timestamp
+          age: Date.now() / 1000 - block.timestamp
         });
       });
       rawBlockList = [];
@@ -116,7 +116,8 @@ export default () => {
         producer: block.producer, 
         hash: block.hash,
         amount: block.amount,
-        timestamp: block.timestamp
+        timestamp: block.timestamp,
+        age: Date.now() / 1000  - block.timestamp
       }
 
       body.data = block;

@@ -8,7 +8,7 @@ module.exports = {
       {name: "viewport", content: "width=device-width, initial-scale=1"},
     ],
     link: [
-      {rel: "icon", type: "image/x-icon", href: "/favicon.ico"}
+      {rel: "icon", type: "image/x-icon", href: "https://vite.org/icon.png"}
     ]
   },
   loading: {color: "#7FB2FE"},

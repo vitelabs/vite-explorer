@@ -1,7 +1,7 @@
 <template>
   <div class="account-container">
     <detail-layout
-        :title="`${title}: ${showTransactionDetail.hash}`"
+        :title="`${title}`"
         :list="list">
     </detail-layout >
   </div>
@@ -78,7 +78,6 @@
           };
           switch(key) {
           case "snapshotBlockHash":
-          case "timestamp":
             item.link = `${lang}/block/${this.showTransactionDetail.snapshotBlockHash}`;
             break;
           case "from":

@@ -143,7 +143,8 @@ module.exports = {
   },
   blockDetailMap: {
     height: "Snapshot Block Height",
-    timestamp: "Snapshot Block Age",
+    age: "Snapshot Block Age",
+    timestamp: "Snapshot Block Time",
     accountNum: "Number of Account",
     hash: "Snapshot Block Hash",
     producer: "Packing Node",
@@ -155,17 +156,16 @@ module.exports = {
   blkList: {
     title: {
       total: "Total Blocks ",
-      recentTotalFirst: "，（Only shows ",
-      recentTotalEnd: " data in recent）"
+      // recentTotalFirst: "，（Only shows ",
+      // recentTotalEnd: " data in recent）"
     } 
   },
   blockTitles: [{
     prop: "height",
     name: "Snapshot Height",
   }, {
-    prop: "timestamp",
+    prop: "age",
     name: "Snapshot Age",
-
   }, {
     prop: "accountNum",
     name: "Packing Accounts",

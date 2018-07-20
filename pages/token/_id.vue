@@ -14,9 +14,9 @@
           </trans-list>
         </el-tab-pane>
 
-        <el-tab-pane class="tab-pane" :label="$t('token.aLabel')" name="accountList">
+        <!-- <el-tab-pane class="tab-pane" :label="$t('token.aLabel')" name="accountList">
           <account-list></account-list>
-        </el-tab-pane>
+        </el-tab-pane> -->
       </el-tabs>
     </div>
     <error v-else :error="error"></error>

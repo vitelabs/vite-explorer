@@ -140,7 +140,8 @@ module.exports = {
   },
   blockDetailMap: {
     height: "快照块高度",
-    timestamp: "快照块年龄",
+    age: "快照块年龄",
+    timestamp: "出块时间",
     accountNum: "打包账户数",
     hash: "快照块Hash",
     producer: "打包节点",
@@ -151,18 +152,17 @@ module.exports = {
   // pages/blockList
   blkList: {
     title: {
-      total: "总区块量 ",
-      recentTotalFirst: "，（仅展示最近的 ",
-      recentTotalEnd: " 条数据）"
+      total: "总快照块量 ",
+      // recentTotalFirst: "，（仅展示最近的 ",
+      // recentTotalEnd: " 条数据）"
     } 
   },
   blockTitles: [{
     prop: "height",
     name: "快照块高度",
   }, {
-    prop: "timestamp",
+    prop: "age",
     name: "快照块年龄",
-
   }, {
     prop: "accountNum",
     name: "打包账户数",

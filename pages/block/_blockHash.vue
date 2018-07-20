@@ -1,7 +1,7 @@
 <template>
   <div class="block-container">
     <detail-layout v-if="!error"
-        :title="`${title}: ${showBlockDetail.hash}`"
+        :title="`${title}`"
         :list="list"
         :error="error">
     </detail-layout>
@@ -50,6 +50,7 @@
           accountNum: this.blockDetail.accountNum || 0,
           producer: this.blockDetail.producer || "",
           amount: this.blockDetail.amount ? `${this.blockDetail.amount}Vite` : "",
+          age: this.blockDetail.age,
           timestamp: this.blockDetail.timestamp
         };
       },

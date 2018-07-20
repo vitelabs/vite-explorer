@@ -2,7 +2,7 @@
   <div class="account-container">
     <div v-if="!error">
       <detail-layout
-        :title="`${title}: ${accountDetail.accountAddress}`"
+        :title="`${title}`"
         :list="accountList"
         :clickLab="clickLab">
       </detail-layout>

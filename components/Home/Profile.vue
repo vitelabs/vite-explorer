@@ -4,31 +4,31 @@
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
           <div>{{ $t('profile.market') }}</div>
-          <div>{{ generalDetail && generalDetail.ffmCap || '--' }}</div>
+          <div>{{ generalDetail && Number(generalDetail.ffmCap) || noData }}</div>
         </el-col>
         <el-col :span="12">
           <div>{{ $t('profile.tps') }}</div>
-          <div>{{ generalDetail && generalDetail.sysTps || '--' }}</div>
+          <div>{{ generalDetail && Number(generalDetail.sysTps) || noData }}</div>
         </el-col>
       </el-row>
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
           <div>{{ $t('profile.price') }}</div>
-          <div>{{ generalDetail && generalDetail.cirPrice || '--' }}</div>
+          <div>{{ generalDetail && Number(generalDetail.cirPrice) || noData }}</div>
         </el-col>
         <el-col :span="12">
           <div>{{ $t('profile.totalTrans') }}</div>
-          <div>{{ generalDetail && generalDetail.txTotalTAmount || '--' }}</div>
+          <div>{{ generalDetail && Number(generalDetail.txTotalTAmount) || noData }}</div>
         </el-col>
       </el-row>
       <el-row :gutter="20" class="profile-row">
         <el-col :span="12">
           <div>{{ $t('profile.latestHeight') }}</div>
-          <div>{{ generalDetail && generalDetail.chainHeight || '--' }}</div>
+          <div>{{ generalDetail && Number(generalDetail.chainHeight) || noData }}</div>
         </el-col>
         <el-col :span="12">
           <div>{{ $t('profile.nearMonth') }}</div>
-          <div>{{ generalDetail && generalDetail.txMonAmount || '--' }}</div>
+          <div>{{ generalDetail && Number(generalDetail.txMonAmount) || noData }}</div>
         </el-col>
       </el-row>
     </div>
@@ -42,6 +42,11 @@
         type: Object,
         default: {}
       }
+    },
+    data() {
+      return {
+        noData: "暂无数据"
+      };
     }
   };
 </script>
