@@ -1,0 +1,15 @@
+{
+  "apps" : [{
+    "name"        : "fe",
+    "instances"   : 2,
+    "script"      : "build/main.js",
+    "log_date_format"  : "YYYY-MM-DD HH:mm Z",
+    "watch"       : true,
+    "node_args"   : "--harmony",
+    "cwd"         : "/var/www/vite.net",
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": "8080"
+    }
+  }]
+}
