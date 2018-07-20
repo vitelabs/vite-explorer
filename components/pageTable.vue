@@ -106,7 +106,7 @@
     padding-top: 0;
   }
   .pagination {
-    float: right;
+    text-align: right;
     padding: 20px;
   }
 </style>

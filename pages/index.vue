@@ -96,7 +96,6 @@
         background-image: url("../assets/images/bg.png");
         background-size:470px 313px;
         background-repeat:no-repeat;
-        // background-image: linear-gradient(138deg, #00E0F2 0%, #0BB6EB 31%, #0B92E7 49%,  #176CE0 71%, #1B3BD8 100%);
         border-radius: 2px;
       }
       .line-chart {
@@ -114,21 +113,23 @@
       justify-content: space-between;
       .snapshot {
         width: 470px;
-        height: 460px;
+        height: 456px;
         background: #FFFFFF;
         border: 1px solid #E5EDF3;
         box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
         border-radius: 4px 4px 0 0;
         overflow: scroll;
+        border-bottom: 4px solid #005CC7;
       }
       .transaction {
         width: 660px;
-        height: 460px;
+        height: 456px;
         background: #FFFFFF;
         border: 1px solid #E5EDF3;
         box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
         border-radius: 4px 4px 0 0;
         overflow: scroll;
+        border-bottom: 4px solid #005CC7;
       }
     }
     

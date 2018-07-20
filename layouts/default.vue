@@ -1,30 +1,31 @@
  <template>
   <div class="default-container headroom">
     <div class="home-nav">
-      <nuxt-link :to="localePath('index')">
-        <logo-without-words></logo-without-words>
-      </nuxt-link>
-      <div class="nav-content">
-        <div class="navbar-menu">
-          <el-menu :default-active="defaultActive" mode="horizontal" background-color="#ffffff" text-color="#000000"
-            active-text-color="#005CC7">
-            <el-menu-item :key="index" :index="item" v-for="(item, index) in navs" class="text-hover-transition">
-              <nuxt-link :to="localePath(item)" class="nav-item">
-              {{$t(`nav.${item}`)}}
-              </nuxt-link>
-            </el-menu-item>
-          </el-menu>
+      <div class="home-nav-content">
+        <nuxt-link :to="localePath('index')">
+        <logo-without-words class="logo"></logo-without-words>
+        </nuxt-link>
+        <div class="nav-content">
+          <div class="navbar-menu">
+            <el-menu :default-active="defaultActive" mode="horizontal" background-color="#ffffff" text-color="#000000"
+              active-text-color="#005CC7">
+              <el-menu-item :key="index" :index="item" v-for="(item, index) in navs" class="text-hover-transition">
+                <nuxt-link :to="localePath(item)" class="nav-item">
+                {{$t(`nav.${item}`)}}
+                </nuxt-link>
+              </el-menu-item>
+            </el-menu>
+          </div>
         </div>
-      </div>
-      <div class="search-wrapper">
-        <lang-select class="lang-select"></lang-select>
-        <search class="search"></search>
+        <div class="search-wrapper">
+          <lang-select class="lang-select"></lang-select>
+          <search class="search"></search>
+        </div>
       </div>
     </div>
     <div class="content-wrapper">
       <nuxt class="content"/>
     </div>
-
     <vite-footer></vite-footer>
   </div>
 </template>
@@ -91,12 +92,20 @@
     left: 0;
     top: 0;
     z-index: 0;
-    padding: 15px 143px 10px 140px;  // phone and pad and pc
     background: #FFFFFF;
     box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
+    .home-nav-content {
+      width: 1160px; // phone and pad and pc
+      margin: auto;
+      position: relative;
+      height: 64px;
+      .logo {
+        height: 64px;
+      }
+    }
     .nav-content {
       position: absolute;
-      left: 250px;
+      left: 100px;
       top: 0px;
       .navbar-menu {
         .nav-item {
@@ -120,7 +129,7 @@
   .search-wrapper {
     position: absolute;
     top: 0;
-    right: 143px;
+    right: 0;
     height: 64px;
     line-height: 64px;
     box-sizing: border-box;
