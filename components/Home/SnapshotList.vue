@@ -11,19 +11,17 @@
 
     <div class="snapshot-list">
       <div class="snapshot-item" v-for="(item, index) in list" :key="index">
-        <el-row :gutter="20">
-          <el-col :span="12" class="snapshot-item-left">
-            <div>
-              {{ $t('snapshotList.height') }} 
-              <nuxt-link :to="`${locales}/block/${item.hash}`" target="_blank">{{ item.height }}</nuxt-link>
-            </div>
-            <div>> {{ item.timestamp }} {{ $t('snapshotList.secAgo') }}</div>
-          </el-col>
-          <el-col :span="12">
-            <div>{{ $t('snapshotList.node')}} {{ item.producer }}</div>
-            <div>{{ $t('snapshotList.pack')}} {{ item.accountNum }} {{ $t('snapshotList.account') }}</div>
-          </el-col>
-        </el-row>
+        <div class="snapshot-item-left">
+          <div class="height">
+            <span>{{ $t('snapshotList.height') }}:</span>
+            <nuxt-link :to="`${locales}/block/${item.hash}`" target="_blank" class="height-value">{{ item.height }}</nuxt-link>
+          </div>
+          <div class="timestamp">> {{ item.timestamp }} {{ $t('snapshotList.secAgo') }}</div>
+        </div>
+        <div class="snapshot-item-right">
+          <div class="producer">{{ $t('snapshotList.node')}}： {{ item.producer }}</div>
+          <div class="pack">{{ $t('snapshotList.pack')}} {{ item.accountNum }} {{ $t('snapshotList.account') }}</div>
+        </div>
       </div>
     </div>
   </div>
@@ -66,14 +64,79 @@
 .snapshot-list {
   overflow: scroll;
   box-sizing: border-box;
-  padding: 10px;
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #5E6875;
+  letter-spacing: 0;
   .snapshot-item {
-    line-height: 40px;
+    height: 72px;
     border-bottom: 1px solid $border-color;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 8px 32px 7px 32px ;
+    
+    display: flex;
+    display: -webkit-flex;
+    &:last-child
+    { 
+      border-bottom: none;
+    }
     .snapshot-item-left {
-      background: #f0f0f0;
+      width: 177px;
+      height: 57px;
+      background: rgba(88,145,255,0.13);
+      box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
+      border-radius: 2px;
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 6px 16px 6px 16px;
+      .timestamp {
+        margin-top: 25px;
+        font-family: PingFangSC-Regular;
+        font-size: 12px;
+        color: #5E6875;
+        letter-spacing: 0;
+        text-align: right;
+        line-height: 16px; 
+      }
+      
+      .height {
+        width: 64px;
+        height: 45px;
+        span {
+          font-family: PingFangSC-Regular;
+          font-size: 12px;
+          color: #8D9BAE;
+          letter-spacing: 0;
+        }
+        .height-value {
+          display: inline-block;
+          font-family: PingFangSC-Semibold;
+          font-size: 20px;
+          color: #185BDD;
+          letter-spacing: 0;
+          line-height: 25px;
+        }
+      }
+    }
+    .snapshot-item-right {
+      letter-spacing: 0.35px;
+      color: #5E6875;
+      margin-left: 32px;
+      .producer {
+        margin-top: 8px;
+        width: 200px;
+        overflow-x: hidden;
+        text-overflow:ellipsis;
+        white-space: nowrap;
+        font-family: PingFangSC-Regular;
+        line-height: 20px;
+      }
+      .pack {
+        margin-top: 3px; 
+        font-family: PingFangSC-Semibold;
+      }
     }
   }
 }

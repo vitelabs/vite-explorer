@@ -17,8 +17,8 @@ module.exports = {
   },
   snapshotList: {
     title: "Snapshot List",
-    height: "Snapshot Block Height: ",
-    node: "Block generation node: ",
+    height: "Height",
+    node: "Generation node",
     pack: "Packed ",
     account: " account(s)",
     cost: "Cost ",
@@ -72,7 +72,7 @@ module.exports = {
     placeholder: "Search by Block / Transaction / Account / Token"
   },
   utils: {
-    more: "more"
+    noData: "no data"
   },
 
 

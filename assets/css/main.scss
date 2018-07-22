@@ -15,6 +15,9 @@ body {
 a:hover{
   cursor: pointer;
 }
+a {
+  text-decoration: none;
+}
 // input
 
 .input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {

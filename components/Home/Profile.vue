@@ -1,36 +1,48 @@
 <template>
   <div>
     <div class="vite-profile">
-      <el-row :gutter="20" class="profile-row">
-        <el-col :span="12">
-          <div>{{ $t('profile.market') }}</div>
-          <div>{{ generalDetail && Number(generalDetail.ffmCap) || noData }}</div>
-        </el-col>
-        <el-col :span="12">
-          <div>{{ $t('profile.tps') }}</div>
-          <div>{{ generalDetail && Number(generalDetail.sysTps) || noData }}</div>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20" class="profile-row">
-        <el-col :span="12">
-          <div>{{ $t('profile.price') }}</div>
-          <div>{{ generalDetail && Number(generalDetail.cirPrice) || noData }}</div>
-        </el-col>
-        <el-col :span="12">
-          <div>{{ $t('profile.totalTrans') }}</div>
-          <div>{{ generalDetail && Number(generalDetail.txTotalTAmount) || noData }}</div>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20" class="profile-row">
-        <el-col :span="12">
-          <div>{{ $t('profile.latestHeight') }}</div>
-          <div>{{ generalDetail && Number(generalDetail.chainHeight) || noData }}</div>
-        </el-col>
-        <el-col :span="12">
-          <div>{{ $t('profile.nearMonth') }}</div>
-          <div>{{ generalDetail && Number(generalDetail.txMonAmount) || noData }}</div>
-        </el-col>
-      </el-row>
+      <div class="top">
+        <div class="title">{{ $t('profile.market') }}</div>
+        <div class="market"> 
+          <div v-if="generalDetail && Number(generalDetail.ffmCap)">
+            $
+            <span>{{ Number(generalDetail.ffmCap) }}</span>
+          </div>
+          <div v-else>
+            <span>{{ $t('utils.noData') }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="middle">
+        <div class="price">
+          <div class="title">{{ $t('profile.price') }}</div>
+          <div v-if="generalDetail && Number(generalDetail.cirPrice)">
+            $
+            <span>{{ Number(generalDetail.cirPrice) }}</span>
+          </div>
+          <div v-else>
+            <span>{{ $t('utils.noData') }}</span>
+          </div>
+        </div>
+        <div class="height">
+          <div class="title">{{ $t('profile.latestHeight') }}</div>
+          <div><span>{{ generalDetail && Number(generalDetail.chainHeight) || $t('utils.noData') }}</span></div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="tps common">
+          <div class="title">{{ $t('profile.tps') }}</div>
+          <div><span>{{ generalDetail && Number(generalDetail.sysTps) || $t('utils.noData')}}</span></div>
+        </div>
+        <div class="trans common ml40">
+          <div class="title">{{ $t('profile.totalTrans') }}</div>
+          <div><span>{{ generalDetail && Number(generalDetail.txTotalTAmount) || $t('utils.noData') }}</span></div>
+        </div>
+        <div class="near-month common ml40">
+          <div class="title">{{ $t('profile.nearMonth') }}</div>
+          <div><span>{{ generalDetail && Number(generalDetail.txMonAmount) || $t('utils.noData') }}</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -55,10 +67,77 @@
 @import "assets/css/vars.scss";
 
   .vite-profile {
-    width: 100%;
-    .profile-row {
-      margin: 0 0 30px 0;
-      padding: 20px;
+    padding: 25px 30px 33px 30px;
+    .title {
+      opacity: 0.7;
+      font-family: PingFangSC-Semibold;
+      font-size: 12px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      line-height: 16px;
+    }
+    .top {
+      .market {
+        margin-top: 5px; 
+        span {
+          font-family: HelveticaNeue-Medium;
+          font-size: 34px;
+          line-height: 36px;
+        }
+      }
+    }
+    .middle {
+      display: flex;
+      display: -webkit-flex;
+      margin-top: 24px;
+      justify-content: space-between;
+      .price {
+        margin-top: 15px;
+        span {
+          display: inline-block;
+          margin-top: 25px; 
+          font-size: 48px;
+          line-height: 23px;
+        }
+      }
+      .height {
+        width: 222px;
+        height: 99px;
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,255,255,0.33);
+        box-shadow: 4px 4px 12px 0 rgba(0,92,199,0.44);
+        box-sizing: border-box;
+        padding: 15px 16px 9px 15px;
+        span {
+          font-family: HelveticaNeue-Medium;
+          font-size: 48px;
+          letter-spacing: 0;
+        }
+      }
+    }
+    .bottom {
+      display: flex;
+      display: -webkit-flex;
+      margin-top: 28px;
+      text-align: center;
+      span {
+        display: inline-block;
+        margin-top: 10px;
+        width: 82px;
+        height: 22px;
+        background: rgba(102,165,255,0.42);
+        border-radius: 2px;
+      } 
+      .common {
+        width: 82px;
+        font-family: PingFangSC-Semibold;
+        font-size: 14px;
+        letter-spacing: 0;
+        line-height: 20px;
+      }
+      .ml40 {
+        margin-left: 40px; 
+      }
     }
   }
 </style>

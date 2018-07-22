@@ -136,12 +136,11 @@
       float: right;
     }
     .lang-select {
-      padding-left: 20px;
-      padding-right: 20px;
       float: right;
       &:hover {
         cursor: pointer;
         border-bottom: 2px solid $common-color;
+        color: $common-color;
       }
     }
   }

@@ -12,23 +12,24 @@
     <div class="transaction-list">
       <div class="transaction-item" v-for="(item, index) in list" :key="index">
         <div class="transaction-item-up">
-          <div>{{ $t('transactionList.hash') }} 
-            <nuxt-link :to="`${locales}/transaction/${item.hash}`" target="_blank">{{ item.hash }}</nuxt-link>
+          <div class="up">
+            <img src="~assets/images/Hush.svg"/>
+            <span>{{ $t('transactionList.hash') }}：</span>
+            <nuxt-link :to="`${locales}/transaction/${item.hash}`" target="_blank" class="hash">{{ item.hash }}</nuxt-link>
           </div>
           <div>{{ item.amount }} {{ item.tokenName }}</div>
         </div>  
         <div class="transaction-item-down">
-          <div>
-            <span>{{ $t('transactionList.to') }}:</span>
-            <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-if="item.fromHash"> {{ item.accountAddress }}</nuxt-link>
-            <nuxt-link :to="`${locales}/account/${item.to}`" target="_blank" class="label-width" v-else> {{ item.to }}</nuxt-link>
-          </div>
-          <div>
-            <span>{{ $t('transactionList.from') }}:</span>
+          <div class="down">
+            <div>{{ $t('transactionList.from') }}：</div>
             <nuxt-link :to="`${locales}/account/${item.from}`" target="_blank" class="label-width" v-if="item.fromHash"> {{ item.from }}</nuxt-link>
             <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-else> {{ item.accountAddress }}</nuxt-link>
           </div>
-          
+          <div class="down">
+            <div>{{ $t('transactionList.to') }}：</div>
+            <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-if="item.fromHash"> {{ item.accountAddress }}</nuxt-link>
+            <nuxt-link :to="`${locales}/account/${item.to}`" target="_blank" class="label-width" v-else> {{ item.to }}</nuxt-link>
+          </div>
         </div>
       </div>
     </div>
@@ -79,7 +80,7 @@
     height: 72px;
     border-bottom: 1px solid $border-color;
     box-sizing: border-box;
-    padding: 14px 32px 12px 54px ;
+    padding: 14px 32px 12px 32px ;
     &:last-child
     { 
       border-bottom: none;
@@ -88,8 +89,23 @@
       display: -webkit-flex;
       display: flex;
       justify-content: space-between;
+      .up {
+        display: -webkit-flex;
+        display: flex;
+        span {
+          margin-left: 8px;
+        }
+        .hash {
+          font-family: PingFangSC-Semibold;
+          color: #0C0000;
+          letter-spacing: 0;
+          line-height: 20px;
+          color: #185BDD ;
+        }
+      }
     }
     .transaction-item-down {
+      margin-left: 23px; 
       margin-top: 10px;
       display: -webkit-flex;
       display: flex;
@@ -97,10 +113,9 @@
       font-family: PingFangSC-Regular;
       font-size: 12px;
       letter-spacing: 0.26px;
-      span {
-        display: inline-block;
-        height: 16px;
-        width: 33px;
+      .down {
+        display: -webkit-flex;
+        display: flex;
       }
       .label-width {
         display: inline-block;

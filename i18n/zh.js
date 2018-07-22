@@ -16,8 +16,8 @@ module.exports = {
   },
   snapshotList: {
     title: "快照块列表",
-    height: "快照块高度：",
-    node: "出块节点：",
+    height: "快照块高度",
+    node: "出块节点",
     pack: "打包",
     account: "账户",
     cost: "耗时",
@@ -26,9 +26,9 @@ module.exports = {
   },
   transactionList: {
     title: "交易列表",
-    hash: "交易Hash",
-    from: "转入",
-    to: "转出",
+    hash: "交易 Hash",
+    from: "转出",
+    to: "转入",
   },
 
   // components/Token
@@ -69,7 +69,7 @@ module.exports = {
     placeholder: "支持搜索区块、交易、账户、代币"
   },
   utils: {
-    more: "更多"
+    noData: "暂无数据"
   },
 
 
