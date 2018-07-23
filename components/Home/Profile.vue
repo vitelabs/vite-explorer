@@ -21,12 +21,17 @@
             <span>{{ Number(generalDetail.cirPrice) }}</span>
           </div>
           <div v-else>
-            <span>{{ $t('utils.noData') }}</span>
+            <span class="noData">{{ $t('utils.noData') }}</span>
           </div>
         </div>
         <div class="height">
           <div class="title">{{ $t('profile.latestHeight') }}</div>
-          <div><span>{{ generalDetail && Number(generalDetail.chainHeight) || $t('utils.noData') }}</span></div>
+          <div v-if="generalDetail && Number(generalDetail.chainHeight)">
+            <span>{{ Number(generalDetail.chainHeight) }}</span>
+          </div>
+          <div v-else>
+            <span class="noData">{{ $t('utils.noData') }}</span>
+          </div>
         </div>
       </div>
       <div class="bottom">
@@ -57,7 +62,6 @@
     },
     data() {
       return {
-        noData: "暂无数据"
       };
     }
   };
@@ -65,7 +69,7 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
-
+  
   .vite-profile {
     padding: 25px 30px 33px 30px;
     .title {
@@ -98,6 +102,9 @@
           margin-top: 25px; 
           font-size: 48px;
           line-height: 23px;
+          &.noData {
+            font-size: 34px;
+          }
         }
       }
       .height {
@@ -112,6 +119,9 @@
           font-family: HelveticaNeue-Medium;
           font-size: 48px;
           letter-spacing: 0;
+          &.noData {
+            font-size: 40px;
+          }
         }
       }
     }

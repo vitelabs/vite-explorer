@@ -93,9 +93,8 @@
       .profile {
         width: 470px;
         height: 313px;
-        background-image: url("../assets/images/bg.png");
+        background-image: url("../assets/images/bg.svg");
         background-size:470px 313px;
-        background-repeat:no-repeat;
         border-radius: 2px;
       }
       .line-chart {

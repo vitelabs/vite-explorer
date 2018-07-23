@@ -8,9 +8,9 @@ module.exports = {
     market: "Market value of Vite",
     tps: "System TPS",
     price: "Current price of Vite",
-    totalTrans: "Total History Transaction",
+    totalTrans: "Transactions",
     latestHeight: "Latest block height",
-    nearMonth: " 30 day Transaction History",
+    nearMonth: "Transactions(30d)",
   },
   lineChart: {
     title: "Transaction Curve"
@@ -18,7 +18,7 @@ module.exports = {
   snapshotList: {
     title: "Snapshot List",
     height: "Height",
-    node: "Generation node",
+    node: "Snapshot node",
     pack: "Packed ",
     account: " account(s)",
     cost: "Cost ",
@@ -172,7 +172,7 @@ module.exports = {
 
   }, {
     prop: "producer",
-    name: "Generation Node",
+    name: "Snapshot Node",
 
   }, {
     prop: "hash",
