@@ -123,7 +123,7 @@ module.exports = {
   // pages/account
   account: {
     title: "账户详情",
-    accHash: "账户Hash",
+    accHash: "地址",
     accType: "账户持有代币种类",
     accToken: "账户持有代币",
     token: "代币",
@@ -144,7 +144,7 @@ module.exports = {
     timestamp: "出块时间",
     accountNum: "打包账户数",
     hash: "快照块Hash",
-    producer: "打包节点",
+    producer: "快照节点",
     amount: "锻造奖励"
   },
 
@@ -155,7 +155,7 @@ module.exports = {
       total: "总快照块量 ",
       // recentTotalFirst: "，（仅展示最近的 ",
       // recentTotalEnd: " 条数据）"
-    } 
+    }
   },
   blockTitles: [{
     prop: "height",
@@ -165,15 +165,15 @@ module.exports = {
     name: "快照块年龄",
   }, {
     prop: "accountNum",
-    name: "打包账户数",
+    name: "快照账户数",
 
   }, {
     prop: "producer",
-    name: "出块节点",
+    name: "快照节点",
 
   }, {
     prop: "hash",
-    name: "快照块Hash",
+    name: "Hash",
 
   }, {
     prop: "amount",
