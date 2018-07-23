@@ -16,7 +16,7 @@
             <span>{{ $t('snapshotList.height') }}:</span>
             <nuxt-link :to="`${locales}/block/${item.hash}`" target="_blank" class="height-value">{{ item.height }}</nuxt-link>
           </div>
-          <div class="timestamp">> {{ item.timestamp }} {{ $t('snapshotList.secAgo') }}</div>
+          <div class="timestamp">> {{ ageFilter.call(this, item.age) }}</div>
         </div>
         <div class="snapshot-item-right">
           <div class="producer">{{ $t('snapshotList.node')}}： {{ item.producer }}</div>
@@ -28,6 +28,7 @@
 
 </template>
 <script>
+  import moment from "moment";
 
   export default {
     components: {
@@ -40,8 +41,14 @@
     },
     data() {
       return {
-        locales: this.$i18n.locale === "en" ? "" : this.$i18n.locale
+        locales: this.$i18n.locale === "en" ? "" : this.$i18n.locale,
       };
+    },
+    methods: {
+      ageFilter(age) {
+        moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
+        return moment(age * 1000).fromNow();
+      }
     }
   };
 </script>

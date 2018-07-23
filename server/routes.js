@@ -1,4 +1,5 @@
 import Router from "koa-trie-router";
+import moment from "moment";
 import {get, post} from "../api/server.js";
 
 const router = new Router();
@@ -75,7 +76,7 @@ export default () => {
           accountNum,
           hash: block.hash,
           amount: block.amount,
-          age: Date.now() / 1000 - block.timestamp
+          age: block.timestamp
         });
       });
       rawBlockList = [];
@@ -117,7 +118,7 @@ export default () => {
         hash: block.hash,
         amount: block.amount,
         timestamp: block.timestamp,
-        age: Date.now() / 1000  - block.timestamp
+        age: block.timestamp
       }
 
       body.data = block;
@@ -151,7 +152,7 @@ export default () => {
         accountAddress: transaction.accountAddress,
         fromHash: transaction.fromHash,
         status: transaction.status,
-        timestamp: Date.now() / 1000 - transaction.timestamp,
+        timestamp: transaction.timestamp,
         confirmTimes: transaction.confirmTimes,
         snapshotTimestamp: transaction.snapshotTimestamp,
         tokenName: transaction.token && transaction.token.name,
@@ -192,7 +193,7 @@ export default () => {
           to: transaction.to,
           fromHash: transaction.fromHash,
           status: transaction.status,
-          timestamp: Date.now() / 1000 - transaction.timestamp,
+          timestamp: transaction.timestamp,
           confirmTimes: transaction.confirmTimes,
           snapshotTimestamp: transaction.snapshotTimestamp,
           tokenName: transaction.token && transaction.token.name || "",

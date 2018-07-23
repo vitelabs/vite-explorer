@@ -16,6 +16,7 @@
   import pageTable from "~/components/pageTable";
   import error from "~/components/error";
   import block from "~/services/block.js";
+  import moment from "moment";
 
   const pageSize = 10;
 
@@ -62,13 +63,15 @@
         this.blockList.forEach((block)=>{
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
+          moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
+          let timestamp = moment(block.age * 1000).fromNow();
           list.push({
             height: `<a href="${lang}/block/${block.hash}" target="_blank">${block.height}</a>`,
             hash: `<a href="${lang}/block/${block.hash}" target="_blank">${block.hash}</a>`,
             amount: `${block.amount}Vite`,
             accountNum: block.accountNum,
             producer: block.producer,
-            age: block.age
+            age: timestamp
           });
         });
         return list;

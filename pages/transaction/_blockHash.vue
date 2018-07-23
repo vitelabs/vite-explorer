@@ -11,6 +11,7 @@
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
   import transaction from "~/services/transaction.js";
+  import moment from "moment";
 
   export default {
     head() {
@@ -51,13 +52,15 @@
         let tokenName = this.transactionDetail.tokenName;
         let fromAddr = this.transactionDetail.fromHash ? this.transactionDetail.from : this.transactionDetail.accountAddress;
         let toAddr = this.transactionDetail.fromHash ? this.transactionDetail.accountAddress : this.transactionDetail.to;
+        moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
+        let timestamp = moment(this.transactionDetail.timestamp * 1000).fromNow();
         return {
           hash: this.transactionDetail.hash,
           type: this.transactionDetail.fromHash ? this.$t("transaction.receive") : this.$t("transaction.send"),
           status: ["unkown", "open", "closed"][this.transactionDetail.status],
           confirmTimes: this.transactionDetail.confirmTimes,
           snapshotBlockHash: this.transactionDetail.snapshotTimestamp,
-          timestamp: this.transactionDetail.timestamp,
+          timestamp,
           from: fromAddr,
           to: toAddr,
           tokenName: tokenName,

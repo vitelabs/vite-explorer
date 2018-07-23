@@ -13,6 +13,7 @@
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
   import block from "~/services/block.js";
+  import moment from "moment";
 
   export default {
     components: {
@@ -44,14 +45,16 @@
     },
     computed: {
       showBlockDetail() {
+        moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
+        let age = moment(this.blockDetail.age * 1000).fromNow();
         return {
           hash: this.blockDetail.hash || "",
           height: this.blockDetail.height || "",
           accountNum: this.blockDetail.accountNum || 0,
           producer: this.blockDetail.producer || "",
           amount: this.blockDetail.amount ? `${this.blockDetail.amount}Vite` : "",
-          age: this.blockDetail.age,
-          timestamp: this.blockDetail.timestamp
+          age,
+          timestamp: moment(this.blockDetail.timestamp * 1000).format("YYYY-MM-DD HH:mm:ss") 
         };
       },
       list() {

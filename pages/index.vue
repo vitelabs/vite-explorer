@@ -28,7 +28,7 @@
   import block from "~/services/block.js";
   import transaction from "~/services/transaction.js";
   import general from "~/services/general.js";
-  
+
   export default {
     components: {
       Profile,
