@@ -23,6 +23,10 @@ module.exports = {
     "~/assets/css/main.scss"
   ],
   modules: [
-    ["nuxt-i18n", i18nConfig]
+    ["nuxt-i18n", i18nConfig],
+    ["@nuxtjs/pwa", {
+      workbox: false,
+      manifest: false
+    }]
   ]
 };
