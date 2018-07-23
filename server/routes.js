@@ -1,5 +1,4 @@
 import Router from "koa-trie-router";
-import moment from "moment";
 import {get, post} from "../api/server.js";
 
 const router = new Router();
