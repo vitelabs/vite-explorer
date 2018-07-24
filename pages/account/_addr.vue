@@ -3,24 +3,19 @@
     <div v-if="!error">
       <detail-layout
         :title="`${title}`"
-        :list="accountList"
-        :clickLab="clickLab">
+        :list="accountList.concat(tokenDetailList)"
+        :clickLab="clickLab"
+        :is-token="true">
       </detail-layout>
 
-      <detail-layout v-if="subTitle"
-        :title="subTitle"
-        :list="tokenDetailList">
-      </detail-layout>
-
-      <el-tabs v-if="tokenList.length" class="tab-wrapper" v-model="activeTab" type="card">
-        <el-tab-pane class="tab-pane" :label="$t('transList.label')" name="transList">
-          <trans-list
-            :tokenId="activeToken.token ? activeToken.token.id : ''"
-            :accountAddress="accountDetail.accountAddress"
-            >
-          </trans-list>
-        </el-tab-pane>
-      </el-tabs>
+      <div class="tab-wrapper">
+        <div class="tab-content is-active">{{$t('transList.label')}}</div>
+      </div>
+      <trans-list
+        :tokenId="activeToken.token ? activeToken.token.id : ''"
+        :accountAddress="accountDetail.accountAddress"
+        >
+      </trans-list>
     </div>
     <error v-else :error="error"></error>
   </div>
@@ -126,7 +121,4 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .tab-wrapper {
-    margin-top: 20px;
-  }
 </style>

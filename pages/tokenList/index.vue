@@ -1,7 +1,6 @@
 <template>
   <div class="token-list-container">
     <div v-if="!error">
-      <page-header :title="title"></page-header>
       <page-table class="token-table" :pagination="false" :showOrder="true"
         :loading="loading"
         :title="tokenTableTitle"
@@ -76,7 +75,7 @@
     },
     computed: {
       tokenTableTitle() {
-        return this.$t("tokenList.cut1")+`${this.tokenList && this.tokenList.length || 0}`+ this.$t("tokenList.cut2");
+        return this.$t("tokenList.total")+`${this.tokenList && this.tokenList.length || 0}`;
       },
       tokenData() {
         let list = [];
@@ -94,7 +93,4 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .token-table {
-    padding-top: 20px;
-  }
 </style>

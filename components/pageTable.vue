@@ -1,9 +1,9 @@
 <template>
   <div class="page-table-container">
-    <div class="title" v-html="title"></div>
+    <div class="table-title" v-html="title"></div>
 
     <div class="table">
-      <el-table v-loading="loading" border :data="tableData" style="width: 100%">
+      <el-table v-loading="loading" stripe :data="tableData" style="width: 100%">
         <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTable.num')" width="50"></el-table-column>
           <el-table-column v-for="(tT, index) in tableTitles" :key="index"
             :label="tT.name" :width="tT.width || ''">
@@ -15,7 +15,7 @@
     </div>
 
     <div v-if="pagination" v-show="total" class="pagination">
-      <el-pagination layout="prev, pager, next" :prev-text="$t('pageTable.pre')" :next-text="$t('pageTable.next')"
+      <el-pagination layout="prev, pager, next"
         :background="true" @current-change="_currentChange"
         :page-size="pageSize" :current-page="currentInx"
         :total="total">

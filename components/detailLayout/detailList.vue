@@ -1,9 +1,9 @@
 <template>
-  <div class="detail-list-container">
+  <div :class="classObj">
     <div class="row" v-for="(item, index) in list" :key="index">
-      <span class="name">{{item.name}}</span>
+      <span class="name">{{item.name}}：</span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '----'}}</a>
-      <span v-if="!item.link && !item.list" class="describe">{{item.describe || '----'}}</span>
+      <span v-if="!item.link && !item.list">{{item.describe || '----'}}</span>
       <div v-if="item.list" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
             @click="_clickLab(lab, index)" :class="{
@@ -25,6 +25,18 @@
       clickLab: {
         type: Function,
         default: ()=>{}
+      },
+      isToken: {
+        type: Boolean,
+        default: false
+      }
+    },
+    computed: {
+      classObj() {
+        return {
+          "common-detail": true,
+          "token-detail": this.isToken
+        };
       }
     },
     data() {
@@ -42,25 +54,38 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .detail-list-container {
+
+@import "assets/css/vars.scss";
+  .common-detail {
     width: 100%;
-    padding-top: 20px;
+    border: 1px solid $common-background;
+    border-top: 2px solid $common-color;
+    border-radius: 2px; 
+    background-image: url("~assets/images/detail_bg.svg");
+    background-color: #fff; 
+    box-sizing: border-box;
+    height: 535px;
+    padding: 32px 0 0 32px;
+  }
+  .token-detail {
+    border: 1px solid $common-background;
+    border-bottom: 2px solid $common-color;
+    height: 352px;
   }
   .row {
     width: 100%;
-    height: 40px;
-    line-height: 40px;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    line-height: 22px;
+    margin-bottom: 16px;
+    color: #8D9BAE;
     .name {
-      // display: inline-block;
-      color: #333;
-      width: 10vw;
+      display: inline-block;
+      width: 144px;
+      color: #3F3F3F;
     }
     .describe-link {
-      color: #337ab7;
-    }
-    .describe {
-      color: #666;
-      margin-left: 30px;
+      color: $detail-color;
     }
     .lab-list {
       display: inline-block;

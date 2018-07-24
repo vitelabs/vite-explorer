@@ -1,7 +1,7 @@
 <template>
   <div class="detail-layout-container">
     <page-header :title="title"></page-header>
-    <detail-list :list="list" :clickLab="clickLab"></detail-list>
+    <detail-list :list="list" :clickLab="clickLab" :is-token="isToken"></detail-list>
   </div>
 </template>
 
@@ -25,6 +25,10 @@
       clickLab: {
         type: Function,
         default: ()=>{}
+      },
+      isToken: {
+        type: Boolean,
+        default: false
       }
     }
   };

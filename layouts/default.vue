@@ -145,7 +145,7 @@
     }
   }
   .content-wrapper {
-    min-height: 780px;
+    min-height: 753px;
     background-color: #fafcff;
     padding: 30px 0;
     .content {

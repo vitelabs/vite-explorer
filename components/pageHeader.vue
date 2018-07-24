@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header-container">{{title}}</div>
+  <div class="table-title">{{title}}</div>
 </template>
 
 <script>

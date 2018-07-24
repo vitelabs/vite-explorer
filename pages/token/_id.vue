@@ -3,21 +3,30 @@
     <div v-if="!error">
       <detail-layout
         :title="`${title}: ${tokenDetail.name}`"
-        :list="list">
+        :list="list"
+        :is-token="true">
       </detail-layout>
 
-      <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
+      <div class="tab-wrapper">
+        <div class="tab-content is-active">{{$t('token.tLabel')}}</div>
+      </div>
+      <trans-list 
+        :tokenTitle="false"
+        :tokenId="tokenDetail.id">
+      </trans-list>
+
+      <!-- <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
         <el-tab-pane class="tab-pane" :label="$t('token.tLabel')" name="transList">
           <trans-list 
             :tokenTitle="false"
             :tokenId="tokenDetail.id">
           </trans-list>
-        </el-tab-pane>
+        </el-tab-pane> -->
 
         <!-- <el-tab-pane class="tab-pane" :label="$t('token.aLabel')" name="accountList">
           <account-list></account-list>
         </el-tab-pane> -->
-      </el-tabs>
+      <!-- </el-tabs> -->
     </div>
     <error v-else :error="error"></error>
   </div>
@@ -90,10 +99,4 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .tab-wrapper {
-    padding-top: 20px;
-    .tab-pane {
-      margin-bottom: 0;
-    }
-  }
 </style>

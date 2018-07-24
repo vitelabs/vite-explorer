@@ -78,7 +78,7 @@ module.exports = {
 
   // components/transList.vue
   transList: {
-    title: "Total amount of transactions ",
+    title: "Total amount of transactions：",
     label: "Transaction List"
   },
   transTitles: [{
@@ -155,7 +155,7 @@ module.exports = {
   // pages/blockList
   blkList: {
     title: {
-      total: "Total Blocks ",
+      total: "Total Blocks：",
       // recentTotalFirst: "，（Only shows ",
       // recentTotalEnd: " data in recent）"
     } 
@@ -207,8 +207,7 @@ module.exports = {
   // pages/tokenList
   tokenList: {
     title: "Token List",
-    cut1: "",
-    cut2: " Tokens in total",
+    total: "总TOKEN种类：",
   },
   tokenTitles: [{
     prop: "icon",
