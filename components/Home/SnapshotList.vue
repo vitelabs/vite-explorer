@@ -19,7 +19,10 @@
           <div class="timestamp">> {{ ageFilter.call(this, item.age) }}</div>
         </div>
         <div class="snapshot-item-right">
-          <div class="producer">{{ $t('snapshotList.node')}}： {{ item.producer }}</div>
+          <div class="producer">
+            <span class="producer-text">{{ $t('snapshotList.node')}}：</span> 
+            <span class="producer-value">{{ item.producer }}</span>
+          </div>
           <div class="pack">{{ $t('snapshotList.pack')}} {{ item.accountNum }} {{ $t('snapshotList.account') }}</div>
         </div>
       </div>
@@ -76,7 +79,7 @@
   color: #5E6875;
   letter-spacing: 0;
   .snapshot-item {
-    height: 72px;
+    min-height: 72px;
     border-bottom: 1px solid $border-color;
     box-sizing: border-box;
     padding: 8px 32px 7px 32px ;
@@ -89,7 +92,7 @@
     }
     .snapshot-item-left {
       width: 177px;
-      height: 57px;
+      min-height: 57px;
       background: rgba(88,145,255,0.13);
       box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
       border-radius: 2px;
@@ -133,12 +136,19 @@
       margin-left: 32px;
       .producer {
         margin-top: 8px;
-        width: 200px;
-        overflow-x: hidden;
-        text-overflow:ellipsis;
-        white-space: nowrap;
         font-family: PingFangSC-Regular;
         line-height: 20px;
+        .producer-text {
+
+        }
+        .producer-value {
+          display: inline-block;
+          width: 100px;
+          overflow-x: hidden;
+          text-overflow:ellipsis;
+          white-space: nowrap;
+          vertical-align: middle;
+        }
       }
       .pack {
         margin-top: 3px; 

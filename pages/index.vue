@@ -131,6 +131,31 @@
         border-bottom: 4px solid #005CC7;
       }
     }
-    
+  }
+  /** iPad **/
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .page-home {
+      .ml30 {
+        margin-left: 20px;
+      }
+      .top {
+        .profile {
+          width: 294px;
+        }
+        .line-chart {
+          width: 414px;
+        }
+      }
+      .bottom {
+        .snapshot {
+          width: 294px;
+          height: 500px;
+        }
+        .transaction {
+          width: 414px;
+          height: 500px;
+        }
+      }
+    }
   }
 </style>

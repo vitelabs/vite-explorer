@@ -1,4 +1,5 @@
 <template>
+<nuxt-link :to="localePath('index')">
   <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 66 34" style="enable-background:new 0 0 66 34;" xml:space="preserve">
       <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -18,11 +19,18 @@
           </g>
       </g>
   </svg>
+</nuxt-link>
 </template>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   svg {
     width: 66px;
     height: 34px;
+    margin-top: 15px; 
   }
+  .nuxt-link-active{
+      display: inline-block;
+      width: 66px;
+      height: 64px;
+    }
 </style>

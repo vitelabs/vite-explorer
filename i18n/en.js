@@ -16,7 +16,7 @@ module.exports = {
     title: "Transaction Curve"
   },
   snapshotList: {
-    title: "Snapshot List",
+    title: "Snapshots",
     height: "Height",
     node: "Snapshot node",
     pack: "Packed ",
@@ -26,8 +26,8 @@ module.exports = {
     secAgo: " sec ago",
   },
   transactionList: {
-    title: "Transaction List",
-    hash: "Transaction Hash",
+    title: "Transactions",
+    hash: "TX#",
     from: "From",
     to: "To",
   },

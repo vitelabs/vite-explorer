@@ -74,7 +74,7 @@
     padding: 25px 30px 33px 30px;
     .title {
       opacity: 0.7;
-      font-family: PingFangSC-Semibold;
+      font-family: PingFangSC-Regular;
       font-size: 12px;
       color: #FFFFFF;
       letter-spacing: 0;
@@ -150,4 +150,74 @@
       }
     }
   }
+  
+  /** iPad **/
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .vite-profile {
+      padding: 25px 20px 21px 20px;
+      .title {
+        line-height: 14px;
+      }
+      .top {
+        .market {
+          span {
+            font-size: 32px;
+            line-height: 34px;
+          }
+        }
+      }
+      .middle {
+        justify-content: space-between;
+        .price {
+          margin-top: 15px;
+          span {
+            display: inline-block;
+            margin-top: 25px; 
+            font-size: 44px;
+            line-height: 19px;
+            &.noData {
+              font-size: 34px;
+            }
+          }
+        }
+        .height {
+          width: 152px;
+          height: 116px;
+          background: rgba(255,255,255,0.08);
+          border: 1px solid rgba(255,255,255,0.33);
+          box-shadow: 4px 4px 12px 0 rgba(0,92,199,0.44);
+          box-sizing: border-box;
+          padding: 15px 16px 9px 15px;
+          span {
+            font-size: 48px;
+            letter-spacing: 0;
+            &.noData {
+              font-size: 40px;
+            }
+          }
+        }
+
+      }
+      .bottom {
+        span {
+          display: inline-block;
+          margin-top: 10px;
+          width: 72px;
+          height: 22px;
+          background: rgba(102,165,255,0.42);
+          border-radius: 2px;
+        }
+        .title {
+          width: 75px;
+        } 
+        .common {
+          width: 72px;
+        }
+        .ml40 {
+          margin-left: 19px; 
+        }
+      }
+    }
+  }
+
 </style>

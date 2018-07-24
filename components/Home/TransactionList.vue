@@ -77,7 +77,7 @@
   color: #5E6875;
   letter-spacing: 0;
   .transaction-item {
-    height: 72px;
+    min-height: 72px;
     border-bottom: 1px solid $border-color;
     box-sizing: border-box;
     padding: 14px 32px 12px 32px ;
@@ -101,6 +101,10 @@
           letter-spacing: 0;
           line-height: 20px;
           color: #185BDD ;
+          width: 200px;
+          text-overflow:ellipsis;
+          white-space: nowrap;
+          overflow-x: hidden;
         }
       }
     }
@@ -110,6 +114,7 @@
       display: -webkit-flex;
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
       font-family: PingFangSC-Regular;
       font-size: 12px;
       letter-spacing: 0.26px;
@@ -129,4 +134,5 @@
     }
   }
 }
+
 </style>
