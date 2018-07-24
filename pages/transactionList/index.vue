@@ -3,7 +3,8 @@
     <trans-list v-if="!error"
         :transactions="transactionList"
         :total="totalNumber"
-        :page-size="pageSize">
+        :page-size="pageSize"
+        :title="title">
     </trans-list>
     <error v-else :error="error"></error>
   </div>
@@ -21,6 +22,11 @@
       return {
         title: this.$t("head.transTitle")
       };
+    },
+    computed: {
+      title() {
+        return this.$t("transList.title") + this.totalNumber;
+      },
     },
     components: {
       error, transList

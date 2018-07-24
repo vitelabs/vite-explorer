@@ -14,6 +14,8 @@
       <trans-list
         :tokenId="activeToken.token ? activeToken.token.id : ''"
         :accountAddress="accountDetail.accountAddress"
+        :sub-title="subTitle"
+        :page-size="6"
         >
       </trans-list>
     </div>
@@ -66,6 +68,9 @@
       };
     },
     computed: {
+      subTitle() {
+        return this.$t("transList.title");
+      },
       activeToken() {
         return this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
       },
@@ -88,9 +93,6 @@
           list: tokenNameList
         }];
       },
-      subTitle() {
-        return this.$t("account.token")+`: ${this.activeToken ? this.activeToken.token.name : ""}`;
-      },
       tokenDetailList() {
         let tokenDetail = this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
         if (!tokenDetail) {
@@ -102,13 +104,13 @@
           describe: tokenDetail.balance || 0
         }, {
           name: this.$t("account.bValue"),
-          describe: "----"
+          describe: "--"
         }, {
           name: this.$t("account.tNum"),
           describe: tokenDetail.token.transactionNumber
         }, {
           name: this.$t("account.allToken"),
-          describe: "----"
+          describe: "--"
         }];
       }
     },

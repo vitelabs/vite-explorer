@@ -35,7 +35,7 @@ module.exports = {
 
   // components/Token
   accList: {
-    title: "Total Accounts----, (Only shows ---- data in recent)",
+    title: "Total Accounts --, (Only shows -- data in recent)",
   },
   accTitles: [{
     prop: "accountAddress",
@@ -83,35 +83,43 @@ module.exports = {
   },
   transTitles: [{
     prop: "hash",
-    name: "Hash"
+    name: "Hash",
+    width: "160"
   }, {
     prop: "type",
-    name: "Type"
+    name: "Type",
   }, {
     prop: "status",
-    name: "Status"
+    name: "Status",
   }, {
     prop: "snapshotTimestamp",
-    name: "First Snapshot"
+    name: "First Snapshot",
+    width: "160"
   }, {
     prop: "timestamp",
-    name: "Timestamp"
+    name: "Timestamp",
+    width: "100"
   }, {
     prop: "confirmTimes",
-    name: "Confirmations"
+    name: "Confirmations",
+    width: "115"
   }, {
     prop: "from",
-    name: "From"
+    name: "From",
+    width: "160"
   }, {
     prop: "to",
-    name: "To"
+    name: "To",
+    width: "160"
   }],
   addedTitle: [{
     prop: "tokenName",
-    name: "Token"
+    name: "Token",
+    width: "70"
   }, {
     prop: "amount",
-    name: "Amount"
+    name: "Amount",
+    width: "75"
   }],
 
 
@@ -179,7 +187,7 @@ module.exports = {
     name: "Hash",
 
   }, {
-    prop: "amount",
+    prop: "price",
     name: "Forging Rewards",
   }],
 
@@ -227,6 +235,7 @@ module.exports = {
   }, {
     prop: "famc",
     name: "Circulation Market Value",
+    width: "190"
   }],
 
 

@@ -7,7 +7,8 @@
     :current-change="total ? fetchList : fetchTransList"
     :currentPage="pageIndex"
     :total="totalNumber"
-    :page-size="pageSize">
+    :page-size="pageSize"
+    :sub-title="subTitleCom">
   </page-table>
 </template>
 
@@ -47,6 +48,14 @@
       pageSize: {
         type: Number,
         default: 50
+      },
+      title: {
+        type: String,
+        default: ""
+      },
+      subTitle: {
+        type: String,
+        default: ""
       }
     },
     components: {
@@ -65,8 +74,12 @@
       };
     },
     computed: {
-      title() {
-        return this.$t("transList.title") + this.totalNumber;
+      subTitleCom() {
+        if (this.subTitle && this.totalNumber) {
+          return this.subTitle + this.totalNumber + "";
+        } else {
+          return "";
+        }
       },
       transactionsTitles() {
         let titles = this.$t("transTitles");

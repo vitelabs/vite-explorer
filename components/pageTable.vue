@@ -1,16 +1,18 @@
 <template>
   <div class="page-table-container">
-    <div class="table-title" v-html="title"></div>
-
+    <div class="table-title" v-html="title" v-if="title"></div>
+    <div class="sub-table-title" v-html="subTitle" v-if="subTitle"></div>
     <div class="table">
       <el-table v-loading="loading" stripe :data="tableData" style="width: 100%">
-        <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTable.num')" width="50"></el-table-column>
-          <el-table-column v-for="(tT, index) in tableTitles" :key="index"
-            :label="tT.name" :width="tT.width || ''">
-            <template slot-scope="scope">
-              <span v-html="scope.row[tT.prop] || '----'"></span>
-            </template>
-          </el-table-column>
+        <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTable.num')"></el-table-column>
+        <el-table-column v-for="(tT, index) in tableTitles" :key="index"
+          :label="tT.name" :width="tT.width || ''" :show-overflow-tooltip="true">
+          <template slot-scope="scope">
+            <span v-html="scope.row.amount || '--'" v-if="tT.prop === 'amount' && scope.row.amount < 0" style="color: #13D0A7;"></span>
+            <span v-html="scope.row.amount || '--'" v-if="tT.prop === 'amount' && scope.row.amount > 0" style="color: #FF3636;"></span>
+            <span v-html="scope.row[tT.prop] || '--'" v-if="tT.prop !== 'amount'"></span>
+          </template>
+        </el-table-column>
       </el-table>
     </div>
 
@@ -32,6 +34,10 @@
         default: false
       },
       title: {
+        type: String,
+        default: ""
+      },
+      subTitle: {
         type: String,
         default: ""
       },
@@ -74,7 +80,7 @@
     },
     data() {
       return {
-        currentInx: this.currentPage
+        currentInx: this.currentPage,
       };
     },
     watch: {
@@ -98,6 +104,22 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+  .table {
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #E5EDF3;
+    border-bottom: none;
+    box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
+    border-radius: 4px;
+    
+  }
+  .sub-table-title {
+    font-size: 12px;
+    color: #5E6875;
+    letter-spacing: 0;
+    line-height: 16px;
+    margin: 20px 0 28px 30px;
+  }
   .page-table-container {
     width: 100%;
   }

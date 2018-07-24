@@ -33,7 +33,7 @@ module.exports = {
 
   // components/Token
   accList: {
-    title: "总账户数----, (仅展示最近的----条数据)"
+    title: "总账户数 --, (仅展示最近的 --条数据)"
   },
   accTitles: [{
     prop: "accountAddress",
@@ -81,6 +81,7 @@ module.exports = {
   transTitles: [{
     prop: "hash",
     name: "交易Hash",
+    width: "160"
   }, {
     prop: "type",
     name: "交易类型",
@@ -90,25 +91,32 @@ module.exports = {
   }, {
     prop: "snapshotTimestamp",
     name: "首次快照块",
+    width: "160"
   }, {
     prop: "timestamp",
     name: "时间戳",
+    width: "100"
   }, {
     prop: "confirmTimes",
     name: "确认数",
+    width: "115"
   }, {
     prop: "from",
     name: "转出方",
+    width: "160"
   }, {
     prop: "to",
     name: "转入方",
+    width: "160"
   }],
   addedTitle: [{
     prop: "tokenName",
-    name: "代币"
+    name: "代币",
+    width: "70"
   }, {
     prop: "amount",
-    name: "金额"
+    name: "金额",
+    width: "75"
   }],
 
 
@@ -176,7 +184,7 @@ module.exports = {
     name: "Hash",
 
   }, {
-    prop: "amount",
+    prop: "price",
     name: "锻造奖励",
   }],
 
@@ -224,6 +232,7 @@ module.exports = {
   }, {
     prop: "famc",
     name: "流通市值",
+    width: "190"
   }],
 
 

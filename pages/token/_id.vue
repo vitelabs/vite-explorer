@@ -13,7 +13,8 @@
       <trans-list 
         :tokenTitle="false"
         :tokenId="tokenDetail.id"
-        :page-size="6">
+        :page-size="6"
+        :sub-title="subTitle">
       </trans-list>
 
       <!-- <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
@@ -76,6 +77,9 @@
       };
     },
     computed: {
+      subTitle() {
+        return this.$t("transList.title");
+      },
       showTokenDetail() {
         return {
           owner: this.tokenDetail.owner
@@ -88,7 +92,7 @@
           let lang;
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
-            describe: this.showTokenDetail[key] || "----",
+            describe: this.showTokenDetail[key] || "--",
             name: tokenDetailMap[key],
             link: key === "owner" ? `${lang}/account/${this.showTokenDetail[key]}` : ""
           });

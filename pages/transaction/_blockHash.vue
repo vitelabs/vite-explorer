@@ -77,7 +77,7 @@
         for(let key in transactionDetailMap) {
           let item = {
             name: transactionDetailMap[key],
-            describe: this.showTransactionDetail[key] || "----"
+            describe: this.showTransactionDetail[key] || "--"
           };
           switch(key) {
           case "snapshotBlockHash":

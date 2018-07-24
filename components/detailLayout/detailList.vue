@@ -2,8 +2,8 @@
   <div :class="classObj">
     <div class="row" v-for="(item, index) in list" :key="index">
       <span class="name">{{item.name}}：</span>
-      <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '----'}}</a>
-      <span v-if="!item.link && !item.list">{{item.describe || '----'}}</span>
+      <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
+      <span v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
       <div v-if="item.list" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
             @click="_clickLab(lab, index)" :class="{
@@ -81,7 +81,7 @@
     color: #8D9BAE;
     .name {
       display: inline-block;
-      width: 144px;
+      width: 200px;
       color: #3F3F3F;
     }
     .describe-link {

@@ -68,7 +68,7 @@
           list.push({
             height: `<a href="${lang}/block/${block.hash}" target="_blank">${block.height}</a>`,
             hash: `<a href="${lang}/block/${block.hash}" target="_blank">${block.hash}</a>`,
-            amount: `${block.amount}Vite`,
+            price: `${block.amount} Vite`,
             accountNum: block.accountNum,
             producer: block.producer,
             age: timestamp

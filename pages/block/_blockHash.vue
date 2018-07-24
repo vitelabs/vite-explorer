@@ -52,7 +52,7 @@
           height: this.blockDetail.height || "",
           accountNum: this.blockDetail.accountNum || 0,
           producer: this.blockDetail.producer || "",
-          amount: this.blockDetail.amount ? `${this.blockDetail.amount}Vite` : "",
+          amount: this.blockDetail.amount ? `${this.blockDetail.amount} Vite` : "",
           age,
           timestamp: moment(this.blockDetail.timestamp * 1000).format("YYYY-MM-DD HH:mm:ss") 
         };
@@ -63,7 +63,7 @@
         let list = [];
         for (let key in blockDetailMap) {
           list.push({
-            describe: this.showBlockDetail[key] || "----",
+            describe: this.showBlockDetail[key] || "--",
             name: blockDetailMap[key]
           });
         }
