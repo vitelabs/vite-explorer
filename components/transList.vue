@@ -137,9 +137,6 @@
       },
 
       fetchTransList(currentIndex = 1) {
-        const pageSize = 6;
-        this.pageSize = pageSize;
-
         this.loading = true;
         this.pageIndex = currentIndex;
         let tokenId = this.tokenId;
@@ -147,7 +144,7 @@
 
         transaction.getList({
           pageIndex: currentIndex -1,
-          pageSize
+          pageSize: this.pageSize
         }, accountAddress, tokenId).then(({ transactionList, totalNumber }) => {
           if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
             return;

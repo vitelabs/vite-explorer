@@ -12,7 +12,8 @@
       </div>
       <trans-list 
         :tokenTitle="false"
-        :tokenId="tokenDetail.id">
+        :tokenId="tokenDetail.id"
+        :page-size="6">
       </trans-list>
 
       <!-- <el-tabs class="tab-wrapper" v-model="activeTab" type="card">

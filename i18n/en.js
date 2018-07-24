@@ -10,7 +10,7 @@ module.exports = {
     price: "Current price of Vite",
     totalTrans: "Transactions",
     latestHeight: "Latest block height",
-    nearMonth: "Transactions (30d)",
+    nearMonth: "Transactions(30d)",
   },
   lineChart: {
     title: "Transaction Curve"
