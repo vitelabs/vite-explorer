@@ -10,7 +10,7 @@ module.exports = {
     price: "Current price of Vite",
     totalTrans: "Transactions",
     latestHeight: "Latest block height",
-    nearMonth: "Transactions(30d)",
+    nearMonth: "Transactions (30d)",
   },
   lineChart: {
     title: "Transaction Curve"
@@ -72,7 +72,7 @@ module.exports = {
     placeholder: "Search by Block / Transaction / Account / Token"
   },
   utils: {
-    noData: "no data"
+    noData: "No Data"
   },
 
 
@@ -83,10 +83,10 @@ module.exports = {
   },
   transTitles: [{
     prop: "hash",
-    name: "TxHash"
+    name: "Hash"
   }, {
     prop: "type",
-    name: "TxType"
+    name: "Type"
   }, {
     prop: "status",
     name: "Status"
@@ -126,7 +126,7 @@ module.exports = {
   // pages/account
   account: {
     title: "Account Detail",
-    accHash: "Account Hash",
+    accHash: "Address",
     accType: "Account Hold Token Types",
     accToken: "Account Hold Tokens",
     token: "Token",
@@ -147,7 +147,7 @@ module.exports = {
     timestamp: "Snapshot Block Time",
     accountNum: "Number of Account",
     hash: "Snapshot Block Hash",
-    producer: "Packing Node",
+    producer: "Snapshot Node",
     amount: "Forging Rewards"
   },
 
@@ -158,7 +158,7 @@ module.exports = {
       total: "Total Blocks：",
       // recentTotalFirst: "，（Only shows ",
       // recentTotalEnd: " data in recent）"
-    } 
+    }
   },
   blockTitles: [{
     prop: "height",
@@ -168,7 +168,7 @@ module.exports = {
     name: "Snapshot Age",
   }, {
     prop: "accountNum",
-    name: "Packing Accounts",
+    name: "Snapshot Accounts",
 
   }, {
     prop: "producer",
@@ -176,7 +176,7 @@ module.exports = {
 
   }, {
     prop: "hash",
-    name: "Snapshot Hash",
+    name: "Hash",
 
   }, {
     prop: "amount",

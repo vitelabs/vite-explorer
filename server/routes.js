@@ -10,7 +10,7 @@ export default () => {
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
-        msg: "server error"
+        msg: "Server Error"
       };
     } catch(err) {
       console.log(err.code);
@@ -23,12 +23,12 @@ export default () => {
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
-        msg: "server error"
+        msg: "Server Error"
       };
     } catch(err) {
       console.log(err);
       // console.log(err.code);
-    }  
+    }
   });
 
   router.get("/api/token/detail", async (ctx) => {
@@ -37,12 +37,12 @@ export default () => {
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
-        msg: "server error"
+        msg: "Server Error"
       };
     } catch(err) {
       console.log(err);
       // console.log(err.code);
-    }  
+    }
   });
 
   router.post("/api/block/list", async (ctx) => {
@@ -51,7 +51,7 @@ export default () => {
       ctx.type = "json";
       let body = result.data || {
         code: 5000,
-        msg: "server error"
+        msg: "Server Error"
       };
 
       if (body.code !== 0) {
@@ -61,7 +61,7 @@ export default () => {
 
       let rawBlockList = body.data.blockList || [];
       let blockList = [];
- 
+
       rawBlockList.forEach((block) => {
         let accountNum = 0;
         /* eslint-disable */
@@ -96,7 +96,7 @@ export default () => {
       ctx.type = "json";
       let body = result.data || {
         code: 5000,
-        msg: "server error"
+        msg: "Server Error"
       };
 
       if (body.code !== 0) {
@@ -113,7 +113,7 @@ export default () => {
       block = {
         height: block.height,
         accountNum,
-        producer: block.producer, 
+        producer: block.producer,
         hash: block.hash,
         amount: block.amount,
         timestamp: block.timestamp,
@@ -134,7 +134,7 @@ export default () => {
       ctx.type = "json";
       let body = result.data || {
         code: 5000,
-        msg: "server error"
+        msg: "Server Error"
       };
 
       if (body.code !== 0) {
@@ -174,7 +174,7 @@ export default () => {
       ctx.type = "json";
       let body = result.data || {
         code: 5000,
-        msg: "server error"
+        msg: "Server Error"
       };
 
       if (body.code !== 0) {
@@ -220,7 +220,7 @@ export default () => {
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
-        msg: "server error"
+        msg: "Server Error"
       };
     } catch(err) {
       console.log(err.code);
@@ -231,7 +231,7 @@ export default () => {
     try {
       let transactionDetail = await get("/accountchain/block", { blockHash: ctx.query.addr });
       let blockDetail = await get("/snapshotchain/block", { blockHash: ctx.query.addr });
-      let judgeString = 'null'; 
+      let judgeString = 'null';
       if (transactionDetail.data.code !== 0) {
         transactionDetail.data.data = null;
       }
@@ -259,7 +259,7 @@ export default () => {
     try {
       let nameResult = await get("/token/detail", { tokenName: ctx.query.str });
       let symbolResult= await get("/token/detail", { tokenSymbol: ctx.query.str });
-      
+
       let tokenNameList = [];
       let tokenSymbolList = [];
 
@@ -269,7 +269,7 @@ export default () => {
       if (symbolResult.data.code === 0) {
         tokenSymbolList = symbolResult.data.data.tokenList || [];
       }
-      
+
       let tokenList = tokenNameList.concat(tokenSymbolList) || [];
       if (tokenNameList.length === 1 && !tokenSymbolList.length) {
         tokenList = tokenNameList;
