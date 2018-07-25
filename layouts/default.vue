@@ -24,6 +24,11 @@
           </div>
           <lang-select class="lang-select"></lang-select>
           <search class="search"></search>
+          <div class="phone-search" @click="openSearch">
+            <div class="p-search">
+              <img src="~assets/images/search.svg"/>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -75,6 +80,9 @@
       closeMenu(val) {
         this.open = val;
       },
+      openSearch() {
+
+      },
       keepNavStatus() {
         if (this.$route.path === "/" || this.$route.path === `/${this.$i18n.locale}`) {
           this.defaultActive = "index";
@@ -107,6 +115,9 @@
     height: 64px;
     line-height: 64px;
     box-sizing: border-box;
+    .phone-search {
+      display: none;
+    }
     .search {
       float: right;
     }
@@ -133,6 +144,11 @@
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
       .content {
         width: 728px;
+      }
+    }
+    @media only screen and (min-width: 320px) and (max-width: 767px) {
+      .content {
+        width: 290px;
       }
     }
   }
@@ -203,6 +219,8 @@
     /** iPhone **/
     @media only screen and (min-width: 320px) and (max-width: 767px) {
       .home-nav-content {
+        box-sizing: border-box;
+        padding-left: 15px; 
         width: 320px;
         margin: auto;
       }
@@ -212,6 +230,19 @@
       .vertical-menu {
         display: block;
         float: right;
+      }
+      .search-wrapper {
+        .search {
+          display: none;
+        }
+        .phone-search {
+          display: block;
+          width: 44px;
+          text-align: center;
+          float: right;
+          line-height: 64px;
+          border-right: 1px solid #E5EDF3;
+        }
       }
     }
   }

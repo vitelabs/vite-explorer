@@ -61,14 +61,17 @@
 .menu-wrapper {
   width: 100%;
   height: 228px;
-  box-sizing: border-box;
-  background: #FFFFFF;
-  border: 1px solid #E5EDF3;
-  box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
+  
   position: absolute;
   z-index: 999;
   .menu-content {
-    margin-left: 20px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #E5EDF3;
+    box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
+    width: 768px;
+    margin: auto;
+    padding-left: 20px;
     .menu-item {
       box-sizing: border-box;
       height: 57px;
@@ -80,6 +83,17 @@
         font-size: 14px;
         color: #3F3F3F;
       }
+    }
+  }
+}
+
+/** iPhone **/
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .menu-wrapper {
+    .menu-content {
+      width: 320px;
+      margin: auto;
+      padding-left: 15px;
     }
   }
 }

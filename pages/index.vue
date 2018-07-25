@@ -1,18 +1,18 @@
 <template>
   <div class="page-home">
-    <div class="top mb30">
-      <div class="profile">
+    <div class="top">
+      <div class="profile mb30">
         <profile :general-detail="generalDetail"></profile>
       </div>
-      <div class="line-chart ml30">
+      <div class="line-chart ml30 mb30">
         <line-chart></line-chart>
       </div>
     </div>
-    <div class="bottom mb30">
-      <div class="snapshot">
+    <div class="bottom">
+      <div class="snapshot mb30">
         <snapshot-list :list="blockList"></snapshot-list>
       </div>
-      <div class="transaction ml30">
+      <div class="transaction ml30 mb30">
         <transaction-list :list="transactionList"></transaction-list>
       </div>
     </div>
@@ -90,6 +90,8 @@
       color: #FFFFFF;
       display: -webkit-flex; /* Safari */
       display: flex;
+      flex-wrap: wrap;
+      width: 1160px;
       .profile {
         width: 470px;
         height: 313px;
@@ -98,6 +100,7 @@
         border-radius: 2px;
       }
       .line-chart {
+        box-sizing: border-box;
         width: 660px;
         height: 313px;
         background: #FFFFFF;
@@ -109,10 +112,12 @@
     .bottom {
       display: -webkit-flex; /* Safari */
       display: flex;
-      justify-content: space-between;
+      width: 1160px;
+      flex-wrap: wrap;
       .snapshot {
         width: 470px;
         height: 456px;
+        box-sizing: border-box;
         background: #FFFFFF;
         border: 1px solid #E5EDF3;
         box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
@@ -122,6 +127,7 @@
       }
       .transaction {
         width: 660px;
+        box-sizing: border-box;
         height: 456px;
         background: #FFFFFF;
         border: 1px solid #E5EDF3;
@@ -135,10 +141,14 @@
   /** iPad **/
   @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .page-home {
+      .mb30 {
+        margin-bottom: 20px;
+      }
       .ml30 {
         margin-left: 20px;
       }
       .top {
+        width: 728px;
         .profile {
           width: 294px;
         }
@@ -147,6 +157,7 @@
         }
       }
       .bottom {
+        width: 728px;
         .snapshot {
           width: 294px;
           height: 500px;
@@ -154,6 +165,37 @@
         .transaction {
           width: 414px;
           height: 500px;
+        }
+      }
+    }
+  }
+  /** iPhone **/
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    .page-home {
+      .mb30 {
+        margin-bottom: 15px;
+      }
+      .ml30 {
+        margin-left: 0;
+      }
+      .top {
+        width: 290px;
+        .profile {
+          width: 290px;
+        }
+        .line-chart {
+          width: 290px;
+        }
+      }
+      .bottom {
+        width: 290px;
+        .snapshot {
+          width: 290px;
+          height: 492px;
+        }
+        .transaction {
+          width: 290px;
+          height: 492px;
         }
       }
     }

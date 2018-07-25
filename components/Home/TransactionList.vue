@@ -21,12 +21,12 @@
         </div>  
         <div class="transaction-item-down">
           <div class="down">
-            <div>{{ $t('transactionList.from') }}：</div>
+            <div class="label">{{ $t('transactionList.from') }}：</div>
             <nuxt-link :to="`${locales}/account/${item.from}`" target="_blank" class="label-width" v-if="item.fromHash"> {{ item.from }}</nuxt-link>
             <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-else> {{ item.accountAddress }}</nuxt-link>
           </div>
           <div class="down">
-            <div>{{ $t('transactionList.to') }}：</div>
+            <div class="label">{{ $t('transactionList.to') }}：</div>
             <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-if="item.fromHash"> {{ item.accountAddress }}</nuxt-link>
             <nuxt-link :to="`${locales}/account/${item.to}`" target="_blank" class="label-width" v-else> {{ item.to }}</nuxt-link>
           </div>
@@ -133,6 +133,35 @@
       }
     }
   }
+}
+
+/** iPhone **/
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .transaction-list {
+    .transaction-item {
+      padding: 14px 20px 16px 20px ;
+      .transaction-item-up {
+        .up {
+          .hash {
+            width: 100px;
+          }
+        }
+      }
+      .transaction-item-down {
+        margin-left: 22px; 
+        margin-top: 10px;
+        .down {
+          .label {
+            width: 37px;
+          }
+        }
+        .label-width {
+          width: 195px;
+        }
+      }
+    }
+  }
+
 }
 
 </style>
