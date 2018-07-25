@@ -100,7 +100,7 @@
       display: -webkit-flex;
       justify-content: space-between;
       box-sizing: border-box;
-      padding: 6px 16px 6px 16px;
+      padding: 6px 6px 6px 16px;
       .timestamp {
         margin-top: 25px;
         font-family: PingFangSC-Regular;

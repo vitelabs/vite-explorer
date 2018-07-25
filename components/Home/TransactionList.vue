@@ -81,6 +81,9 @@
     border-bottom: 1px solid $border-color;
     box-sizing: border-box;
     padding: 14px 32px 12px 32px ;
+    &:nth-child(even) {
+      background: #F6F9FE;
+    }
     &:last-child
     { 
       border-bottom: none;
