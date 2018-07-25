@@ -1,11 +1,12 @@
 <template>
   <div>
-    <ve-line :data="chartData" height="313px"></ve-line>
+    <ve-line :data="chartData" height="313px" :legend-visible="false" :data-empty="dataEmpty" :colors="['#185BDD']"></ve-line>
   </div>
 </template>
 
 <script>
   import VeLine from "v-charts/lib/line";
+  import "v-charts/lib/style.css";
 
   export default {
     components: {
@@ -16,6 +17,7 @@
     },
     data () {
       return {
+        dataEmpty: false,
         chartData: {
           columns: ["date", "PV"],
           rows: [
@@ -39,4 +41,5 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+
 </style>
