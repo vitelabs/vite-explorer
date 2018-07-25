@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/close</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon/close" fill="#3F3F3F">
+            <rect id="Rectangle" transform="translate(8.000000, 8.024621) rotate(45.000000) translate(-8.000000, -8.024621) " x="7" y="-1.47537877" width="2" height="19"></rect>
+            <rect id="Rectangle" transform="translate(8.000000, 8.024621) scale(1, -1) rotate(45.000000) translate(-8.000000, -8.024621) " x="7" y="-1.47537877" width="2" height="19"></rect>
+        </g>
+    </g>
+</svg>

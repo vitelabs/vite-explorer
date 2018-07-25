@@ -1,10 +1,18 @@
 <template>
-  <div class="search-container">
-    <input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr" @keyup.enter="search" />
-    <span class="img-wrapper" @click="search">
-      <img src="~assets/images/search.svg"/>
-    </span>
+  <div :class="classObj">
+    <div class="phone-close">
+      <span class="img-wrapper" @click="close">
+        <img src="~assets/images/close.svg"/>
+      </span>
+    </div>
+    <div class="search-container">
+      <input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr" @keyup.enter="search" />
+      <span class="img-wrapper" @click="search">
+        <img src="~assets/images/search.svg"/>
+      </span>
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -15,14 +23,37 @@
 
   export default {
     props: {
-
+      visible: {
+        type: Boolean,
+        default: false
+      }
     },
     data() {
       return {
+        open: this.visible,
         searchStr: ""
       };
     },
+    watch: {
+      visible(val) {
+        this.open = val;
+      }
+    },
+    created() {
+      this.open = this.visible;
+    },
+    computed: {
+      classObj() {
+        return {
+          "whole-search": true,
+          "invisible": !this.open
+        };
+      },
+    },
     methods: {
+      close() {
+        this.$emit("search-open", false);
+      },
       search() {
         let str = this.searchStr.trim();
         if (!str) {
@@ -130,6 +161,9 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
+.phone-close {
+  display: none;
+}
 
 .search-container {
   position: relative;
@@ -161,6 +195,46 @@
     left: 264px;
     &:hover {
       cursor: pointer;
+    }
+  }
+}
+
+/** iPhone **/
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .phone-close {
+    display: block;
+    position: absolute;
+    z-index: 999;
+    margin-top: -64px; 
+    margin-left: -40px; 
+    background: #fff;
+    width: 46px;
+    height: 64px;
+    margin-left: -34px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .whole-search {
+    display: block;
+  }
+  .invisible {
+    display: none;
+  }
+  .search-container {
+    margin-top: -64px; 
+    position: relative;
+    z-index: 999;
+    .search-input {
+      width: 272px;
+      height: 64px;
+      box-sizing: border-box;
+      overflow: hidden; 
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .img-wrapper {
+      left: 241px;
     }
   }
 }

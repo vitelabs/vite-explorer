@@ -23,8 +23,8 @@
             </div>
           </div>
           <lang-select class="lang-select"></lang-select>
-          <search class="search"></search>
-          <div class="phone-search" @click="openSearch">
+          <search class="search" :visible="searchOpen" @search-open="closeSearch"></search>
+          <div :class="phoneSearchClass" @click="openSearch">
             <div class="p-search">
               <img src="~assets/images/search.svg"/>
             </div>
@@ -70,7 +70,12 @@
       return {
         navs: ["index", "transactionList", "blockList", "tokenList"],
         defaultActive: "index",
-        open: false
+        open: false,
+        searchOpen: false,
+        phoneSearchClass: {
+          "phone-search": true,
+          "invisible-search": false
+        }
       };
     },
     methods: {
@@ -81,7 +86,12 @@
         this.open = val;
       },
       openSearch() {
-
+        this.searchOpen = !this.searchOpen;
+        this.phoneSearchClass["invisible-search"] = true;
+      },
+      closeSearch(val) {
+        this.searchOpen = val;
+        this.phoneSearchClass["invisible-search"] = false;
       },
       keepNavStatus() {
         if (this.$route.path === "/" || this.$route.path === `/${this.$i18n.locale}`) {
@@ -128,6 +138,9 @@
         border-bottom: 2px solid $common-color;
         color: $common-color;
       }
+    }
+    .invisible-search {
+      display: none;
     }
     .vertical-menu {
       display: none;
@@ -227,14 +240,12 @@
       .nav-content {
         display: none;
       }
+      
       .vertical-menu {
         display: block;
         float: right;
       }
       .search-wrapper {
-        .search {
-          display: none;
-        }
         .phone-search {
           display: block;
           width: 44px;
@@ -242,6 +253,9 @@
           float: right;
           line-height: 64px;
           border-right: 1px solid #E5EDF3;
+        }
+        .invisible-search  {
+          display: none;
         }
       }
     }
