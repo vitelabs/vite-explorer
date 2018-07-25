@@ -3,13 +3,19 @@
     <div class="row" v-for="(item, index) in list" :key="index">
       <span class="name">{{item.name}}：</span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
-      <span v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
+      <span class="value" v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
       <div v-if="item.list" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
             @click="_clickLab(lab, index)" :class="{
                 'lab': true,
                 'lab-selected': index == currentLabInx
             }">{{lab}}</span>
+      </div>
+    </div>
+    <div class="extral-wrapper" v-if="extralList.length">
+      <div class="extral-row" v-for="(item, index) in extralList" :key="index">
+        <span class="name">{{item.name}}：</span>
+        <span v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
       </div>
     </div>
   </div>
@@ -29,19 +35,32 @@
       isToken: {
         type: Boolean,
         default: false
+      },
+      extralList: {
+        type: Array,
+        default: ()=>[]
+      },
+      isAccount: {
+        type: Boolean,
+        default: false
       }
     },
     computed: {
       classObj() {
         return {
-          "common-detail": true,
-          "token-detail": this.isToken
+          "common-detail": this.isCommon,
+          "token-detail": this.isToken,
+          "account-detail": this.isAccount
         };
       }
     },
+    created() {
+      this.isCommon = !this.isAccount;
+    },
     data() {
       return {
-        currentLabInx: 0
+        currentLabInx: 0,
+        isCommon: true
       };
     },
     methods: {
@@ -56,6 +75,7 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
 
 @import "assets/css/vars.scss";
+  
   .common-detail {
     width: 100%;
     border: 1px solid $common-background;
@@ -65,14 +85,28 @@
     background-color: #fff; 
     box-sizing: border-box;
     height: 535px;
-    padding: 32px 0 0 32px;
+    padding: 32px 0 0 0px;
   }
   .token-detail {
     border: 1px solid $common-background;
     border-bottom: 2px solid $common-color;
     height: 352px;
   }
+  .account-detail {
+    width: 100%;
+    border: 1px solid $common-background;
+    border-top: 2px solid $common-color;
+    border-radius: 2px; 
+    background-image: url("~assets/images/detail_bg.svg");
+    background-color: #fff; 
+    box-sizing: border-box;
+    padding: 32px 0 0 0px;
+    border: 1px solid $common-background;
+    border-bottom: 2px solid $common-color;
+    min-height: 303px;
+  }
   .row {
+    margin-left: 32px;
     width: 100%;
     font-family: PingFangSC-Regular;
     font-size: 14px;
@@ -88,20 +122,109 @@
       color: $detail-color;
     }
     .lab-list {
+      width: 492px;
       display: inline-block;
+      font-family: PingFangSC-Regular;
+      font-size: 12px;
+      line-height: 16px;
       .lab {
-        &:first-child {
-          margin-left: 0;
+        &:last-child {
+          margin-right: 0;
         }
-        padding: 10px;
-        background: #efefef;
-        color: #666;
-        margin-left: 20px;
+        display: inline-block;
+        box-sizing: border-box;
+        width: 42px;
+        height: 22px;
+        text-align: center;
+        line-height: 22px;
+        background: white;
+        margin-right: 8px;
+        margin-bottom: 8px;
+        color: $common-color;
+        border: 1px solid #E5EDF3;
+        border-radius: 2px;
+        &:hover {
+          cursor: pointer;
+        }
         &.lab-selected {
-            background: #afafaf;
-            color: #333;
+          border-radius: 2px;
+          background: $common-color;
+          color: white;
         }
       }
+    }
+  }
+  .extral-wrapper {
+    border-top: 1px solid  #E5EDF3; 
+    box-sizing: border-box;
+    padding-left: 32px;
+    
+  }
+  .extral-row {
+    float: left;
+    width: 40%;
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    line-height: 22px;
+    margin-top: 16px;
+    color: #8D9BAE;
+    .name {
+      display: inline-block;
+      width: 200px;
+      color: #3F3F3F;
+    }
+    .describe-link {
+      color: $detail-color;
+    }
+  }
+  /** iPhone **/
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    .value {
+      display: inline-block;
+      vertical-align: middle;
+      width: 200px;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+      overflow-x: hidden;
+    }
+    .row {
+      margin-left: 15px;
+      .lab-list {
+        width: 100%;
+      }
+    }
+    .common-detail {
+      min-height: 750px;
+    }
+    .token-detail {
+      min-height: 420px;
+    }
+    .extral-wrapper {
+      padding-left: 15px;
+      min-height: 210px;
+    }
+    .extral-row {
+      float: none;
+      width: 100%;
+      font-family: PingFangSC-Regular;
+      font-size: 14px;
+      line-height: 22px;
+      margin-top: 16px;
+      color: #8D9BAE;
+      .name {
+        display: inline-block;
+        width: 200px;
+        color: #3F3F3F;
+      }
+    }
+    .describe-link {
+      vertical-align: middle;
+      display: inline-block;
+      width: 200px;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+      overflow-x: hidden;
+      color: $detail-color;
     }
   }
 </style>

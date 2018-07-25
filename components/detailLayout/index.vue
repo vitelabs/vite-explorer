@@ -1,7 +1,7 @@
 <template>
   <div class="detail-layout-container">
     <page-header :title="title"></page-header>
-    <detail-list :list="list" :clickLab="clickLab" :is-token="isToken"></detail-list>
+    <detail-list :list="list" :clickLab="clickLab" :is-token="isToken" :extral-list="extralList" :is-account="isAccount"></detail-list>
   </div>
 </template>
 
@@ -27,6 +27,14 @@
         default: ()=>{}
       },
       isToken: {
+        type: Boolean,
+        default: false
+      },
+      extralList: {
+        type: Array,
+        default: ()=>[]
+      },
+      isAccount: {
         type: Boolean,
         default: false
       }

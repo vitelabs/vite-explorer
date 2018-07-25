@@ -3,9 +3,10 @@
     <div v-if="!error">
       <detail-layout
         :title="`${title}`"
-        :list="accountList.concat(tokenDetailList)"
+        :list="accountList"
         :clickLab="clickLab"
-        :is-token="true">
+        :is-account="true"
+        :extral-list="tokenDetailList">
       </detail-layout>
 
       <div class="tab-wrapper">
@@ -123,4 +124,5 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+
 </style>
