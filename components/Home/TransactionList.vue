@@ -15,20 +15,20 @@
           <div class="up">
             <img src="~assets/images/Hush.svg"/>
             <span>{{ $t('transactionList.hash') }}：</span>
-            <nuxt-link :to="`${locales}/transaction/${item.hash}`" target="_blank" class="hash">{{ item.hash }}</nuxt-link>
+            <nuxt-link :to="`${locales}/transaction/${item.hash}`" target="_blank" class="hash" :title="`${item.hash}`">{{ item.shortHash }}</nuxt-link>
           </div>
           <div>{{ item.amount }} {{ item.tokenName }}</div>
         </div>  
         <div class="transaction-item-down">
           <div class="down">
             <div class="label">{{ $t('transactionList.from') }}：</div>
-            <nuxt-link :to="`${locales}/account/${item.from}`" target="_blank" class="label-width" v-if="item.fromHash"> {{ item.from }}</nuxt-link>
-            <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-else> {{ item.accountAddress }}</nuxt-link>
+            <nuxt-link :to="`${locales}/account/${item.from}`" target="_blank" class="label-width" v-if="item.fromHash" :title="`${item.from}`"> {{ item.shortFrom }}</nuxt-link>
+            <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-else :title="`${item.accountAddress}`"> {{ item.shortAccountAddress }}</nuxt-link>
           </div>
           <div class="down">
             <div class="label">{{ $t('transactionList.to') }}：</div>
-            <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-if="item.fromHash"> {{ item.accountAddress }}</nuxt-link>
-            <nuxt-link :to="`${locales}/account/${item.to}`" target="_blank" class="label-width" v-else> {{ item.to }}</nuxt-link>
+            <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-if="item.fromHash" :title="`${item.accountAddress}`"> {{ item.shortAccountAddress }}</nuxt-link>
+            <nuxt-link :to="`${locales}/account/${item.to}`" target="_blank" class="label-width" v-else :title="`${item.to}`"> {{ item.shortTo }}</nuxt-link>
           </div>
         </div>
       </div>

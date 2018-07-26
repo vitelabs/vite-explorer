@@ -67,10 +67,10 @@
           let timestamp = moment(block.age * 1000).fromNow();
           list.push({
             height: `<a href="${lang}/block/${block.hash}" target="_blank">${block.height}</a>`,
-            hash: `<a href="${lang}/block/${block.hash}" target="_blank">${block.hash}</a>`,
+            hash: `<a href="${lang}/block/${block.hash}" target="_blank" title="${block.hash}">${block.shortHash}</a>`,
             price: `${block.amount} Vite`,
             accountNum: block.accountNum,
-            producer: block.producer,
+            producer: `<span title="${block.producer}">${block.shortProducer}</span>`,
             age: timestamp
           });
         });

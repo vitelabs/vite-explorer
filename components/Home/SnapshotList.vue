@@ -21,7 +21,7 @@
         <div class="snapshot-item-right">
           <div class="producer">
             <span class="producer-text">{{ $t('snapshotList.node')}}：</span> 
-            <span class="producer-value">{{ item.producer }}</span>
+            <span class="producer-value" :title="`${item.producer }`">{{ item.shortProducer }}</span>
           </div>
           <div class="pack">{{ $t('snapshotList.pack')}} {{ item.accountNum }} {{ $t('snapshotList.account') }}</div>
         </div>
@@ -139,10 +139,7 @@
         }
         .producer-value {
           display: inline-block;
-          width: 100px;
-          overflow-x: hidden;
-          text-overflow:ellipsis;
-          white-space: nowrap;
+          width: 110px;
           vertical-align: middle;
         }
       }

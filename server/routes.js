@@ -1,5 +1,6 @@
 import Router from "koa-trie-router";
-import {get, post} from "../api/server.js";
+import { get, post } from "../api/server.js";
+import { toShort } from "./utils";
 
 const router = new Router();
 
@@ -72,8 +73,10 @@ export default () => {
         blockList.push({
           height: block.height,
           producer: block.producer,
+          shortProducer: toShort(block.producer),
           accountNum,
           hash: block.hash,
+          shortHash: toShort(block.hash),
           amount: block.amount,
           age: block.timestamp
         });
@@ -186,15 +189,20 @@ export default () => {
       rawTransactionList.forEach((transaction) => {
         transactionList.push({
           hash: transaction.hash,
+          shortHash: toShort(transaction.hash),
           amount: transaction.amount,
           accountAddress: transaction.accountAddress,
+          shortAccountAddress: toShort(transaction.accountAddress),
           from: transaction.from,
+          shortFrom: toShort(transaction.from),
           to: transaction.to,
+          shortTo: toShort(transaction.to),
           fromHash: transaction.fromHash,
           status: transaction.status,
           timestamp: transaction.timestamp,
           confirmTimes: transaction.confirmTimes,
           snapshotTimestamp: transaction.snapshotTimestamp,
+          shortSnapshotTimestamp: toShort(transaction.snapshotTimestamp),
           tokenName: transaction.token && transaction.token.name || "",
           tokenSymbol: transaction.token && transaction.token.symbol || "",
           tokenId: transaction.token && transaction.token.id || null,

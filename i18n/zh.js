@@ -17,7 +17,7 @@ module.exports = {
   snapshotList: {
     title: "快照块列表",
     height: "快照块高度",
-    node: "出块节点",
+    node: "快照节点",
     pack: "快照",
     account: "账户",
     cost: "耗时",

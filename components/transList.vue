@@ -98,20 +98,23 @@
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           let fromAddr = transaction.fromHash ? transaction.from : transaction.accountAddress;
           let toAddr = transaction.fromHash ? transaction.accountAddress : transaction.to;
+          let shortFromAddr = transaction.fromHash ? transaction.shortFrom : transaction.shortAccountAddress;
+          let shortToAddr = transaction.fromHash ? transaction.shortAccountAddress : transaction.shortTo;
+
           moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
           let timestamp = moment(transaction.timestamp * 1000).fromNow();
           list.push({
-            hash: `<a href="${lang}/transaction/${transaction.hash}" target="_blank">${transaction.hash}</a>`,
+            hash: `<a href="${lang}/transaction/${transaction.hash}" target="_blank" title="${transaction.hash}">${transaction.shortHash}</a>`,
             timestamp,
-            snapshotTimestamp: `<a href="${lang}/block/${transaction.snapshotTimestamp}" target="_blank">${transaction.snapshotTimestamp}</a>`,
-            to: `<a href="${lang}/account/${toAddr}" target="_blank">${toAddr}</a>`,
-            from: `<a href="${lang}/account/${fromAddr}" target="_blank">${fromAddr}</a>`,
+            snapshotTimestamp: `<a href="${lang}/block/${transaction.snapshotTimestamp}" target="_blank" title="${transaction.snapshotTimestamp}">${transaction.shortSnapshotTimestamp}</a>`,
+            to: `<a href="${lang}/account/${toAddr}" target="_blank" title="${toAddr}">${shortToAddr}</a>`,
+            from: `<a href="${lang}/account/${fromAddr}" target="_blank" title="${fromAddr}">${shortFromAddr}</a>`,
             type: transaction.fromHash ? this.$t("transaction.receive") : this.$t("transaction.send"),
             amount: transaction.fromHash ?  transaction.amount : `-${transaction.amount}`,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,
             tokenName: transaction.tokenName,
-            accountAddress: `<a href="${lang}/account/${transaction.accountAddress}" target="_blank">${transaction.accountAddress}</a>`,
+            accountAddress: `<a href="${lang}/account/${transaction.accountAddress}" target="_blank" title="${transaction.accountAddress}">${transaction.accountAddress}</a>`,
           });
         });
         return list;

@@ -16,15 +16,7 @@
         :page-size="6"
         :sub-title="subTitle">
       </trans-list>
-
-      <!-- <el-tabs class="tab-wrapper" v-model="activeTab" type="card">
-        <el-tab-pane class="tab-pane" :label="$t('token.tLabel')" name="transList">
-          <trans-list 
-            :tokenTitle="false"
-            :tokenId="tokenDetail.id">
-          </trans-list>
-        </el-tab-pane> -->
-
+      
         <!-- <el-tab-pane class="tab-pane" :label="$t('token.aLabel')" name="accountList">
           <account-list></account-list>
         </el-tab-pane> -->
