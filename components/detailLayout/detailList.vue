@@ -147,6 +147,7 @@
         &.lab-selected {
           border-radius: 2px;
           background: $common-color;
+          border: none;
           color: white;
         }
       }

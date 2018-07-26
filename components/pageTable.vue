@@ -6,7 +6,7 @@
       <el-table v-loading="loading" stripe :data="tableData" style="width: 100%">
         <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTable.num')"></el-table-column>
         <el-table-column v-for="(tT, index) in tableTitles" :key="index"
-          :label="tT.name" :width="tT.width || ''" :show-overflow-tooltip="false">
+          :label="tT.name" :width="tT.width || ''" :show-overflow-tooltip="true">
           <template slot-scope="scope">
             <span v-html="scope.row.amount || '--'" v-if="tT.prop === 'amount' && scope.row.amount < 0" style="color: #13D0A7;"></span>
             <span v-html="scope.row.amount || '--'" v-if="tT.prop === 'amount' && scope.row.amount > 0" style="color: #FF3636;"></span>

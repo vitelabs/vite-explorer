@@ -109,7 +109,7 @@
             snapshotTimestamp: `<a href="${lang}/block/${transaction.snapshotTimestamp}" target="_blank" title="${transaction.snapshotTimestamp}">${transaction.shortSnapshotTimestamp}</a>`,
             to: `<a href="${lang}/account/${toAddr}" target="_blank" title="${toAddr}">${shortToAddr}</a>`,
             from: `<a href="${lang}/account/${fromAddr}" target="_blank" title="${fromAddr}">${shortFromAddr}</a>`,
-            type: transaction.fromHash ? this.$t("transaction.receive") : this.$t("transaction.send"),
+            type: transaction.fromHash ? `<div class="table-label in-label">${this.$t("transaction.receive")}</div>` : `<div class="table-label out-label">${this.$t("transaction.send")}</div>`,
             amount: transaction.fromHash ?  transaction.amount : `-${transaction.amount}`,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,
@@ -179,3 +179,19 @@
     }
   };
 </script>
+<style rel="stylesheet/scss" lang="scss">
+.table-label {
+  text-align:center;
+  font-size: 11px;
+  font-weight: 400;
+  width: 40px;
+  color: white;
+  border-radius: 4px!important;
+}
+.in-label {
+  background: #5cb85c;
+}
+.out-label {
+  background: #e67e22
+}
+</style>

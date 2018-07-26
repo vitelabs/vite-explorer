@@ -240,8 +240,8 @@ module.exports = {
 
   // pages/transaction
   transaction: {
-    send: "Send",
-    receive: "Receive",
+    send: "OUT",
+    receive: "IN",
   },
   transactionDetailMap: {
     hash: "Transaction Hash",

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ve-line :data="chartData" height="313px" :legend-visible="false" :data-empty="dataEmpty" :colors="['#3498db']"></ve-line>
+    <ve-line :data="chartData" height="313px" :legend-visible="true" :data-empty="dataEmpty" :colors="['#3498db']"></ve-line>
   </div>
 </template>
 
@@ -19,20 +19,20 @@
       return {
         dataEmpty: false,
         chartData: {
-          columns: ["date", "PV"],
+          columns: ["date", "Transactions (no data)"],
           rows: [
-            { "date": "07-09", "PV": 1231 },
-            { "date": "07-10", "PV": 1223 },
-            { "date": "07-11", "PV": 2123 },
-            { "date": "07-12", "PV": 4123 },
-            { "date": "07-13", "PV": 3123 },
-            { "date": "07-14", "PV": 5123 },
-            { "date": "07-15", "PV": 1231 },
-            { "date": "07-16", "PV": 1223 },
-            { "date": "07-17", "PV": 2123 },
-            { "date": "07-18", "PV": 4123 },
-            { "date": "07-19", "PV": 3123 },
-            { "date": "07-20", "PV": 5123 }
+            { "date": "07-09", "Transactions (no data)": 1 },
+            { "date": "07-10", "Transactions (no data)": 1 },
+            { "date": "07-11", "Transactions (no data)": 1 },
+            { "date": "07-12", "Transactions (no data)": 1 },
+            { "date": "07-13", "Transactions (no data)": 1 },
+            { "date": "07-14", "Transactions (no data)": 1 },
+            { "date": "07-15", "Transactions (no data)": 1 },
+            { "date": "07-16", "Transactions (no data)": 1 },
+            { "date": "07-17", "Transactions (no data)": 1 },
+            { "date": "07-18", "Transactions (no data)": 1 },
+            { "date": "07-19", "Transactions (no data)": 1 },
+            { "date": "07-20", "Transactions (no data)": 1 }
           ]
         }
       };
