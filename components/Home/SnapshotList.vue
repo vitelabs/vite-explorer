@@ -8,7 +8,7 @@
         </nuxt-link>
       </div>
     </div>
-
+    
     <div class="snapshot-list">
       <div class="snapshot-item" v-for="(item, index) in list" :key="index">
         <div class="snapshot-item-left">
@@ -59,9 +59,8 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
 .head {
-  font-family: PingFangSC-Semibold;
   font-size: 16px;
-  color: #005CC7;
+  color: $common-color;
   letter-spacing: 0.3px;
   line-height: 24px;
   display: flex;
@@ -73,8 +72,8 @@
 
 .snapshot-list {
   overflow: scroll;
+  height: 382px;
   box-sizing: border-box;
-  font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #5E6875;
   letter-spacing: 0;
@@ -82,8 +81,7 @@
     min-height: 72px;
     border-bottom: 1px solid $border-color;
     box-sizing: border-box;
-    padding: 8px 32px 7px 32px ;
-    
+    padding: 8px 10px 7px 32px ;
     display: flex;
     display: -webkit-flex;
     &:last-child
@@ -92,7 +90,7 @@
     }
     .snapshot-item-left {
       width: 177px;
-      min-height: 57px;
+      min-height: 58px;
       background: rgba(88,145,255,0.13);
       box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
       border-radius: 2px;
@@ -103,28 +101,26 @@
       padding: 6px 6px 6px 16px;
       .timestamp {
         margin-top: 25px;
-        font-family: PingFangSC-Regular;
         font-size: 12px;
         color: #5E6875;
         letter-spacing: 0;
         text-align: right;
-        line-height: 16px; 
+        line-height: 16px;
       }
       
       .height {
         width: 64px;
         height: 45px;
         span {
-          font-family: PingFangSC-Regular;
           font-size: 12px;
           color: #8D9BAE;
           letter-spacing: 0;
         }
         .height-value {
+          font-weight: 450;
           display: inline-block;
-          font-family: PingFangSC-Semibold;
           font-size: 20px;
-          color: #185BDD;
+          color: $common-color;
           letter-spacing: 0;
           line-height: 25px;
         }
@@ -134,9 +130,9 @@
       letter-spacing: 0.35px;
       color: #5E6875;
       margin-left: 32px;
+      font-size: 13px;
       .producer {
         margin-top: 8px;
-        font-family: PingFangSC-Regular;
         line-height: 20px;
         .producer-text {
 
@@ -152,7 +148,7 @@
       }
       .pack {
         margin-top: 3px; 
-        font-family: PingFangSC-Semibold;
+        font-weight: 450;
       }
     }
   }

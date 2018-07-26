@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ve-line :data="chartData" height="313px" :legend-visible="false" :data-empty="dataEmpty" :colors="['#185BDD']"></ve-line>
+    <ve-line :data="chartData" height="313px" :legend-visible="false" :data-empty="dataEmpty" :colors="['#3498db']"></ve-line>
   </div>
 </template>
 

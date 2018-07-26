@@ -42,7 +42,6 @@ export default {
     }
   }
   .error-text {
-    font-family: PingFangSC-Regular;
     margin: auto;
     color: #333;
     font-size: 16px;

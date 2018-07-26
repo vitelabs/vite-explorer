@@ -26,7 +26,6 @@
 
 <style rel="stylesheet/scss" lang="scss">
 .el-dropdown-link {
-  font-family: PingFangSC-Semibold;
   font-size: 14px;
   letter-spacing: 0;
   padding: 22px 20px;

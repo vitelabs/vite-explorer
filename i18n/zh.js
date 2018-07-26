@@ -18,7 +18,7 @@ module.exports = {
     title: "快照块列表",
     height: "快照块高度",
     node: "出块节点",
-    pack: "打包",
+    pack: "快照",
     account: "账户",
     cost: "耗时",
     sec: "秒",
@@ -149,8 +149,7 @@ module.exports = {
   blockDetailMap: {
     height: "快照块高度",
     age: "快照块年龄",
-    timestamp: "出块时间",
-    accountNum: "打包账户数",
+    accountNum: "快照账户数",
     hash: "快照块Hash",
     producer: "快照节点",
     amount: "锻造奖励"

@@ -1,7 +1,7 @@
 @import "vars";
 
 body {
-  font-family: $font-family-light;
+  font-family: $family-primary;
   padding: 0px;
   margin: 0px;
 }
@@ -17,15 +17,22 @@ a:hover{
 }
 a {
   text-decoration: none;
+  color: $common-color;
+}
+
+.head, .title h2, h1, h2, h3, h4, h5, h6 {
+  font-family: $family-title;
+  font-weight: 450; 
 }
 
 .table-title {
-  font-family: PingFangSC-Semibold;
+  font-family: $family-title;
   font-size: 16px;
   color: $common-color;
   letter-spacing: 0;
   margin-top: 10px;
   margin-bottom: 30px;  
+  font-weight: 700; 
 }
 // tabs
 

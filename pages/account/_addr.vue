@@ -86,10 +86,7 @@
         return [{
           name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress
-        },{
-          name: this.$t("account.accType"),
-          describe: tokenNameList.length
-        },{
+        }, {
           name: this.$t("account.accToken"),
           list: tokenNameList
         }];

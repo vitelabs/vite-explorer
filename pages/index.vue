@@ -79,6 +79,7 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+@import "~assets/css/vars.scss";
   .page-home {
     .mb30 {
       margin-bottom: 30px;
@@ -122,8 +123,7 @@
         border: 1px solid #E5EDF3;
         box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
         border-radius: 4px 4px 0 0;
-        overflow: scroll;
-        border-bottom: 4px solid #005CC7;
+        border-bottom: 4px solid $common-color;
       }
       .transaction {
         width: 660px;
@@ -133,8 +133,7 @@
         border: 1px solid #E5EDF3;
         box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
         border-radius: 4px 4px 0 0;
-        overflow: scroll;
-        border-bottom: 4px solid #005CC7;
+        border-bottom: 4px solid $common-color;
       }
     }
   }

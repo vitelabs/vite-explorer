@@ -1,17 +1,16 @@
-$font-family-light: PingFangSC-Regular,Arial,Sans-serif;
-$font-family-main: PingFangSC-Medium,Arial,Sans-serif;
+$font-family-light: "open sans", Arial, sans-serif;
+$font-family-main: "Helvetica Neue",Helvetica,Arial,sans-serif;
 $font-family-title: PingFangSC-Semibold, Arial, Sans-serif;
 
-$family-serif: $font-family-light;
-$family-primary: $font-family-light;
+$family-title: $font-family-light;
+$family-primary: $font-family-main;
 $gap:16px;
-$dark-blue: #032841;
 $light-blue: rgba(54,130,222,1);
 $footer-background-color: white;
 $navbar-height: 72px;
 $border-color: #E5EDF3;
-$common-color:#005CC7;
+$common-color:#3498db;
 $common-background: #DEECFF;
-$detail-color: #185BDD;
+$detail-color: #3498db;
 $table-stripe: #F6F9FE;
 

@@ -103,12 +103,11 @@
     padding: 32px 0 0 0px;
     border: 1px solid $common-background;
     border-bottom: 2px solid $common-color;
-    min-height: 303px;
+    min-height: 260px;
   }
   .row {
     margin-left: 32px;
     width: 100%;
-    font-family: PingFangSC-Regular;
     font-size: 14px;
     line-height: 22px;
     margin-bottom: 16px;
@@ -124,7 +123,6 @@
     .lab-list {
       width: 492px;
       display: inline-block;
-      font-family: PingFangSC-Regular;
       font-size: 12px;
       line-height: 16px;
       .lab {
@@ -163,7 +161,6 @@
   .extral-row {
     float: left;
     width: 40%;
-    font-family: PingFangSC-Regular;
     font-size: 14px;
     line-height: 22px;
     margin-top: 16px;
@@ -206,7 +203,6 @@
     .extral-row {
       float: none;
       width: 100%;
-      font-family: PingFangSC-Regular;
       font-size: 14px;
       line-height: 22px;
       margin-top: 16px;

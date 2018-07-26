@@ -74,7 +74,6 @@
     padding: 25px 30px 33px 30px;
     .title {
       opacity: 0.7;
-      font-family: PingFangSC-Regular;
       font-size: 12px;
       color: #FFFFFF;
       letter-spacing: 0;
@@ -84,7 +83,6 @@
       .market {
         margin-top: 5px; 
         span {
-          font-family: HelveticaNeue-Medium;
           font-size: 34px;
           line-height: 36px;
         }
@@ -116,7 +114,6 @@
         box-sizing: border-box;
         padding: 15px 16px 9px 15px;
         span {
-          font-family: HelveticaNeue-Medium;
           font-size: 48px;
           letter-spacing: 0;
           &.noData {
@@ -130,17 +127,17 @@
       display: -webkit-flex;
       margin-top: 28px;
       text-align: center;
+      justify-content: space-between;
       span {
         display: inline-block;
         margin-top: 10px;
-        width: 82px;
+        width: 100px;
         height: 22px;
         background: rgba(102,165,255,0.42);
         border-radius: 2px;
       } 
       .common {
-        width: 82px;
-        font-family: PingFangSC-Semibold;
+        width: 100px;
         font-size: 14px;
         letter-spacing: 0;
         line-height: 20px;

@@ -57,9 +57,8 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
 .head {
-  font-family: PingFangSC-Semibold;
   font-size: 16px;
-  color: #005CC7;
+  color: $common-color;
   letter-spacing: 0.3px;
   line-height: 24px;
   display: flex;
@@ -71,8 +70,8 @@
 
 .transaction-list {
   overflow: scroll;
+  height: 382px;
   box-sizing: border-box;
-  font-family: PingFangSC-Regular;
   font-size: 14px;
   color: #5E6875;
   letter-spacing: 0;
@@ -99,11 +98,10 @@
           margin-left: 8px;
         }
         .hash {
-          font-family: PingFangSC-Semibold;
           color: #0C0000;
           letter-spacing: 0;
           line-height: 20px;
-          color: #185BDD ;
+          color: $common-color;
           width: 200px;
           text-overflow:ellipsis;
           white-space: nowrap;
@@ -118,7 +116,6 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      font-family: PingFangSC-Regular;
       font-size: 12px;
       letter-spacing: 0.26px;
       .down {
@@ -129,7 +126,7 @@
         display: inline-block;
         width: 240px;
         overflow-x: hidden;
-        color: #185BDD;
+        color: $common-color;
         line-height: 16px;
         text-overflow:ellipsis;
         white-space: nowrap;

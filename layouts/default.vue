@@ -6,7 +6,7 @@
         <div class="nav-content">
           <div class="navbar-menu">
             <el-menu :default-active="defaultActive" mode="horizontal" background-color="#ffffff" text-color="#000000"
-              active-text-color="#005CC7">
+              active-text-color="#3498db">
               <el-menu-item :key="index" :index="item" v-for="(item, index) in navs" class="text-hover-transition">
                 <nuxt-link :to="localePath(item)" class="nav-item">
                 {{$t(`nav.${item}`)}}

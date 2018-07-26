@@ -53,8 +53,7 @@
           accountNum: this.blockDetail.accountNum || 0,
           producer: this.blockDetail.producer || "",
           amount: this.blockDetail.amount ? `${this.blockDetail.amount} Vite` : "",
-          age,
-          timestamp: moment(this.blockDetail.timestamp * 1000).format("YYYY-MM-DD HH:mm:ss") 
+          age: age + "（" + moment(this.blockDetail.timestamp * 1000).format("YYYY-MM-DD HH:mm:ss") + "）"
         };
       },
       list() {

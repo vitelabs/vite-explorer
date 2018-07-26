@@ -19,7 +19,7 @@ module.exports = {
     title: "Snapshots",
     height: "Height",
     node: "Snapshot node",
-    pack: "Packed ",
+    pack: "",
     account: " account(s)",
     cost: "Cost ",
     sec: " sec(s)",
@@ -152,7 +152,6 @@ module.exports = {
   blockDetailMap: {
     height: "Snapshot Block Height",
     age: "Snapshot Block Age",
-    timestamp: "Snapshot Block Time",
     accountNum: "Number of Account",
     hash: "Snapshot Block Hash",
     producer: "Snapshot Node",

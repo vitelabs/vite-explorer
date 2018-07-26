@@ -54,7 +54,6 @@
     width: 100%;
     background: #fff;
     text-align: center;
-    font-family: PingFangSC-Semibold;
     font-size: 14px;
     color: #3F3F3F;
     .footer-content {
@@ -67,7 +66,6 @@
       justify-content: space-between;
       .brand {
         opacity: 0.78;
-        font-family: Roboto-Regular;
         font-size: 14px;
         color: #8D9BAE;
         letter-spacing: 0;
