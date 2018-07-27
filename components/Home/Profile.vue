@@ -18,7 +18,7 @@
           <div class="title">{{ $t('profile.price') }}</div>
           <div v-if="generalDetail && Number(generalDetail.cirPrice)">
             $
-            <span>{{ Number(generalDetail.cirPrice) }}</span>
+            <span>{{ Number(generalDetail.cirPrice).toFixed(4) }}</span>
           </div>
           <div v-else>
             <span class="noData">{{ $t('utils.noData') }}</span>
@@ -26,8 +26,8 @@
         </div>
         <div class="height">
           <div class="title">{{ $t('profile.latestHeight') }}</div>
-          <div v-if="generalDetail && Number(generalDetail.chainHeight)">
-            <span>{{ Number(generalDetail.chainHeight) }}</span>
+          <div v-if="Number(height)">
+            <span>{{ Number(height) }}</span>
           </div>
           <div v-else>
             <span class="noData">{{ $t('utils.noData') }}</span>
@@ -58,6 +58,10 @@
       generalDetail: {
         type: Object,
         default: {}
+      },
+      height: {
+        type: String,
+        default: ""
       }
     },
     data() {

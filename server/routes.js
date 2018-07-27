@@ -1,10 +1,26 @@
 import Router from "koa-trie-router";
 import { get, post } from "../api/server.js";
 import { toShort } from "./utils";
+import axios from "axios";
 
 const router = new Router();
 
 export default () => {
+  router.get("/api/general/detail", async(ctx) => {
+    try {
+      let result = await axios.get("https://api.coinmarketcap.com/v2/ticker/2937/");
+      ctx.type = "json";
+      let body = result.data;
+      ctx.body = {
+        data: {
+          cirPrice: body.data ? body.data.quotes.USD.price : "",
+          ffmCap: body.data ? body.data.quotes.USD.market_cap : ""
+        }
+      };
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
   router.get("/api/account/detail", async (ctx) => {
     try {
       let result = await get("/account/detail", ctx.query);
@@ -222,18 +238,18 @@ export default () => {
     }
   });
 
-  router.get("/api/general/detail", async (ctx) => {
-    try {
-      let result = await get("/general/detail");
-      ctx.type = "json";
-      ctx.body = result.data || {
-        code: 5000,
-        msg: "Server Error"
-      };
-    } catch(err) {
-      console.log(err.code);
-    }
-  });
+  // router.get("/api/general/detail", async (ctx) => {
+  //   try {
+  //     let result = await get("/general/detail");
+  //     ctx.type = "json";
+  //     ctx.body = result.data || {
+  //       code: 5000,
+  //       msg: "Server Error"
+  //     };
+  //   } catch(err) {
+  //     console.log(err.code);
+  //   }
+  // });
 
   router.get("/api/search/judgeTransOrBlock", async (ctx) => {
     try {

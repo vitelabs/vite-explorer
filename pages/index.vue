@@ -2,7 +2,7 @@
   <div class="page-home">
     <div class="top">
       <div class="profile mb30">
-        <profile :general-detail="generalDetail"></profile>
+        <profile :general-detail="generalDetail" :height="blockList[0].height"></profile>
       </div>
       <div class="line-chart ml30 mb30">
         <line-chart></line-chart>
