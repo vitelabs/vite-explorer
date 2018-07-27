@@ -14,7 +14,10 @@ export default () => {
       ctx.body = {
         data: {
           cirPrice: body.data ? body.data.quotes.USD.price : "",
-          ffmCap: body.data ? body.data.quotes.USD.market_cap : ""
+          ffmCap: body.data ? body.data.quotes.USD.market_cap : "",
+          volume_24h: body.data ? body.data.quotes.USD.volume_24h : "",
+          percent_change_24h: body.data ? body.data.quotes.USD.percent_change_24h : "",
+          circulating_supply: body.data ? body.data.quotes.USD.circulating_supply : "",
         }
       };
     } catch(err) {

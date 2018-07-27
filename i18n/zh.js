@@ -207,11 +207,11 @@ module.exports = {
     tLabel: "交易列表",
   },
   tokenDetailMap: {
-    circulationLines: "流通额度",
+    circulationLines: "流通市值",
     owner: "所有者地址",
     price: "价格",
     addressNumber: "地址数量",
-    transactionNumber: "交易数量"
+    transactionNumber: "交易金额"
   },
 
 

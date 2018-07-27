@@ -19,6 +19,7 @@
   import error from "~/components/error";
   import token from "~/services/token.js";
   import search from "~/services/search.js";
+  import general from "~/services/general.js";
 
   const pageSize = 10;
 
@@ -52,10 +53,12 @@
         let { tokenList, totalNumber} = await token.getList({
           pageIndex, pageSize
         });
+        let generalDetail = await general.getGeneralDetail();
         return {
           pageIndex,
           tokenList,
-          totalNumber: +totalNumber
+          totalNumber: +totalNumber,
+          generalDetail
         };
       } catch(err) {
         return {
@@ -70,7 +73,8 @@
         tokenTitles: this.$t("tokenTitles"),
         error: "",
         loading: false,
-        totalNumber: 0
+        totalNumber: 0,
+        generalDetail: {}
       };
     },
     computed: {
@@ -83,7 +87,11 @@
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
-            token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.symbol})</a>`
+            token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.symbol})</a>`,
+            price: `$${this.generalDetail.cirPrice}`,
+            upDown: `${this.generalDetail.percent_change_24h}%`,
+            transPrice: `$${this.generalDetail.volume_24h}`,
+            famc: `$${this.generalDetail.ffmCap}`
           });
         });
         return list;

@@ -33,6 +33,7 @@
   import accountList from "~/components/Token/accountList.vue";
 
   import token from "~/services/token.js";
+  import general from "~/services/general.js";
 
   export default {
     head() {
@@ -51,8 +52,10 @@
         let data = await token.getDetail({
           tokenId: params.id
         });
+        let generalDetail = await general.getGeneralDetail();
         return {
-          tokenDetail: data.tokenList[0]
+          tokenDetail: data.tokenList[0],
+          generalDetail
         };
       } catch(err) {
         return {
@@ -65,7 +68,8 @@
         title: this.$t("head.tTitle"),
         tokenDetail: {},
         error: "",
-        activeTab: "transList"
+        activeTab: "transList",
+        generalDetail: {}
       };
     },
     computed: {
@@ -74,7 +78,10 @@
       },
       showTokenDetail() {
         return {
-          owner: this.tokenDetail.owner
+          owner: this.tokenDetail.owner,
+          circulationLines: `$${this.generalDetail.ffmCap}`,
+          price: `$${this.generalDetail.cirPrice}`,
+          transactionNumber: `$${this.generalDetail.volume_24h}`
         };
       },
       list() {
