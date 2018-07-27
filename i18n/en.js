@@ -56,6 +56,12 @@ module.exports = {
   footer: {
     official: "Official Website"
   },
+  logo: {
+    v: "Preview Version",
+    current: "Current Version",
+    content1: "Vite's blockchain explorer is a website for searching integrated information about Vite. Now it supports searching by accounts, tokens, transactions and snapshot blocks and present information via lists.",
+    content2: "For the record, statistics information is not available right now. If browser shows 'No Data', stay tuned and we will supply in further version iteration.",
+  },
   nav: {
     index: "Home",
     transactionList: "Transactions",

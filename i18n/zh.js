@@ -53,6 +53,12 @@ module.exports = {
   footer: {
     official: "官网"
   },
+  logo: {
+    v: "预览版",
+    current: "当前版本",
+    content1: "Vite区块链浏览器是查询Vite综合信息的网站，目前支持账户、代币、交易、快照块的查询，基础信息的列表展示。",
+    content2: "统计类信息暂不支持，如浏览器“暂无数据”展示，会在后续版本迭代补充进来。",
+  },
   nav: {
     index: "首页",
     transactionList: "交易列表",

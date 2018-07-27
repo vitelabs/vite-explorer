@@ -3,12 +3,12 @@
         placement="bottom"
         trigger="hover">
         <div class="demo-content">
-            <div class="version">预览版</div>
-            <div class="top-content">Vite区块链浏览器是查询Vite综合信息的网站，目前支持账户、Token、交易、快照块的查询，基础信息的列表展示。</div>
-            <div>统计类信息暂不支持，如浏览器“暂无数据”展示，会在后续版本迭代补充进来。</div>
+            <div class="version">{{ $t('logo.v') }}</div>
+            <div class="top-content">{{ $t('logo.content1') }}</div>
+            <div>{{ $t('logo.content2') }}</div>
             <div class="current-version">
-              <span>当前版本</span>
-              <span>预览版</span>
+              <span>{{ $t('logo.current') }}</span>
+              <span>{{ $t('logo.v') }}</span>
             </div>
         </div>
         <nuxt-link :to="localePath('index')" slot="reference">
@@ -40,7 +40,7 @@
   svg {
     width: 66px;
     height: 34px;
-    margin-top: 15px; 
+    margin-top: 15px;
   }
   .nuxt-link-active{
       display: inline-block;
@@ -56,14 +56,14 @@
       font-size: 18px;
     }
     .top-content {
-      margin-top: 15px; 
-      margin-bottom: 8px; 
+      margin-top: 15px;
+      margin-bottom: 8px;
     }
     .current-version {
         display: flex;
         display: -webkit-flex;
         justify-content: space-between;
-        margin-top: 15px; 
+        margin-top: 15px;
         box-sizing: border-box;
         padding: 5px 0;
         border-top: 2px solid $common-color;
