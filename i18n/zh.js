@@ -69,7 +69,8 @@ module.exports = {
     placeholder: "支持搜索区块、交易、账户、代币"
   },
   utils: {
-    noData: "暂无数据"
+    noData: "暂无数据",
+    more: "更多"
   },
 
 

@@ -7,6 +7,7 @@ import "element-ui/packages/theme-chalk/src/menu.scss";
 import "element-ui/packages/theme-chalk/src/submenu.scss";
 import "element-ui/packages/theme-chalk/src/dropdown.scss";
 import "element-ui/packages/theme-chalk/src/dropdown-menu.scss";
+import "element-ui/packages/theme-chalk/src/popover.scss";
 import "assets/css/table.scss";
 
 Vue.use(ElementUI);

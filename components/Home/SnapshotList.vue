@@ -1,12 +1,13 @@
 <template>
   <div>
     <div class="head">
-      <div>{{ $t('snapshotList.title') }}</div>
-      <div class="more">
-        <nuxt-link :to="localePath('blockList')" target="_blank">
+      <div class="snapshot-title">{{ $t('snapshotList.title') }}</div>
+      <nuxt-link :to="localePath('blockList')" target="_blank">
+        <div class="more">
+          <span class="iocn-more">{{ $t('utils.more') }}</span>
           <img src="~assets/images/more.svg" />
-        </nuxt-link>
-      </div>
+        </div>
+      </nuxt-link>
     </div>
     
     <div class="snapshot-list">
@@ -66,8 +67,27 @@
   display: flex;
   display: -webkit-flex;
   justify-content: space-between;
-  padding: 24px 33px 21px 36px;
   border-bottom: 1px solid $border-color;
+  .snapshot-title {
+    margin-left: 36px;
+    margin-top: 24px; 
+    margin-bottom: 21px; 
+  }
+  .more {
+    cursor: pointer;
+     display: flex;
+     display: -webkit-flex;
+     padding-right: 33px;
+     font-size: 14px;
+     box-sizing: border-box;
+     margin-top: 24px; 
+  }
+  .iocn-more {
+    font-weight: 400;
+  }
+  img {
+    margin-left: 5px; 
+  }
 }
 
 .snapshot-list {

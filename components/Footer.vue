@@ -1,5 +1,5 @@
 <template>
-  <footer @click="hideWxCode" class="footer">
+  <footer class="footer">
     <div class="footer-content">
       <div class="offical-website">
         <a href="https://www.vite.org/">Vite {{$t('footer.official')}}</a>
@@ -20,8 +20,12 @@
         <a class="img-wrapper" href="https://www.reddit.com/r/vitelabs" target="_blank">
           <img src="~assets/images/reddit.svg"/>
         </a>
-        <img @click="showWxCode" ref="wx" src="~assets/images/wecht.svg"/>
-        <img class="wx-code" v-show="showCode" src="~assets/images/wxCode.png"/>
+        <el-popover
+          placement="top"
+          trigger="click">
+          <img src="~assets/images/wxCode.png" width="150" height="150"/>
+          <img slot="reference" src="~assets/images/wecht.svg"/>
+        </el-popover>
       </div>
       <div class="brand">©2018 ViteLabs</div>
     </div>
@@ -32,19 +36,10 @@
   export default {
     data() {
       return {
-        showCode: false
       };
     },
     methods: {
-      showWxCode() {
-        this.showCode = true;
-      },
-      hideWxCode(e) {
-        if (e.target === this.$refs.wx) {
-          return;
-        }
-        this.showCode = false;
-      }
+     
     }
   };
 </script>
@@ -82,10 +77,7 @@
       height: 36px;
       margin-top: 20px;
     }
-    .wx-code {
-      width: 200px;
-      height: 200px;
-    }
+    
   }
   /** iPad **/
   @media only screen and (min-width: 768px) and (max-width: 1024px) {

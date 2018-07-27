@@ -72,7 +72,8 @@ module.exports = {
     placeholder: "Search by Block / Transaction / Account / Token"
   },
   utils: {
-    noData: "No Data"
+    noData: "No Data",
+    more: "more"
   },
 
 
