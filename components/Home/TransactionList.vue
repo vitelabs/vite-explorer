@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="head">
-      <div class="snapshot-title">{{ $t('transactionList.title') }}</div>
+      <div class="snapshot-title">
+        <img src="~assets/images/transactions.svg" class="title-icon"/>
+        {{ $t('transactionList.title') }}
+      </div>
       <nuxt-link :to="localePath('transactionList')" target="_blank">
         <div class="more">
           <span class="iocn-more">{{ $t('utils.more') }}</span>
@@ -70,6 +73,10 @@
     margin-left: 36px;
     margin-top: 24px; 
     margin-bottom: 21px; 
+    .title-icon {
+      vertical-align: top;
+      margin-right: 3px; 
+    }    
   }
   .more {
     cursor: pointer;
@@ -79,12 +86,12 @@
      font-size: 14px;
      box-sizing: border-box;
      margin-top: 24px; 
+     img {
+       margin-left: 5px; 
+     }
   }
   .iocn-more {
     font-weight: 400;
-  }
-  img {
-    margin-left: 5px; 
   }
 }
 
