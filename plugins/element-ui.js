@@ -1,13 +1,36 @@
 import Vue from "vue";
-import ElementUI from "element-ui";
-import "element-ui/packages/theme-chalk/src/loading.scss";
-import "element-ui/packages/theme-chalk/src/icon.scss";
-import "element-ui/packages/theme-chalk/src/pagination.scss";
-import "element-ui/packages/theme-chalk/src/menu.scss";
-import "element-ui/packages/theme-chalk/src/submenu.scss";
-import "element-ui/packages/theme-chalk/src/dropdown.scss";
-import "element-ui/packages/theme-chalk/src/dropdown-menu.scss";
-import "element-ui/packages/theme-chalk/src/popover.scss";
+import {
+  Loading, 
+  Icon, 
+  Pagination, 
+  Menu,
+  Submenu,
+  MenuItem,
+  MenuItemGroup,
+  Dropdown, 
+  DropdownMenu, 
+  DropdownItem, 
+  Popover, 
+  Table,
+  TableColumn
+} from "element-ui";
+
 import "assets/css/table.scss";
 
-Vue.use(ElementUI);
+Vue.prototype.$ELEMENT = { size: "small" };
+
+Vue.use(Loading.directive);
+Vue.use(Icon);
+Vue.use(Pagination);
+Vue.use(Menu);
+Vue.use(Submenu);
+Vue.use(MenuItem);
+Vue.use(MenuItemGroup);
+Vue.use(Dropdown);
+Vue.use(DropdownMenu);
+Vue.use(DropdownItem);
+Vue.use(Popover);
+Vue.use(Table);
+Vue.use(TableColumn);
+
+Vue.prototype.$loading = Loading.service;

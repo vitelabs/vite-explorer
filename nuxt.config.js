@@ -1,4 +1,5 @@
 const i18nConfig = require("./i18n/config.js");
+const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
 
 module.exports = {
   head: {
@@ -14,7 +15,18 @@ module.exports = {
   loading: {color: "#7FB2FE"},
   plugins: [{ src: "~/plugins/element-ui.js", ssr: true }],
   build: {
-    vendor: ["babel-polyfill", "axios", "~/plugins/element-ui.js"]
+    vendor: ["babel-polyfill", "axios", "~/plugins/element-ui.js", "moment"],
+    babel: {
+      "plugins": [["component", {
+        "libraryName": "element-ui",
+        "styleLibraryName": "theme-chalk"
+      }]]
+    },
+    plugins: [
+      new MomentLocalesPlugin({
+        localesToKeep: ["en", "zh-cn"],
+      })
+    ]
   },
   router: {
     middleware: "i18n"
@@ -28,5 +40,6 @@ module.exports = {
       workbox: false,
       manifest: false
     }]
-  ]
+  ],
+  analyze: true
 };

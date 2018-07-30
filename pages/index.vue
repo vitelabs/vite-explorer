@@ -21,9 +21,9 @@
 
 <script>
   import Profile from "~/components/Home/Profile.vue";
-  import LineChart from "~/components/Home/LineChart.vue";
   import SnapshotList from "~/components/Home/SnapshotList.vue";
   import TransactionList from "~/components/Home/TransactionList.vue";
+  const LineChart = () => import("~/components/Home/LineChart.vue");
 
   import block from "~/services/block.js";
   import transaction from "~/services/transaction.js";

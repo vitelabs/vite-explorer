@@ -156,7 +156,7 @@
     .snapshot-item-right {
       letter-spacing: 0.35px;
       color: #5E6875;
-      margin-left: 32px;
+      margin-left: 24px;
       font-size: 13px;
       .producer {
         margin-top: 8px;
