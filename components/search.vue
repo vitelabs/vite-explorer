@@ -77,7 +77,7 @@
           this.getTokenDetailById(str, langStrPath);
           return;
         }
-        if (/[A-Za-z0-9]+/.test(str) && str.length === 40) {
+        if (/[A-Za-z0-9]+/.test(str) && str.length === 64) {
         // match transaction and block
           console.log("transaction and block");
           this.judgeTransOrBlock(str, langStrPath);
