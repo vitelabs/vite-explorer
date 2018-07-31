@@ -96,7 +96,11 @@
     font-weight: 400;
   }
 }
-
+.snapshot-list::-webkit-scrollbar {
+  display: none;
+}
+.snapshot-list { -ms-overflow-style: none; }
+.snapshot-list { overflow: -moz-scrollbars-none; }
 .snapshot-list {
   overflow-y: scroll;
   height: 382px;
@@ -104,9 +108,7 @@
   font-size: 14px;
   color: #5E6875;
   letter-spacing: 0;
-  .snapshot-list::-webkit-scrollbar {
-    width: 0 !important;
-  }
+  
   .snapshot-item {
     min-height: 72px;
     border-bottom: 1px solid $border-color;
@@ -159,7 +161,7 @@
     .snapshot-item-right {
       letter-spacing: 0.35px;
       color: #5E6875;
-      margin-left: 24px;
+      margin-left: 18px;
       font-size: 13px;
       .producer {
         margin-top: 8px;

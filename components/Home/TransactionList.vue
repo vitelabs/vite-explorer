@@ -94,6 +94,11 @@
     font-weight: 400;
   }
 }
+.transaction-list::-webkit-scrollbar {
+  display: none;
+}
+.transaction-list { -ms-overflow-style: none; }
+.transaction-list { overflow: -moz-scrollbars-none; }
 
 .transaction-list {
   overflow: scroll;
