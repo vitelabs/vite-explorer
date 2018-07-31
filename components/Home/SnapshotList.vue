@@ -166,9 +166,6 @@
       .producer {
         margin-top: 8px;
         line-height: 20px;
-        .producer-text {
-
-        }
         .producer-value {
           display: inline-block;
           width: 110px;

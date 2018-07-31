@@ -37,5 +37,14 @@ export default {
     return get(`${PREFIX}/detail`, {
       blockHash
     });
+  },
+
+  getTop10List() {
+    return post(`${PREFIX}/list/topTx10`, {
+      paging: {
+        index: 0, 
+        count: 10
+      }
+    });
   }
 };

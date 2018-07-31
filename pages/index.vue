@@ -30,6 +30,8 @@
   import transaction from "~/services/transaction.js";
   import general from "~/services/general.js";
 
+  import { mySetInterval, myClearInterval} from "~/utils/myInterval.js";
+
   export default {
     components: {
       Profile,
@@ -65,16 +67,49 @@
         };
       }
     },
+    created() {
+      this.getCount();
+    },
     data() {
       return {
         name: this.name,
         blockList: [],
         transactionList: [],
-        generalDetail: {}
+        generalDetail: {},
+        count: 0,
+        interval: null,
       };
     },
+    destroyed() {
+      if (this.interval) {
+        console.log("aaaa");
+        myClearInterval(this.interval);
+      }
+    },
     methods: {
-      
+      getTop10BlockList() {
+        block.getTop10List().then(data => {
+          this.blockList = data.blockList;
+        }).catch(err => {
+          console.log(err);
+        });
+      },
+
+      getTop10TxList() {
+        transaction.getTop10List().then(data => {
+          this.transactionList = data.transactionList;
+        }).catch(err => {
+          console.log(err);
+        });
+      },
+
+      getCount() {
+        this.interval = mySetInterval(() => {
+          this.getTop10BlockList();
+          this.getTop10TxList();
+        }, 2000);
+        
+      }
     }
   };
 </script>

@@ -1,11 +1,119 @@
 import Router from "koa-trie-router";
 import { get, post } from "../api/server.js";
-import { toShort } from "./utils";
+import { toShort } from "../utils/toShort.js";
 import axios from "axios";
+import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
 
 const router = new Router();
+var txData;
+var blockData;
+
+var txInterval = null;
+var blockInterval = null;
+
+if (blockInterval) {
+  myClearInterval(blockInterval);
+}
+blockInterval = mySetInterval(async function () {
+  let result = await post("/snapshotchain/blocklist", { count: 10, index: 0});
+  let body = result.data || {
+    code: 5000,
+    msg: "Server Error"
+  };
+
+  if (body.code !== 0) {
+    blockData = [];
+    return;
+  }
+
+  let rawBlockList = body.data.blockList || [];
+  let blockList = [];
+
+  rawBlockList.forEach((block) => {
+    let accountNum = 0;
+    /* eslint-disable */
+    for(let key in block.snapshot || {}) {
+      accountNum++;
+    }
+
+    blockList.push({
+      height: block.height,
+      producer: block.producer,
+      shortProducer: toShort(block.producer),
+      accountNum,
+      hash: block.hash,
+      shortHash: toShort(block.hash),
+      amount: block.amount,
+      age: block.timestamp
+    });
+  });
+  rawBlockList = [];
+  body.data = {
+    blockList,
+    totalNumber: +body.data.totalNumber
+  };
+  blockData = body;
+}, 1000);
+
+if (txInterval) {
+  myClearInterval(txInterval);
+}
+
+txInterval = mySetInterval(async function () {
+  let result = await post("/accountchain/blocklist", { count: 10, index: 0});
+  let body = result.data || {
+    code: 5000,
+    msg: "Server Error"
+  };
+
+  if (body.code !== 0) {
+    txData = body;
+    return;
+  }
+  let rawTransactionList = body.data.blockList || [];
+  let transactionList = [];
+  rawTransactionList.forEach((transaction) => {
+    transactionList.push({
+      hash: transaction.hash,
+      shortHash: toShort(transaction.hash),
+      amount: transaction.amount,
+      accountAddress: transaction.accountAddress,
+      shortAccountAddress: toShort(transaction.accountAddress),
+      from: transaction.from,
+      shortFrom: toShort(transaction.from),
+      to: transaction.to,
+      shortTo: toShort(transaction.to),
+      fromHash: transaction.fromHash,
+      status: transaction.status,
+      timestamp: transaction.timestamp,
+      confirmTimes: transaction.confirmTimes,
+      confirmBlockHash: transaction.confirmBlockHash || null,
+      shortConfirmBlockHash: toShort(transaction.confirmBlockHash) || null,
+      snapshotTimestamp: transaction.snapshotTimestamp,
+      tokenName: transaction.token && transaction.token.name || "",
+      tokenSymbol: transaction.token && transaction.token.symbol || "",
+      tokenId: transaction.token && transaction.token.id || null,
+      fAmount: transaction.fAmount,
+    });
+  });
+
+  rawTransactionList = [];
+  body.data = {
+    transactionList,
+    totalNumber: +body.data.totalNumber
+  };
+  txData = body;
+}, 1000);
 
 export default () => {
+  router.post("/api/block/list/topBk10", async (ctx) => {
+    ctx.body = blockData;
+  });
+  
+  router.post("/api/transaction/list/topTx10", async (ctx) => {
+    ctx.body = txData;
+  });
+
   router.post("/api/account/newtesttoken", async(ctx) => {
     try {
       let result = await post("/account/newtesttoken", ctx.request.body);
