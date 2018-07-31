@@ -59,7 +59,7 @@
           type: this.transactionDetail.fromHash ? this.$t("transaction.receive") : this.$t("transaction.send"),
           status: ["unkown", "open", "closed"][this.transactionDetail.status],
           confirmTimes: this.transactionDetail.confirmTimes,
-          snapshotBlockHash: this.transactionDetail.snapshotTimestamp,
+          snapshotBlockHash: this.transactionDetail.confirmBlockHash,
           timestamp,
           from: fromAddr,
           to: toAddr,
