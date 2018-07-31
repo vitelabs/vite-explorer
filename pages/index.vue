@@ -2,7 +2,7 @@
   <div class="page-home">
     <div class="top">
       <div class="profile mb30">
-        <profile :general-detail="generalDetail" :height="blockList[0].height"></profile>
+        <profile :general-detail="generalDetail" :height="blockList[0] && blockList[0].height"></profile>
       </div>
       <div class="line-chart ml30 mb30">
         <line-chart></line-chart>
@@ -23,7 +23,8 @@
   import Profile from "~/components/Home/Profile.vue";
   import SnapshotList from "~/components/Home/SnapshotList.vue";
   import TransactionList from "~/components/Home/TransactionList.vue";
-  const LineChart = () => import("~/components/Home/LineChart.vue");
+  import LineChart from "~/components/Home/LineChart.vue";
+  // const LineChart = () => require("~/components/Home/LineChart.vue");
 
   import block from "~/services/block.js";
   import transaction from "~/services/transaction.js";

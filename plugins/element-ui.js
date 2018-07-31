@@ -12,7 +12,8 @@ import {
   DropdownItem, 
   Popover, 
   Table,
-  TableColumn
+  TableColumn,
+  Button
 } from "element-ui";
 
 import "assets/css/table.scss";
@@ -32,5 +33,6 @@ Vue.use(DropdownItem);
 Vue.use(Popover);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Button);
 
 Vue.prototype.$loading = Loading.service;

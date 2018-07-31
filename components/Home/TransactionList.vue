@@ -102,6 +102,9 @@
   font-size: 14px;
   color: #5E6875;
   letter-spacing: 0;
+  .transaction-list::-webkit-scrollbar {
+    width: 0 !important;
+  }
   .transaction-item {
     min-height: 72px;
     border-bottom: 1px solid $border-color;

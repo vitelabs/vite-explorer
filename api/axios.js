@@ -21,6 +21,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   res => {
     let body = res.data || {};
+    if (!body) return;
     if (body.code) {
       throw body;
     }

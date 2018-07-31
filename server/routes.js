@@ -6,6 +6,19 @@ import axios from "axios";
 const router = new Router();
 
 export default () => {
+  router.post("/api/account/newtesttoken", async(ctx) => {
+    try {
+      let result = await post("/account/newtesttoken", ctx.request.body);
+      ctx.type = "json";
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
+
   router.get("/api/general/detail", async(ctx) => {
     try {
       let result = await axios.get("https://api.coinmarketcap.com/v2/ticker/2937/");
