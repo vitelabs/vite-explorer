@@ -192,7 +192,8 @@ export default () => {
         tokenName: transaction.token && transaction.token.name,
         tokenSymbol: transaction.token && transaction.token.symbol || "",
         tokenId: transaction.token && transaction.token.id,
-        fAmount: transaction.fAmount
+        fAmount: transaction.fAmount,
+        confirmBlockHash: transaction.confirmBlockHash
       }
 
       body.data = transaction;
@@ -233,8 +234,9 @@ export default () => {
           status: transaction.status,
           timestamp: transaction.timestamp,
           confirmTimes: transaction.confirmTimes,
+          confirmBlockHash: transaction.confirmBlockHash,
+          shortConfirmBlockHash: toShort(transaction.confirmBlockHash),
           snapshotTimestamp: transaction.snapshotTimestamp,
-          shortSnapshotTimestamp: toShort(transaction.snapshotTimestamp),
           tokenName: transaction.token && transaction.token.name || "",
           tokenSymbol: transaction.token && transaction.token.symbol || "",
           tokenId: transaction.token && transaction.token.id || null,

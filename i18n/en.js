@@ -18,7 +18,7 @@ module.exports = {
   snapshotList: {
     title: "Snapshots",
     height: "Height",
-    node: "Snapshot node",
+    node: "Node",
     pack: "",
     account: " account(s)",
     cost: "Cost ",

@@ -113,7 +113,7 @@
     min-height: 72px;
     border-bottom: 1px solid $border-color;
     box-sizing: border-box;
-    padding: 8px 10px 7px 32px ;
+    padding: 8px 0px 7px 32px ;
     display: flex;
     display: -webkit-flex;
     &:last-child
@@ -141,7 +141,7 @@
       }
       
       .height {
-        width: 64px;
+        width: 71px;
         height: 45px;
         span {
           font-size: 12px;
@@ -161,7 +161,7 @@
     .snapshot-item-right {
       letter-spacing: 0.35px;
       color: #5E6875;
-      margin-left: 18px;
+      margin-left: 31px;
       font-size: 13px;
       .producer {
         margin-top: 8px;
