@@ -106,7 +106,7 @@
           list.push({
             hash: `<a href="${lang}/transaction/${transaction.hash}" target="_blank" title="${transaction.hash}">${transaction.shortHash}</a>`,
             timestamp,
-            snapshotTimestamp: `<a href="${lang}/block/${transaction.confirmBlockHash}" target="_blank" title="${transaction.confirmBlockHash}">${transaction.shortConfirmBlockHash}</a>`,
+            snapshotTimestamp: transaction.confirmBlockHash ? `<a href="${lang}/block/${transaction.confirmBlockHash}" target="_blank" title="${transaction.confirmBlockHash}">${transaction.shortConfirmBlockHash}</a>` : "",
             to: `<a href="${lang}/account/${toAddr}" target="_blank" title="${toAddr}">${shortToAddr}</a>`,
             from: `<a href="${lang}/account/${fromAddr}" target="_blank" title="${fromAddr}">${shortFromAddr}</a>`,
             type: transaction.fromHash ? `<div class="table-label in-label">${this.$t("transaction.receive")}</div>` : `<div class="table-label out-label">${this.$t("transaction.send")}</div>`,
