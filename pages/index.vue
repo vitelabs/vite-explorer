@@ -68,7 +68,7 @@
       }
     },
     created() {
-      this.getCount();
+      this.getTop10List();
     },
     data() {
       return {
@@ -82,7 +82,6 @@
     },
     destroyed() {
       if (this.interval) {
-        console.log("aaaa");
         myClearInterval(this.interval);
       }
     },
@@ -103,11 +102,11 @@
         });
       },
 
-      getCount() {
+      getTop10List() {
         this.interval = mySetInterval(() => {
           this.getTop10BlockList();
           this.getTop10TxList();
-        }, 2000);
+        }, 3000);
         
       }
     }

@@ -53,7 +53,7 @@ blockInterval = mySetInterval(async function () {
     totalNumber: +body.data.totalNumber
   };
   blockData = body;
-}, 1000);
+}, 3000);
 
 if (txInterval) {
   myClearInterval(txInterval);
@@ -103,7 +103,7 @@ txInterval = mySetInterval(async function () {
     totalNumber: +body.data.totalNumber
   };
   txData = body;
-}, 1000);
+}, 3000);
 
 export default () => {
   router.post("/api/block/list/topBk10", async (ctx) => {
