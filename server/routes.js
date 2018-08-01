@@ -3,6 +3,7 @@ import { get, post } from "../api/server.js";
 import { toShort } from "../utils/toShort.js";
 import axios from "axios";
 import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
+import fs from "fs";
 
 const router = new Router();
 var txData;
@@ -106,6 +107,15 @@ txInterval = mySetInterval(async function () {
 }, 3000);
 
 export default () => {
+  router.get("/api/walletapp/version", async (ctx) => {
+    console.log(ctx.query);
+    let data = fs.readFileSync('/var/www/walletapp/versions/version.json', 'utf8')
+    ctx.body = {
+      code: 0,
+      data: JSON.parse(data),
+      msg: 'ok'
+    }
+  });
   router.post("/api/block/list/topBk10", async (ctx) => {
     ctx.body = blockData;
   });
