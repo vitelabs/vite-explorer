@@ -86,7 +86,7 @@ module.exports = {
   // components/transList.vue
   transList: {
     title: "Total amount of transactions：",
-    label: "Transaction List"
+    label: "Transactions"
   },
   transTitles: [{
     prop: "hash",
@@ -206,8 +206,8 @@ module.exports = {
 
   // pages/token
   token: {
-    aLabel: "Account List",
-    tLabel: "Transaction List",
+    aLabel: "Accounts",
+    tLabel: "Transactions",
   },
   tokenDetailMap: {
     circulationLines: "Circulation Limit",
@@ -220,7 +220,7 @@ module.exports = {
 
   // pages/tokenList
   tokenList: {
-    title: "Token List",
+    title: "Tokens",
     total: "总TOKEN种类：",
   },
   tokenTitles: [{

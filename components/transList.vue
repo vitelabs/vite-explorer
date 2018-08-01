@@ -75,7 +75,7 @@
     },
     computed: {
       subTitleCom() {
-        if (this.subTitle && this.totalNumber) {
+        if (this.subTitle) {
           return this.subTitle + this.totalNumber + "";
         } else {
           return "";

@@ -13,7 +13,7 @@
         <div class="tab-content is-active">{{$t('transList.label')}}</div>
       </div>
       <trans-list
-        :tokenId="activeToken.token ? activeToken.token.id : ''"
+        :tokenId="activeToken ? activeToken.token.id : ''"
         :accountAddress="accountDetail.accountAddress"
         :sub-title="subTitle"
         :page-size="6"
@@ -60,6 +60,7 @@
     },
     data() {
       return {
+        paths: this.$route.path.split("/"),
         title: this.$t("account.title"),
         activeTab: "transList",
         error: "",
@@ -67,6 +68,9 @@
         tokenList: [],
         activeTokenIndex: 0
       };
+    },
+    created() {
+      this.accountDetail.accountAddress = this.paths[this.paths.length - 1];
     },
     computed: {
       subTitle() {
@@ -94,12 +98,24 @@
       tokenDetailList() {
         let tokenDetail = this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
         if (!tokenDetail) {
-          return [];
+          return [{
+            name: this.$t("account.bAmount"),
+            describe: "--"
+          }, {
+            name: this.$t("account.bValue"),
+            describe: "--"
+          }, {
+            name: this.$t("account.tNum"),
+            describe: "--"
+          }, {
+            name: this.$t("account.allToken"),
+            describe: "--"
+          }];
         }
 
         return [{
           name: this.$t("account.bAmount"),
-          describe: tokenDetail.balance || 0
+          describe: tokenDetail.balance || "--"
         }, {
           name: this.$t("account.bValue"),
           describe: "--"

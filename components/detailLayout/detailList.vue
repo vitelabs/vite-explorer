@@ -4,13 +4,14 @@
       <span class="name">{{item.name}}：</span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
       <span class="value" v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
-      <div v-if="item.list" class="lab-list">
+      <div v-if="item.list && item.list.length" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
             @click="_clickLab(lab, index)" :class="{
                 'lab': true,
                 'lab-selected': index == currentLabInx
             }">{{lab}}</span>
       </div>
+      <div v-if="item.list && !item.list.length" class="lab-list">--</div>
     </div>
     <div class="extral-wrapper" v-if="extralList.length">
       <div class="extral-row" v-for="(item, index) in extralList" :key="index">
