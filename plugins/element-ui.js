@@ -18,8 +18,6 @@ import {
 
 import "assets/css/table.scss";
 
-Vue.prototype.$ELEMENT = { size: "small" };
-
 Vue.use(Loading.directive);
 Vue.use(Icon);
 Vue.use(Pagination);
