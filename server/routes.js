@@ -1,9 +1,15 @@
 import Router from "koa-trie-router";
 import { get, post } from "../api/server.js";
-import { toShort } from "../utils/toShort.js";
+import { toShort, handleBigNum } from "../utils/util.js";
 import axios from "axios";
 import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
 import fs from "fs";
+import { BigNumber } from "bignumber.js";
+
+
+let y  = new BigNumber("1");
+let num = y.shiftedBy(-18).toFixed(8);
+console.log(num);
 
 const router = new Router();
 var txData;
@@ -77,7 +83,7 @@ txInterval = mySetInterval(async function () {
     transactionList.push({
       hash: transaction.hash,
       shortHash: toShort(transaction.hash),
-      amount: transaction.amount,
+      amount: handleBigNum(transaction.amount, true),
       accountAddress: transaction.accountAddress,
       shortAccountAddress: toShort(transaction.accountAddress),
       from: transaction.from,
@@ -227,7 +233,7 @@ export default () => {
           accountNum,
           hash: block.hash,
           shortHash: toShort(block.hash),
-          amount: block.amount,
+          amount: handleBigNum(block.amount, true),
           age: block.timestamp
         });
       });
@@ -268,7 +274,7 @@ export default () => {
         accountNum,
         producer: block.producer,
         hash: block.hash,
-        amount: block.amount,
+        amount: handleBigNum(block.amount),
         timestamp: block.timestamp,
         age: block.timestamp
       }
@@ -298,7 +304,7 @@ export default () => {
       let transaction = body.data || {};
       transaction = {
         hash: transaction.hash,
-        amount: transaction.amount,
+        amount: handleBigNum(transaction.amount),
         from: transaction.from,
         to: transaction.to,
         accountAddress: transaction.accountAddress,
@@ -341,7 +347,7 @@ export default () => {
         transactionList.push({
           hash: transaction.hash,
           shortHash: toShort(transaction.hash),
-          amount: transaction.amount,
+          amount: handleBigNum(transaction.amount, true),
           accountAddress: transaction.accountAddress,
           shortAccountAddress: toShort(transaction.accountAddress),
           from: transaction.from,

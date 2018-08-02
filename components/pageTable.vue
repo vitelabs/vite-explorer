@@ -8,9 +8,7 @@
         <el-table-column v-for="(tT, index) in tableTitles" :key="index"
           :label="tT.name" :width="tT.width || ''" :show-overflow-tooltip="true">
           <template slot-scope="scope">
-            <span v-html="scope.row.amount || '--'" v-if="tT.prop === 'amount' && scope.row.amount < 0" style="color: #e67e22;"></span>
-            <span v-html="scope.row.amount || '--'" v-if="tT.prop === 'amount' && scope.row.amount > 0" style="color: #5cb85c;"></span>
-            <span v-html="scope.row[tT.prop] || '--'" v-if="tT.prop !== 'amount'"></span>
+            <span v-html="scope.row[tT.prop]  || '--'"></span>
           </template>
         </el-table-column>
       </el-table>

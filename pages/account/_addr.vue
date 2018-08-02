@@ -29,6 +29,7 @@
   import error from "~/components/error";
   import transList from "~/components/transList.vue";
   import account from "~/services/account.js";
+  import { handleBigNum } from "../../utils/util.js";
 
   export default {
     head() {
@@ -115,7 +116,7 @@
 
         return [{
           name: this.$t("account.bAmount"),
-          describe: tokenDetail.balance || "--"
+          describe: handleBigNum(tokenDetail.balance, true) || "--"
         }, {
           name: this.$t("account.bValue"),
           describe: "--"

@@ -103,6 +103,12 @@
 
           moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
           let timestamp = moment(transaction.timestamp * 1000).fromNow();
+          let amount = "";
+          if (transaction.amount === "0") {
+            amount = 0;
+          } else {
+            amount = transaction.fromHash ?  `<span style="color: #5cb85c;">${transaction.amount}</span>` : `<span style="color: #e67e22">-${transaction.amount}</span>`;
+          }
           list.push({
             hash: `<a href="${lang}/transaction/${transaction.hash}" target="_blank" title="${transaction.hash}">${transaction.shortHash}</a>`,
             timestamp,
@@ -110,7 +116,7 @@
             to: `<a href="${lang}/account/${toAddr}" target="_blank" title="${toAddr}">${shortToAddr}</a>`,
             from: `<a href="${lang}/account/${fromAddr}" target="_blank" title="${fromAddr}">${shortFromAddr}</a>`,
             type: transaction.fromHash ? `<div class="table-label in-label">${this.$t("transaction.receive")}</div>` : `<div class="table-label out-label">${this.$t("transaction.send")}</div>`,
-            amount: transaction.fromHash ?  transaction.amount : `-${transaction.amount}`,
+            amount,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,
             tokenName: transaction.tokenName,
