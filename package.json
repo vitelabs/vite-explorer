@@ -29,6 +29,7 @@
     "v-charts": "^1.17.6"
   },
   "devDependencies": {
+    "@nuxtjs/google-analytics": "^2.0.2",
     "babel-eslint": "^8.2.3",
     "babel-plugin-component": "^1.1.1",
     "backpack-core": "^0.7.0",

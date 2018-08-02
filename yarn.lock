@@ -93,6 +93,12 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@nuxtjs/google-analytics@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/google-analytics/-/google-analytics-2.0.2.tgz#75353143628fd7697b41eb5aa7da38a513394eca"
+  dependencies:
+    vue-analytics "^5.4.0"
+
 "@nuxtjs/icon@^2.1.0":
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/@nuxtjs/icon/download/@nuxtjs/icon-2.1.0.tgz#d06ff69778d54a65506a39862fe12ab2bba627b5"
@@ -7348,6 +7354,10 @@ vm-browserify@0.0.4:
 vm2@^3.5.0:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/vm2/-/vm2-3.6.1.tgz#09c20e0d4adc8630a7dbbfc0bf0bce587c06cbb4"
+
+vue-analytics@^5.4.0:
+  version "5.12.3"
+  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.12.3.tgz#599bd05f9e69efd51645e9e74add81d8a26a88ea"
 
 vue-hot-reload-api@^2.2.0:
   version "2.3.0"
