@@ -4,12 +4,6 @@ import { toShort, handleBigNum } from "../utils/util.js";
 import axios from "axios";
 import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
 import fs from "fs";
-import { BigNumber } from "bignumber.js";
-
-
-let y  = new BigNumber("1");
-let num = y.shiftedBy(-18).toFixed(8);
-console.log(num);
 
 const router = new Router();
 var txData;
