@@ -35,11 +35,15 @@ module.exports = {
     "~/assets/css/main.scss"
   ],
   modules: [
+    ["@nuxtjs/google-analytics"],
     ["nuxt-i18n", i18nConfig],
     ["@nuxtjs/pwa", {
       workbox: false,
       manifest: false
     }]
   ],
+  "google-analytics": {
+    id: "UA-123121621-1"
+  },
   analyze: true
 };
