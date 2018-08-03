@@ -126,6 +126,7 @@ export default () => {
 
   router.post("/api/account/newtesttoken", async(ctx) => {
     try {
+      console.log(ctx.path + ":" +ctx.request.body);
       let result = await post("/account/newtesttoken", ctx.request.body);
       ctx.type = "json";
       ctx.body = result.data || {
@@ -139,6 +140,7 @@ export default () => {
 
   router.get("/api/general/detail", async(ctx) => {
     try {
+      console.log(ctx.path);
       let result = await axios.get("https://api.coinmarketcap.com/v2/ticker/2937/");
       ctx.type = "json";
       let body = result.data;
@@ -157,6 +159,7 @@ export default () => {
   });
   router.get("/api/account/detail", async (ctx) => {
     try {
+      console.log("/account/detail:" + ctx.query);
       let result = await get("/account/detail", ctx.query);
       ctx.type = "json";
       ctx.body = result.data || {
@@ -170,6 +173,7 @@ export default () => {
 
   router.post("/api/token/list", async (ctx) => {
     try {
+      console.log("/token/list:"+ ctx.request.body);
       let result = await post("/token/list", ctx.request.body);
       ctx.type = "json";
       ctx.body = result.data || {
@@ -184,6 +188,7 @@ export default () => {
 
   router.get("/api/token/detail", async (ctx) => {
     try {
+      console.log("/token/detail:"+ ctx.query);
       let result = await get("/token/detail", ctx.query);
       ctx.type = "json";
       ctx.body = result.data || {
@@ -198,6 +203,7 @@ export default () => {
 
   router.post("/api/block/list", async (ctx) => {
     try {
+      console.log("/snapshotchain/blocklist:"+ ctx.request.body);
       let result = await post("/snapshotchain/blocklist", ctx.request.body);
       ctx.type = "json";
       let body = result.data || {
@@ -245,6 +251,7 @@ export default () => {
 
   router.get("/api/block/detail", async (ctx) => {
     try {
+      console.log("/snapshotchain/block:"+ ctx.query);
       let result = await get("/snapshotchain/block", ctx.query);
       ctx.type = "json";
       let body = result.data || {
@@ -283,6 +290,7 @@ export default () => {
 
   router.get("/api/transaction/detail", async (ctx) => {
     try {
+      console.log("/accountchain/block:"+ ctx.query);
       let result = await get("/accountchain/block", ctx.query);
       ctx.type = "json";
       let body = result.data || {
@@ -324,6 +332,7 @@ export default () => {
 
   router.post("/api/transaction/list", async (ctx) => {
     try {
+      console.log("/accountchain/blocklist:"+ ctx.request.body);
       let result = await post("/accountchain/blocklist", ctx.request.body);
       ctx.type = "json";
       let body = result.data || {
@@ -389,6 +398,7 @@ export default () => {
 
   router.get("/api/search/judgeTransOrBlock", async (ctx) => {
     try {
+      console.log("/api/search/judgeTransOrBlock:"+ ctx.query.addr);
       let transactionDetail = await get("/accountchain/block", { blockHash: ctx.query.addr });
       let blockDetail = await get("/snapshotchain/block", { blockHash: ctx.query.addr });
       let judgeString = 'null';
@@ -417,6 +427,7 @@ export default () => {
 
   router.get("/api/search/tokenNameOrSymbol", async (ctx) => {
     try {
+      console.log("/api/search/tokenNameOrSymbol:"+ ctx.query.str);
       let nameResult = await get("/token/detail", { tokenName: ctx.query.str });
       let symbolResult= await get("/token/detail", { tokenSymbol: ctx.query.str });
 
