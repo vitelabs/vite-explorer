@@ -144,20 +144,28 @@ export default () => {
       msg: 'ok'
     }
   });
-  router.post("/api/block/list", async (ctx) => {
+  router.post("/api/block/list/topBk10", async (ctx) => {
     if (blockData.data && !blockData.data.blockList.length) {
       ctx.body = await getBlockList(ctx);
     } else {
       ctx.body = blockData;
     }
   });
+
+  router.post("/api/block/list", async (ctx) => {
+    ctx.body = await getBlockList(ctx);
+  });
   
-  router.post("/api/transaction/list", async (ctx) => {
+  router.post("/api/transaction/list/topTx10", async (ctx) => {
     if (txData.data && !txData.data.transactionList.length) {
       ctx.body = await getTransactionList(ctx);
     } else {
       ctx.body = txData;
     }
+  });
+
+  router.post("/api/transaction/list", async (ctx) => {
+    ctx.body = await getTransactionList(ctx);
   });
 
   router.post("/api/account/newtesttoken", async(ctx) => {
