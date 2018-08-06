@@ -2,21 +2,14 @@ import Router from "koa-trie-router";
 import { get, post } from "../api/server.js";
 import { toShort, handleBigNum } from "../utils/util.js";
 import axios from "axios";
-import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
 import fs from "fs";
 
 const router = new Router();
-var txData;
-var blockData;
+var txData = [];
+var blockData = [];
 
-var txInterval = null;
-var blockInterval = null;
-
-if (blockInterval) {
-  myClearInterval(blockInterval);
-}
-blockInterval = mySetInterval(async function () {
-  let result = await post("/snapshotchain/blocklist", { count: 10, index: 0});
+async function getBlockList(ctx) {
+  let result = await post("/snapshotchain/blocklist", ctx.request.body);
   let body = result.data || {
     code: 5000,
     msg: "Server Error"
@@ -24,7 +17,7 @@ blockInterval = mySetInterval(async function () {
 
   if (body.code !== 0) {
     blockData = [];
-    return;
+    return blockData;
   }
 
   let rawBlockList = body.data.blockList || [];
@@ -44,7 +37,7 @@ blockInterval = mySetInterval(async function () {
       accountNum,
       hash: block.hash,
       shortHash: toShort(block.hash),
-      amount: block.amount,
+      amount: handleBigNum(block.amount, true),
       age: block.timestamp
     });
   });
@@ -54,14 +47,12 @@ blockInterval = mySetInterval(async function () {
     totalNumber: +body.data.totalNumber
   };
   blockData = body;
-}, 3000);
-
-if (txInterval) {
-  myClearInterval(txInterval);
+  return blockData;
 }
 
-txInterval = mySetInterval(async function () {
-  let result = await post("/accountchain/blocklist", { count: 10, index: 0});
+
+async function getTransactionList(ctx) {
+  let result = await post("/accountchain/blocklist", ctx.request.body);
   let body = result.data || {
     code: 5000,
     msg: "Server Error"
@@ -69,7 +60,7 @@ txInterval = mySetInterval(async function () {
 
   if (body.code !== 0) {
     txData = body;
-    return;
+    return txData;
   }
   let rawTransactionList = body.data.blockList || [];
   let transactionList = [];
@@ -104,11 +95,12 @@ txInterval = mySetInterval(async function () {
     totalNumber: +body.data.totalNumber
   };
   txData = body;
-}, 3000);
+  return txData;
+}
+
 
 export default () => {
   router.get("/api/walletapp/version", async (ctx) => {
-    console.log(ctx.query);
     let data = fs.readFileSync('/var/www/walletapp/versions/version.json', 'utf8')
     ctx.body = {
       code: 0,
@@ -116,17 +108,25 @@ export default () => {
       msg: 'ok'
     }
   });
-  router.post("/api/block/list/topBk10", async (ctx) => {
-    ctx.body = blockData;
+  router.post("/api/block/list", async (ctx) => {
+    if (!blockData.length) {
+      ctx.body = await getBlockList(ctx);
+    } else {
+      ctx.body = blockData;
+    }
   });
   
-  router.post("/api/transaction/list/topTx10", async (ctx) => {
-    ctx.body = txData;
+  router.post("/api/transaction/list", async (ctx) => {
+    if (!txData.length) {
+      ctx.body = await getTransactionList(ctx);
+    } else {
+      ctx.body = txData;
+    }
   });
 
   router.post("/api/account/newtesttoken", async(ctx) => {
     try {
-      console.log(ctx.path + ":" +ctx.request.body);
+      console.log(ctx.path + ":" + JSON.stringify(ctx.request.body));
       let result = await post("/account/newtesttoken", ctx.request.body);
       ctx.type = "json";
       ctx.body = result.data || {
@@ -159,7 +159,7 @@ export default () => {
   });
   router.get("/api/account/detail", async (ctx) => {
     try {
-      console.log("/account/detail:" + ctx.query);
+      console.log("/account/detail:" + JSON.stringify(ctx.query));
       let result = await get("/account/detail", ctx.query);
       ctx.type = "json";
       ctx.body = result.data || {
@@ -173,7 +173,7 @@ export default () => {
 
   router.post("/api/token/list", async (ctx) => {
     try {
-      console.log("/token/list:"+ ctx.request.body);
+      console.log("/token/list:"+ JSON.stringify(ctx.request.body));
       let result = await post("/token/list", ctx.request.body);
       ctx.type = "json";
       ctx.body = result.data || {
@@ -188,7 +188,6 @@ export default () => {
 
   router.get("/api/token/detail", async (ctx) => {
     try {
-      console.log("/token/detail:"+ ctx.query);
       let result = await get("/token/detail", ctx.query);
       ctx.type = "json";
       ctx.body = result.data || {
@@ -201,57 +200,8 @@ export default () => {
     }
   });
 
-  router.post("/api/block/list", async (ctx) => {
-    try {
-      console.log("/snapshotchain/blocklist:"+ ctx.request.body);
-      let result = await post("/snapshotchain/blocklist", ctx.request.body);
-      ctx.type = "json";
-      let body = result.data || {
-        code: 5000,
-        msg: "Server Error"
-      };
-
-      if (body.code !== 0) {
-        ctx.body = body;
-        return;
-      }
-
-      let rawBlockList = body.data.blockList || [];
-      let blockList = [];
-
-      rawBlockList.forEach((block) => {
-        let accountNum = 0;
-        /* eslint-disable */
-        for(let key in block.snapshot || {}) {
-          accountNum++;
-        }
-
-        blockList.push({
-          height: block.height,
-          producer: block.producer,
-          shortProducer: toShort(block.producer),
-          accountNum,
-          hash: block.hash,
-          shortHash: toShort(block.hash),
-          amount: handleBigNum(block.amount, true),
-          age: block.timestamp
-        });
-      });
-      rawBlockList = [];
-      body.data = {
-        blockList,
-        totalNumber: +body.data.totalNumber
-      };
-      ctx.body = body;
-    } catch(err) {
-      console.log(err);
-      // console.log(err.code);
-    }
-  });
-
   router.get("/api/block/detail", async (ctx) => {
     try {
-      console.log("/snapshotchain/block:"+ ctx.query);
       let result = await get("/snapshotchain/block", ctx.query);
       ctx.type = "json";
       let body = result.data || {
@@ -289,8 +239,7 @@ export default () => {
   });
 
   router.get("/api/transaction/detail", async (ctx) => {
-    try {
-      console.log("/accountchain/block:"+ ctx.query);
+    try {  
       let result = await get("/accountchain/block", ctx.query);
       ctx.type = "json";
       let body = result.data || {
@@ -323,59 +272,6 @@ export default () => {
       }
 
       body.data = transaction;
-      ctx.body = body;
-    } catch(err) {
-      console.log(err);
-      // console.log(err.code);
-    }
-  });
-
-  router.post("/api/transaction/list", async (ctx) => {
-    try {
-      console.log("/accountchain/blocklist:"+ ctx.request.body);
-      let result = await post("/accountchain/blocklist", ctx.request.body);
-      ctx.type = "json";
-      let body = result.data || {
-        code: 5000,
-        msg: "Server Error"
-      };
-
-      if (body.code !== 0) {
-        ctx.body = body;
-        return;
-      }
-      let rawTransactionList = body.data.blockList || [];
-      let transactionList = [];
-      rawTransactionList.forEach((transaction) => {
-        transactionList.push({
-          hash: transaction.hash,
-          shortHash: toShort(transaction.hash),
-          amount: handleBigNum(transaction.amount, true),
-          accountAddress: transaction.accountAddress,
-          shortAccountAddress: toShort(transaction.accountAddress),
-          from: transaction.from,
-          shortFrom: toShort(transaction.from),
-          to: transaction.to,
-          shortTo: toShort(transaction.to),
-          fromHash: transaction.fromHash,
-          status: transaction.status,
-          timestamp: transaction.timestamp,
-          confirmTimes: transaction.confirmTimes,
-          confirmBlockHash: transaction.confirmBlockHash || null,
-          shortConfirmBlockHash: toShort(transaction.confirmBlockHash) || null,
-          snapshotTimestamp: transaction.snapshotTimestamp,
-          tokenName: transaction.token && transaction.token.name || "",
-          tokenSymbol: transaction.token && transaction.token.symbol || "",
-          tokenId: transaction.token && transaction.token.id || null,
-          fAmount: transaction.fAmount,
-        });
-      });
-
-      rawTransactionList = [];
-      body.data = {
-        transactionList,
-        totalNumber: +body.data.totalNumber
-      };
       ctx.body = body;
     } catch(err) {
       console.log(err);

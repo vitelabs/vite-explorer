@@ -1,9 +1,11 @@
 import axios from "axios";
 import config from "./config";
 
-// if (process.server) {
-config.baseURL = `http://${process.env.HOST || "localhost"}:${process.env.PORT || 8080}/api`;
-// }
+if (process.server) {
+  config.baseURL = "http://127.0.0.1:8080/api";
+} else {
+  config.baseURL = "/api";  
+}
 
 const service = axios.create(config);
 

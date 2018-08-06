@@ -41,21 +41,15 @@
     },
     async asyncData() {
       try {
-        let pageIndex = 0;
-        let pageSize = 10;
+        console.log("aaaaaa");
         let generalDetail = {};
-        let { blockList } = await block.getList({
-          pageIndex, pageSize
-        });
-        let { transactionList } = await transaction.getList({
-          pageIndex, pageSize
-        });
+        let { blockList } = await block.getTop10List();
+        let { transactionList } = await transaction.getTop10List();
         try{
           generalDetail = await general.getGeneralDetail();
         }catch(err) {
           console.log(err);
         }
-      
         return {
           blockList,
           transactionList,
@@ -68,6 +62,11 @@
       }
     },
     created() {
+      this.getTop10BlockList();
+      this.getTop10TxList();
+      this.getGeneralDetail();
+    },
+    mounted() {
       this.getTop10List();
     },
     data() {
@@ -86,6 +85,13 @@
       }
     },
     methods: {
+      getGeneralDetail() {
+        general.getGeneralDetail().then(data=> {
+          this.generalDetail = data;
+        }).catch(err => {
+          console.log(err);
+        });
+      },
       getTop10BlockList() {
         block.getTop10List().then(data => {
           this.blockList = data.blockList;

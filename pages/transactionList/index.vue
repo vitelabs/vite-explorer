@@ -34,7 +34,7 @@
     async asyncData() {
       let pageIndex = 0;
       try {
-        let { transactionList, totalNumber} = await transaction.getList({
+        let { transactionList, totalNumber } = await transaction.getList({
           pageIndex, pageSize
         });
         return {
@@ -44,17 +44,17 @@
           pageSize
         };
       } catch(err) {
+        console.log(err);
         return {
           error: err.msg || "get transactionList fail"
         };
       }
     },
+    created() {
+    },
     data() {
       return {
         error: "",
-        transactionList: [],
-        totalNumber: 0,
-        pageSize: 0
       };
     }
   };

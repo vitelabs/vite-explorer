@@ -28,7 +28,7 @@ service.interceptors.response.use(
 );
 
 export function post(url, data) {
-  console.log("post request url", url);
+  console.log("service: post request url", url);
   return service({
     method: "post",
     url,
@@ -37,7 +37,7 @@ export function post(url, data) {
 }
 
 export function get(url, data) {
-  console.log("get request url", url);
+  console.log("service: get request url", url);
   return service({
     method: "get",
     url,
