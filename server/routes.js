@@ -1,12 +1,48 @@
 import Router from "koa-trie-router";
 import { get, post } from "../api/server.js";
 import { toShort, handleBigNum } from "../utils/util.js";
+import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
 import axios from "axios";
 import fs from "fs";
 
+const defaultTxData = {
+  code: 0,
+  msg: "ok",
+  data: {
+    transactionList: []
+  }
+};
+
+const defaultBlockData = {
+  code: 0,
+  msg: "ok",
+  data: {
+    blockList: []
+  }
+};
+
 const router = new Router();
-var txData = [];
-var blockData = [];
+var txData = defaultTxData;
+var blockData = defaultBlockData;
+
+var myInterval = null;
+
+if (myInterval) {
+  myClearInterval(myInterval);
+}
+myInterval = mySetInterval(async function() {
+  let requestBody = {
+    request: {
+      body: {
+        count: 10, index: 0
+      }
+    }
+  };
+  blockData = defaultTxData; 
+  txData = defaultTxData;
+  blockData = await getBlockList(requestBody);
+  txData = await getTransactionList(requestBody);
+}, 3000);
 
 async function getBlockList(ctx) {
   let result = await post("/snapshotchain/blocklist", ctx.request.body);
@@ -16,7 +52,7 @@ async function getBlockList(ctx) {
   };
 
   if (body.code !== 0) {
-    blockData = [];
+    blockData = body;
     return blockData;
   }
 
@@ -109,7 +145,7 @@ export default () => {
     }
   });
   router.post("/api/block/list", async (ctx) => {
-    if (!blockData.length) {
+    if (blockData.data && !blockData.data.blockList.length) {
       ctx.body = await getBlockList(ctx);
     } else {
       ctx.body = blockData;
@@ -117,7 +153,7 @@ export default () => {
   });
   
   router.post("/api/transaction/list", async (ctx) => {
-    if (!txData.length) {
+    if (txData.data && !txData.data.transactionList.length) {
       ctx.body = await getTransactionList(ctx);
     } else {
       ctx.body = txData;
