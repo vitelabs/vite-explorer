@@ -2,8 +2,10 @@ import axios from "axios";
 import config from "./config";
 
 if (process.server) {
+  console.log("server");
   config.baseURL = "http://127.0.0.1:8080/api";
 } else {
+  console.log("client");
   config.baseURL = "/api";  
 }
 

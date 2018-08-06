@@ -41,7 +41,6 @@
     },
     async asyncData() {
       try {
-        console.log("aaaaaa");
         let generalDetail = {};
         let { blockList } = await block.getTop10List();
         let { transactionList } = await transaction.getTop10List();
@@ -60,11 +59,6 @@
           error: err.msg || "get data fail"
         };
       }
-    },
-    created() {
-      this.getTop10BlockList();
-      this.getTop10TxList();
-      this.getGeneralDetail();
     },
     mounted() {
       this.getTop10List();
