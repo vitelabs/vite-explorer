@@ -26,6 +26,7 @@
 
 <script>
   export default {
+    name: "pageTable",
     props: {
       loading: {
         type: Boolean,
@@ -76,6 +77,7 @@
         default: 1
       }
     },
+    serverCacheKey: props => props.currentPage,
     data() {
       return {
         currentInx: this.currentPage,

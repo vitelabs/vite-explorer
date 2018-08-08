@@ -1,7 +1,18 @@
 const i18nConfig = require("./i18n/config.js");
 const MomentLocalesPlugin = require("moment-locales-webpack-plugin");
+const nuxtPageCache = require("nuxt-page-cache");
+const LRU = require("lru-cache");
 
 module.exports = {
+  cache: true,
+  render: {
+    bundleRenderer: {
+      cache: LRU({
+        max: 1000,                  
+        maxAge: 1000 * 60 * 15       
+      })
+    }
+  },
   head: {
     title: "Official Block Explorer of Vite",
     meta: [
@@ -45,5 +56,8 @@ module.exports = {
   "google-analytics": {
     id: "UA-123121621-1"
   },
-  analyze: true
+  analyze: true,
+  serverMiddleware: [
+    nuxtPageCache.cacheSeconds(1)
+  ]
 };
