@@ -37,7 +37,8 @@ module.exports = {
       new MomentLocalesPlugin({
         localesToKeep: ["en", "zh-cn"],
       })
-    ]
+    ],
+    uglify: true
   },
   router: {
     middleware: "i18n"
