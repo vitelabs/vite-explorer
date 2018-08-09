@@ -46,7 +46,6 @@
     "moment": "^2.22.2",
     "moment-locales-webpack-plugin": "^1.0.7",
     "node-sass": "^4.9.0",
-    "nuxt-page-cache": "^0.0.5",
     "pre-commit": "^1.2.2",
     "qs": "^6.5.2",
     "sass-loader": "^7.0.3"
