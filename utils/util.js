@@ -25,8 +25,7 @@ export function handleBigNum(str, toFixed) {
   let y  = new BigNumber(str);
   let num;
   if (toFixed) {
-
-    num = y.shiftedBy(-18).toFixed(8);
+    num = new BigNumber(y.shiftedBy(-18).toFixed(8)).toFixed();
   } else {
     num = y.shiftedBy(-18).toFormat();
   }
