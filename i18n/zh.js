@@ -218,7 +218,7 @@ module.exports = {
   // pages/tokenList
   tokenList: {
     title: "代币列表",
-    total: "总TOKEN种类：",
+    total: "总代币种类：",
   },
   tokenTitles: [{
     prop: "icon",

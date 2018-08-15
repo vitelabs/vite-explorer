@@ -221,7 +221,7 @@ module.exports = {
   // pages/tokenList
   tokenList: {
     title: "Tokens",
-    total: "总TOKEN种类：",
+    total: "Token types：",
   },
   tokenTitles: [{
     prop: "icon",
