@@ -77,7 +77,7 @@
         default: 1
       }
     },
-    serverCacheKey: props => props.currentPage,
+    // serverCacheKey: props => props.currentPage,
     data() {
       return {
         currentInx: this.currentPage,
