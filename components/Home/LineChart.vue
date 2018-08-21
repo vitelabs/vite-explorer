@@ -7,6 +7,7 @@
 <script>
   import VeLine from "v-charts/lib/line";
   import "v-charts/lib/style.css";
+  import transaction from "~/services/transaction.js";
 
   export default {
     components: {
@@ -15,27 +16,28 @@
     props: {
 
     },
+    mounted() {
+      this.getChartData();
+    },
     data () {
       return {
         dataEmpty: false,
         chartData: {
-          columns: ["date", "Transactions (no data)"],
-          rows: [
-            { "date": "07-09", "Transactions (no data)": 1 },
-            { "date": "07-10", "Transactions (no data)": 1 },
-            { "date": "07-11", "Transactions (no data)": 1 },
-            { "date": "07-12", "Transactions (no data)": 1 },
-            { "date": "07-13", "Transactions (no data)": 1 },
-            { "date": "07-14", "Transactions (no data)": 1 },
-            { "date": "07-15", "Transactions (no data)": 1 },
-            { "date": "07-16", "Transactions (no data)": 1 },
-            { "date": "07-17", "Transactions (no data)": 1 },
-            { "date": "07-18", "Transactions (no data)": 1 },
-            { "date": "07-19", "Transactions (no data)": 1 },
-            { "date": "07-20", "Transactions (no data)": 1 }
-          ]
+          columns: ["date", "transactions"],
+          rows: []
         }
       };
+    },
+    methods: {
+      getChartData() {
+        transaction.getChartData()
+          .then(data=> {
+            this.chartData.rows = data;
+          })
+          .catch(err=> {
+            console.log(err);
+          });
+      }
     }
   };
 </script>

@@ -210,7 +210,7 @@ module.exports = {
     circulationLines: "流通市值",
     owner: "所有者地址",
     price: "价格",
-    addressNumber: "地址数量",
+    accountNum: "地址数量",
     transactionNumber: "交易金额"
   },
 

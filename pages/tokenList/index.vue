@@ -37,7 +37,6 @@
       if (ctx.query.filter) {
         try {
           let data = await search.judgeTokenName({ str: ctx.query.filter });
-          console.log(data);
           return {
             pageIndex,
             tokenList: data

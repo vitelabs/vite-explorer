@@ -79,6 +79,7 @@
       showTokenDetail() {
         return {
           owner: this.tokenDetail.owner,
+          accountNum: `${this.tokenDetail.accountNum}`,
           circulationLines: `$${this.generalDetail.ffmCap}`,
           price: `$${this.generalDetail.cirPrice}`,
           transactionNumber: `$${this.generalDetail.volume_24h}`

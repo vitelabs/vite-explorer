@@ -60,17 +60,11 @@ async function getBlockList(ctx) {
   let blockList = [];
 
   rawBlockList.forEach((block) => {
-    let accountNum = 0;
-    /* eslint-disable */
-    for(let key in block.snapshot || {}) {
-      accountNum++;
-    }
-
     blockList.push({
       height: block.height,
       producer: block.producer,
       shortProducer: toShort(block.producer),
-      accountNum,
+      accountNum: block.accountNum,
       hash: block.hash,
       shortHash: toShort(block.hash),
       amount: handleBigNum(block.amount, true),
@@ -137,12 +131,12 @@ async function getTransactionList(ctx) {
 
 export default () => {
   router.get("/api/walletapp/version", async (ctx) => {
-    let data = fs.readFileSync('/var/www/walletapp/versions/version.json', 'utf8')
+    let data = fs.readFileSync("/var/www/walletapp/versions/version.json", "utf8");
     ctx.body = {
       code: 0,
       data: JSON.parse(data),
-      msg: 'ok'
-    }
+      msg: "ok"
+    };
   });
   router.post("/api/block/list/topBk10", async (ctx) => {
     if (blockData.data && !blockData.data.blockList.length) {
@@ -184,10 +178,11 @@ export default () => {
 
   router.get("/api/general/detail", async(ctx) => {
     try {
-      console.log(ctx.path);
       let result = await axios.get("https://api.coinmarketcap.com/v2/ticker/2937/");
+      let generalBody= await get("/general/detail", ctx.query);
       ctx.type = "json";
       let body = result.data;
+      let generalDetail = generalBody.data;
       ctx.body = {
         data: {
           cirPrice: body.data ? body.data.quotes.USD.price : "",
@@ -195,6 +190,9 @@ export default () => {
           volume_24h: body.data ? body.data.quotes.USD.volume_24h : "",
           percent_change_24h: body.data ? body.data.quotes.USD.percent_change_24h : "",
           circulating_supply: body.data ? body.data.quotes.USD.circulating_supply : "",
+          sysTps: generalDetail.data.sysTps || "",
+          txTotalTAmount: generalDetail.data.txTotalTAmount || "",
+          txMonAmount: generalDetail.data.txMonAmount || ""
         }
       };
     } catch(err) {
@@ -234,6 +232,7 @@ export default () => {
     try {
       let result = await get("/token/detail", ctx.query);
       ctx.type = "json";
+      console.log(JSON.stringify(result.data));
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"
@@ -259,20 +258,15 @@ export default () => {
       }
 
       let block = body.data || {};
-      let accountNum = 0;
-      /* eslint-disable */
-      for(let key in block.snapshot || {}) {
-        accountNum++;
-      }
       block = {
         height: block.height,
-        accountNum,
+        accountNum: block.accountNum,
         producer: block.producer,
         hash: block.hash,
         amount: handleBigNum(block.amount),
         timestamp: block.timestamp,
         age: block.timestamp
-      }
+      };
 
       body.data = block;
       ctx.body = body;
@@ -313,7 +307,7 @@ export default () => {
         tokenId: transaction.token && transaction.token.id,
         fAmount: transaction.fAmount,
         confirmBlockHash: transaction.confirmBlockHash
-      }
+      };
 
       body.data = transaction;
       ctx.body = body;
@@ -323,25 +317,25 @@ export default () => {
     }
   });
 
-  // router.get("/api/general/detail", async (ctx) => {
-  //   try {
-  //     let result = await get("/general/detail");
-  //     ctx.type = "json";
-  //     ctx.body = result.data || {
-  //       code: 5000,
-  //       msg: "Server Error"
-  //     };
-  //   } catch(err) {
-  //     console.log(err.code);
-  //   }
-  // });
+  router.get("/api/transaction/timeline", async (ctx) => {
+    try {
+      let result = await get("/transaction/timeline");
+      ctx.type = "json";
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
 
   router.get("/api/search/judgeTransOrBlock", async (ctx) => {
     try {
       console.log("/api/search/judgeTransOrBlock:"+ ctx.query.addr);
       let transactionDetail = await get("/accountchain/block", { blockHash: ctx.query.addr });
       let blockDetail = await get("/snapshotchain/block", { blockHash: ctx.query.addr });
-      let judgeString = 'null';
+      let judgeString = "null";
       if (transactionDetail.data.code !== 0) {
         transactionDetail.data.data = null;
       }
@@ -349,19 +343,19 @@ export default () => {
         blockDetail.data.data = null;
       }
       if (transactionDetail.data.data && !blockDetail.data.data) {
-        judgeString = 'transaction';
+        judgeString = "transaction";
       }
       if (!transactionDetail.data.data && blockDetail.data.data) {
-        judgeString = 'block';
+        judgeString = "block";
       }
       ctx.body = {
         code: 0,
         data: judgeString,
-        msg: 'ok'
-      }
+        msg: "ok"
+      };
       return;
     } catch(err) {
-      console.log('err', err);
+      console.log("err", err);
     }
   });
 
@@ -391,10 +385,10 @@ export default () => {
       return ctx.body = {
         code: 0,
         data: tokenList,
-        msg: 'ok'
+        msg: "ok"
       };
     } catch(err) {
-      console.log('err', err);
+      console.log("err", err);
     }
   });
 

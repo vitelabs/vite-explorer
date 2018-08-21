@@ -213,7 +213,7 @@ module.exports = {
     circulationLines: "Circulation Limit",
     owner: "Owner Address",
     price: "Price",
-    addressNumber: "Number of Address",
+    accountNum: "Number of Address",
     transactionNumber: "Number of Transactions"
   },
 

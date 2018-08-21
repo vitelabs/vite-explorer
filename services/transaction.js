@@ -46,5 +46,8 @@ export default {
         count: 10
       }
     });
+  },
+  getChartData() {
+    return get(`${PREFIX}/timeline`);
   }
 };
