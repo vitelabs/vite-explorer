@@ -72,7 +72,7 @@ module.exports = {
   },
   search: {
     btn: "搜索",
-    placeholder: "支持搜索区块、交易、账户、代币"
+    placeholder: "支持搜索快照块、交易、账户、代币"
   },
   utils: {
     noData: "暂无数据",
