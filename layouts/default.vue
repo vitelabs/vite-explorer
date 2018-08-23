@@ -48,6 +48,47 @@
   import search from "~/components/search.vue";
   import LangSelect from "~/components/LangSelect.vue";
   import menuContent from "~/components/menuContent.vue";
+  import moment from "moment";
+
+  moment.updateLocale("en", {
+    relativeTime: {
+      past: "%s ago",
+      s:  "%ds",
+      m:  "1min",
+      mm: "%dmin",
+      h:  "1h",
+      hh: "%dh",
+      d:  "1d",
+      dd: "%dd",
+      M:  "1M",
+      MM: "%dM",
+      y:  "1Y",
+      yy: "%dY"
+    }
+  });
+
+  moment.updateLocale("zh-cn", {
+    relativeTime: {
+      past: "%s前",
+      s:  "%d秒",
+      m:  "1分钟",
+      mm: "%d分钟",
+      h:  "1小时",
+      hh: "%d小时",
+      d:  "1天",
+      dd: "%d天",
+      M:  "1月",
+      MM: "%d月",
+      y:  "1年",
+      yy: "%d年"
+    }
+  });
+
+  moment.relativeTimeThreshold("s", 60);
+  moment.relativeTimeThreshold("m", 60);
+  moment.relativeTimeThreshold("h", 24);
+  moment.relativeTimeThreshold("d", 31);
+  moment.relativeTimeThreshold("M", 12);
 
   export default {
     components: {

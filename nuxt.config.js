@@ -19,7 +19,7 @@ module.exports = {
       {name: "viewport", content: "width=device-width, initial-scale=1, user-scalable=no"},
     ],
     link: [
-      {rel: "icon", type: "image/x-icon", href: "https://vite.org/icon.png"}
+      {rel: "icon", type: "image/x-icon", href: "/icon.png"}
     ]
   },
   loading: {color: "#7FB2FE"},
