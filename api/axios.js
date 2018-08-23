@@ -11,7 +11,7 @@ if (process.server) {
 
 const service = axios.create(config);
 
-// POST 传参序列化
+// POST  Stringify parameters
 service.interceptors.request.use(
   config => {
     return config;
@@ -21,7 +21,7 @@ service.interceptors.request.use(
   }
 );
 
-// 返回状态判断
+// Judge return value
 service.interceptors.response.use(
   res => {
     let body = res.data || {};
@@ -43,7 +43,6 @@ service.interceptors.response.use(
 );
 
 export function post(url, data) {
-  // console.log("post request url", url);
   return service({
     method: "post",
     url,
@@ -52,7 +51,6 @@ export function post(url, data) {
 }
 
 export function get(url, data) {
-  // console.log("get request url", url);
   return service({
     method: "get",
     url,

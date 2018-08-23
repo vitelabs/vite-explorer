@@ -58,6 +58,10 @@ module.exports = {
     current: "当前版本",
     content1: "Vite区块链浏览器是查询Vite综合信息的网站，目前支持账户、代币、交易、快照块的查询，基础信息的列表展示。",
     content2: "统计类信息暂不支持，如浏览器“暂无数据”展示，会在后续版本迭代补充进来。",
+    govite: {
+      current: "go-vite 版本",
+      v: "0.0.1"
+    }
   },
   nav: {
     index: "首页",
@@ -72,7 +76,7 @@ module.exports = {
   },
   search: {
     btn: "搜索",
-    placeholder: "支持搜索区块、交易、账户、代币"
+    placeholder: "搜索快照块、交易、账户、代币"
   },
   utils: {
     noData: "暂无数据",
@@ -197,7 +201,7 @@ module.exports = {
 
   // pages/searchError
   sError: {
-    text: "竟然没有搜索到，换个词试试"
+    text: "竟然没有搜索到，换个输入试试"
   },
 
 

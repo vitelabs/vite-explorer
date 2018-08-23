@@ -10,6 +10,10 @@
               <span>{{ $t('logo.current') }}</span>
               <span>{{ $t('logo.v') }}</span>
             </div>
+            <div class="go-vite">
+              <span><a href="https://github.com/vitelabs/go-vite" target="_blank">{{ $t('logo.govite.current') }}</a></span>
+              <span>{{ $t('logo.govite.v') }}</span>
+            </div>
         </div>
         <nuxt-link :to="localePath('index')" slot="reference">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -67,6 +71,13 @@
         box-sizing: border-box;
         padding: 5px 0;
         border-top: 2px solid $common-color;
+    }
+    .go-vite {
+        display: flex;
+        display: -webkit-flex;
+        justify-content: space-between;
+        box-sizing: border-box;
+        padding: 5px 0;
         border-bottom: 2px solid $common-color;
     }
   }

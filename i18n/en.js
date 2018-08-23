@@ -61,6 +61,10 @@ module.exports = {
     current: "Current Version",
     content1: "Vite's blockchain explorer is a website for searching integrated information about Vite. Now it supports searching by accounts, tokens, transactions and snapshot blocks and present information via lists.",
     content2: "For the record, statistics information is not available right now. If browser shows 'No Data', stay tuned and we will supply in further version iteration.",
+    govite: {
+      current: "go-vite Version",
+      v: "0.0.1"
+    }
   },
   nav: {
     index: "Home",
@@ -200,7 +204,7 @@ module.exports = {
 
   // pages/searchError
   sError: {
-    text: "No content found, Please switch another word."
+    text: "No content found, Please input another word."
   },
 
 

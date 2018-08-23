@@ -14,7 +14,7 @@
         <a class="img-wrapper" href="https://twitter.com/vitelabs" target="_blank">
           <img src="~assets/images/twitter.svg"/>
         </a>
-        <a class="img-wrapper" href="https://t.me/vite_zh" target="_blank">
+        <a class="img-wrapper" :href="tMe" target="_blank">
           <img src="~assets/images/telegram.svg"/>
         </a>
         <a class="img-wrapper" href="https://www.reddit.com/r/vitelabs" target="_blank">
@@ -37,6 +37,15 @@
     data() {
       return {
       };
+    },
+    computed: {
+      tMe() {
+        if (this.$i18n.locale === "en") {
+          return "https://t.me/vite_en";
+        } else {
+          return "https://t.me/vite_zh";
+        }
+      }
     },
     methods: {
      
