@@ -20,14 +20,41 @@ export function toShort(str) {
   }
 }
 
-export function handleBigNum(str, toFixed) {
+export function handleBigNum(str, toFixed, isCMC) {
   if (!str) return "";
+  let format = {
+    decimalSeparator: ".",
+    groupSeparator: ",",
+    groupSize: 3,
+    secondaryGroupSize: 0,
+    fractionGroupSeparator: " ",
+    fractionGroupSize: 0
+  };
+  BigNumber.config({ FORMAT: format });
   let y  = new BigNumber(str);
   let num;
   if (toFixed) {
-    num = new BigNumber(y.shiftedBy(-18).toFixed(8)).toFixed();
+    num = new BigNumber(y.shiftedBy(-18).toFixed(8)).toFormat();
   } else {
-    num = y.shiftedBy(-18).toFormat();
+    if (isCMC) {
+      num = y.toFormat();
+    } else {
+      num = y.shiftedBy(-18).toFormat();
+    }
+  }
+  return num;
+}
+
+export function formatTx(num) {
+  if (!num) return "";
+  const Thousand = 1000;
+  const Million = 1000000;
+  num = +num;
+  if (num >= Thousand && num < Million) {
+    return parseFloat((num / Thousand).toFixed(2)) + "K";
+  }
+  if (num >= Million) {
+    return parseFloat((num / Million).toFixed(2)) + "M";
   }
   return num;
 }

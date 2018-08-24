@@ -4,9 +4,9 @@
       <div class="top">
         <div class="title">{{ $t('profile.market') }}</div>
         <div class="market"> 
-          <div v-if="generalDetail && Number(generalDetail.ffmCap)">
+          <div v-if="generalDetail && generalDetail.ffmCap">
             $
-            <span>{{ Number(generalDetail.ffmCap) }}</span>
+            <span>{{ generalDetail.ffmCap }}</span>
           </div>
           <div v-else>
             <span>{{ $t('utils.noData') }}</span>
@@ -26,8 +26,9 @@
         </div>
         <div class="height">
           <div class="title">{{ $t('profile.latestHeight') }}</div>
-          <div v-if="Number(height)">
-            <span>{{ Number(height) }}</span>
+          <div v-if="height">
+            <span class="height-value">{{ height }}</span>
+            <span>( 15.3s )</span>
           </div>
           <div v-else>
             <span class="noData">{{ $t('utils.noData') }}</span>
@@ -41,11 +42,15 @@
         </div>
         <div class="trans common ml40">
           <div class="title">{{ $t('profile.totalTrans') }}</div>
-          <div><span>{{ generalDetail && Number(generalDetail.txTotalTAmount) || $t('utils.noData') }}</span></div>
+          <div>
+            <nuxt-link :to="localePath('transactionList')" target="_blank" class="profile-link">
+              <span>{{ generalDetail && generalDetail.txTotalTAmount || $t('utils.noData') }}</span>
+            </nuxt-link>
+          </div>
         </div>
         <div class="near-month common ml40">
           <div class="title">{{ $t('profile.nearMonth') }}</div>
-          <div><span>{{ generalDetail && Number(generalDetail.txMonAmount) || $t('utils.noData') }}</span></div>
+          <div><span>{{ generalDetail && generalDetail.txMonAmount || $t('utils.noData') }}</span></div>
         </div>
       </div>
     </div>
@@ -117,9 +122,13 @@
         box-shadow: 4px 4px 12px 0 rgba(0,92,199,0.44);
         box-sizing: border-box;
         padding: 15px 16px 9px 15px;
+        border-radius: 2px;
         span {
-          font-size: 48px;
           letter-spacing: 0;
+          font-size: 12px;
+          &.height-value {
+            font-size: 48px;
+          }
           &.noData {
             font-size: 40px;
           }
@@ -140,6 +149,9 @@
         background: rgba(102,165,255,0.42);
         border-radius: 2px;
       } 
+      .profile-link {
+        color: white;
+      }
       .common {
         width: 100px;
         font-size: 14px;

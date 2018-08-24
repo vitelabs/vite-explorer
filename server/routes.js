@@ -1,6 +1,6 @@
 import Router from "koa-trie-router";
 import { get, post } from "../api/server.js";
-import { toShort, handleBigNum } from "../utils/util.js";
+import { toShort, handleBigNum, formatTx } from "../utils/util.js";
 import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
 import axios from "axios";
 import fs from "fs";
@@ -186,13 +186,13 @@ export default () => {
       ctx.body = {
         data: {
           cirPrice: body.data ? body.data.quotes.USD.price : "",
-          ffmCap: body.data ? body.data.quotes.USD.market_cap : "",
-          volume_24h: body.data ? body.data.quotes.USD.volume_24h : "",
+          ffmCap: body.data ? handleBigNum(body.data.quotes.USD.market_cap, false, true) : "",
+          volume_24h: body.data ? handleBigNum(body.data.quotes.USD.volume_24h, false, true) : "",
           percent_change_24h: body.data ? body.data.quotes.USD.percent_change_24h : "",
           circulating_supply: body.data ? body.data.quotes.USD.circulating_supply : "",
           sysTps: generalDetail.data.sysTps || "",
-          txTotalTAmount: generalDetail.data.txTotalTAmount || "",
-          txMonAmount: generalDetail.data.txMonAmount || ""
+          txTotalTAmount: formatTx(generalDetail.data.txTotalTAmount) || "",
+          txMonAmount: formatTx(generalDetail.data.txMonAmount) || ""
         }
       };
     } catch(err) {

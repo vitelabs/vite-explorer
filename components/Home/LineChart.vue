@@ -1,6 +1,14 @@
 <template>
   <div>
-    <ve-line :data="chartData" height="313px" :legend-visible="true" :data-empty="dataEmpty" :colors="['#3498db']"></ve-line>
+    <ve-line 
+      :data="chartData" 
+      height="313px" 
+      :legend-visible="true" 
+      :data-empty="dataEmpty" 
+      :colors="['#3498db']"
+      :loading="loading"
+      :after-config="afterConfig">
+    </ve-line>
   </div>
 </template>
 
@@ -25,16 +33,24 @@
         chartData: {
           columns: ["date", "transactions"],
           rows: []
-        }
+        },
+        loading: false
       };
     },
     methods: {
+      afterConfig (options) {
+        options.series[0].smooth = false;
+        return options;
+      },
       getChartData() {
+        this.loading = true;
         transaction.getChartData()
           .then(data=> {
             this.chartData.rows = data;
+            this.loading = false;
           })
           .catch(err=> {
+            this.loading = false;
             console.log(err);
           });
       }
