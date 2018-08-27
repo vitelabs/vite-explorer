@@ -13,7 +13,7 @@
       <trans-list 
         :tokenTitle="false"
         :tokenId="tokenDetail.id"
-        :page-size="6"
+        :page-size="20"
         :sub-title="subTitle">
       </trans-list>
       
@@ -78,11 +78,12 @@
       },
       showTokenDetail() {
         return {
-          owner: this.tokenDetail.owner,
-          accountNum: `${this.tokenDetail.accountNum}`,
-          circulationLines: `$${this.generalDetail.ffmCap}`,
-          price: `$${this.generalDetail.cirPrice}`,
-          transactionNumber: `$${this.generalDetail.volume_24h}`
+          symbol: this.tokenDetail.symbol,  // 简介
+          accountNum: `${this.tokenDetail.accountNum}`, // 所有者数量
+          totalSupply: this.tokenDetail.totalSupply, // 铸币总量
+          transactionNumber: this.tokenDetail.transactionNumber, // 交易笔数
+          owner: this.tokenDetail.owner,   // 铸币地址
+          decimals: this.tokenDetail.decimals, // 小数位数
         };
       },
       list() {

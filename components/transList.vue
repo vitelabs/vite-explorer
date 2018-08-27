@@ -8,7 +8,8 @@
     :currentPage="pageIndex"
     :total="totalNumber"
     :page-size="pageSize"
-    :sub-title="subTitleCom">
+    :sub-title="subTitleCom"
+    :sub-common-title="subCommonTitle">
   </page-table>
 </template>
 
@@ -54,6 +55,10 @@
         default: ""
       },
       subTitle: {
+        type: String,
+        default: ""
+      },
+      subCommonTitle: {
         type: String,
         default: ""
       }

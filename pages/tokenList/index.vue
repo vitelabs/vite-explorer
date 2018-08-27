@@ -86,7 +86,8 @@
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
-            token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.symbol})</a>`,
+            icon: `${token.icon || ""}`,
+            token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.symbol})</a><div>${token.introduction || ""}</div>`,
             price: `$${this.generalDetail.cirPrice}`,
             upDown: `${this.generalDetail.percent_change_24h}%`,
             transPrice: `$${this.generalDetail.volume_24h}`,

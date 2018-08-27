@@ -16,7 +16,7 @@
         :tokenId="activeToken ? activeToken.token.id : ''"
         :accountAddress="accountDetail.accountAddress"
         :sub-title="subTitle"
-        :page-size="6"
+        :page-size="20"
         >
       </trans-list>
     </div>

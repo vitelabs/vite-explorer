@@ -2,6 +2,7 @@
   <div class="page-table-container">
     <div class="table-title" v-html="title" v-if="title"></div>
     <div class="sub-table-title" v-html="subTitle" v-if="subTitle"></div>
+    <div class="sub-table-title" v-html="subCommonTitle" v-if="subCommonTitle"></div>
     <div class="table">
       <el-table v-loading="loading" stripe :data="tableData" style="width: 100%">
         <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTable.num')"></el-table-column>
@@ -75,6 +76,10 @@
       currentPage: {
         type: Number,
         default: 1
+      },
+      subCommonTitle: {
+        type: String,
+        default: ""
       }
     },
     // serverCacheKey: props => props.currentPage,

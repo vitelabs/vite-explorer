@@ -261,6 +261,7 @@ export default () => {
       block = {
         height: block.height,
         accountNum: block.accountNum,
+        transactionCount: block.transactionCount,
         producer: block.producer,
         hash: block.hash,
         amount: handleBigNum(block.amount),

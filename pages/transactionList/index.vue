@@ -4,7 +4,8 @@
         :transactions="transactionList"
         :total="totalNumber"
         :page-size="pageSize"
-        :title="title">
+        :title="title"
+        :sub-common-title="subCommonTitle">
     </trans-list>
     <error v-else :error="error"></error>
   </div>
@@ -14,6 +15,7 @@
   import error from "~/components/error";
   import transList from "~/components/transList.vue";
   import transaction from "~/services/transaction";
+  import moment from "moment";
 
   const pageSize = 50;
 
@@ -27,6 +29,9 @@
       title() {
         return this.$t("transList.title") + this.totalNumber;
       },
+      subCommonTitle() {
+        return `最近更新时间：${moment().format("HH:mm:ss")}`;
+      }
     },
     components: {
       error, transList

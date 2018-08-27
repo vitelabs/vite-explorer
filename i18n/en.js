@@ -164,6 +164,7 @@ module.exports = {
     height: "Snapshot Block Height",
     age: "Snapshot Block Age",
     accountNum: "Number of Account",
+    transactionCount: "Number of Transaction",
     hash: "Snapshot Block Hash",
     producer: "Snapshot Node",
     amount: "Forging Rewards"
@@ -214,11 +215,11 @@ module.exports = {
     tLabel: "Transactions",
   },
   tokenDetailMap: {
-    circulationLines: "Circulation Limit",
-    owner: "Owner Address",
-    price: "Price",
-    accountNum: "Number of Address",
-    transactionNumber: "Number of Transactions"
+    accountNum: "所有者数量",
+    totalSupply: "铸币总量",
+    owner: "铸币地址",
+    transactionNumber: "交易笔数",
+    decimals: "小数位数"
   },
 
 

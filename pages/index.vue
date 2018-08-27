@@ -40,25 +40,32 @@
       TransactionList
     },
     async asyncData() {
+      let generalDetail = {};
+      let blockList = [];
+      let transactionList = [];
       try {
-        let generalDetail = {};
-        let { blockList } = await block.getTop10List();
-        let { transactionList } = await transaction.getTop10List();
-        try{
-          generalDetail = await general.getGeneralDetail();
-        }catch(err) {
-          console.log(err);
-        }
-        return {
-          blockList,
-          transactionList,
-          generalDetail
-        };
-      } catch(err) {
-        return {
-          error: err.msg || "get data fail"
-        };
+        generalDetail = await general.getGeneralDetail();
+      }catch(err) {
+        console.log(err);
       }
+      try {
+        let blockObj= await block.getTop10List();
+        blockList = blockObj.blockList;
+      }catch(err) {
+        console.log(err);
+      }
+      try {
+        let transactionObj = await transaction.getTop10List();
+        transactionList = transactionObj.transactionList;
+      }catch(err) {
+        console.log(err);
+      }
+      
+      return {
+        blockList,
+        transactionList,
+        generalDetail
+      };
     },
     mounted() {
       this.getTop10List();

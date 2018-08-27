@@ -161,6 +161,7 @@ module.exports = {
     height: "快照块高度",
     age: "快照块年龄",
     accountNum: "快照账户数",
+    transactionCount: "快照交易数",
     hash: "快照块Hash",
     producer: "快照节点",
     amount: "锻造奖励"
@@ -211,11 +212,11 @@ module.exports = {
     tLabel: "交易列表",
   },
   tokenDetailMap: {
-    circulationLines: "流通市值",
-    owner: "所有者地址",
-    price: "价格",
-    accountNum: "地址数量",
-    transactionNumber: "交易金额"
+    accountNum: "所有者数量",
+    totalSupply: "铸币总量",
+    owner: "铸币地址",
+    transactionNumber: "交易笔数",
+    decimals: "小数位数"
   },
 
 

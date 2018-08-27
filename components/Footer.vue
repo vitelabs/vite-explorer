@@ -27,7 +27,7 @@
           <img slot="reference" src="~assets/images/wecht.svg"/>
         </el-popover>
       </div>
-      <div class="brand">©2018 ViteLabs</div>
+      <div class="brand">©2018 Vite Labs</div>
     </div>
   </footer>
 </template>

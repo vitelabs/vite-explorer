@@ -27,8 +27,8 @@ export default {
         count: pageSize,
         num: pageNum
       },
-      accountAddress,
-      tokenId
+      accountAddress : accountAddress || null,
+      tokenId: tokenId || null
     });
   },
 
