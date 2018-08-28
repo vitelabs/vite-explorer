@@ -59,7 +59,7 @@ module.exports = {
   logo: {
     v: "Preview Version",
     current: "Current Version",
-    content1: "Vite's blockchain explorer is a website for searching integrated information about Vite. Now it supports searching by accounts, tokens, transactions and snapshot blocks and present information via lists.",
+    content1: "Vite's block explorer is a website for searching integrated information about Vite. Now it supports searching by accounts, tokens, transactions and snapshot blocks and present information via lists.",
     content2: "For the record, statistics information is not available right now. If browser shows 'No Data', stay tuned and we will supply in further version iteration.",
   },
   nav: {
@@ -267,7 +267,7 @@ module.exports = {
 
   // Head titles of all pages
   head: {
-    home: "Vite BlockChain Explorer",
+    home: "Vite Block Explorer",
     blockList: "Vite Blocks",
     transTitle: "Vite Transactions Information",
     sError: "Nothing Found",
