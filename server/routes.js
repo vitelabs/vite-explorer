@@ -213,6 +213,33 @@ export default () => {
     }
   });
 
+  router.post("/api/account/list", async (ctx) => {
+    try {
+      ctx.body = {
+        code: 0,
+        msg: "ok",
+        data: {
+          totalNumber: 22,
+          accountList: [{
+            accountAddress: "aaaaaaaaaaaaaa",
+            shortAccountAddress: "a",
+            balance: "100",
+            percent: "2%",
+            transNum: 30
+          },{
+            accountAddress: "bbbbbbbbbbbbbb",
+            shortAccountAddress: "b",
+            balance: "120",
+            percent: "5%",
+            transNum: 40
+          }]
+        }
+      };
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
+
   router.post("/api/token/list", async (ctx) => {
     try {
       console.log("/token/list:"+ JSON.stringify(ctx.request.body));

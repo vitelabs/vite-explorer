@@ -63,7 +63,7 @@
       },
       pageSize: {
         type: Number,
-        default: 10
+        default: 20
       },
       showOrder: {
         type: Boolean,
@@ -123,7 +123,8 @@
     color: #5E6875;
     letter-spacing: 0;
     line-height: 16px;
-    margin: 20px 0 28px 30px;
+    padding: 20px 0 28px 30px;
+    clear: both;
   }
   .page-table-container {
     width: 100%;

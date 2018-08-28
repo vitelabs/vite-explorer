@@ -8,19 +8,23 @@
       </detail-layout>
 
       <div class="tab-wrapper">
-        <div class="tab-content is-active">{{$t('token.tLabel')}}</div>
+        <div class="tab-content" :class="{'is-active': tabParams === 'tx'}" @click="clickTab('tx')">{{$t('token.tLabel')}}</div>
+        <div class="tab-content" :class="{'is-active': tabParams === 'account'}" @click="clickTab('account')">账户列表</div>
       </div>
-      <trans-list 
+      <trans-list v-if="tabParams === 'tx'"
         :tokenTitle="false"
         :tokenId="tokenDetail.id"
         :page-size="20"
         :sub-title="subTitle">
       </trans-list>
-      
-        <!-- <el-tab-pane class="tab-pane" :label="$t('token.aLabel')" name="accountList">
-          <account-list></account-list>
-        </el-tab-pane> -->
-      <!-- </el-tabs> -->
+      <div class="account-content" v-if="tabParams === 'account'" >
+        <nuxt-link :to="`${locales}/tokenAccount/a`" target="_blank" class="profile-link">
+          <el-button>持有账户图表</el-button>
+        </nuxt-link>
+        <account-list 
+          :sub-title="subAccountTitle">
+        </account-list>
+      </div>
     </div>
     <error v-else :error="error"></error>
   </div>
@@ -65,16 +69,21 @@
     },
     data() {
       return {
+        locales: this.$i18n.locale === "en" ? "" : "/" + this.$i18n.locale,
         title: this.$t("head.tTitle"),
         tokenDetail: {},
         error: "",
         activeTab: "transList",
-        generalDetail: {}
+        generalDetail: {},
+        tabParams: "tx"
       };
     },
     computed: {
       subTitle() {
         return this.$t("transList.title");
+      },
+      subAccountTitle() {
+        return "总账户数：22";
       },
       showTokenDetail() {
         return {
@@ -90,19 +99,27 @@
         const tokenDetailMap = this.$t("tokenDetailMap");
         let list = [];
         for (let key in tokenDetailMap) {
-          let lang;
-          this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
             describe: this.showTokenDetail[key] || "--",
             name: tokenDetailMap[key],
-            link: key === "owner" ? `${lang}/account/${this.showTokenDetail[key]}` : ""
+            link: key === "owner" ? `${this.locales}/account/${this.showTokenDetail[key]}` : ""
           });
         }
         return list;
       }
+    },
+    methods: {
+      clickTab(str) {
+        this.tabParams = str;
+      },
+      
     }
   };
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.account-content {
+  clear: both;
+  padding-top: 20px;
+}
 </style>

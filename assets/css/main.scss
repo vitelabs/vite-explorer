@@ -48,6 +48,8 @@ a {
     line-height: 40px;
     border-radius: 4px 4px 0 0;
     cursor: pointer;
+    float: left;
+    color: $common-color;
   }
   .is-active {
     color: white;

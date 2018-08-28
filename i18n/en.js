@@ -40,6 +40,7 @@ module.exports = {
   accTitles: [{
     prop: "accountAddress",
     name: "Account Address",
+    width: "160"
   }, {
     prop: "balance",
     name: "Account Balance",

@@ -38,6 +38,7 @@ module.exports = {
   accTitles: [{
     prop: "accountAddress",
     name: "账户地址",
+    width: "160"
   }, {
     prop: "balance",
     name: "账户余额",
@@ -46,7 +47,7 @@ module.exports = {
     name: "占总流通比例",
   }, {
     prop: "transNum",
-    name: "账户交易次数",
+    name: "交易次数",
   }],
 
   // Basic components part: components/

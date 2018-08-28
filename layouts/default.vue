@@ -188,7 +188,7 @@
     }
   }
   .content-wrapper {
-    min-height: 753px;
+    min-height: calc(100vh - 200px);
     background-color: #fafcff;
     padding: 30px 0;
     .content {
