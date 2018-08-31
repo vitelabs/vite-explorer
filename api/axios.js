@@ -6,12 +6,12 @@ if (process.server) {
   config.baseURL = "http://127.0.0.1:8080/api";
 } else {
   console.log("client");
-  config.baseURL = "/api";  
+  config.baseURL = "/api";
 }
 
 const service = axios.create(config);
 
-// POST 传参序列化
+// Intercepting requests or responses before they are handled by then or catch
 service.interceptors.request.use(
   config => {
     return config;
@@ -21,7 +21,7 @@ service.interceptors.request.use(
   }
 );
 
-// 返回状态判断
+// Judging response status
 service.interceptors.response.use(
   res => {
     let body = res.data || {};
