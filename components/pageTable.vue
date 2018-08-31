@@ -2,7 +2,7 @@
   <div class="page-table-container">
     <div class="table-title" v-html="title" v-if="title"></div>
     <div class="sub-table-title" v-html="subTitle" v-if="subTitle"></div>
-    <div class="sub-table-title" v-html="subCommonTitle" v-if="subCommonTitle"></div>
+    <div class="sub-table-title common-title" v-html="subCommonTitle" v-if="subCommonTitle"></div>
     <div class="table">
       <el-table v-loading="loading" stripe :data="tableData" style="width: 100%">
         <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTable.num')"></el-table-column>
@@ -116,15 +116,19 @@
     border-bottom: none;
     box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
     border-radius: 4px;
-    
+    margin-top: 30px;
   }
   .sub-table-title {
     font-size: 12px;
     color: #5E6875;
     letter-spacing: 0;
     line-height: 16px;
-    padding: 20px 0 28px 30px;
+    padding: 20px 0 0 30px;
     clear: both;
+  }
+  .common-title {
+    padding: 0;
+    margin-top: 8px; 
   }
   .page-table-container {
     width: 100%;

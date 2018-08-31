@@ -1,13 +1,11 @@
 <template>
 <div>
   <page-table
-    :showOrder="true"
-    :tableTitles="$t('accTitles')"
+    :tableTitles="tableTitles"
     :tableData="accountList"
     :total="totalNumber"
     :currentChange="accountPageChange"
     :currentPage="pageIndex"
-    :sub-title="subTitle"
     :pagination="pagination"
     :loading="loading">
   </page-table>
@@ -21,20 +19,31 @@
 
   export default {
     props: {
+      tableTitles: {
+        type: Array,
+        default: () => []
+      },
       subTitle: {
         type: String,
         default: ""
       },
       pagination: {
         type: Boolean,
-        default: true
+        default: false
+      },
+      pageSize: {
+        type: Number,
+        default: 20
+      },
+      tokenId: {
+        type: String,
+        default: ""
       }
     },
     components: {
       pageTable
     },
     computed: {
-
     },
     data(){
       return {
@@ -42,23 +51,35 @@
         totalNumber: 0,
         loading: false,
         accountList: [],
-        pageSize: 20
       };
     },
     mounted() {
-      this.fetchAccountList();
+      this.fetchAccountList(1, this.pageSize);
+    },
+    watch: {
+      pageSize(val) {
+        this.fetchAccountList(1, val);
+      }
     },
     methods: {
-      fetchAccountList(currentIndex = 1) {
+      fetchAccountList(currentIndex = 1, pageSize = 20) {
         this.loading = true;
         this.pageIndex = currentIndex;
         account.getList({
           pageIndex: currentIndex -1,
-          pageSize: this.pageSize
+          pageSize: pageSize,
+          tokenId: this.tokenId
         }).then(data => {
           this.loading = false;
           this.totalNumber = data.totalNumber;
-          this.formatAccountList(data.accountList);
+          let totalObj = {
+            totalNumber: data.totalNumber,
+            totalSupply: data.totalSupply,
+            percentPage: data.percentPage,
+            haveSupplyPage: data.haveSupplyPage
+          };
+          this.$emit("getTotal", totalObj);
+          this.formatAccountList(data.tokenAccountViewList);
         }).catch(err => {
           this.loading = false;
           this.$message.error(err.msg || "get accountList fail");
@@ -71,19 +92,17 @@
 
         accountList.forEach((item) => {
           list.push({
+            orderNum: item.orderNum,
             accountAddress: `<a href="${lang}/account/${item.accountAddress}" target="_blank" title="${item.accountAddress}">${item.shortAccountAddress}</a>`,
             balance: item.balance,
-            percent: item.percent,
-            transNum: item.transNum
+            percent: item.balancePercent,
+            transNum: item.countNum
           });
         });
         this.accountList = list;
       },
       accountPageChange(currentInx) {
         this.fetchAccountList(currentInx);
-      },
-      openAccoutChart() {
-
       }
     }
   };

@@ -18,11 +18,13 @@
         :sub-title="subTitle">
       </trans-list>
       <div class="account-content" v-if="tabParams === 'account'" >
-        <nuxt-link :to="`${locales}/tokenAccount/a`" target="_blank" class="profile-link">
+        <nuxt-link :to="`${locales}/tokenAccount/${tokenDetail.id}?tokenName=${tokenDetail.name}`" target="_blank" class="profile-link">
           <el-button>持有账户图表</el-button>
         </nuxt-link>
         <account-list 
-          :sub-title="subAccountTitle">
+          :table-titles="$t('accTitles').concat($t('addedAccTitles'))"
+          :pagination="true"
+          :tokenId="tokenDetail.id">
         </account-list>
       </div>
     </div>
@@ -82,17 +84,14 @@
       subTitle() {
         return this.$t("transList.title");
       },
-      subAccountTitle() {
-        return "总账户数：22";
-      },
       showTokenDetail() {
         return {
-          symbol: this.tokenDetail.symbol,  // 简介
-          accountNum: `${this.tokenDetail.accountNum}`, // 所有者数量
-          totalSupply: this.tokenDetail.totalSupply, // 铸币总量
-          transactionNumber: this.tokenDetail.transactionNumber, // 交易笔数
-          owner: this.tokenDetail.owner,   // 铸币地址
-          decimals: this.tokenDetail.decimals, // 小数位数
+          symbol: this.tokenDetail.symbol,
+          accountNum: `${this.tokenDetail.accountNum}`,
+          totalSupply: this.tokenDetail.totalSupply,
+          transactionNumber: this.tokenDetail.transactionNumber,
+          owner: this.tokenDetail.owner,
+          decimals: this.tokenDetail.decimals,
         };
       },
       list() {

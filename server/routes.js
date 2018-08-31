@@ -215,25 +215,16 @@ export default () => {
 
   router.post("/api/account/list", async (ctx) => {
     try {
-      ctx.body = {
-        code: 0,
-        msg: "ok",
-        data: {
-          totalNumber: 22,
-          accountList: [{
-            accountAddress: "aaaaaaaaaaaaaa",
-            shortAccountAddress: "a",
-            balance: "100",
-            percent: "2%",
-            transNum: 30
-          },{
-            accountAddress: "bbbbbbbbbbbbbb",
-            shortAccountAddress: "b",
-            balance: "120",
-            percent: "5%",
-            transNum: 40
-          }]
-        }
+      console.log(ctx.path + ":" + JSON.stringify(ctx.request.body));
+      let result = await post("/token/accountList", ctx.request.body);
+      ctx.type = "json";
+
+      result.data.data.tokenAccountViewList.forEach(item=> {
+        item.shortAccountAddress = toShort(item.accountAddress);
+      });
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
       };
     } catch(err) {
       console.log(err.code);
@@ -259,7 +250,6 @@ export default () => {
     try {
       let result = await get("/token/detail", ctx.query);
       ctx.type = "json";
-      console.log(JSON.stringify(result.data));
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"

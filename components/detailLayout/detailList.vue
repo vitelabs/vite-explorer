@@ -87,6 +87,7 @@
     box-sizing: border-box;
     height: 535px;
     padding: 32px 0 0 0px;
+    margin-top: 30px;
   }
   .token-detail {
     border: 1px solid $common-background;

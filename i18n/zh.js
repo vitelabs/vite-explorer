@@ -36,18 +36,22 @@ module.exports = {
     title: "总账户数 --, (仅展示最近的 --条数据)"
   },
   accTitles: [{
+    prop: "orderNum",
+    name: "排名",
+    width: "70"
+  }, {
     prop: "accountAddress",
     name: "账户地址",
-    width: "160"
-  }, {
+  },{
     prop: "balance",
-    name: "账户余额",
+    name: "持有数量",
   }, {
     prop: "percent",
     name: "占总流通比例",
-  }, {
+  }],
+  addedAccTitles: [{
     prop: "transNum",
-    name: "交易次数",
+    name: "交易次数"
   }],
 
   // Basic components part: components/
@@ -57,7 +61,7 @@ module.exports = {
   logo: {
     v: "预览版",
     current: "当前版本",
-    content1: "Vite区块链浏览器是查询Vite综合信息的网站，目前支持账户、代币、交易、快照块的查询，基础信息的列表展示。",
+    content1: "Vite区块浏览器是查询Vite综合信息的网站，目前支持账户、代币、交易、快照块的查询，基础信息的列表展示。",
     content2: "统计类信息部分支持，如浏览器“暂无数据”展示，会在后续版本迭代补充进来。",
     govite: {
       current: "go-vite 版本",
@@ -270,7 +274,7 @@ module.exports = {
 
   // Head titles of all pages
   head: {
-    home: "Vite区块链浏览器",
+    home: "Vite区块浏览器",
     blockList: "Vite区块",
     transTitle: "Vite交易信息",
     sError: "搜索无结果",

@@ -10,13 +10,15 @@ export default {
   },
   getList({ 
     pageIndex,
-    pageSize = 20
+    pageSize = 20,
+    tokenId
   }) {
     return post(`${PREFIX}/list`, {
       paging: {
         index: pageIndex,
         count: pageSize
-      }
+      },
+      tokenId
     });
   }
 };

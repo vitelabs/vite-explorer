@@ -31,7 +31,7 @@
       return {
         dataEmpty: false,
         chartData: {
-          columns: ["date", "transactions"],
+          columns: ["date", "transactions", "accountNum"],
           rows: []
         },
         loading: false
