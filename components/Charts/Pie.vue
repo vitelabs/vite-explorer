@@ -16,6 +16,22 @@
     components: {
       VePie
     },
+    props: {
+      list: {
+        type: Array,
+        default: () => []
+      }
+    },
+    watch: {
+      list(val) {
+        this.chartData.rows = val.map(item=> {
+          return {
+            "地址": item.accountAddress,
+            "持有量": +item.balance
+          };
+        });
+      }
+    },
     data() {
       return {
         chartExtend: {
@@ -44,37 +60,7 @@
         },
         chartData: {
           columns: ["地址", "持有量"],
-          rows: [
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d68", "持有量": 6000 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d61", "持有量": 5000 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d62", "持有量": 4000 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d63", "持有量": 3000 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d64", "持有量": 2888 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d65", "持有量": 2611 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d66", "持有量": 2122 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d69", "持有量": 2000 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d60", "持有量": 1000 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d50", "持有量": 993 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d51", "持有量": 432 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d52", "持有量": 321 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d53", "持有量": 300 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d54", "持有量": 211 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d55", "持有量": 200 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d56", "持有量": 123 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d57", "持有量": 100 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d58", "持有量": 99 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d59", "持有量": 98 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d35", "持有量": 97 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d34", "持有量": 96 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d33", "持有量": 95 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d32", "持有量": 92 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d31", "持有量": 43 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d30", "持有量": 31 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d68", "持有量": 21 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d68", "持有量": 10 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d68", "持有量": 6 },
-            { "地址": "vite_098dfae02679a4ca05a4c8bf5dd00a8757f0c622bfccce7d68", "持有量": 1 },
-          ]
+          rows: []
         }
       };
     },

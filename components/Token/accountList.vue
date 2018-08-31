@@ -78,7 +78,7 @@
             percentPage: data.percentPage,
             haveSupplyPage: data.haveSupplyPage
           };
-          this.$emit("getTotal", totalObj);
+          this.$emit("getTotal", totalObj, data.tokenAccountViewList);
           this.formatAccountList(data.tokenAccountViewList);
         }).catch(err => {
           this.loading = false;

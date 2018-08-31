@@ -14,15 +14,15 @@
     </div>
     
     <div class="summary">
-      <div>前 {{ value }} 名持有账户共持有 {{totalObj.percentPage}} （共 {{totalObj.haveSupplyPage}} 个）的 {{ tokenName }}</div>
-      <div>总供给量：{{totalObj.totalSupply}}  |   持有账户数量：{{ totalObj.totalNumber }}</div>
+      <div>前 {{ value }} 名持有账户共持有 {{ totalObj.percentPage }} （共 {{ totalObj.haveSupplyPage }} 个）的 {{ tokenName }}</div>
+      <div>总供给量：{{ totalObj.totalSupply }}  |   持有账户数量：{{ totalObj.totalNumber }}</div>
     </div>
-    <ve-pie></ve-pie>
+    <ve-pie :list="accList"></ve-pie>
     <account-list 
       :table-titles="$t('accTitles')" 
       :page-size="value"
       :token-id="tokenId"
-      @getTotal="getTotalNumber">
+      @getTotal="getTotalData">
     </account-list>
   </div>
 </template>
@@ -74,14 +74,16 @@
       return {
         options: orderOptions,
         value: 100,
-        totalObj: {}
+        totalObj: {},
+        accList: []
       };
     },
     computed: {
     },
     methods: {
-      getTotalNumber(val) {
+      getTotalData(val, list) {
         this.totalObj = val;
+        this.accList = list;
       }
     }
   };
