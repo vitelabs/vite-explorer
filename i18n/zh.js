@@ -155,6 +155,7 @@ module.exports = {
     bValue: "余额价值",
     tNum: "交易次数",
     allToken: "所有代币估值",
+    filterInput: "筛选"
   },
 
 
@@ -221,7 +222,8 @@ module.exports = {
     totalSupply: "铸币总量",
     owner: "铸币地址",
     transactionNumber: "交易笔数",
-    decimals: "小数位数"
+    decimals: "小数位数",
+    filterInput: "筛选"
   },
 
 

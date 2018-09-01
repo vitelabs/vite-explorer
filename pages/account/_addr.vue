@@ -111,6 +111,12 @@
           }, {
             name: this.$t("account.allToken"),
             describe: "--"
+          }, {
+            name: this.$t("account.allToken"),
+            describe: "--"
+          }, {
+            key: "filterInput",
+            describe: "--"
           }];
         }
 
@@ -126,6 +132,8 @@
         }, {
           name: this.$t("account.allToken"),
           describe: "--"
+        }, {
+          key: "filterInput",
         }];
       }
     },

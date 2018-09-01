@@ -158,6 +158,7 @@ module.exports = {
     bValue: "Balance Value",
     tNum: "Number of Transactions",
     allToken: "All Token Valuation",
+    filterInput: "Filter"
   },
 
 
@@ -224,7 +225,8 @@ module.exports = {
     totalSupply: "铸币总量",
     owner: "铸币地址",
     transactionNumber: "交易笔数",
-    decimals: "小数位数"
+    decimals: "小数位数",
+    filterInput: "筛选"
   },
 
 

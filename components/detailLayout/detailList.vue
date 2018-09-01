@@ -1,9 +1,10 @@
 <template>
   <div :class="classObj">
     <div class="row" v-for="(item, index) in list" :key="index">
-      <span class="name">{{item.name}}：</span>
+      <span class="name" v-if="item.key !== 'filterInput'">{{item.name}}：</span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
-      <span class="value" v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
+      <span class="value" v-if="!item.link && !item.list && item.key !== 'filterInput'">{{item.describe || '--'}}</span>
+      <filter-address v-if="item.key === 'filterInput'"></filter-address>
       <div v-if="item.list && item.list.length" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
             @click="_clickLab(lab, index)" :class="{
@@ -13,16 +14,21 @@
       </div>
       <div v-if="item.list && !item.list.length" class="lab-list">--</div>
     </div>
+    
     <div class="extral-wrapper" v-if="extralList.length">
       <div class="extral-row" v-for="(item, index) in extralList" :key="index">
-        <span class="name">{{item.name}}：</span>
-        <span v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
+        <span class="name" v-if="item.key !== 'filterInput'">{{item.name}}：</span>
+        <span v-if="!item.link && !item.list && item.key !== 'filterInput'">{{item.describe || '--'}}</span>
+        <filter-address v-if="item.key === 'filterInput'"></filter-address>
       </div>
+      
     </div>
   </div>
 </template>
 
 <script>
+  import filterAddress from "~/components/filterAddress.vue";
+
   export default {
     props: {
       list: {
@@ -45,6 +51,9 @@
         type: Boolean,
         default: false
       }
+    },
+    components: {
+      filterAddress
     },
     computed: {
       classObj() {
@@ -105,7 +114,8 @@
     padding: 32px 0 0 0px;
     border: 1px solid $common-background;
     border-bottom: 2px solid $common-color;
-    min-height: 260px;
+    min-height: 300px;
+    margin-top: 30px;
   }
   .row {
     margin-left: 32px;

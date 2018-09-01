@@ -65,8 +65,8 @@ a {
 }
 
 .button:focus, .button.is-focused {
-  border-color: $light-blue;
-  color: $light-blue;
+  border-color: $common-color;
+  color: white;
 }
 
 .button:focus:not(:active), .button.is-focused:not(:active) {

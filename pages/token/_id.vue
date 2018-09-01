@@ -99,6 +99,7 @@
         let list = [];
         for (let key in tokenDetailMap) {
           list.push({
+            key: key,
             describe: this.showTokenDetail[key] || "--",
             name: tokenDetailMap[key],
             link: key === "owner" ? `${this.locales}/account/${this.showTokenDetail[key]}` : ""

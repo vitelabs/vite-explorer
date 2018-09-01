@@ -15,7 +15,8 @@ import {
   TableColumn,
   Button,
   Select,
-  Option
+  Option,
+  Input
 } from "element-ui";
 
 import "assets/css/table.scss";
@@ -36,5 +37,6 @@ Vue.use(TableColumn);
 Vue.use(Button);
 Vue.use(Select);
 Vue.use(Option);
+Vue.use(Input);
 
 Vue.prototype.$loading = Loading.service;
