@@ -6,8 +6,11 @@
     <div class="table">
       <el-table v-loading="loading" stripe :data="tableData" style="width: 100%">
         <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTable.num')"></el-table-column>
-        <el-table-column v-for="(tT, index) in tableTitles" :key="index"
-          :label="tT.name" :width="tT.width || ''" :show-overflow-tooltip="true">
+        <el-table-column v-for="(tT, index) in tableTitles" 
+          :key="index"
+          :label="tT.name" :width="tT.width || ''" 
+          :show-overflow-tooltip="true"
+          :render-header="renderHeader">
           <template slot-scope="scope">
             <span v-html="scope.row[tT.prop]  || '--'"></span>
           </template>
@@ -25,11 +28,15 @@
   </div>
 </template>
 
-<script>
+<script type="text/babel">
   export default {
     name: "pageTable",
     props: {
       loading: {
+        type: Boolean,
+        default: false
+      },
+      needFilter: {
         type: Boolean,
         default: false
       },
@@ -103,12 +110,55 @@
       },
       linkTo(url) {
         location.href=url;
-      }
+      },
+      commandHandler(val) {
+        console.log(val);
+      },
+      renderHeader(h, { column, $index }) {
+        if (this.needFilter) {
+          let tableTitles = this.tableTitles;
+          console.log(tableTitles);
+          console.log(column.label);
+          if (tableTitles[$index].prop === "type" || tableTitles[$index].prop === "status") {
+            return (
+              <el-dropdown trigger="click" class="table-dropdown" onCommand={this.commandHandler}>
+                <span>{column.label}<span class="icon"></span></span>
+                <el-dropdown-menu slot="dropdown" >
+                  <el-dropdown-item command={0}>全部</el-dropdown-item>
+                  <el-dropdown-item command={1}>接收</el-dropdown-item>
+                  <el-dropdown-item command={-1}>发送</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            );
+          }
+        }
+        return column.label;
+        
+      },
     }
   };
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss">
+.page-table-container {
+  .table-dropdown {
+    color: #5E6875;
+    margin: 0;
+    padding: 0;
+    height: 23px;
+    line-height: 30px;
+  }
+  .el-dropdown .icon {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 8.5px; 
+    background-image: url("~assets/images/filter_default.svg");
+    &:hover {
+      background-image: url("~assets/images/filter_active.svg");
+      cursor: pointer;
+    }
+  }
   .table {
     box-sizing: border-box;
     background: #FFFFFF;
@@ -141,4 +191,6 @@
     text-align: right;
     padding: 20px;
   }
+}
+  
 </style>

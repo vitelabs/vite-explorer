@@ -6,7 +6,8 @@
         :list="accountList"
         :clickLab="clickLab"
         :is-account="true"
-        :extral-list="tokenDetailList">
+        :extral-list="tokenDetailList"
+        @getAccountAddr="getAccInputInfo">
       </detail-layout>
 
       <div class="tab-wrapper">
@@ -17,6 +18,7 @@
         :accountAddress="accountDetail.accountAddress"
         :sub-title="subTitle"
         :page-size="20"
+        :need-filter="true"
         >
       </trans-list>
     </div>
@@ -67,7 +69,8 @@
         error: "",
         accountDetail: {},
         tokenList: [],
-        activeTokenIndex: 0
+        activeTokenIndex: 0,
+        filterAccObj: null
       };
     },
     created() {
@@ -92,6 +95,9 @@
           name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress
         }, {
+          name: this.$t("account.accType"),
+          describe: tokenNameList.length
+        }, {
           name: this.$t("account.accToken"),
           list: tokenNameList
         }];
@@ -100,40 +106,20 @@
         let tokenDetail = this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
         if (!tokenDetail) {
           return [{
-            name: this.$t("account.bAmount"),
-            describe: "--"
-          }, {
-            name: this.$t("account.bValue"),
-            describe: "--"
-          }, {
             name: this.$t("account.tNum"),
             describe: "--"
           }, {
-            name: this.$t("account.allToken"),
-            describe: "--"
-          }, {
-            name: this.$t("account.allToken"),
-            describe: "--"
-          }, {
-            key: "filterInput",
+            name: this.$t("account.bAmount"),
             describe: "--"
           }];
         }
 
         return [{
-          name: this.$t("account.bAmount"),
-          describe: handleBigNum(tokenDetail.balance, true) || "--"
-        }, {
-          name: this.$t("account.bValue"),
-          describe: "--"
-        }, {
           name: this.$t("account.tNum"),
           describe: tokenDetail.token.transactionNumber
         }, {
-          name: this.$t("account.allToken"),
-          describe: "--"
-        }, {
-          key: "filterInput",
+          name: this.$t("account.bAmount"),
+          describe: handleBigNum(tokenDetail.balance, true) || "--"
         }];
       }
     },
@@ -141,6 +127,9 @@
       clickLab(lab, index) {
         this.activeTokenIndex = index;
       },
+      getAccInputInfo(accObj) {
+        this.filterAccObj = accObj;
+      }
     }
   };
 </script>

@@ -3,11 +3,11 @@
     <div class="name">筛选：</div>
     <el-input placeholder="输入账户地址" v-model="input" class="input-with-select" size="small" clearable>
       <el-select v-model="select" slot="prepend">
-        <el-option label="转入方" value="to"></el-option>
-        <el-option label="转出方" value="from"></el-option>
+        <el-option label="转入方" value="in"></el-option>
+        <el-option label="转出方" value="out"></el-option>
       </el-select>
     </el-input>
-    <el-button type="primary" size="small" class="button" @click="sureFilter">确定</el-button>
+    <el-button type="primary" size="small" class="button" @click="sureFilter" :disabled="disabled">确定</el-button>
   </div>
 </template>
 
@@ -22,12 +22,23 @@
     data() {
       return {
         input: "",
-        select: "to"
+        select: "in",
+        disabled: false
       };
     },
     methods: {
       sureFilter() {
-
+        let accountAddrInput = {
+          type: this.select,
+          address: this.input
+        };
+        if (!this.input) {
+          accountAddrInput = {
+            type: null,
+            address: null
+          };
+        }
+        this.$emit("getAccountAddr", accountAddrInput);
       }
     }
   };
@@ -38,7 +49,9 @@
   .filter-address {
     display: flex;
     display: -webkit-flex;
+    margin-top: 16px;
     .name {
+      font-size: 14px;
       display: inline-block;
       width: 200px;
       color: #3F3F3F;
@@ -53,6 +66,10 @@
     .el-button--primary {
       background-color: $common-color;
       border-color: $common-color;
+      &.is-disabled {
+        background-color: $disabled-color;
+        border-color:  $disabled-color;
+      }
     }
     
     .button {

@@ -20,7 +20,19 @@ export default {
     pageIndex,
     pageSize = 10,
     pageNum
-  }, accountAddress, tokenId) {
+  }, accountAddress, tokenId, filterAddressObj) {
+    let outAccountAddress = null;
+    let inAccountAddress = null;
+    if (filterAddressObj && filterAddressObj.type) {
+      if (filterAddressObj.type === "in") {
+        inAccountAddress = filterAddressObj.address;
+        outAccountAddress = null;
+      }
+      if (filterAddressObj.type === "out") {
+        inAccountAddress = null;
+        outAccountAddress = filterAddressObj.address;
+      }
+    }
     return post(`${PREFIX}/list`, {
       paging: {
         index: pageIndex,
@@ -28,7 +40,9 @@ export default {
         num: pageNum
       },
       accountAddress : accountAddress || null,
-      tokenId: tokenId || null
+      tokenId: tokenId || null,
+      outAccountAddress,
+      inAccountAddress
     });
   },
 

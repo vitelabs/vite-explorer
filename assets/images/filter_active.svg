@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>filter _active</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M11.1383876,1 L0.892233726,1 C0.54607988,1 0.384541419,1.39230769 0.592233726,1.64615385 L5.0691568,6.88461538 C5.20761834,7.04615385 5.27684911,7.27692308 5.27684911,7.48461538 L5.27684911,10.8076923 C5.27684911,10.9923077 5.4614645,11.1538462 5.64607988,11.1538462 L6.33838757,11.1538462 C6.52300296,11.1538462 6.6614645,10.9923077 6.6614645,10.8076923 L6.6614645,7.48461538 C6.6614645,7.25384615 6.75377219,7.04615385 6.91531065,6.88461538 L11.4383876,1.64615385 C11.6460799,1.39230769 11.4845414,1 11.1383876,1 L11.1383876,1 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="个人账户详情" transform="translate(-375.000000, -577.000000)">
+            <g id="Group-5" transform="translate(375.000000, 577.000000)">
+                <rect id="Rectangle-4" x="0" y="0" width="12" height="12"></rect>
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Mask" fill="#005CC7" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

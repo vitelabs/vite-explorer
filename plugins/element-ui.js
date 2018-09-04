@@ -16,7 +16,8 @@ import {
   Button,
   Select,
   Option,
-  Input
+  Input,
+  Message
 } from "element-ui";
 
 import "assets/css/table.scss";
@@ -40,3 +41,4 @@ Vue.use(Option);
 Vue.use(Input);
 
 Vue.prototype.$loading = Loading.service;
+Vue.prototype.$message = Message;

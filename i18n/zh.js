@@ -97,17 +97,19 @@ module.exports = {
   transTitles: [{
     prop: "hash",
     name: "交易Hash",
-    width: "160"
+    width: "140"
   }, {
     prop: "type",
     name: "交易类型",
+    width: "100"
   }, {
     prop: "status",
     name: "状态",
+    width: "100"
   }, {
     prop: "snapshotTimestamp",
     name: "首次快照块",
-    width: "160"
+    width: "140"
   }, {
     prop: "timestamp",
     name: "时间戳",
@@ -115,7 +117,7 @@ module.exports = {
   }, {
     prop: "confirmTimes",
     name: "确认数",
-    width: "115"
+    width: "80"
   }, {
     prop: "from",
     name: "转出方",
@@ -128,11 +130,9 @@ module.exports = {
   addedTitle: [{
     prop: "tokenName",
     name: "代币",
-    width: "70"
   }, {
     prop: "amount",
     name: "金额",
-    width: "75"
   }],
 
 
@@ -222,8 +222,7 @@ module.exports = {
     totalSupply: "铸币总量",
     owner: "铸币地址",
     transactionNumber: "交易笔数",
-    decimals: "小数位数",
-    filterInput: "筛选"
+    decimals: "小数位数"
   },
 
 

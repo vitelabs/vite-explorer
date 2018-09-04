@@ -1,10 +1,9 @@
 <template>
   <div :class="classObj">
     <div class="row" v-for="(item, index) in list" :key="index">
-      <span class="name" v-if="item.key !== 'filterInput'">{{item.name}}：</span>
+      <span class="name">{{item.name}}：</span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
-      <span class="value" v-if="!item.link && !item.list && item.key !== 'filterInput'">{{item.describe || '--'}}</span>
-      <filter-address v-if="item.key === 'filterInput'"></filter-address>
+      <span class="value" v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
       <div v-if="item.list && item.list.length" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
             @click="_clickLab(lab, index)" :class="{
@@ -17,11 +16,10 @@
     
     <div class="extral-wrapper" v-if="extralList.length">
       <div class="extral-row" v-for="(item, index) in extralList" :key="index">
-        <span class="name" v-if="item.key !== 'filterInput'">{{item.name}}：</span>
-        <span v-if="!item.link && !item.list && item.key !== 'filterInput'">{{item.describe || '--'}}</span>
-        <filter-address v-if="item.key === 'filterInput'"></filter-address>
+        <span class="name">{{item.name}}：</span>
+        <span v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
       </div>
-      
+      <filter-address style="float:left; display:inline" @getAccountAddr="getAccInputInfo"></filter-address>
     </div>
   </div>
 </template>
@@ -77,6 +75,9 @@
       _clickLab(lab, index) {
         this.currentLabInx = index;
         this.clickLab(lab, index);
+      },
+      getAccInputInfo(accountObj) {
+        this.$emit("getAccountAddr", accountObj);
       }
     }
   };
@@ -173,7 +174,7 @@
   }
   .extral-row {
     float: left;
-    width: 40%;
+    width: 43%;
     font-size: 14px;
     line-height: 22px;
     margin-top: 16px;
@@ -211,7 +212,7 @@
     }
     .extral-wrapper {
       padding-left: 15px;
-      min-height: 210px;
+      min-height: 256px;
     }
     .extral-row {
       float: none;

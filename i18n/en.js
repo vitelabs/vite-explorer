@@ -100,17 +100,19 @@ module.exports = {
   transTitles: [{
     prop: "hash",
     name: "Hash",
-    width: "160"
+    width: "130"
   }, {
     prop: "type",
     name: "Type",
+    width: "100"
   }, {
     prop: "status",
     name: "Status",
+    width: "100"
   }, {
     prop: "snapshotTimestamp",
     name: "First Snapshot",
-    width: "160"
+    width: "130"
   }, {
     prop: "timestamp",
     name: "Timestamp",
@@ -131,11 +133,9 @@ module.exports = {
   addedTitle: [{
     prop: "tokenName",
     name: "Token",
-    width: "70"
   }, {
     prop: "amount",
     name: "Amount",
-    width: "75"
   }],
 
 
@@ -225,8 +225,7 @@ module.exports = {
     totalSupply: "铸币总量",
     owner: "铸币地址",
     transactionNumber: "交易笔数",
-    decimals: "小数位数",
-    filterInput: "筛选"
+    decimals: "小数位数"
   },
 
 

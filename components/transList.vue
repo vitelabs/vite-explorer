@@ -9,7 +9,8 @@
     :total="totalNumber"
     :page-size="pageSize"
     :sub-title="subTitleCom"
-    :sub-common-title="subCommonTitle">
+    :sub-common-title="subCommonTitle"
+    :need-filter="needFilter">
   </page-table>
 </template>
 
@@ -27,6 +28,10 @@
       pagination: {
         type: Boolean,
         default: true
+      },
+      needFilter: {
+        type: Boolean,
+        default: false
       },
       tokenTitle: {
         type: Boolean,
@@ -61,6 +66,10 @@
       subCommonTitle: {
         type: String,
         default: ""
+      },
+      filterAccoutAddr: {
+        type: Object,
+        default: () => null
       }
     },
     components: {
@@ -137,6 +146,11 @@
       },
       accountAddress() {
         this.fetchTransList();
+      },
+      filterAccoutAddr(val) {
+        console.log(val);
+        this.filterAddressObj = val || null;
+        val && this.fetchTransList();
       }
     },
     methods: {
@@ -172,7 +186,7 @@
         transaction.getList({
           pageIndex: currentIndex -1,
           pageSize: this.pageSize
-        }, accountAddress, tokenId).then(({ transactionList, totalNumber }) => {
+        }, accountAddress, tokenId, this.filterAddressObj).then(({ transactionList, totalNumber }) => {
           if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
             return;
           }

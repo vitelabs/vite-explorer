@@ -57,7 +57,6 @@
       search() {
         let str = this.searchStr.trim();
         if (!str) {
-          console.log("aaaa");
           this.$message("不能为空");
           return;
         }
