@@ -46,11 +46,11 @@ module.exports = {
     prop: "balance",
     name: "持有数量",
   }, {
-    prop: "percent",
+    prop: "balancePercent",
     name: "占总流通比例",
   }],
   addedAccTitles: [{
-    prop: "transNum",
+    prop: "countNum",
     name: "交易次数"
   }],
 
@@ -97,7 +97,7 @@ module.exports = {
   transTitles: [{
     prop: "hash",
     name: "交易Hash",
-    width: "140"
+    width: "130"
   }, {
     prop: "type",
     name: "交易类型",
@@ -109,15 +109,14 @@ module.exports = {
   }, {
     prop: "snapshotTimestamp",
     name: "首次快照块",
-    width: "140"
+    width: "130"
   }, {
     prop: "timestamp",
     name: "时间戳",
-    width: "100"
   }, {
     prop: "confirmTimes",
     name: "确认数",
-    width: "80"
+    width: "100"
   }, {
     prop: "from",
     name: "转出方",
@@ -130,6 +129,7 @@ module.exports = {
   addedTitle: [{
     prop: "tokenName",
     name: "代币",
+    width: "70"
   }, {
     prop: "amount",
     name: "金额",

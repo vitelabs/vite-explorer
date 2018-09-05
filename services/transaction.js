@@ -19,8 +19,9 @@ export default {
   getList({
     pageIndex,
     pageSize = 10,
-    pageNum
-  }, accountAddress, tokenId, filterAddressObj) {
+    pageNum,
+    sortObj
+  }, accountAddress, tokenId, filterAddressObj, selectObj) {
     let outAccountAddress = null;
     let inAccountAddress = null;
     if (filterAddressObj && filterAddressObj.type) {
@@ -37,10 +38,14 @@ export default {
       paging: {
         index: pageIndex,
         count: pageSize,
-        num: pageNum
+        num: pageNum,
+        sort: sortObj && sortObj.sort || null,
+        order: sortObj && sortObj.order || null
       },
       accountAddress : accountAddress || null,
       tokenId: tokenId || null,
+      status: selectObj && selectObj.status || null,
+      type: selectObj && selectObj.type || null,
       outAccountAddress,
       inAccountAddress
     });

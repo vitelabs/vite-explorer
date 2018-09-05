@@ -19,6 +19,7 @@
         :sub-title="subTitle"
         :page-size="20"
         :need-filter="true"
+        :sort-items="['confirmTimes', 'amount']"
         >
       </trans-list>
     </div>

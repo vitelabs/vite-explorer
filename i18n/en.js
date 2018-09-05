@@ -48,11 +48,11 @@ module.exports = {
     prop: "balance",
     name: "Account Balance",
   }, {
-    prop: "percent",
+    prop: "balancePercent",
     name: "Proportion",
   }],
   addedAccTitles: [{
-    prop: "transNum",
+    prop: "countNum",
     name: "Transaction Times"
   }],
 
@@ -104,11 +104,10 @@ module.exports = {
   }, {
     prop: "type",
     name: "Type",
-    width: "100"
   }, {
     prop: "status",
     name: "Status",
-    width: "100"
+    width: "90"
   }, {
     prop: "snapshotTimestamp",
     name: "First Snapshot",
@@ -120,7 +119,7 @@ module.exports = {
   }, {
     prop: "confirmTimes",
     name: "Confirmations",
-    width: "115"
+    width: "140"
   }, {
     prop: "from",
     name: "From",
@@ -133,9 +132,11 @@ module.exports = {
   addedTitle: [{
     prop: "tokenName",
     name: "Token",
+    width: "70"
   }, {
     prop: "amount",
     name: "Amount",
+    width: "98"
   }],
 
 

@@ -7,7 +7,9 @@
     :currentChange="accountPageChange"
     :currentPage="pageIndex"
     :pagination="pagination"
-    :loading="loading">
+    :loading="loading"
+    :sort-items="['balance', 'countNum']"
+    @sortFilter="getSortFilter">
   </page-table>
 </div>
   
@@ -62,13 +64,18 @@
       }
     },
     methods: {
+      getSortFilter(filterObj) {
+        this.sortObj = filterObj;
+        this.fetchAccountList();
+      },
       fetchAccountList(currentIndex = 1, pageSize = 20) {
         this.loading = true;
         this.pageIndex = currentIndex;
         account.getList({
           pageIndex: currentIndex -1,
           pageSize: pageSize,
-          tokenId: this.tokenId
+          tokenId: this.tokenId,
+          sortObj: this.sortObj 
         }).then(data => {
           this.loading = false;
           this.totalNumber = data.totalNumber;
@@ -95,8 +102,8 @@
             orderNum: item.orderNum,
             accountAddress: `<a href="${lang}/account/${item.accountAddress}" target="_blank" title="${item.accountAddress}">${item.shortAccountAddress}</a>`,
             balance: item.balance,
-            percent: item.balancePercent,
-            transNum: item.countNum
+            balancePercent: item.balancePercent,
+            countNum: item.countNum
           });
         });
         this.accountList = list;

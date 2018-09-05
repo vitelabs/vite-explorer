@@ -10,7 +10,10 @@
     :page-size="pageSize"
     :sub-title="subTitleCom"
     :sub-common-title="subCommonTitle"
-    :need-filter="needFilter">
+    :need-filter="needFilter"
+    :sort-items="sortItems"
+    @selectFilter="getSelectFilter"
+    @sortFilter="getSortFilter">
   </page-table>
 </template>
 
@@ -28,6 +31,10 @@
       pagination: {
         type: Boolean,
         default: true
+      },
+      sortItems: {
+        type: Array,
+        default: ()=> []
       },
       needFilter: {
         type: Boolean,
@@ -84,7 +91,7 @@
         transactionList: this.transactions,
         pageIndex: 0,
         loading: false,
-        totalNumber: 0
+        totalNumber: 0,
       };
     },
     computed: {
@@ -148,10 +155,9 @@
         this.fetchTransList();
       },
       filterAccoutAddr(val) {
-        console.log(val);
         this.filterAddressObj = val || null;
         val && this.fetchTransList();
-      }
+      },
     },
     methods: {
       isRightRequest(currentIndex, accountAddress, tokenId) {
@@ -161,6 +167,14 @@
           return false;
         }
         return true;
+      },
+      getSelectFilter(filterObj) {
+        this.selectObj = filterObj;
+        this.fetchTransList();
+      },
+      getSortFilter(filterObj) {
+        this.sortObj = filterObj;
+        this.fetchTransList();
       },
       fetchList(currentIndex = 1) {
         this.loading = true;
@@ -185,8 +199,9 @@
 
         transaction.getList({
           pageIndex: currentIndex -1,
-          pageSize: this.pageSize
-        }, accountAddress, tokenId, this.filterAddressObj).then(({ transactionList, totalNumber }) => {
+          pageSize: this.pageSize,
+          sortObj: this.sortObj
+        }, accountAddress, tokenId, this.filterAddressObj, this.selectObj).then(({ transactionList, totalNumber }) => {
           if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
             return;
           }

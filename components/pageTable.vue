@@ -4,12 +4,18 @@
     <div class="sub-table-title" v-html="subTitle" v-if="subTitle"></div>
     <div class="sub-table-title common-title" v-html="subCommonTitle" v-if="subCommonTitle"></div>
     <div class="table">
-      <el-table v-loading="loading" stripe :data="tableData" style="width: 100%">
-        <el-table-column v-if="showOrder" type="index" :index="indexMethod" :label="$t('pageTable.num')"></el-table-column>
+      <el-table v-loading="loading" stripe :data="tableData" style="width: 100%" @sort-change="sortChange">
+        <el-table-column v-if="showOrder" 
+          type="index" 
+          :index="indexMethod" 
+          :label="$t('pageTable.num')">
+        </el-table-column>
         <el-table-column v-for="(tT, index) in tableTitles" 
           :key="index"
+          :prop="tT.prop"
           :label="tT.name" :width="tT.width || ''" 
           :show-overflow-tooltip="true"
+          :sortable="sortItems.indexOf(tT.prop) > -1 ? 'custom' : false"
           :render-header="renderHeader">
           <template slot-scope="scope">
             <span v-html="scope.row[tT.prop]  || '--'"></span>
@@ -29,12 +35,42 @@
 </template>
 
 <script type="text/babel">
+  const filterObj = {
+    type: [{
+      label: "全部",
+      value: null
+    }, {
+      label: "接收",
+      value: 1
+    }, {
+      label: "发送",
+      value: -1
+    }],
+    status: [{
+      label: "全部",
+      value: null
+    }, {
+      label: "打开",
+      value: 1
+    }, {
+      label: "关闭",
+      value: 2
+    }]
+  };
+
+  let emitFilterObj = {};
+  let emitSortObj = {};
+
   export default {
     name: "pageTable",
     props: {
       loading: {
         type: Boolean,
         default: false
+      },
+      sortItems: {
+        type: Array,
+        default: () => []
       },
       needFilter: {
         type: Boolean,
@@ -101,6 +137,17 @@
       }
     },
     methods: {
+      sortChange({prop, order}) {
+        if (order === "ascending") {
+          order = "asc";
+        }
+        if (order === "descending") {
+          order = "desc";
+        }
+        emitSortObj.sort = prop;
+        emitSortObj.order = order;
+        this.$emit("sortFilter", emitSortObj);
+      },
       indexMethod(index) {
         return index + 1 + (this.currentInx - 1) * this.pageSize;
       },
@@ -111,22 +158,21 @@
       linkTo(url) {
         location.href=url;
       },
-      commandHandler(val) {
-        console.log(val);
+      commandHandler(str, val) {
+        emitFilterObj[str] = val;
+        this.$emit("selectFilter", emitFilterObj);
       },
       renderHeader(h, { column, $index }) {
         if (this.needFilter) {
           let tableTitles = this.tableTitles;
-          console.log(tableTitles);
-          console.log(column.label);
           if (tableTitles[$index].prop === "type" || tableTitles[$index].prop === "status") {
             return (
-              <el-dropdown trigger="click" class="table-dropdown" onCommand={this.commandHandler}>
+              <el-dropdown trigger="click" class="table-dropdown" onCommand={this.commandHandler.bind(this, tableTitles[$index].prop)}>
                 <span>{column.label}<span class="icon"></span></span>
-                <el-dropdown-menu slot="dropdown" >
-                  <el-dropdown-item command={0}>全部</el-dropdown-item>
-                  <el-dropdown-item command={1}>接收</el-dropdown-item>
-                  <el-dropdown-item command={-1}>发送</el-dropdown-item>
+                <el-dropdown-menu slot="dropdown">
+                  {filterObj[tableTitles[$index].prop].map((item)=> {
+                    return <el-dropdown-item command={item.value}>{item.label}</el-dropdown-item>;
+                  })}
                 </el-dropdown-menu>
               </el-dropdown>
             );

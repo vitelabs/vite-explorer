@@ -11,12 +11,15 @@ export default {
   getList({ 
     pageIndex,
     pageSize = 20,
-    tokenId
+    tokenId,
+    sortObj
   }) {
     return post(`${PREFIX}/list`, {
       paging: {
         index: pageIndex,
-        count: pageSize
+        count: pageSize,
+        sort: sortObj ? sortObj.sort : null,
+        order: sortObj ? sortObj.order : null,
       },
       tokenId
     });
