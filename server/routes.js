@@ -190,9 +190,10 @@ export default () => {
           volume_24h: body.data ? handleBigNum(body.data.quotes.USD.volume_24h, false, true) : "",
           percent_change_24h: body.data ? body.data.quotes.USD.percent_change_24h : "",
           circulating_supply: body.data ? body.data.quotes.USD.circulating_supply : "",
-          sysTps: generalDetail.data.sysTps || "",
-          txTotalTAmount: formatTx(generalDetail.data.txTotalTAmount) || "",
-          txMonAmount: formatTx(generalDetail.data.txMonAmount) || ""
+          sysTps: generalDetail.data.sysTps || "0",
+          avgTime: generalDetail.data.avgTime || "0",
+          txTotalTAmount: formatTx(generalDetail.data.txTotalTAmount) || "0",
+          txMonAmount: formatTx(generalDetail.data.txMonAmount) || "0"
         }
       };
     } catch(err) {

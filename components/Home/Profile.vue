@@ -28,7 +28,7 @@
           <div class="title">{{ $t('profile.latestHeight') }}</div>
           <div v-if="height">
             <span class="height-value">{{ height }}</span>
-            <span>( 15.3s )</span>
+            <span>({{ generalDetail.avgTime }}s)</span>
           </div>
           <div v-else>
             <span class="noData">{{ $t('utils.noData') }}</span>
@@ -38,7 +38,7 @@
       <div class="bottom">
         <div class="tps common">
           <div class="title">{{ $t('profile.tps') }}</div>
-          <div><span>{{ generalDetail && Number(generalDetail.sysTps) || $t('utils.noData')}}</span></div>
+          <div><span>{{ generalDetail && generalDetail.sysTps || $t('utils.noData')}}</span></div>
         </div>
         <div class="trans common ml40">
           <div class="title">{{ $t('profile.totalTrans') }}</div>
