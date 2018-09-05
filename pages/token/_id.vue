@@ -2,15 +2,27 @@
   <div class="token-container">
     <div v-if="!error">
       <detail-layout
-        :title="`${title}: ${tokenDetail.name}`"
+        :title="`${title}`"
         :list="list"
         :is-token="true">
+        <template slot="header-content">
+          <div class="header-container">
+            <img :src="tokenDetail.icon" width="60" height="60"/>
+            <div class="header-detail">
+              <div class="name">{{ tokenDetail.name }}</div>
+              <div class="introduction">{{ tokenDetail.introduction }}</div>
+            </div>
+          </div>
+        </template>
+        <template slot="footer-tab-content">
+          <div class="tab-wrapper">
+            <div class="tab-content" :class="{'is-active': tabParams === 'tx'}" @click="clickTab('tx')">{{$t('token.tLabel')}}</div>
+            <div class="tab-content" :class="{'is-active': tabParams === 'account'}" @click="clickTab('account')">账户列表</div>
+          </div>
+        </template>
       </detail-layout>
 
-      <div class="tab-wrapper">
-        <div class="tab-content" :class="{'is-active': tabParams === 'tx'}" @click="clickTab('tx')">{{$t('token.tLabel')}}</div>
-        <div class="tab-content" :class="{'is-active': tabParams === 'account'}" @click="clickTab('account')">账户列表</div>
-      </div>
+      
       <trans-list v-if="tabParams === 'tx'"
         :tokenTitle="false"
         :tokenId="tokenDetail.id"
@@ -20,7 +32,7 @@
       </trans-list>
       <div class="account-content" v-if="tabParams === 'account'" >
         <nuxt-link :to="`${locales}/tokenAccount/${tokenDetail.id}?tokenName=${tokenDetail.name}`" target="_blank" class="profile-link">
-          <el-button>持有账户图表</el-button>
+          <div class="hold-button"><img src="~assets/images/pie.svg"/><span>持有账户图表</span></div>
         </nuxt-link>
         <account-list 
           :table-titles="$t('accTitles').concat($t('addedAccTitles'))"
@@ -123,8 +135,50 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+@import "assets/css/vars.scss";
+.header-container {
+  border-bottom: 1px solid #E5EDF3;
+  margin-bottom: 23px;
+  box-sizing: border-box;
+  padding: 0 32px 28px 32px;
+  display: flex;
+  display: -webkit-flex;
+  .header-detail {
+    margin-left: 24px;
+    .name {
+      font-size: 16px;
+      color: #3F3F3F;
+      line-height: 22px;
+      font-weight: 500;
+    }
+    .introduction {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #5E6875;
+      line-height: 22px;
+    }
+  }
+  
+}
 .account-content {
   clear: both;
   padding-top: 20px;
+  .hold-button {
+    width: 132px;
+    height: 32px;
+    background: #E6EEFF;
+    border: 1px solid $common-color;
+    border-radius: 4px;
+    font-size: 14px;
+    color: $common-color;
+    letter-spacing: 0;
+    line-height: 22px;
+    box-sizing: border-box;
+    padding: 5px 12px;
+    img {
+      margin-right: 6px; 
+      vertical-align: text-top;
+    }
+  }
 }
 </style>

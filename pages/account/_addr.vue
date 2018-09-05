@@ -8,11 +8,13 @@
         :is-account="true"
         :extral-list="tokenDetailList"
         @getAccountAddr="getAccInputInfo">
+        <template slot="footer-tab-content">
+          <div class="tab-wrapper">
+            <div class="tab-content is-active">{{$t('transList.label')}}</div>
+          </div>
+        </template>
       </detail-layout>
-
-      <div class="tab-wrapper">
-        <div class="tab-content is-active">{{$t('transList.label')}}</div>
-      </div>
+      
       <trans-list
         :tokenId="activeToken ? activeToken.token.id : ''"
         :accountAddress="accountDetail.accountAddress"

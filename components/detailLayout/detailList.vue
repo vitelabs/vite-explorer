@@ -1,5 +1,8 @@
 <template>
   <div :class="classObj">
+    <div class="header">
+      <slot name="header"></slot>
+    </div>
     <div class="row" v-for="(item, index) in list" :key="index">
       <span class="name">{{item.name}}：</span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
@@ -21,6 +24,7 @@
       </div>
       <filter-address style="float:left; display:inline" @getAccountAddr="getAccInputInfo"></filter-address>
     </div>
+    <slot name="footer"></slot>
   </div>
 </template>
 
@@ -95,14 +99,12 @@
     background-image: url("~assets/images/detail_bg.svg");
     background-color: #fff; 
     box-sizing: border-box;
-    height: 535px;
-    padding: 32px 0 0 0px;
+    padding: 25px 0 0 0px;
     margin-top: 30px;
   }
   .token-detail {
     border: 1px solid $common-background;
     border-bottom: 2px solid $common-color;
-    height: 352px;
   }
   .account-detail {
     width: 100%;
@@ -115,7 +117,6 @@
     padding: 32px 0 0 0px;
     border: 1px solid $common-background;
     border-bottom: 2px solid $common-color;
-    min-height: 300px;
     margin-top: 30px;
   }
   .row {
@@ -170,11 +171,12 @@
     border-top: 1px solid  #E5EDF3; 
     box-sizing: border-box;
     padding-left: 32px;
-    
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
   }
   .extral-row {
-    float: left;
-    width: 43%;
+    width: 50%;
     font-size: 14px;
     line-height: 22px;
     margin-top: 16px;
@@ -205,17 +207,16 @@
       }
     }
     .common-detail {
-      min-height: 750px;
+      // min-height: 750px;
     }
     .token-detail {
-      min-height: 420px;
+      // min-height: 420px;
     }
     .extral-wrapper {
       padding-left: 15px;
       min-height: 256px;
     }
     .extral-row {
-      float: none;
       width: 100%;
       font-size: 14px;
       line-height: 22px;

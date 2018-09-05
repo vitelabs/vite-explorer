@@ -104,10 +104,5 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-  .tab-wrapper {
-    padding-top: 20px;
-    .tab-pane {
-      margin-bottom: 0;
-    }
-  }
+ 
 </style>

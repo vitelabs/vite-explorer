@@ -7,7 +7,14 @@
       :is-token="isToken" 
       :extral-list="extralList" 
       :is-account="isAccount"
-      @getAccountAddr="getAccInputInfo"></detail-list>
+      @getAccountAddr="getAccInputInfo">
+      <template slot="header">
+        <slot name="header-content"></slot>
+      </template>
+      <template slot="footer">
+        <slot name="footer-tab-content"></slot>
+      </template>
+    </detail-list>
   </div>
 </template>
 
