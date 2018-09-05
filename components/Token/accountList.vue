@@ -8,7 +8,7 @@
     :currentPage="pageIndex"
     :pagination="pagination"
     :loading="loading"
-    :sort-items="['balance', 'countNum']"
+    :sort-items="needSort ? ['balance', 'countNum'] : []"
     @sortFilter="getSortFilter">
   </page-table>
 </div>
@@ -40,6 +40,10 @@
       tokenId: {
         type: String,
         default: ""
+      },
+      needSort: {
+        type: Boolean,
+        default: false
       }
     },
     components: {

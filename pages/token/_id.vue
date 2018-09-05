@@ -25,7 +25,8 @@
         <account-list 
           :table-titles="$t('accTitles').concat($t('addedAccTitles'))"
           :pagination="true"
-          :tokenId="tokenDetail.id">
+          :tokenId="tokenDetail.id"
+          :need-sort="true">
         </account-list>
       </div>
     </div>
