@@ -86,8 +86,8 @@
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
-            icon: `${token.icon || ""}`,
-            token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.symbol})</a><div>${token.introduction || ""}</div>`,
+            icon: `<img src="${token.icon || ""}" width="25" height="25"/>`,
+            token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.symbol})</a><div style="white-space:normal;">${token.introduction || ""}</div>`,
             price: `$${this.generalDetail.cirPrice}`,
             upDown: `${this.generalDetail.percent_change_24h}%`,
             transPrice: `$${this.generalDetail.volume_24h}`,
@@ -101,4 +101,7 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.introduction {
+   word-wrap: break-word; 
+}
 </style>

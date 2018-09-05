@@ -208,6 +208,9 @@
           this.loading = false;
           this.transactionList = transactionList;
           this.totalNumber = totalNumber;
+          if (!this.sortObj && !this.filterAddressObj && !this.selectObj) {
+            this.$emit("totalNumber", this.totalNumber);
+          }
         }).catch((err) => {
           if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
             return;

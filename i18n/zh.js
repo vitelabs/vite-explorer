@@ -65,7 +65,7 @@ module.exports = {
     content2: "统计类信息部分支持，如浏览器“暂无数据”展示，会在后续版本迭代补充进来。",
     govite: {
       current: "go-vite 版本",
-      v: "0.0.1"
+      v: "0.0.2"
     }
   },
   nav: {

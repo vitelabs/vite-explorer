@@ -1,7 +1,13 @@
 <template>
   <div class="detail-layout-container">
     <page-header :title="title"></page-header>
-    <detail-list :list="list" :clickLab="clickLab" :is-token="isToken" :extral-list="extralList" :is-account="isAccount" @getAccountAddr="getAccInputInfo"></detail-list>
+    <detail-list 
+      :list="list" 
+      :clickLab="clickLab" 
+      :is-token="isToken" 
+      :extral-list="extralList" 
+      :is-account="isAccount"
+      @getAccountAddr="getAccInputInfo"></detail-list>
   </div>
 </template>
 

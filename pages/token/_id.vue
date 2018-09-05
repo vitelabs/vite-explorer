@@ -15,7 +15,8 @@
         :tokenTitle="false"
         :tokenId="tokenDetail.id"
         :page-size="20"
-        :sub-title="subTitle">
+        :sub-title="subTitle"
+        @totalNumber="getTotalNumber">
       </trans-list>
       <div class="account-content" v-if="tabParams === 'account'" >
         <nuxt-link :to="`${locales}/tokenAccount/${tokenDetail.id}?tokenName=${tokenDetail.name}`" target="_blank" class="profile-link">
@@ -77,7 +78,8 @@
         error: "",
         activeTab: "transList",
         generalDetail: {},
-        tabParams: "tx"
+        tabParams: "tx",
+        totalNumber: 0
       };
     },
     computed: {
@@ -89,7 +91,7 @@
           symbol: this.tokenDetail.symbol,
           accountNum: `${this.tokenDetail.accountNum}`,
           totalSupply: this.tokenDetail.totalSupply,
-          transactionNumber: this.tokenDetail.transactionNumber,
+          transactionNumber: this.totalNumber,
           owner: this.tokenDetail.owner,
           decimals: this.tokenDetail.decimals,
         };
@@ -112,7 +114,9 @@
       clickTab(str) {
         this.tabParams = str;
       },
-      
+      getTotalNumber(num) {
+        this.totalNumber = num;
+      }
     }
   };
 </script>

@@ -20,7 +20,8 @@
         :page-size="20"
         :need-filter="true"
         :sort-items="['confirmTimes', 'amount']"
-        >
+        :filter-accout-addr="filterAccObj"
+        @totalNumber="getTotalNumber">
       </trans-list>
     </div>
     <error v-else :error="error"></error>
@@ -71,7 +72,8 @@
         accountDetail: {},
         tokenList: [],
         activeTokenIndex: 0,
-        filterAccObj: null
+        filterAccObj: null,
+        totalNumber: 0
       };
     },
     created() {
@@ -117,7 +119,7 @@
 
         return [{
           name: this.$t("account.tNum"),
-          describe: tokenDetail.token.transactionNumber
+          describe: this.totalNumber
         }, {
           name: this.$t("account.bAmount"),
           describe: handleBigNum(tokenDetail.balance, true) || "--"
@@ -130,6 +132,9 @@
       },
       getAccInputInfo(accObj) {
         this.filterAccObj = accObj;
+      },
+      getTotalNumber(num) {
+        this.totalNumber = num;
       }
     }
   };

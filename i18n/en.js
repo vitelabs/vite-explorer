@@ -68,7 +68,7 @@ module.exports = {
     content2: "For the record, statistics information is not available right now. If browser shows 'No Data', stay tuned and we will supply in further version iteration.",
     govite: {
       current: "go-vite Version",
-      v: "0.0.1"
+      v: "0.0.2"
     }
   },
   nav: {
