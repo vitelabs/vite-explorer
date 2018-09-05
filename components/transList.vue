@@ -89,7 +89,7 @@
     data() {
       return {
         transactionList: this.transactions,
-        pageIndex: 0,
+        pageIndex: 1,
         loading: false,
         totalNumber: 0,
       };
@@ -180,7 +180,7 @@
         this.loading = true;
         this.pageIndex = currentIndex;
         transaction.getList({
-          pageIndex: currentIndex -1,
+          pageIndex: currentIndex,
           pageSize: this.pageSize
         }).then(({ transactionList, totalNumber }) => {
           this.loading = false;
@@ -198,7 +198,7 @@
         let accountAddress = this.accountAddress;
 
         transaction.getList({
-          pageIndex: currentIndex -1,
+          pageIndex: currentIndex,
           pageSize: this.pageSize,
           sortObj: this.sortObj
         }, accountAddress, tokenId, this.filterAddressObj, this.selectObj).then(({ transactionList, totalNumber }) => {

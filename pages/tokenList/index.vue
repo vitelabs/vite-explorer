@@ -33,7 +33,7 @@
       pageHeader, pageTable, error
     },
     async asyncData(ctx) {
-      const pageIndex = 0;
+      const pageIndex = 1;
       if (ctx.query.filter) {
         try {
           let data = await search.judgeTokenName({ str: ctx.query.filter });

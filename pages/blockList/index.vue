@@ -31,7 +31,7 @@
     },
     async asyncData() {
       try {
-        let pageIndex = 0;
+        let pageIndex = 1;
         let { blockList, totalNumber } = await block.getList({
           pageIndex, pageSize
         });
@@ -46,7 +46,7 @@
     },
     data() {
       return {
-        pageIndex: 0,
+        pageIndex: 1,
         totalNumber: 0,
         blockList: [],
         loading: false,
@@ -83,7 +83,7 @@
         this.pageIndex = currentInx;
 
         block.getList({
-          pageIndex: currentInx -1,
+          pageIndex: currentInx,
           pageSize
         }).then(({ blockList })=>{
           if (this.pageIndex !== currentInx) {

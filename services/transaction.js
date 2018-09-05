@@ -61,7 +61,7 @@ export default {
   getTop10List() {
     return post(`${PREFIX}/list/topTx10`, {
       paging: {
-        index: 0, 
+        index: 1, 
         count: 10
       }
     });

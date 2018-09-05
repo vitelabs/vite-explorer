@@ -76,7 +76,7 @@
         this.loading = true;
         this.pageIndex = currentIndex;
         account.getList({
-          pageIndex: currentIndex -1,
+          pageIndex: currentIndex,
           pageSize: pageSize,
           tokenId: this.tokenId,
           sortObj: this.sortObj 

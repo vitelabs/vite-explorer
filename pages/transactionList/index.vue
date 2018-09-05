@@ -37,7 +37,7 @@
       error, transList
     },
     async asyncData() {
-      let pageIndex = 0;
+      let pageIndex = 1;
       try {
         let { transactionList, totalNumber } = await transaction.getList({
           pageIndex, pageSize
