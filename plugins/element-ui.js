@@ -11,6 +11,7 @@ import {
   DropdownMenu, 
   DropdownItem, 
   Popover, 
+  Tooltip,
   Table,
   TableColumn,
   Button,
@@ -33,6 +34,7 @@ Vue.use(Dropdown);
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 Vue.use(Popover);
+Vue.use(Tooltip);
 Vue.use(Table);
 Vue.use(TableColumn);
 Vue.use(Button);

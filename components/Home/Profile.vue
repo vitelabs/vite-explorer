@@ -27,8 +27,12 @@
         <div class="height">
           <div class="title">{{ $t('profile.latestHeight') }}</div>
           <div v-if="generalDetail.chainHeight">
-            <span class="height-value" :class="chainHeightAnimate ? 'animated fadeIn': ''">{{ generalDetail.chainHeight }}</span>
-            <span>({{ generalDetail.avgTime }}s)</span>
+            <el-tooltip class="item" effect="dark" content="最新5000个快照块平均出块时间" placement="top-end">
+              <div>
+                <span class="height-value" :class="chainHeightAnimate ? 'animated fadeIn': ''">{{ generalDetail.chainHeight }}</span>
+                <span>({{ generalDetail.avgTime }}s)</span>
+              </div>
+            </el-tooltip>
           </div>
           <div v-else>
             <span class="noData">{{ $t('utils.noData') }}</span>
@@ -38,14 +42,21 @@
       <div class="bottom">
         <div class="tps common">
           <div class="title">{{ $t('profile.tps') }}</div>
-          <div><span class="bottom-span"><span :class="sysTpsAnimate ? 'animated fadeIn': ''">{{ generalDetail && generalDetail.sysTps || $t('utils.noData')}}</span></span></div>
+          <div>
+            <el-tooltip class="item" effect="dark" content="每秒交易次数" placement="bottom-start">
+              <span class="bottom-span"><span :class="sysTpsAnimate ? 'animated fadeIn': ''">{{ generalDetail && generalDetail.sysTps || $t('utils.noData')}}</span></span>
+            </el-tooltip>
+          </div>
         </div>
         <div class="trans common ml40">
           <div class="title">{{ $t('profile.totalTrans') }}</div>
           <div>
-            <nuxt-link :to="localePath('transactionList')" target="_blank" class="profile-link">
-              <span class="bottom-span"><span :class="txTotalTAmountAnimate ? 'animated fadeIn': ''">{{ generalDetail && generalDetail.txTotalTAmount || $t('utils.noData') }}</span></span>
-            </nuxt-link>
+            <el-tooltip class="item" effect="dark" content="每3秒更新一次" placement="bottom">
+              <nuxt-link :to="localePath('transactionList')" target="_blank" class="profile-link">
+                <span class="bottom-span"><span :class="txTotalTAmountAnimate ? 'animated fadeIn': ''">{{ generalDetail && generalDetail.txTotalTAmount || $t('utils.noData') }}</span></span>
+              </nuxt-link>
+            </el-tooltip>
+            
           </div>
         </div>
         <div class="near-month common ml40">
