@@ -9,7 +9,7 @@
         </profile>
       </div>
       <div class="line-chart ml30 mb30">
-        <line-chart></line-chart>
+        <line-chart :chart-data="chartData"></line-chart>
       </div>
     </div>
     <div class="bottom">
@@ -33,6 +33,7 @@
   import block from "~/services/block.js";
   import transaction from "~/services/transaction.js";
   import general from "~/services/general.js";
+  
 
   import { mySetInterval, myClearInterval} from "~/utils/myInterval.js";
 
@@ -48,6 +49,16 @@
       let generalMarket = {};
       let blockList = [];
       let transactionList = [];
+      let chartData = {};
+      try {
+        let lineChart = await transaction.getChartData();
+        chartData = {
+          columns: ["date", "transactions", "accountNum"],
+          rows: lineChart
+        };
+      }catch(err) {
+        console.log(err);
+      }
       try {
         generalMarket = await general.getGeneralMarket();
       }catch(err) {
@@ -75,7 +86,8 @@
         blockList,
         transactionList,
         generalDetail,
-        generalMarket
+        generalMarket,
+        chartData
       };
     },
     mounted() {

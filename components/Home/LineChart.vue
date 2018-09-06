@@ -15,25 +15,21 @@
 <script>
   import VeLine from "v-charts/lib/line";
   import "v-charts/lib/style.css";
-  import transaction from "~/services/transaction.js";
 
   export default {
     components: {
       VeLine
     },
     props: {
-
-    },
-    mounted() {
-      this.getChartData();
+      chartData: {
+        type: Object,
+        default: () => {}
+      }
     },
     data () {
       return {
         dataEmpty: false,
-        chartData: {
-          columns: ["date", "transactions", "accountNum"],
-          rows: []
-        },
+        rows: [],
         loading: false
       };
     },
@@ -41,18 +37,6 @@
       afterConfig (options) {
         options.series[0].smooth = false;
         return options;
-      },
-      getChartData() {
-        this.loading = true;
-        transaction.getChartData()
-          .then(data=> {
-            this.chartData.rows = data;
-            this.loading = false;
-          })
-          .catch(err=> {
-            this.loading = false;
-            console.log(err);
-          });
       }
     }
   };
