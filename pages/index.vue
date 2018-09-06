@@ -2,7 +2,11 @@
   <div class="page-home">
     <div class="top">
       <div class="profile mb30">
-        <profile :general-detail="generalDetail" :height="blockList[0] && blockList[0].height"></profile>
+        <profile 
+          :general-detail="generalDetail" 
+          :general-market="generalMarket" 
+          :pre-general-detail="preGeneralDetail">
+        </profile>
       </div>
       <div class="line-chart ml30 mb30">
         <line-chart></line-chart>
@@ -10,10 +14,10 @@
     </div>
     <div class="bottom">
       <div class="snapshot mb30">
-        <snapshot-list :list="blockList"></snapshot-list>
+        <snapshot-list :list="blockList" :pre-list="preBlockList"></snapshot-list>
       </div>
       <div class="transaction ml30 mb30">
-        <transaction-list :list="transactionList"></transaction-list>
+        <transaction-list :list="transactionList" :pre-list="preTransactionList"></transaction-list>
       </div>
     </div>
   </div>
@@ -41,8 +45,14 @@
     },
     async asyncData() {
       let generalDetail = {};
+      let generalMarket = {};
       let blockList = [];
       let transactionList = [];
+      try {
+        generalMarket = await general.getGeneralMarket();
+      }catch(err) {
+        console.log(err);
+      }
       try {
         generalDetail = await general.getGeneralDetail();
       }catch(err) {
@@ -64,7 +74,8 @@
       return {
         blockList,
         transactionList,
-        generalDetail
+        generalDetail,
+        generalMarket
       };
     },
     mounted() {
@@ -74,8 +85,11 @@
       return {
         name: this.name,
         blockList: [],
+        preBlockList: [],
         transactionList: [],
-        generalDetail: {},
+        preTransactionList: [],
+        generalDetail: null,
+        preGeneralDetail: null,
         count: 0,
         interval: null,
       };
@@ -86,8 +100,16 @@
       }
     },
     methods: {
+      getGeneralMarket() {
+        general.getGeneralMarket().then(data=> {
+          this.generalMarket = data;
+        }).catch(err => {
+          console.log(err);
+        });
+      },
       getGeneralDetail() {
         general.getGeneralDetail().then(data=> {
+          this.preGeneralDetail = this.generalDetail;
           this.generalDetail = data;
         }).catch(err => {
           console.log(err);
@@ -95,6 +117,7 @@
       },
       getTop10BlockList() {
         block.getTop10List().then(data => {
+          this.preBlockList = this.blockList;
           this.blockList = data.blockList;
         }).catch(err => {
           console.log(err);
@@ -103,6 +126,7 @@
 
       getTop10TxList() {
         transaction.getTop10List().then(data => {
+          this.preTransactionList = this.transactionList;
           this.transactionList = data.transactionList;
         }).catch(err => {
           console.log(err);
@@ -113,6 +137,7 @@
         this.interval = mySetInterval(() => {
           this.getTop10BlockList();
           this.getTop10TxList();
+          this.getGeneralDetail();
         }, 3000);
         
       }

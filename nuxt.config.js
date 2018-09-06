@@ -43,7 +43,9 @@ module.exports = {
     middleware: "i18n"
   },
   css: [
-    "~/assets/css/main.scss"
+    "~/assets/css/main.scss",
+    "node_modules/animate.css/source/_base.css",
+    "node_modules/animate.css/source/fading_entrances/fadeIn.css"
   ],
   modules: [
     ["@nuxtjs/google-analytics"],

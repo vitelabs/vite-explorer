@@ -14,7 +14,7 @@
     </div>
     
     <div class="snapshot-list">
-      <div class="snapshot-item" v-for="(item, index) in list" :key="index">
+      <div class="snapshot-item" :class="getAnimateIndex.indexOf(index) > -1 ? {animated: true, fadeIn: true}: ''" v-for="(item, index) in list" :key="index">
         <div class="snapshot-item-left">
           <div class="height">
             <span>{{ $t('snapshotList.height') }}:</span>
@@ -45,6 +45,26 @@
         type: Array,
         default: []
       },
+      preList: {
+        type: Array,
+        default: []
+      }
+    },
+    computed: {
+      getAnimateIndex() {
+        let list = this.list.length ? this.list.map(item => item.hash) : [];
+        let preList = this.preList.length ? this.preList.map(item => item.hash) : [];
+        let difference = this.preList.length ? list.filter(item => preList.indexOf(item) === -1) : [];
+        let diffIndex = [];
+        for(let i = 0; i < difference.length; i++) {
+          for(let j = 0; j < list.length; j++) {
+            if (list[j] === difference[i]) {
+              diffIndex.push(j);
+            }
+          }
+        }
+        return diffIndex;
+      }
     },
     data() {
       return {
@@ -62,6 +82,7 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
+
 .head {
   font-size: 16px;
   color: $common-color;

@@ -206,12 +206,6 @@
         width: 100%;
       }
     }
-    .common-detail {
-      // min-height: 750px;
-    }
-    .token-detail {
-      // min-height: 420px;
-    }
     .extral-wrapper {
       padding-left: 15px;
       min-height: 256px;

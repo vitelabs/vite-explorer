@@ -4,9 +4,9 @@
       <div class="top">
         <div class="title">{{ $t('profile.market') }}</div>
         <div class="market"> 
-          <div v-if="generalDetail && generalDetail.ffmCap">
+          <div v-if="generalMarket && generalMarket.ffmCap">
             $
-            <span>{{ generalDetail.ffmCap }}</span>
+            <span>{{ generalMarket.ffmCap }}</span>
           </div>
           <div v-else>
             <span>{{ $t('utils.noData') }}</span>
@@ -16,9 +16,9 @@
       <div class="middle">
         <div class="price">
           <div class="title">{{ $t('profile.price') }}</div>
-          <div v-if="generalDetail && Number(generalDetail.cirPrice)">
+          <div v-if="generalMarket && Number(generalMarket.cirPrice)">
             $
-            <span>{{ Number(generalDetail.cirPrice).toFixed(4) }}</span>
+            <span>{{ Number(generalMarket.cirPrice).toFixed(4) }}</span>
           </div>
           <div v-else>
             <span class="noData">{{ $t('utils.noData') }}</span>
@@ -26,8 +26,8 @@
         </div>
         <div class="height">
           <div class="title">{{ $t('profile.latestHeight') }}</div>
-          <div v-if="height">
-            <span class="height-value">{{ height }}</span>
+          <div v-if="generalDetail.chainHeight">
+            <span class="height-value" :class="chainHeightAnimate ? 'animated fadeIn': ''">{{ generalDetail.chainHeight }}</span>
             <span>({{ generalDetail.avgTime }}s)</span>
           </div>
           <div v-else>
@@ -38,19 +38,19 @@
       <div class="bottom">
         <div class="tps common">
           <div class="title">{{ $t('profile.tps') }}</div>
-          <div><span>{{ generalDetail && generalDetail.sysTps || $t('utils.noData')}}</span></div>
+          <div><span class="bottom-span"><span :class="sysTpsAnimate ? 'animated fadeIn': ''">{{ generalDetail && generalDetail.sysTps || $t('utils.noData')}}</span></span></div>
         </div>
         <div class="trans common ml40">
           <div class="title">{{ $t('profile.totalTrans') }}</div>
           <div>
             <nuxt-link :to="localePath('transactionList')" target="_blank" class="profile-link">
-              <span>{{ generalDetail && generalDetail.txTotalTAmount || $t('utils.noData') }}</span>
+              <span class="bottom-span"><span :class="txTotalTAmountAnimate ? 'animated fadeIn': ''">{{ generalDetail && generalDetail.txTotalTAmount || $t('utils.noData') }}</span></span>
             </nuxt-link>
           </div>
         </div>
         <div class="near-month common ml40">
           <div class="title">{{ $t('profile.nearMonth') }}</div>
-          <div><span>{{ generalDetail && generalDetail.txMonAmount || $t('utils.noData') }}</span></div>
+          <div><span class="bottom-span">{{ generalDetail && generalDetail.txMonAmount || $t('utils.noData') }}</span></div>
         </div>
       </div>
     </div>
@@ -62,11 +62,26 @@
     props: {
       generalDetail: {
         type: Object,
-        default: {}
+        default: () => null
       },
-      height: {
-        type: String,
-        default: ""
+      preGeneralDetail: {
+        type: Object,
+        default: () => null
+      },
+      generalMarket: {
+        type: Object,
+        default: () => {}
+      }
+    },
+    computed: {
+      chainHeightAnimate() {
+        return this.preGeneralDetail && (this.generalDetail.chainHeight !== this.preGeneralDetail.chainHeight);
+      },
+      txTotalTAmountAnimate() {
+        return this.preGeneralDetail && (this.generalDetail.txTotalTAmount !== this.preGeneralDetail.txTotalTAmount);
+      },
+      sysTpsAnimate() {
+        return this.preGeneralDetail && (this.generalDetail.sysTps !== this.preGeneralDetail.sysTps);
       }
     },
     data() {
@@ -141,7 +156,7 @@
       margin-top: 28px;
       text-align: center;
       justify-content: space-between;
-      span {
+      .bottom-span {
         display: inline-block;
         margin-top: 10px;
         width: 100px;
@@ -212,7 +227,7 @@
 
       }
       .bottom {
-        span {
+        .bottom-span {
           display: inline-block;
           margin-top: 10px;
           width: 72px;
@@ -281,7 +296,7 @@
 
       }
       .bottom {
-        span {
+        .bottom-span {
           display: inline-block;
           margin-top: 10px;
           width: 72px;

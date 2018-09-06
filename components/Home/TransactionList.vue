@@ -14,7 +14,7 @@
     </div>
     
     <div class="transaction-list">
-      <div class="transaction-item" v-for="(item, index) in list" :key="index">
+      <div class="transaction-item" :class="getAnimateIndex.indexOf(index) > -1 ? {animated: true, fadeIn: true}: ''" v-for="(item, index) in list" :key="index">
         <div class="transaction-item-up">
           <div class="up">
             <img src="~assets/images/Hush.svg"/>
@@ -49,6 +49,26 @@
         type: Array,
         default: []
       },
+      preList: {
+        type: Array,
+        default: []
+      }
+    },
+    computed: {
+      getAnimateIndex() {
+        let list = this.list.length ? this.list.map(item => item.hash) : [];
+        let preList = this.preList.length ? this.preList.map(item => item.hash) : [];
+        let difference = this.preList.length ? list.filter(item => preList.indexOf(item) === -1) : [];
+        let diffIndex = [];
+        for(let i = 0; i < difference.length; i++) {
+          for(let j = 0; j < list.length; j++) {
+            if (list[j] === difference[i]) {
+              diffIndex.push(j);
+            }
+          }
+        }
+        return diffIndex;
+      }
     },
     data() {
       return {

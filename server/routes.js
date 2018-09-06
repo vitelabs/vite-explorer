@@ -176,13 +176,11 @@ export default () => {
     }
   });
 
-  router.get("/api/general/detail", async(ctx) => {
+  router.get("/api/general/market", async(ctx) => {
     try {
       let result = await axios.get("https://api.coinmarketcap.com/v2/ticker/2937/");
-      let generalBody= await get("/general/detail", ctx.query);
       ctx.type = "json";
       let body = result.data;
-      let generalDetail = generalBody.data;
       ctx.body = {
         data: {
           cirPrice: body.data ? body.data.quotes.USD.price : "",
@@ -190,6 +188,21 @@ export default () => {
           volume_24h: body.data ? handleBigNum(body.data.quotes.USD.volume_24h, false, true) : "",
           percent_change_24h: body.data ? body.data.quotes.USD.percent_change_24h : "",
           circulating_supply: body.data ? body.data.quotes.USD.circulating_supply : "",
+        }
+      };
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
+
+  router.get("/api/general/detail", async(ctx) => {
+    try {
+      let generalBody= await get("/general/detail", ctx.query);
+      ctx.type = "json";
+      let generalDetail = generalBody.data;
+      ctx.body = {
+        data: {
+          chainHeight: generalDetail.data.chainHeight || "0",
           sysTps: generalDetail.data.sysTps || "0",
           avgTime: generalDetail.data.avgTime || "0",
           txTotalTAmount: formatTx(generalDetail.data.txTotalTAmount) || "0",
