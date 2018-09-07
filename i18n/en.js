@@ -128,15 +128,15 @@ module.exports = {
     prop: "to",
     name: "To",
     width: "160"
+  }, {
+    prop: "amount",
+    name: "Amount",
+    width: "98"
   }],
   addedTitle: [{
     prop: "tokenName",
     name: "Token",
     width: "70"
-  }, {
-    prop: "amount",
-    name: "Amount",
-    width: "98"
   }],
 
 

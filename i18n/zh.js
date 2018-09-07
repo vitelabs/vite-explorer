@@ -125,14 +125,14 @@ module.exports = {
     prop: "to",
     name: "转入方",
     width: "160"
+  }, {
+    prop: "amount",
+    name: "数量",
   }],
   addedTitle: [{
     prop: "tokenName",
     name: "代币",
     width: "70"
-  }, {
-    prop: "amount",
-    name: "金额",
   }],
 
 
