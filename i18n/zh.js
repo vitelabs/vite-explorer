@@ -10,6 +10,9 @@ module.exports = {
     totalTrans: "历史总交易量",
     latestHeight: "最新区块高度",
     nearMonth: "近30天交易量",
+    update3: "每3秒更新一次",
+    tPerSec: "每秒交易次数",
+    blockTime: "最新5000个快照块平均出块时间",
   },
   lineChart: {
     title: "交易曲线"
@@ -216,6 +219,8 @@ module.exports = {
   token: {
     aLabel: "账户列表",
     tLabel: "交易列表",
+    charts: "持有账户图表",
+
   },
   tokenDetailMap: {
     accountNum: "所有者数量",

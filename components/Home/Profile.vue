@@ -3,7 +3,7 @@
     <div class="vite-profile">
       <div class="top">
         <div class="title">{{ $t('profile.market') }}</div>
-        <div class="market"> 
+        <div class="market">
           <div v-if="generalMarket && generalMarket.ffmCap">
             $
             <span>{{ generalMarket.ffmCap }}</span>
@@ -27,7 +27,7 @@
         <div class="height">
           <div class="title">{{ $t('profile.latestHeight') }}</div>
           <div v-if="generalDetail.chainHeight">
-            <el-tooltip class="item" effect="dark" content="最新5000个快照块平均出块时间" placement="top-end">
+            <el-tooltip class="item" effect="dark" :content="$t('profile.blockTime') " placement="top-end">
               <div>
                 <span class="height-value" :class="chainHeightAnimate ? 'animated fadeIn': ''">{{ generalDetail.chainHeight }}</span>
                 <span>({{ generalDetail.avgTime }}s)</span>
@@ -43,7 +43,7 @@
         <div class="tps common">
           <div class="title">{{ $t('profile.tps') }}</div>
           <div>
-            <el-tooltip class="item" effect="dark" content="每秒交易次数" placement="bottom-start">
+            <el-tooltip class="item" effect="dark" :content="$t('profile.tPerSec')" placement="bottom-start">
               <span class="bottom-span"><span :class="sysTpsAnimate ? 'animated fadeIn': ''">{{ generalDetail && generalDetail.sysTps || $t('utils.noData')}}</span></span>
             </el-tooltip>
           </div>
@@ -51,12 +51,12 @@
         <div class="trans common ml40">
           <div class="title">{{ $t('profile.totalTrans') }}</div>
           <div>
-            <el-tooltip class="item" effect="dark" content="每3秒更新一次" placement="bottom">
+            <el-tooltip class="item" effect="dark" :content="$t('profile.update3')" placement="bottom">
               <nuxt-link :to="localePath('transactionList')" target="_blank" class="profile-link">
                 <span class="bottom-span"><span :class="txTotalTAmountAnimate ? 'animated fadeIn': ''">{{ generalDetail && generalDetail.txTotalTAmount || $t('utils.noData') }}</span></span>
               </nuxt-link>
             </el-tooltip>
-            
+
           </div>
         </div>
         <div class="near-month common ml40">
@@ -104,7 +104,7 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
-  
+
   .vite-profile {
     padding: 25px 30px 33px 30px;
     .title {
@@ -116,7 +116,7 @@
     }
     .top {
       .market {
-        margin-top: 5px; 
+        margin-top: 5px;
         span {
           font-size: 34px;
           line-height: 36px;
@@ -132,7 +132,7 @@
         margin-top: 15px;
         span {
           display: inline-block;
-          margin-top: 25px; 
+          margin-top: 25px;
           font-size: 48px;
           line-height: 23px;
           &.noData {
@@ -174,7 +174,7 @@
         height: 22px;
         background: rgba(102,165,255,0.42);
         border-radius: 2px;
-      } 
+      }
       .profile-link {
         color: white;
       }
@@ -185,11 +185,11 @@
         line-height: 20px;
       }
       .ml40 {
-        margin-left: 40px; 
+        margin-left: 40px;
       }
     }
   }
-  
+
   /** iPad **/
   @media only screen and (min-width: 768px) and (max-width: 1024px) {
     .vite-profile {
@@ -211,7 +211,7 @@
           margin-top: 15px;
           span {
             display: inline-block;
-            margin-top: 25px; 
+            margin-top: 25px;
             font-size: 44px;
             line-height: 19px;
             &.noData {
@@ -248,12 +248,12 @@
         }
         .title {
           width: 75px;
-        } 
+        }
         .common {
           width: 72px;
         }
         .ml40 {
-          margin-left: 19px; 
+          margin-left: 19px;
         }
       }
     }
@@ -280,7 +280,7 @@
           margin-top: 15px;
           span {
             display: inline-block;
-            margin-top: 25px; 
+            margin-top: 25px;
             font-size: 36px;
             line-height: 30px;
             &.noData {
@@ -317,12 +317,12 @@
         }
         .title {
           width: 75px;
-        } 
+        }
         .common {
           width: 72px;
         }
         .ml40 {
-          margin-left: 17px; 
+          margin-left: 17px;
         }
       }
     }

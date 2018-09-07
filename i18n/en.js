@@ -11,6 +11,10 @@ module.exports = {
     totalTrans: "Transactions",
     latestHeight: "Latest block height",
     nearMonth: "Transactions(30d)",
+    update3: "Update per 3 seconds",
+    tPerSec: "Transactions per second",
+    blockTime: "Average time cost of latest 5000 snapshot block",
+
   },
   lineChart: {
     title: "Transaction Curve"
@@ -39,7 +43,7 @@ module.exports = {
   },
   accTitles: [{
     prop: "orderNum",
-    name: "排名",
+    name: "Ranking",
     width: "70"
   }, {
     prop: "accountAddress",
@@ -88,7 +92,7 @@ module.exports = {
   },
   utils: {
     noData: "No Data",
-    more: "more"
+    more: "More"
   },
 
 
@@ -220,13 +224,14 @@ module.exports = {
   token: {
     aLabel: "Accounts",
     tLabel: "Transactions",
+    charts: "Charts of Owners",
   },
   tokenDetailMap: {
-    accountNum: "所有者数量",
-    totalSupply: "铸币总量",
-    owner: "铸币地址",
-    transactionNumber: "交易笔数",
-    decimals: "小数位数"
+    accountNum: "Number of Owners",
+    totalSupply: "Forging Totals",
+    owner: "Forging Address",
+    transactionNumber: "Transactions",
+    decimals: "Decimals"
   },
 
 

@@ -17,12 +17,12 @@
         <template slot="footer-tab-content">
           <div class="tab-wrapper">
             <div class="tab-content" :class="{'is-active': tabParams === 'tx'}" @click="clickTab('tx')">{{$t('token.tLabel')}}</div>
-            <div class="tab-content" :class="{'is-active': tabParams === 'account'}" @click="clickTab('account')">账户列表</div>
+            <div class="tab-content" :class="{'is-active': tabParams === 'account'}" @click="clickTab('account')">{{$t('token.aLabel')}}</div>
           </div>
         </template>
       </detail-layout>
 
-      
+
       <trans-list v-if="tabParams === 'tx'"
         :tokenTitle="false"
         :tokenId="tokenDetail.id"
@@ -32,9 +32,9 @@
       </trans-list>
       <div class="account-content" v-if="tabParams === 'account'" >
         <nuxt-link :to="`${locales}/tokenAccount/${tokenDetail.id}?tokenName=${tokenDetail.name}`" target="_blank" class="profile-link">
-          <div class="hold-button"><img src="~assets/images/pie.svg"/><span>持有账户图表</span></div>
+          <div class="hold-button"><img src="~assets/images/pie.svg"/><span>{{$t('token.charts')}}</span></div>
         </nuxt-link>
-        <account-list 
+        <account-list
           :table-titles="$t('accTitles').concat($t('addedAccTitles'))"
           :pagination="true"
           :tokenId="tokenDetail.id"
@@ -158,7 +158,7 @@
       line-height: 22px;
     }
   }
-  
+
 }
 .account-content {
   clear: both;
@@ -176,7 +176,7 @@
     box-sizing: border-box;
     padding: 5px 12px;
     img {
-      margin-right: 6px; 
+      margin-right: 6px;
       vertical-align: text-top;
     }
   }
