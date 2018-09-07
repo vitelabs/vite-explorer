@@ -16,7 +16,7 @@
       </detail-layout>
       
       <trans-list
-        :tokenId="activeToken ? activeToken.token.id : ''"
+        :tokenId="activeToken ? activeToken.token.id : null"
         :accountAddress="accountDetail.accountAddress"
         :sub-title="subTitle"
         :page-size="20"
@@ -54,7 +54,7 @@
         let accountDetail = await account.getDetail({
           accountAddress: params.addr
         });
-        let tokenList = accountDetail.tokenList || [];
+        let tokenList = [{token: {name: "ALL", id: null}}].concat(accountDetail.tokenList) || [];
         return {
           accountDetail,
           tokenList
@@ -95,13 +95,12 @@
             tokenNameList.push(tokenDetail.token.name);
           }
         });
-
         return [{
           name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress
         }, {
           name: this.$t("account.accType"),
-          describe: tokenNameList.length
+          describe: tokenNameList.length ? tokenNameList.length - 1 : 0
         }, {
           name: this.$t("account.accToken"),
           list: tokenNameList
@@ -118,14 +117,14 @@
             describe: "--"
           }];
         }
-
+        
         return [{
           name: this.$t("account.tNum"),
           describe: this.totalNumber
-        }, {
+        }].concat(tokenDetail.token && tokenDetail.token.id ? [{
           name: this.$t("account.bAmount"),
           describe: handleBigNum(tokenDetail.balance, true) || "--"
-        }];
+        }] : []);
       }
     },
     methods: {

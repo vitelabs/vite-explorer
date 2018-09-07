@@ -2,7 +2,7 @@
   <div>
     <div class="head">
       <div class="snapshot-title">
-        <img src="~assets/images/transactions.svg" class="title-icon"/>
+        <img src="~assets/images/transactions.svg" class="title-icon" :class="getAnimateIndex.length ? 'animated rotateIn': ''"/>
         {{ $t('transactionList.title') }}
       </div>
       <nuxt-link :to="localePath('transactionList')" target="_blank">
