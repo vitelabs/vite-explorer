@@ -20,6 +20,9 @@
         <transaction-list :list="transactionList" :pre-list="preTransactionList"></transaction-list>
       </div>
     </div>
+    <div>
+      <dag></dag>
+    </div>
   </div>
 </template>
 
@@ -28,6 +31,7 @@
   import SnapshotList from "~/components/Home/SnapshotList.vue";
   import TransactionList from "~/components/Home/TransactionList.vue";
   import LineChart from "~/components/Home/LineChart.vue";
+  import Dag from "~/components/Dag/dag.vue";
   // const LineChart = () => require("~/components/Home/LineChart.vue");
 
   import block from "~/services/block.js";
@@ -42,7 +46,8 @@
       Profile,
       LineChart,
       SnapshotList,
-      TransactionList
+      TransactionList,
+      Dag
     },
     async asyncData() {
       let generalDetail = {};
