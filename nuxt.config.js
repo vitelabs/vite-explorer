@@ -45,7 +45,8 @@ module.exports = {
   css: [
     "~/assets/css/main.scss",
     "node_modules/animate.css/source/_base.css",
-    "node_modules/animate.css/source/fading_entrances/fadeIn.css"
+    "node_modules/animate.css/source/fading_entrances/fadeIn.css",
+    "node_modules/animate.css/source/rotating_entrances/rotateIn.css"
   ],
   modules: [
     ["@nuxtjs/google-analytics"],
