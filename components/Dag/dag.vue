@@ -4,6 +4,9 @@
       <img src="~assets/images/dag.svg"/>
       <span>DAG 图</span>
     </div>
+    <div class="content">
+      <div id="main" style="width: 600px;height:400px;"></div>
+    </div>
   </div>
 </template>
 
