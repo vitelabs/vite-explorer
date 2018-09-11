@@ -1,24 +1,18 @@
 <template>
   <div class="filter-address">
-    <div class="name">筛选：</div>
-    <el-input placeholder="输入账户地址" v-model="input" class="input-with-select" size="small" clearable>
+    <div class="name">{{ $t('filter.filterName') }}：</div>
+    <el-input :placeholder="$t('filter.placeholder')" v-model="input" class="input-with-select" size="small" clearable>
       <el-select v-model="select" slot="prepend">
-        <el-option label="转入方" value="in"></el-option>
-        <el-option label="转出方" value="out"></el-option>
+        <el-option :label="$t('filter.to')" value="in"></el-option>
+        <el-option :label="$t('filter.from')" value="out"></el-option>
       </el-select>
     </el-input>
-    <el-button type="primary" size="small" class="button" @click="sureFilter" :disabled="disabled">确定</el-button>
+    <el-button type="primary" size="small" class="button" @click="sureFilter" :disabled="disabled">{{ $t('filter.sure') }}</el-button>
   </div>
 </template>
 
 <script>
   export default {
-    props: {
-    },
-    computed: {
-    },
-    mounted() {
-    },
     data() {
       return {
         input: "",

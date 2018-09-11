@@ -21,7 +21,8 @@
         :sub-title="subTitle"
         :page-size="20"
         :need-filter="true"
-        :sort-items="['confirmTimes', 'amount']"
+        :sort-items="['timestamp', 'amount']"
+        :default-sort="{ prop: 'timestamp', order: 'descending' }"
         :filter-accout-addr="filterAccObj"
         @totalNumber="getTotalNumber">
       </trans-list>

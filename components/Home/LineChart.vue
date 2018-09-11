@@ -5,7 +5,7 @@
       height="313px" 
       :legend-visible="true" 
       :data-empty="dataEmpty" 
-      :colors="['#3498db']"
+      :colors="['#3498db', '#f68769']"
       :loading="loading"
       :after-config="afterConfig">
     </ve-line>
@@ -36,6 +36,7 @@
     methods: {
       afterConfig (options) {
         options.series[0].smooth = false;
+        options.series[1].smooth = false;
         return options;
       }
     }

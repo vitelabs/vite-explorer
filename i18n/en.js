@@ -44,7 +44,7 @@ module.exports = {
   accTitles: [{
     prop: "orderNum",
     name: "Ranking",
-    width: "70"
+    width: "75"
   }, {
     prop: "accountAddress",
     name: "Account Address",
@@ -94,7 +94,13 @@ module.exports = {
     noData: "No Data",
     more: "More"
   },
-
+  filter: {
+    filterName: "Filter",
+    placeholder: "Enter account address",
+    from: "from",
+    to: "to",
+    sure: "sure"
+  },
 
   // components/transList.vue
   transList: {
@@ -108,10 +114,11 @@ module.exports = {
   }, {
     prop: "type",
     name: "Type",
+    width: "90"
   }, {
     prop: "status",
     name: "Status",
-    width: "90"
+    width: "85"
   }, {
     prop: "snapshotTimestamp",
     name: "First Snapshot",
@@ -119,11 +126,10 @@ module.exports = {
   }, {
     prop: "timestamp",
     name: "Timestamp",
-    width: "100"
+    width: "120"
   }, {
     prop: "confirmTimes",
     name: "Confirmations",
-    width: "140"
   }, {
     prop: "from",
     name: "From",
@@ -142,6 +148,28 @@ module.exports = {
     name: "Token",
     width: "70"
   }],
+  filterObj: {
+    type: [{
+      label: "ALL",
+      value: null
+    }, {
+      label: "receive",
+      value: 1
+    }, {
+      label: "send",
+      value: -1
+    }],
+    status: [{
+      label: "all",
+      value: null
+    }, {
+      label: "open",
+      value: 1
+    }, {
+      label: "closed",
+      value: 2
+    }]
+  },
 
 
   // layouts/
@@ -264,8 +292,8 @@ module.exports = {
 
   // pages/transaction
   transaction: {
-    send: "OUT",
-    receive: "IN",
+    send: "send",
+    receive: "receive",
   },
   transactionDetailMap: {
     hash: "Transaction Hash",

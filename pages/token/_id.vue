@@ -164,7 +164,7 @@
   clear: both;
   padding-top: 20px;
   .hold-button {
-    width: 132px;
+    width: 158px;
     height: 32px;
     background: #E6EEFF;
     border: 1px solid $common-color;

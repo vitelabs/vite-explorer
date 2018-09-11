@@ -4,7 +4,13 @@
     <div class="sub-table-title" v-html="subTitle" v-if="subTitle"></div>
     <div class="sub-table-title common-title" v-html="subCommonTitle" v-if="subCommonTitle"></div>
     <div class="table">
-      <el-table v-loading="loading" stripe :data="tableData" style="width: 100%" @sort-change="sortChange">
+      <el-table 
+        v-loading="loading" 
+        stripe 
+        :data="tableData" 
+        style="width: 100%" 
+        @sort-change="sortChange"
+        :default-sort="defaultSort">
         <el-table-column v-if="showOrder" 
           type="index" 
           :index="indexMethod" 
@@ -35,28 +41,6 @@
 </template>
 
 <script type="text/babel">
-  const filterObj = {
-    type: [{
-      label: "全部",
-      value: null
-    }, {
-      label: "接收",
-      value: 1
-    }, {
-      label: "发送",
-      value: -1
-    }],
-    status: [{
-      label: "全部",
-      value: null
-    }, {
-      label: "打开",
-      value: 1
-    }, {
-      label: "关闭",
-      value: 2
-    }]
-  };
 
   let emitFilterObj = {};
   let emitSortObj = {};
@@ -71,6 +55,10 @@
       sortItems: {
         type: Array,
         default: () => []
+      },
+      defaultSort: {
+        type: Object,
+        default: () => {}
       },
       needFilter: {
         type: Boolean,
@@ -170,7 +158,7 @@
               <el-dropdown trigger="click" class="table-dropdown" onCommand={this.commandHandler.bind(this, tableTitles[$index].prop)}>
                 <span>{column.label}<span class="icon"></span></span>
                 <el-dropdown-menu slot="dropdown">
-                  {filterObj[tableTitles[$index].prop].map((item)=> {
+                  {this.$t("filterObj")[tableTitles[$index].prop].map((item)=> {
                     return <el-dropdown-item command={item.value}>{item.label}</el-dropdown-item>;
                   })}
                 </el-dropdown-menu>

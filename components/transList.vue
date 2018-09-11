@@ -13,7 +13,8 @@
     :need-filter="needFilter"
     :sort-items="sortItems"
     @selectFilter="getSelectFilter"
-    @sortFilter="getSortFilter">
+    @sortFilter="getSortFilter"
+    :default-sort="defaultSort">
   </page-table>
 </template>
 
@@ -35,6 +36,10 @@
       sortItems: {
         type: Array,
         default: ()=> []
+      },
+      defaultSort: {
+        type: Object,
+        default: ()=> {}
       },
       needFilter: {
         type: Boolean,
@@ -227,7 +232,7 @@
   text-align:center;
   font-size: 11px;
   font-weight: 400;
-  width: 40px;
+  width: 50px;
   color: white;
   border-radius: 4px!important;
 }

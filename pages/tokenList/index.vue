@@ -52,7 +52,7 @@
         let { tokenList, totalNumber} = await token.getList({
           pageIndex, pageSize
         });
-        let generalDetail = await general.getGeneralDetail();
+        let generalDetail = await general.getGeneralMarket();
         return {
           pageIndex,
           tokenList,

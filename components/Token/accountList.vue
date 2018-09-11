@@ -9,6 +9,7 @@
     :pagination="pagination"
     :loading="loading"
     :sort-items="needSort ? ['balance', 'countNum'] : []"
+    :default-sort="{ prop: 'balance', order: 'descending' }"
     @sortFilter="getSortFilter">
   </page-table>
 </div>

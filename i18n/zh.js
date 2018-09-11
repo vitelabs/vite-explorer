@@ -90,6 +90,13 @@ module.exports = {
     noData: "暂无数据",
     more: "更多"
   },
+  filter: {
+    filterName: "筛选",
+    placeholder: "输入账户地址",
+    from: "转入方",
+    to: "转出方",
+    sure: "确定"
+  },
 
 
   // components/transList.vue
@@ -137,6 +144,28 @@ module.exports = {
     name: "代币",
     width: "70"
   }],
+  filterObj: {
+    type: [{
+      label: "全部",
+      value: null
+    }, {
+      label: "接收",
+      value: 1
+    }, {
+      label: "发送",
+      value: -1
+    }],
+    status: [{
+      label: "all",
+      value: null
+    }, {
+      label: "open",
+      value: 1
+    }, {
+      label: "closed",
+      value: 2
+    }]
+  },
 
 
   // layouts/

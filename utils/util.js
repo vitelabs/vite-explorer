@@ -51,10 +51,10 @@ export function formatTx(num) {
   const Million = 1000000;
   num = +num;
   if (num >= Thousand && num < Million) {
-    return parseFloat((num / Thousand).toFixed(2)) + "K";
+    return parseFloat((num / Thousand).toFixed(3)) + "K";
   }
   if (num >= Million) {
-    return parseFloat((num / Million).toFixed(2)) + "M";
+    return parseFloat((num / Million).toFixed(3)) + "M";
   }
   return num;
 }
