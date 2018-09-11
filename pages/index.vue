@@ -21,7 +21,7 @@
       </div>
     </div>
     <div>
-      <dag></dag>
+      <dag :list="transactionList"></dag>
     </div>
   </div>
 </template>

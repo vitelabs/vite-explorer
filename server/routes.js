@@ -96,7 +96,9 @@ async function getTransactionList(ctx) {
   let transactionList = [];
   rawTransactionList.forEach((transaction) => {
     transactionList.push({
+      prevHash: transaction.prevHash,
       hash: transaction.hash,
+      fromHash: transaction.fromHash,
       shortHash: toShort(transaction.hash),
       amount: handleBigNum(transaction.amount, true),
       accountAddress: transaction.accountAddress,
@@ -105,7 +107,6 @@ async function getTransactionList(ctx) {
       shortFrom: toShort(transaction.from),
       to: transaction.to,
       shortTo: toShort(transaction.to),
-      fromHash: transaction.fromHash,
       status: transaction.status,
       timestamp: transaction.timestamp,
       confirmTimes: transaction.confirmTimes,
