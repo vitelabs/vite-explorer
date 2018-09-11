@@ -1,21 +1,23 @@
 <template>
-  <page-table :pagination="pagination"
-    :loading="loading"
-    :title="title"
-    :tableTitles="transactionsTitles"
-    :tableData="transactionsData"
-    :current-change="total ? fetchList : fetchTransList"
-    :currentPage="pageIndex"
-    :total="totalNumber"
-    :page-size="pageSize"
-    :sub-title="subTitleCom"
-    :sub-common-title="subCommonTitle"
-    :need-filter="needFilter"
-    :sort-items="sortItems"
-    @selectFilter="getSelectFilter"
-    @sortFilter="getSortFilter"
-    :default-sort="defaultSort">
-  </page-table>
+  <div>
+    <page-table :pagination="pagination"
+      :loading="loading"
+      :title="title"
+      :tableTitles="transactionsTitles"
+      :tableData="transactionsData"
+      :current-change="total ? fetchList : fetchTransList"
+      :currentPage="pageIndex"
+      :total="totalNumber"
+      :page-size="pageSize"
+      :sub-title="subTitleCom"
+      :sub-common-title="subCommonTitle"
+      :need-filter="needFilter"
+      :sort-items="sortItems"
+      @selectFilter="getSelectFilter"
+      @sortFilter="getSortFilter"
+      :default-sort="defaultSort">
+    </page-table>
+  </div>
 </template>
 
 <script>

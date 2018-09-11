@@ -150,7 +150,7 @@ module.exports = {
   }],
   filterObj: {
     type: [{
-      label: "ALL",
+      label: "all",
       value: null
     }, {
       label: "receive",
