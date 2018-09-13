@@ -4,9 +4,9 @@ module.exports = {
   // components/Home
   profile: {
     title: "概况",
-    market: "Vite流通市值",
+    market: "vite流通市值",
     tps: "系统TPS",
-    price: "Vite流通价格",
+    price: "vite流通价格",
     totalTrans: "历史总交易量",
     latestHeight: "最新区块高度",
     nearMonth: "近30天交易量",
@@ -209,7 +209,7 @@ module.exports = {
   // pages/blockList
   blkList: {
     title: {
-      total: "总快照块量：",
+      total: "快照块总数：",
       // recentTotalFirst: "，（仅展示最近的 ",
       // recentTotalEnd: " 条数据）"
     }

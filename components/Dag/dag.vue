@@ -2,7 +2,7 @@
   <div class="dag-container">
     <div class="header">
       <img src="~assets/images/dag.svg"/>
-      <span>DAG 图</span>
+      <span>DAG</span>
     </div>
     <div class="content">
       <div id="main" style="width: 100%;height:430px;"></div>
@@ -13,10 +13,15 @@
 <script>
 import echarts from "echarts";
 import moment from "moment";
+import transaction from "~/services/transaction.js";
 
-const colors = ["#FDA7DF", "#F79F1E", "#EE5B24", "#EA2026"
-  , "#C4E538", "#A2CB39", "#039433", "#006166"
-  , "#12CBC4", "#1289A7", "#0552DD"];
+
+const colors = ["#FFC313", "#F79F1E", "#EE5B24", "#EA2026"
+  , "#C4E538", "#A2CB39", "#039433", "#006166", "#12CBC4"
+  , "#1289A7", "#0552DD", "#1B1464", "#FDA7DF", "#D980FA"
+  , "#9980FA", "#5658BB", "#ED4C67", "#B53471", "#833471", "#6F1E51"];
+
+const MAX_NODE = 200;
 
 export default {
   props: {
@@ -41,26 +46,46 @@ export default {
     }
   },
   mounted() {
-    this.draw();
+    this.fetchList();
   },
   methods: {
-    mergeNewTxList() {
-      if (!this.preList.length) {
-        this.preList = this.list;
-        this.drawTxList = this.list;
-        return;
-      } 
-      let result = this.list;
-      this.list.forEach(element => {
-        this.preList.forEach(preEle => {
-          if (!this.list.find(e => e.hash === preEle.hash)) {
-            if (element.prevHash === preEle.hash) {
-              result.push(preEle);
-            }
-          }
-        });
+    fetchList(currentIndex = 1) {
+      this.pageIndex = currentIndex;
+      transaction.getList({
+        pageIndex: currentIndex,
+        pageSize: 100
+      }).then(({ transactionList }) => {
+        this.drawTxList = transactionList;
+        this.draw();
+      }).catch((err) => {
+        this.$message.error(err.msg || "get transList failed");
       });
-      this.drawTxList = result;
+    },
+    mergeNewTxList() {
+      // if (!this.preList.length) {
+      //   this.preList = this.list;
+      //   this.drawTxList = this.list;
+      //   return;
+      // } 
+      // let result = this.list;
+      // this.list.forEach(element => {
+      //   this.preList.forEach(preEle => {
+      //     if (!this.list.find(e => e.hash === preEle.hash)) {
+      //       if (element.prevHash === preEle.hash) {
+      //         result.push(preEle);
+      //       }
+      //     }
+      //   });
+      // });
+      this.list.forEach(element => {
+        if (!this.drawTxList.find(e => e.hash === element.hash)) {
+          this.drawTxList.push(element);
+        }
+      });
+
+      if (this.drawTxList.length > MAX_NODE) {
+        this.drawTxList = this.drawTxList.slice(this.drawTxList.length - MAX_NODE);
+      }
     },
     dispatchAddressColor() {
       let i = 0;
@@ -90,7 +115,7 @@ export default {
       });
     },
     generateNodeLinks() {
-      this.nodeLinks = this.list.map((item)=> {
+      this.nodeLinks = this.drawTxList.map((item)=> {
         return {
           ...item,
           type: item.fromHash ? "Receive" : "Send",
@@ -101,7 +126,7 @@ export default {
         };
       });
 
-      this.nodeLinks = this.nodeLinks.concat(this.list.map((item)=> {
+      this.nodeLinks = this.nodeLinks.concat(this.drawTxList.map((item)=> {
         return {
           ...item,
           type: item.fromHash ? "Receive" : "Send",
@@ -143,7 +168,7 @@ export default {
         series: [{
           type: "graph",
           layout: "force",
-          symbolSize: 45,
+          symbolSize: 25,
           roam: true,
           force: {
             repulsion: 2500,

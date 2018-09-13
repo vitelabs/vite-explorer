@@ -53,7 +53,7 @@
           accountNum: this.blockDetail.accountNum || 0,
           transactionCount: this.blockDetail.transactionCount || 0,
           producer: this.blockDetail.producer || "",
-          amount: this.blockDetail.amount ? `${this.blockDetail.amount} Vite` : "",
+          amount: this.blockDetail.amount ? `${this.blockDetail.amount} vite` : "",
           age: age + "（" + moment(this.blockDetail.timestamp * 1000).format("YYYY-MM-DD HH:mm:ss") + "）"
         };
       },

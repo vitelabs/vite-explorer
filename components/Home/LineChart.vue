@@ -5,7 +5,7 @@
       height="313px" 
       :legend-visible="true" 
       :data-empty="dataEmpty" 
-      :colors="['#3498db', '#f68769']"
+      :colors="['#3498db', '#ccc']"
       :loading="loading"
       :after-config="afterConfig">
     </ve-line>
