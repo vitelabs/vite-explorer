@@ -241,12 +241,10 @@ module.exports = {
     name: "Forging Rewards",
   }],
 
-
   // pages/searchError
   sError: {
     text: "No content found, Please input another word."
   },
-
 
   // pages/token
   token: {
@@ -289,7 +287,6 @@ module.exports = {
     width: "190"
   }],
 
-
   // pages/transaction
   transaction: {
     send: "send",
@@ -309,6 +306,42 @@ module.exports = {
     introduction: "Attachments"
   },
 
+  // pages/tokenAccount
+  tokenAccount:{
+    title: "Chart of Holders",
+    c1: "Accounts of Holders",
+    c2: "Select Please",
+    top: "Top",
+    c4: "holders",
+    c5: "holders totally gain",
+    c6: ")",
+    c7: "(",
+    c8: "Max Supply:",
+    c0: "Holders in Total:",
+    dropDownList: [{
+      value: 3,
+      label: "Top 3"
+    }, {
+      value: 5,
+      label: "Top 5"
+    }, {
+      value: 10,
+      label: "Top 10"
+    }, {
+      value: 50,
+      label: "Top 50"
+    }, {
+      value: 100,
+      label: "Top 100"
+    }, {
+      value: 250,
+      label: "Top 250"
+    }, {
+      value: 500,
+      label: "Top 500"
+    }],
+
+  },
 
   // Head titles of all pages
   head: {

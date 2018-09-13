@@ -306,6 +306,42 @@ module.exports = {
     introduction: "附带的文本资料"
   },
 
+  // pages/tokenAccount
+  tokenAccount:{
+    title: "持有账户图表",
+    c1: "持有账户",
+    c2: "请选择",
+    top: "前",
+    c4: "名持有账户",
+    c5: "名持有账户共持有",
+    c6: "个）的",
+    c7: "（共",
+    c8: "总供给量：",
+    c0: "持有账户数量：",
+    dropDownList: [{
+      value: 3,
+      label: "前 3"
+    }, {
+      value: 5,
+      label: "前 5"
+    }, {
+      value: 10,
+      label: "前 10"
+    }, {
+      value: 50,
+      label: "前 50"
+    }, {
+      value: 100,
+      label: "前 100"
+    }, {
+      value: 250,
+      label: "前 250"
+    }, {
+      value: 500,
+      label: "前 500"
+    }],
+
+  },
 
   // Head titles of all pages
   head: {

@@ -1,8 +1,8 @@
 <template>
   <div class="account-container">
-    <div class="table-title">{{ tokenName }} 持有账户</div>
+    <div class="table-title">{{ tokenName }} {{ $t('tokenAccount.c1') }}</div>
     <div class="top-content">
-      <el-select v-model="value" placeholder="请选择" size="mini" style="width: 90px">
+      <el-select v-model="value" :placeholder="$t('tokenAccount.c2')" size="mini" style="width: 90px">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -10,16 +10,16 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <div class="title">{{ tokenName }} 前 {{ value }} 名持有账户</div>
+      <div class="title">{{ tokenName }} {{ $t('tokenAccount.top') }} {{ value }} {{ $t('tokenAccount.c4') }}</div>
     </div>
-    
+
     <div class="summary">
-      <div>前 {{ value }} 名持有账户共持有 {{ totalObj.percentPage }} （共 {{ totalObj.haveSupplyPage }} 个）的 {{ tokenName }}</div>
-      <div>总供给量：{{ totalObj.totalSupply }}  |   持有账户数量：{{ totalObj.totalNumber }}</div>
+      <div>{{ $t('tokenAccount.top') }} {{ value }} {{ $t('tokenAccount.c5') }} {{ totalObj.percentPage }} {{ $t('tokenAccount.c7') }} {{ totalObj.haveSupplyPage }} {{ $t('tokenAccount.c6') }} {{ tokenName }}</div>
+      <div>{{ $t('tokenAccount.c8') }} {{ totalObj.totalSupply }}  |   {{ $t('tokenAccount.c0') }} {{ totalObj.totalNumber }}</div>
     </div>
     <ve-pie :list="accList"></ve-pie>
-    <account-list 
-      :table-titles="$t('accTitles')" 
+    <account-list
+      :table-titles="$t('accTitles')"
       :page-size="value"
       :token-id="tokenId"
       @getTotal="getTotalData">
@@ -32,33 +32,10 @@
   import VePie from "~/components/Charts/Pie.vue";
   import accountList from "~/components/Token/accountList.vue";
 
-  const orderOptions = [{
-    value: 3,
-    label: "前 3"
-  }, {
-    value: 5,
-    label: "前 5"
-  }, {
-    value: 10,
-    label: "前 10"
-  }, {
-    value: 50,
-    label: "前 50"
-  }, {
-    value: 100,
-    label: "前 100"
-  }, {
-    value: 250,
-    label: "前 250"
-  }, {
-    value: 500,
-    label: "前 500"
-  }];
-
   export default {
     head() {
       return {
-        title: "持有账户图表"
+        title: this.$t('tokenAccount.title')
       };
     },
     components: {
@@ -72,7 +49,7 @@
     },
     data() {
       return {
-        options: orderOptions,
+        options: this.$t('tokenAccount.dropDownList'),
         value: 100,
         totalObj: {},
         accList: []
@@ -105,13 +82,13 @@
     padding: 16px 0;
   }
   .top-content {
-    margin-top: 16px; 
+    margin-top: 16px;
     .title {
       font-size: 24px;
       color: #5E6875;
       text-align: center;
       line-height: 32px;
-      margin-top: -30px; 
+      margin-top: -30px;
     }
   }
 }
