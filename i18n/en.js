@@ -5,9 +5,9 @@ module.exports = {
   // components/Home
   profile: {
     title: "Profile",
-    market: "Market value of Vite",
+    market: "Market value of vite",
     tps: "System TPS",
-    price: "Current price of Vite",
+    price: "Current price of vite",
     totalTrans: "Transactions",
     latestHeight: "Latest block height",
     nearMonth: "Transactions(30d)",

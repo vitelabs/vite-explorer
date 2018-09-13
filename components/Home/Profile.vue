@@ -27,7 +27,7 @@
         <div class="height">
           <div class="title">{{ $t('profile.latestHeight') }}</div>
           <div v-if="generalDetail.chainHeight">
-            <el-tooltip class="item" effect="dark" :content="$t('profile.blockTime') " placement="right">
+            <el-tooltip class="item" effect="dark" :content="$t('profile.blockTime') " placement="right-end">
               <div>
                 <span class="height-value" :class="chainHeightAnimate ? 'animated fadeIn': ''">{{ generalDetail.chainHeight }}</span>
                 <span>({{ generalDetail.avgTime }}s)</span>
