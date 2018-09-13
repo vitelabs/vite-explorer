@@ -21,7 +21,7 @@
   import search from "~/services/search.js";
   import general from "~/services/general.js";
 
-  const pageSize = 10;
+  const pageSize = 20;
 
   export default {
     head() {

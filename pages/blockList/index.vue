@@ -18,7 +18,7 @@
   import block from "~/services/block.js";
   import moment from "moment";
 
-  const pageSize = 10;
+  const pageSize = 20;
 
   export default {
     head() {

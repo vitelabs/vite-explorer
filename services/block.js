@@ -9,13 +9,13 @@ export default {
    * @param {Object} {
    *   index,  -- from the beginning of the page，start from 0.
    *   num, -- take a few pages, take 1 by default
-   *   count = 10 -- how many Block are taken per page. The default is 10.
+   *   count = 20 -- how many Block are taken per page. The default is 20.
    * }
    * @returns {Promise}
    */
   getList({
     pageIndex,
-    pageSize = 10,
+    pageSize = 20,
     pageNum
   }) {
     return post(`${PREFIX}/list`, {
