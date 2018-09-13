@@ -9,7 +9,7 @@
         </profile>
       </div>
       <div class="line-chart ml30 mb30">
-        <line-chart :chart-data="chartData"></line-chart>
+        <line-chart :chart-data="chartData" :chart-settings="chartSettings"></line-chart>
       </div>
     </div>
     <div class="bottom">
@@ -55,11 +55,18 @@
       let blockList = [];
       let transactionList = [];
       let chartData = {};
+      let chartSettings = {};
       try {
         let lineChart = await transaction.getChartData();
         chartData = {
           columns: ["date", "transactions", "accountNum"],
           rows: lineChart
+        };
+        chartSettings = {
+          labelMap: {
+            transactions: "Transactions",
+            accountNum: "Active Accounts"
+          }
         };
       }catch(err) {
         console.log(err);
@@ -92,7 +99,8 @@
         transactionList,
         generalDetail,
         generalMarket,
-        chartData
+        chartData,
+        chartSettings
       };
     },
     mounted() {

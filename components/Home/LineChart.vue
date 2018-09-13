@@ -7,7 +7,8 @@
       :data-empty="dataEmpty" 
       :colors="['#3498db', '#ccc']"
       :loading="loading"
-      :after-config="afterConfig">
+      :after-config="afterConfig"
+      :settings="chartSettings">
     </ve-line>
   </div>
 </template>
@@ -24,13 +25,18 @@
       chartData: {
         type: Object,
         default: () => {}
+      },
+      chartSettings: {
+        type: Object,
+        default: () => {}
       }
     },
     data () {
       return {
         dataEmpty: false,
         rows: [],
-        loading: false
+        loading: false,
+        
       };
     },
     methods: {
