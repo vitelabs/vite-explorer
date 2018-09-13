@@ -4,7 +4,7 @@ import routes from "./routes";
 export default (app, nuxt) => {
   app.use(async (ctx, next) => {
     if (!(/\/api\/.*/.test(ctx.path)) && ctx.path !== "https://api.coinmarketcap.com/v2/ticker/2937/" && ctx.path !== "__webpack_hmr") {
-      ctx.set("Cache-Control", "public, max-age=31536000");
+      ctx.set("Cache-Control", "public, max-age=60");
     }
     await next();
   });
