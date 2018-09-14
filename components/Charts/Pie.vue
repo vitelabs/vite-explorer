@@ -11,7 +11,6 @@
 
 <script>
   import VePie from "v-charts/lib/pie";
-
   export default {
     components: {
       VePie
@@ -24,12 +23,7 @@
     },
     watch: {
       list(val) {
-        this.chartData.rows = val.map(item=> {
-          return {
-            "address": item.accountAddress,
-            "holdings": +item.balance
-          };
-        });
+        this.chartData.rows = val;
       }
     },
     data() {
@@ -37,7 +31,7 @@
         chartExtend: {
           tooltip: {
             backgroundColor: "#fff",
-            formatter: "<div class='address'>{b0}</div><div class='hold'>Holding Amount: <span class='value'>{d}%</span></div>",
+            formatter: "<div class='address'>{b0}</div><div class='hold'>Holding Amount: <span class='value'>{c}%</span></div>",
             borderColor: "#E5EDF3",
             borderWidth: 1,
           }
@@ -59,7 +53,7 @@
           }
         },
         chartData: {
-          columns: ["address", "holdings"],
+          columns: ["name", "value"],
           rows: []
         }
       };
@@ -87,6 +81,4 @@
     font-weight: 400;
   }
 }
-
-
 </style>

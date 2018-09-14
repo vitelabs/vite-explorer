@@ -38,7 +38,8 @@
           :table-titles="$t('accTitles').concat($t('addedAccTitles'))"
           :pagination="true"
           :tokenId="tokenDetail.id"
-          :need-sort="true">
+          :need-sort="true"
+          :default-sort="{ prop: 'balance', order: 'descending' }">
         </account-list>
       </div>
     </div>
