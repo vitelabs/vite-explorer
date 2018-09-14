@@ -88,13 +88,14 @@ module.exports = {
   },
   utils: {
     noData: "暂无数据",
-    more: "更多"
+    more: "更多",
+    noResult: "暂无数据"
   },
   filter: {
     filterName: "筛选",
     placeholder: "输入账户地址",
-    from: "转入方",
-    to: "转出方",
+    from: "转出方",
+    to: "转入方",
     sure: "确定"
   },
 

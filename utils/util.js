@@ -21,7 +21,7 @@ export function toShort(str) {
 }
 
 export function handleBigNum(str, toFixed, isCMC) {
-  if (!str) return "";
+  if (!str || str === "null") return "";
   let format = {
     decimalSeparator: ".",
     groupSeparator: ",",

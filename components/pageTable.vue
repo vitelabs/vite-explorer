@@ -10,7 +10,8 @@
         :data="tableData" 
         style="width: 100%" 
         @sort-change="sortChange"
-        :default-sort="defaultSort">
+        :default-sort="defaultSort"
+        :empty-text="noResult">
         <el-table-column v-if="showOrder" 
           type="index" 
           :index="indexMethod" 
@@ -117,6 +118,7 @@
     data() {
       return {
         currentInx: this.currentPage,
+        noResult: this.$t("utils.noResult")
       };
     },
     watch: {
