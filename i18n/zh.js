@@ -344,6 +344,8 @@ module.exports = {
 
   },
 
+  pie: "持有量：",
+
   // Head titles of all pages
   head: {
     home: "Vite区块浏览器",

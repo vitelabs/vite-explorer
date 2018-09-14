@@ -344,6 +344,8 @@ module.exports = {
 
   },
 
+  pie: "Holding Amount:",
+
   // Head titles of all pages
   head: {
     home: "Vite Block Explorer",

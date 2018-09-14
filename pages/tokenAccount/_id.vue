@@ -2,7 +2,7 @@
   <div class="account-container">
     <div class="table-title">{{ tokenName }} {{ $t('tokenAccount.c1') }}</div>
     <div class="top-content">
-      <el-select v-model="value" :placeholder="$t('tokenAccount.c2')" size="mini" style="width: 90px">
+      <el-select v-model="value" :placeholder="$t('tokenAccount.c2')" size="mini" style="min-width: 90px; max-width: 100px">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -65,7 +65,7 @@
         this.accList = list.map(item => {
           return {
             name: item.accountAddress,
-            value: item.balancePercent.substring(0, item.balancePercent.length -1) 
+            value: item.balancePercent.substring(0, item.balancePercent.length -1)
           };
         });
       }

@@ -30,7 +30,7 @@
         return this.$t("transList.title") + this.totalNumber;
       },
       subCommonTitle() {
-        return this.$t("transList.title")+`${moment().format("HH:mm:ss")}`;
+        return this.$t("transList.time")+`${moment().format("HH:mm:ss")}`;
       }
     },
     components: {

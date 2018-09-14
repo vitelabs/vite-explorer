@@ -9,7 +9,7 @@
           <div class="header-container">
             <img :src="tokenDetail.icon" width="60" height="60"/>
             <div class="header-detail">
-              <div class="name">{{ tokenDetail.name }}</div>
+              <div class="name">{{ tokenName }}</div>
               <div class="introduction">{{ tokenDetail.introduction }}</div>
             </div>
           </div>
@@ -31,7 +31,7 @@
         @totalNumber="getTotalNumber">
       </trans-list>
       <div class="account-content" v-if="tabParams === 'account'" >
-        <nuxt-link :to="`${locales}/tokenAccount/${tokenDetail.id}?tokenName=${tokenDetail.name}`" target="_blank" class="profile-link">
+        <nuxt-link :to="`${locales}/tokenAccount/${tokenDetail.id}?tokenName=${tokenName}`" target="_blank" class="profile-link">
           <div class="hold-button"><img src="~assets/images/pie.svg"/><span>{{$t('token.charts')}}</span></div>
         </nuxt-link>
         <account-list
@@ -55,6 +55,8 @@
 
   import token from "~/services/token.js";
   import general from "~/services/general.js";
+
+  import _ from "lodash";
 
   export default {
     head() {
@@ -99,6 +101,9 @@
     computed: {
       subTitle() {
         return this.$t("transList.title");
+      },
+      tokenName() {
+        return _.capitalize(this.tokenDetail.name);
       },
       showTokenDetail() {
         return {
