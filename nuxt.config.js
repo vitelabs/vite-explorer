@@ -7,8 +7,8 @@ module.exports = {
   render: {
     bundleRenderer: {
       cache: LRU({
-        max: 1000,                  
-        maxAge: 1000 * 60 * 15       
+        max: 1000,
+        maxAge: 1000 * 60 * 15
       })
     }
   },
@@ -26,7 +26,7 @@ module.exports = {
     ]
   },
   loading: {color: "#7FB2FE"},
-  plugins: [{ src: "~/plugins/element-ui.js", ssr: true }, "~plugins/ga.js"],
+  plugins: [{ src: "~/plugins/element-ui.js", ssr: true }],
   build: {
     vendor: ["babel-polyfill", "axios", "~/plugins/element-ui.js", "moment"],
     babel: {
