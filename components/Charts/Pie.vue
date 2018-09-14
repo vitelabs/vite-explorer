@@ -1,9 +1,9 @@
 <template>
   <ve-pie class="ve-pie"
-    :data="chartData" 
-    :colors="chartColors" 
+    :data="chartData"
+    :colors="chartColors"
     :settings="chartSettings"
-    :legend-visible="false" 
+    :legend-visible="false"
     :extend="chartExtend"
     height="480px">
   </ve-pie>
