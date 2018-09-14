@@ -92,14 +92,15 @@ module.exports = {
   },
   utils: {
     noData: "No Data",
-    more: "More"
+    more: "More",
+    noResult: "No Result"
   },
   filter: {
     filterName: "Filter",
     placeholder: "Enter account address",
-    from: "from",
-    to: "to",
-    sure: "sure"
+    from: "From",
+    to: "To",
+    sure: "Confirm"
   },
 
   // components/transList.vue
