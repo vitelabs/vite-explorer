@@ -31,11 +31,13 @@
   import error from "~/components/error";
   import VePie from "~/components/Charts/Pie.vue";
   import accountList from "~/components/Token/accountList.vue";
+  import _ from "lodash";
+
 
   export default {
     head() {
       return {
-        title: this.$t('tokenAccount.title')
+        title: this.$t("tokenAccount.title")
       };
     },
     components: {
@@ -43,13 +45,13 @@
     },
     async asyncData(ctx) {
       return {
-        tokenName: ctx.query.tokenName,
+        tokenName: _.capitalize(ctx.query.tokenName),
         tokenId: ctx.params.id
       };
     },
     data() {
       return {
-        options: this.$t('tokenAccount.dropDownList'),
+        options: this.$t("tokenAccount.dropDownList"),
         value: 100,
         totalObj: {},
         accList: []

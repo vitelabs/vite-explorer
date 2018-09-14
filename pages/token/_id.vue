@@ -79,7 +79,7 @@
         };
       } catch(err) {
         return {
-          error: err.msg || "get token fail"
+          error: err.msg || "get token failed"
         };
       }
     },
@@ -164,7 +164,8 @@
   clear: both;
   padding-top: 20px;
   .hold-button {
-    width: 158px;
+    min-width: 158px;
+    max-width: 188px;
     height: 32px;
     background: #E6EEFF;
     border: 1px solid $common-color;

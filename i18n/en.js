@@ -43,17 +43,17 @@ module.exports = {
   },
   accTitles: [{
     prop: "orderNum",
-    name: "Ranking",
+    name: "Rank",
     width: "75"
   }, {
     prop: "accountAddress",
-    name: "Account Address",
+    name: "Address",
   },{
     prop: "balance",
-    name: "Account Balance",
+    name: "Quantity",
   }, {
     prop: "balancePercent",
-    name: "Proportion",
+    name: "Percentage",
   }],
   addedAccTitles: [{
     prop: "countNum",
@@ -69,7 +69,7 @@ module.exports = {
     v: "Preview Version",
     current: "Current Version",
     content1: "Vite's block explorer is a website for searching integrated information about Vite. Now it supports searching by accounts, tokens, transactions and snapshot blocks and present information via lists.",
-    content2: "For the record, statistics information is not available right now. If browser shows 'No Data', stay tuned and we will supply in further version iteration.",
+    content2: "Preview Version V2 provides statistics information, transactions filter and sort, and diagram of accounts who hold some kind of token.",
     govite: {
       current: "go-vite Version",
       v: "0.0.2"
@@ -105,7 +105,8 @@ module.exports = {
   // components/transList.vue
   transList: {
     title: "Total amount of transactions：",
-    label: "Transactions"
+    label: "Transactions",
+    time: "Latest Updating at:"
   },
   transTitles: [{
     prop: "hash",
@@ -184,14 +185,14 @@ module.exports = {
   account: {
     title: "Account Detail",
     accHash: "Address",
-    accType: "Account Hold Token Types",
-    accToken: "Account Hold Tokens",
+    accType: "Types of Tokens Held by Account",
+    accToken: "Tokens Held by Account",
     token: "Token",
     bAmount: "Balance Amount",
     bValue: "Balance Value",
     tNum: "Number of Transactions",
     allToken: "All Token Valuation",
-    filterInput: "Filter"
+    filterInput: "Filtered By"
   },
 
 
@@ -213,7 +214,7 @@ module.exports = {
   // pages/blockList
   blkList: {
     title: {
-      total: "Total Blocks：",
+      total: "Total Blocks:",
       // recentTotalFirst: "，（Only shows ",
       // recentTotalEnd: " data in recent）"
     }
@@ -243,17 +244,17 @@ module.exports = {
 
   // pages/searchError
   sError: {
-    text: "No content found, Please input another word."
+    text: "No content found, please try another input."
   },
 
   // pages/token
   token: {
     aLabel: "Accounts",
     tLabel: "Transactions",
-    charts: "Charts of Owners",
+    charts: "Token Holders Chart",
   },
   tokenDetailMap: {
-    accountNum: "Number of Owners",
+    accountNum: "Number of Holders",
     totalSupply: "Forging Totals",
     owner: "Forging Address",
     transactionNumber: "Transactions",
@@ -264,7 +265,7 @@ module.exports = {
   // pages/tokenList
   tokenList: {
     title: "Tokens",
-    total: "Token types：",
+    total: "Token types:",
   },
   tokenTitles: [{
     prop: "icon",
@@ -309,14 +310,14 @@ module.exports = {
   // pages/tokenAccount
   tokenAccount:{
     title: "Chart of Holders",
-    c1: "Accounts of Holders",
+    c1: "Holders",
     c2: "Select Please",
     top: "Top",
-    c4: "holders",
+    c4: "Holders",
     c5: "holders totally gain",
-    c6: ")",
-    c7: "(",
-    c8: "Max Supply:",
+    c6: "Holders)",
+    c7: "(From a total of ",
+    c8: "Total Supply:",
     c0: "Holders in Total:",
     dropDownList: [{
       value: 3,

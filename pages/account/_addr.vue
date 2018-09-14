@@ -14,7 +14,7 @@
           </div>
         </template>
       </detail-layout>
-      
+
       <trans-list
         :tokenId="activeToken ? activeToken.token.id : null"
         :accountAddress="accountDetail.accountAddress"
@@ -37,6 +37,7 @@
   import transList from "~/components/transList.vue";
   import account from "~/services/account.js";
   import { handleBigNum } from "../../utils/util.js";
+  import _ from "lodash";
 
   export default {
     head() {
@@ -62,7 +63,7 @@
         };
       } catch(err) {
         return {
-          error: err.msg || "get account fail"
+          error: err.msg || "get account failed"
         };
       }
     },
@@ -93,7 +94,8 @@
         let tokenNameList = [];
         this.tokenList.forEach((tokenDetail) => {
           if (tokenDetail.token) {
-            tokenNameList.push(tokenDetail.token.name);
+            let name = _.capitalize(tokenDetail.token.name);
+            tokenNameList.push(name);
           }
         });
         return [{
@@ -118,7 +120,7 @@
             describe: "--"
           }];
         }
-        
+
         return [{
           name: this.$t("account.tNum"),
           describe: this.totalNumber

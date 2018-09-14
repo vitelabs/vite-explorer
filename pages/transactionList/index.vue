@@ -30,7 +30,7 @@
         return this.$t("transList.title") + this.totalNumber;
       },
       subCommonTitle() {
-        return `最近更新时间：${moment().format("HH:mm:ss")}`;
+        return this.$t("transList.title")+`${moment().format("HH:mm:ss")}`;
       }
     },
     components: {

@@ -44,6 +44,7 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
+    "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "moment-locales-webpack-plugin": "^1.0.7",
     "node-sass": "^4.9.0",

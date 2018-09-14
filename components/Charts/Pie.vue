@@ -26,8 +26,8 @@
       list(val) {
         this.chartData.rows = val.map(item=> {
           return {
-            "地址": item.accountAddress,
-            "持有量": +item.balance
+            "address": item.accountAddress,
+            "holdings": +item.balance
           };
         });
       }
@@ -59,7 +59,7 @@
           }
         },
         chartData: {
-          columns: ["地址", "持有量"],
+          columns: ["address", "holdings"],
           rows: []
         }
       };

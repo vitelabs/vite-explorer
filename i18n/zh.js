@@ -102,7 +102,8 @@ module.exports = {
   // components/transList.vue
   transList: {
     title: "总交易笔数：",
-    label: "交易列表"
+    label: "交易列表",
+    time: "最近更新时间："
   },
   transTitles: [{
     prop: "hash",
