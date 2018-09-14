@@ -26,7 +26,7 @@ module.exports = {
     ]
   },
   loading: {color: "#7FB2FE"},
-  plugins: [{ src: "~/plugins/element-ui.js", ssr: true }],
+  plugins: [{ src: "~/plugins/element-ui.js", ssr: true }, "~plugins/ga.js"],
   build: {
     vendor: ["babel-polyfill", "axios", "~/plugins/element-ui.js", "moment"],
     babel: {
