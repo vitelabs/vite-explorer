@@ -2,7 +2,7 @@
   <div class="account-container">
     <div class="table-title">{{ tokenName }} {{ $t('tokenAccount.c1') }}</div>
     <div class="top-content">
-      <el-select v-model="value" :placeholder="$t('tokenAccount.c2')" size="mini" style="width: 90px">
+      <el-select v-model="value" :placeholder="$t('tokenAccount.c2')" size="mini" style="min-width: 90px; max-width: 100px">
         <el-option
           v-for="item in options"
           :key="item.value"
@@ -31,6 +31,8 @@
   import error from "~/components/error";
   import VePie from "~/components/Charts/Pie.vue";
   import accountList from "~/components/Token/accountList.vue";
+  import _ from "lodash";
+
 
   export default {
     head() {
@@ -43,7 +45,7 @@
     },
     async asyncData(ctx) {
       return {
-        tokenName: ctx.query.tokenName,
+        tokenName: _.capitalize(ctx.query.tokenName),
         tokenId: ctx.params.id
       };
     },
@@ -63,7 +65,7 @@
         this.accList = list.map(item => {
           return {
             name: item.accountAddress,
-            value: item.balancePercent.substring(0, item.balancePercent.length -1) 
+            value: item.balancePercent.substring(0, item.balancePercent.length -1)
           };
         });
       }

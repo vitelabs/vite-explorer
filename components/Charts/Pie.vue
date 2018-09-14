@@ -31,7 +31,7 @@
         chartExtend: {
           tooltip: {
             backgroundColor: "#fff",
-            formatter: "<div class='address'>{b0}</div><div class='hold'>Holding Amount: <span class='value'>{c}%</span></div>",
+            formatter: `<div class='address'>{b0}</div><div class='hold'>${this.$t('pie')}<span class='value'>{c}%</span></div>`,
             borderColor: "#E5EDF3",
             borderWidth: 1,
           }
