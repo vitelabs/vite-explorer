@@ -83,7 +83,12 @@
     methods: {
       getTotalData(val, list) {
         this.totalObj = val;
-        this.accList = list;
+        this.accList = list.map(item => {
+          return {
+            name: item.accountAddress,
+            value: item.balancePercent.substring(0, item.balancePercent.length -1) 
+          };
+        });
       }
     }
   };

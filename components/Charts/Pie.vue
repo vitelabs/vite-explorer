@@ -11,7 +11,6 @@
 
 <script>
   import VePie from "v-charts/lib/pie";
-
   export default {
     components: {
       VePie
@@ -24,12 +23,7 @@
     },
     watch: {
       list(val) {
-        this.chartData.rows = val.map(item=> {
-          return {
-            "地址": item.accountAddress,
-            "持有量": +item.balance
-          };
-        });
+        this.chartData.rows = val;
       }
     },
     data() {
@@ -37,13 +31,13 @@
         chartExtend: {
           tooltip: {
             backgroundColor: "#fff",
-            formatter: "<div class='address'>{b0}</div><div class='hold'>持有量: <span class='value'>{d}%</span></div>",
+            formatter: "<div class='address'>{b0}</div><div class='hold'>Holding Amount: <span class='value'>{c}%</span></div>",
             borderColor: "#E5EDF3",
             borderWidth: 1,
           }
         },
-        chartColors: ["rgba(3,60,206,1)", "rgba(3,60,206,0.95)", "rgba(3,60,206,0.9)", "rgba(3,60,206,0.85)", "rgba(3,60,206,0.8)", "rgba(3,60,206,0.75)", "rgba(3,60,206,0.7)", 
-          "rgba(3,60,206,0.65)", "rgba(3,60,206,0.6)", "rgba(3,60,206,0.55)", "rgba(3,60,206,0.5)", "rgba(3,60,206,0.45)", "rgba(3,60,206,0.4)", "rgba(3,60,206,0.35)", "rgba(3,60,206,0.3)", 
+        chartColors: ["rgba(3,60,206,1)", "rgba(3,60,206,0.95)", "rgba(3,60,206,0.9)", "rgba(3,60,206,0.85)", "rgba(3,60,206,0.8)", "rgba(3,60,206,0.75)", "rgba(3,60,206,0.7)",
+          "rgba(3,60,206,0.65)", "rgba(3,60,206,0.6)", "rgba(3,60,206,0.55)", "rgba(3,60,206,0.5)", "rgba(3,60,206,0.45)", "rgba(3,60,206,0.4)", "rgba(3,60,206,0.35)", "rgba(3,60,206,0.3)",
           "rgba(3,60,206,0.25)", "rgba(3,60,206,0.2)", "rgba(3,60,206,0.15)", "rgba(3,60,206,0.1)", "rgba(3,60,206,0.05)","rgba(3,60,206,0.02)"],
         chartSettings:{
           offsetY: 240,
@@ -59,7 +53,7 @@
           }
         },
         chartData: {
-          columns: ["地址", "持有量"],
+          columns: ["name", "value"],
           rows: []
         }
       };
@@ -78,7 +72,7 @@
     color: #3498db;
   }
   .hold {
-    margin-top: 8px; 
+    margin-top: 8px;
     color: #5E6875;
     font-weight: bold;
   }
@@ -87,6 +81,4 @@
     font-weight: 400;
   }
 }
-
-
 </style>
