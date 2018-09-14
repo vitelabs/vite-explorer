@@ -312,11 +312,8 @@ module.exports = {
     title: "持有账户图表",
     c1: "持有账户",
     c2: "请选择",
-    top: "前",
-    c4: "名持有账户",
-    c5: "名持有账户共持有",
-    c6: "个）的",
-    c7: "（共",
+    info: "{tokenName} 的前 {value} 名持有账户",
+    info2: "前 {value} 名持有账户共持有 {percent}（共 {totalNum} 个）的 {tokenName}",
     c8: "总供给量：",
     c0: "持有账户数量：",
     dropDownList: [{

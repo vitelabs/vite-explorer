@@ -10,11 +10,19 @@
           :value="item.value">
         </el-option>
       </el-select>
-      <div class="title">{{ tokenName }} {{ $t('tokenAccount.top') }} {{ value }} {{ $t('tokenAccount.c4') }}</div>
+      <i18n path="tokenAccount.info" tag="div" class="title">
+        <span place="tokenName">{{ tokenName }}</span>
+        <span place="value">{{ value }}</span>
+      </i18n>
     </div>
 
     <div class="summary">
-      <div>{{ $t('tokenAccount.top') }} {{ value }} {{ $t('tokenAccount.c5') }} {{ totalObj.percentPage }} {{ $t('tokenAccount.c7') }} {{ totalObj.haveSupplyPage }} {{ $t('tokenAccount.c6') }} {{ tokenName }}</div>
+      <i18n path="tokenAccount.info2" tag="div">
+        <span place="tokenName">{{ tokenName }}</span>
+        <span place="value">{{ value }}</span>
+        <span place="percent">{{ totalObj.percentPage }}</span>
+        <span place="totalNum">{{ totalObj.haveSupplyPage }}</span>
+      </i18n>
       <div>{{ $t('tokenAccount.c8') }} {{ totalObj.totalSupply }}  |   {{ $t('tokenAccount.c0') }} {{ totalObj.totalNumber }}</div>
     </div>
     <ve-pie :list="accList"></ve-pie>

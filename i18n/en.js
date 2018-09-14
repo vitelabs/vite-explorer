@@ -312,11 +312,8 @@ module.exports = {
     title: "Chart of Holders",
     c1: "Holders",
     c2: "Select Please",
-    top: "Top",
-    c4: "Holders",
-    c5: "holders totally gain",
-    c6: "Holders)",
-    c7: "(From a total of ",
+    info: "{tokenName} top {value} holders",
+    info2: "Top {value} holders contain {percent} (from a total of {totalNum} holders) of {tokenName} in total",
     c8: "Total Supply:",
     c0: "Holders in Total:",
     dropDownList: [{
