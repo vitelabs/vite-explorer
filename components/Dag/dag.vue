@@ -23,6 +23,37 @@ const colors = ["#FFC313", "#F79F1E", "#EE5B24", "#EA2026"
 
 const MAX_NODE = 200;
 
+const defaultSeriesOptions = {
+  type: "graph",
+  layout: "force",
+  symbolSize: 25,
+  roam: true,
+  force: {
+    repulsion: 2500,
+    edgeLength: [10, 50]
+  },
+  emphasis: {
+    label: {
+      show: false
+    }
+  },
+  edgeLabel: {
+    show: false
+  },
+  draggable: true,
+  itemStyle: {
+    normal: {
+      color: "#4b565b"
+    }
+  },
+  lineStyle: {
+    normal: {
+      width: 1,
+      color: "#9EA4AC"
+    }
+  }
+};
+
 export default {
   props: {
     list: {
@@ -38,6 +69,7 @@ export default {
       nodeLinks: [],
       drawTxList:[],
       addressColors:{},
+      setZoom: false
     };
   },
   watch: {
@@ -56,6 +88,7 @@ export default {
         pageSize: 100
       }).then(({ transactionList }) => {
         this.drawTxList = transactionList;
+        this.setDefaultZoom();
         this.draw();
       }).catch((err) => {
         this.$message.error(err.msg || "get transList failed");
@@ -137,16 +170,35 @@ export default {
         };
       }));
     },
+    setDefaultZoom() {
+      this.seriesOptions = Object.assign({
+        zoom: 0.3,
+        data: this.nodes,
+        links: this.nodeLinks
+      },
+      defaultSeriesOptions
+      );
+      this.setZoom = true;
+    },
     clear() {
       this.echarsInstance.clear();
     },
     draw() {
-      this.echarsInstance = echarts.init(document.getElementById("main"));
       this.mergeNewTxList();
       this.generateNode();
       this.generateNodeLinks();
+      this.echarsInstance = echarts.init(document.getElementById("main"));
       let lang = "";
       this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
+      if (!this.setZoom) {
+        this.seriesOptions = Object.assign({
+          data: this.nodes,
+          links: this.nodeLinks
+        },
+        defaultSeriesOptions
+        );
+      }
+      this.setZoom = false;
       this.echarsInstance.setOption({
         tooltip: {
           backgroundColor: "#fff",
@@ -165,39 +217,7 @@ export default {
               </div>`;
           }
         },
-        series: [{
-          type: "graph",
-          layout: "force",
-          symbolSize: 25,
-          roam: true,
-          force: {
-            repulsion: 2500,
-            edgeLength: [10, 50]
-          },
-          emphasis: {
-            label: {
-              show: false
-            }
-          },
-          edgeLabel: {
-            show: false
-          },
-          draggable: true,
-          itemStyle: {
-            normal: {
-              color: "#4b565b"
-            }
-          },
-          lineStyle: {
-            normal: {
-              width: 1,
-              color: "#9EA4AC"
-
-            }
-          },
-          data: this.nodes,
-          links: this.nodeLinks
-        }]
+        series: [this.seriesOptions]
       });
     }
   }

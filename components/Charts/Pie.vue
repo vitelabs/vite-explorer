@@ -5,7 +5,7 @@
     :settings="chartSettings"
     :legend-visible="false"
     :extend="chartExtend"
-    height="480px">
+    height="550px">
   </ve-pie>
 </template>
 
@@ -40,7 +40,7 @@
           "rgba(3,60,206,0.65)", "rgba(3,60,206,0.6)", "rgba(3,60,206,0.55)", "rgba(3,60,206,0.5)", "rgba(3,60,206,0.45)", "rgba(3,60,206,0.4)", "rgba(3,60,206,0.35)", "rgba(3,60,206,0.3)",
           "rgba(3,60,206,0.25)", "rgba(3,60,206,0.2)", "rgba(3,60,206,0.15)", "rgba(3,60,206,0.1)", "rgba(3,60,206,0.05)","rgba(3,60,206,0.02)"],
         chartSettings:{
-          offsetY: 240,
+          offsetY: 330,
           radius: 140,
           limitShowNum: 20,
           itemStyle: {
