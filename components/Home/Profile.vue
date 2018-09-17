@@ -147,7 +147,7 @@
         border: 1px solid rgba(255,255,255,0.33);
         box-shadow: 4px 4px 12px 0 rgba(0,92,199,0.44);
         box-sizing: border-box;
-        padding: 15px 16px 9px 15px;
+        padding: 15px 0px 9px 15px;
         border-radius: 2px;
         span {
           letter-spacing: 0;
