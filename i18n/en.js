@@ -13,7 +13,7 @@ module.exports = {
     nearMonth: "Transactions(30d)",
     update3: "Update per 3 seconds",
     tPerSec: "Transactions per second",
-    blockTime: "Average time cost of latest 5000 snapshot block",
+    blockTime: "Average time cost of latest 5000 snapshot blocks",
 
   },
   lineChart: {
@@ -68,7 +68,7 @@ module.exports = {
   logo: {
     v: "Preview Version",
     current: "Current Version",
-    content1: "Vite's block explorer is a website for searching integrated information about Vite. Now it supports searching by accounts, tokens, transactions and snapshot blocks and present information via lists.",
+    content1: "Vite's block explorer is a website for searching integrated information about Vite. Now it supports searching by accounts, tokens, transactions and snapshot blocks and presenting information via lists.",
     content2: "Preview Version V2 provides statistics information, transactions filter and sort, and diagram of accounts who hold some kind of token.",
     govite: {
       current: "go-vite Version",
