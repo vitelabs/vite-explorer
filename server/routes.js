@@ -1,5 +1,5 @@
 import Router from "koa-trie-router";
-import { get, post } from "../api/server.js";
+import { get, post } from "./server.js";
 import { toShort, handleBigNum, formatTx } from "../utils/util.js";
 import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
 import axios from "axios";

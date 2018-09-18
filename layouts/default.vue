@@ -54,8 +54,8 @@
     relativeTime: {
       past: "%s ago",
       s:  "%ds",
-      m:  "1min",
-      mm: "%dmin",
+      m:  "1m",
+      mm: "%dm",
       h:  "1h",
       hh: "%dh",
       d:  "1d",

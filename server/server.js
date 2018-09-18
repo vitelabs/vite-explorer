@@ -1,8 +1,10 @@
 import axios from "axios";
-import config from "./config";
+import config from "../api/config";
 
-config.baseURL = "http://132.232.138.139:8080/test/api";
 
+config.baseURL = process.env.BASE_URL;
+
+console.log("baseUrl", config.baseURL);
 const service = axios.create(config);
 
 // POST  Stringify parameters
