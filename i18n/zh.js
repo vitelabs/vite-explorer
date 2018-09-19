@@ -356,5 +356,23 @@ module.exports = {
 
   // Compatibility
   alert: "很抱歉目前不支持您正在使用的浏览器，请尝试其它浏览器或升级最新版本",
-  attention: "提示"
+  attention: "提示",
+
+  // time format
+  timeFormat:{
+    relativeTime: {
+      past: "%s前",
+      s: "%d秒",
+      m: "1分钟",
+      mm: "%d分钟",
+      h: "1小时",
+      hh: "%d小时",
+      d: "1天",
+      dd: "%d天",
+      M: "1月",
+      MM: "%d月",
+      y: "1年",
+      yy: "%d年"
+    },
+  },
 };
