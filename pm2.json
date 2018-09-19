@@ -12,7 +12,6 @@
       "PORT": "8080"
     },
     "env_qa": {
-      "NODE_ENV": "qa",
       "BASE_URL": "http://132.232.138.139:8080/test/api"
     },
     "env_production": {
