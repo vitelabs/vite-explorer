@@ -43,7 +43,8 @@ module.exports = {
     uglify: true
   },
   router: {
-    middleware: "i18n"
+    middleware: "i18n",
+    fallback: true
   },
   css: [
     "~/assets/css/main.scss",
