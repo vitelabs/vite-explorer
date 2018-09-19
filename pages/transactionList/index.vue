@@ -4,7 +4,7 @@
         :transactions="transactionList"
         :total="totalNumber"
         :page-size="pageSize"
-        :title="title"
+        :title="txTitle"
         :sub-common-title="subCommonTitle">
     </trans-list>
     <error v-else :error="error"></error>
@@ -26,7 +26,7 @@
       };
     },
     computed: {
-      title() {
+      txTitle() {
         return this.$t("transList.title") + this.totalNumber;
       },
       subCommonTitle() {

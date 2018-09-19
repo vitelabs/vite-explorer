@@ -68,7 +68,7 @@
     
     .button {
       margin-left: 8px; 
-      margin-top: -1px; 
+      vertical-align: top;
     }
   }
   

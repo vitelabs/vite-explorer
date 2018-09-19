@@ -2,7 +2,7 @@
   <div class="token-container">
     <page-table v-if="!error"
         :loading="loading"
-        :title="title"
+        :title="blkTitle"
         :tableTitles="blockTitles"
         :tableData="showBlockList"
         :total="totalNumber"
@@ -55,7 +55,7 @@
       };
     },
     computed: {
-      title() {
+      blkTitle() {
         return this.$t("blkList.title.total") + this.totalNumber;
       },
       showBlockList() {
