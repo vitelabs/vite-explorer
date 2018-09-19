@@ -102,12 +102,16 @@
     },
     created() {
       if(process.browser){
-        if (window.attachEvent) {
+        console.log("test IE");
+        if (document.attachEvent) {
+          console.log("IE < 11");
+          console.log("IE < 11", this.$alert);
           this.$alert(this.$t("alert"), this.$t("attention"), {
             showClose: false,
             showConfirmButton: false
           });
         } else {
+          console.log(this.$alert);
           console.log("not IE or IE >=11", window.addEventListener);
         }
       }

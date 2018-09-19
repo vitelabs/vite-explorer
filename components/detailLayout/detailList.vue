@@ -176,7 +176,7 @@
     flex-wrap: wrap;
   }
   .extral-row {
-    width: 50%;
+    width: 48%;
     font-size: 14px;
     line-height: 22px;
     margin-top: 16px;

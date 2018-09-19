@@ -56,7 +56,7 @@
         let accountDetail = await account.getDetail({
           accountAddress: params.addr
         });
-        let tokenList = [{token: {name: "ALL", id: null}}].concat(accountDetail.tokenList) || [];
+        let tokenList = accountDetail.tokenList ? [{token: {name: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {name: "ALL", id: null}}];
         return {
           accountDetail,
           tokenList
@@ -88,11 +88,11 @@
         return this.$t("transList.title");
       },
       activeToken() {
-        return this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
+        return this.tokenList && this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
       },
       accountList() {
         let tokenNameList = [];
-        this.tokenList.forEach((tokenDetail) => {
+        this.tokenList && this.tokenList.forEach((tokenDetail) => {
           if (tokenDetail.token) {
             let name = _.capitalize(tokenDetail.token.name);
             tokenNameList.push(name);
@@ -110,7 +110,7 @@
         }];
       },
       tokenDetailList() {
-        let tokenDetail = this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
+        let tokenDetail = this.tokenList && this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
         if (!tokenDetail) {
           return [{
             name: this.$t("account.tNum"),
