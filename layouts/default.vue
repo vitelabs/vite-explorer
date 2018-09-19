@@ -101,13 +101,15 @@
       };
     },
     created() {
-      if (process.browser && window.attachEvent) {
-        this.$alert(this.$t('alert'), this.$t('attention'), {
-          showClose: false,
-          showConfirmButton: false
-        });
-      } else {
-        console.log("not IE or IE >=11");
+      if(process.browser){
+        if (window.attachEvent) {
+          this.$alert(this.$t("alert"), this.$t("attention"), {
+            showClose: false,
+            showConfirmButton: false
+          });
+        } else {
+          console.log("not IE or IE >=11", window.addEventListener);
+        }
       }
       this.keepNavStatus();
     },
