@@ -22,7 +22,7 @@
         <span class="name">{{item.name}}：</span>
         <span v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
       </div>
-      <filter-address style="float:left; display:inline" @getAccountAddr="getAccInputInfo"></filter-address>
+      <filter-address @getAccountAddr="getAccInputInfo"></filter-address>
     </div>
     <slot name="footer"></slot>
   </div>
