@@ -184,7 +184,7 @@ module.exports = {
 
   // pages/account
   account: {
-    title: "Account Detail",
+    title: "Account Details",
     accHash: "Address",
     accType: "Types of Tokens Held by Account",
     accToken: "Tokens Held by Account",
@@ -199,7 +199,7 @@ module.exports = {
 
   // pages/block
   block: {
-    title: "Snapshot Block Detail",
+    title: "Snapshot Block Details",
   },
   blockDetailMap: {
     height: "Snapshot Block Height",
@@ -350,11 +350,29 @@ module.exports = {
     blockList: "Vite Blocks",
     transTitle: "Vite Transactions Information",
     sError: "Nothing Found",
-    tTitle: "Token Detail",
-    transDetail: "Transaction Detail",
+    tTitle: "Token Details",
+    transDetail: "Transaction Details",
   },
 
   // Compatibility
   alert: "We are so sorry that your browser doesn't support our website. Please try to use other browsers or upgrade to latest version.",
-  attention: "Attention"
+  attention: "Attention",
+
+  // Time format
+  timeFormat:{
+    relativeTime: {
+      past: "%s ago",
+      s: "%ds",
+      m: "1m",
+      mm: "%dm",
+      h: "1h",
+      hh: "%dh",
+      d: "1d",
+      dd: "%dd",
+      M: "1M",
+      MM: "%dM",
+      y: "1Y",
+      yy: "%dY"
+    },
+  },
 };

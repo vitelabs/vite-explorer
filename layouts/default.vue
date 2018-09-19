@@ -50,7 +50,6 @@
   import menuContent from "~/components/menuContent.vue";
   import moment from "moment";
 
-
   moment.updateLocale("en", {
     relativeTime: {
       past: "%s ago",
@@ -108,7 +107,7 @@
             showConfirmButton: false
           });
         } else {
-          console.log("not IE or IE >=11", window.addEventListener);
+          console.log("not IE or IE >=11", window.onload);
         }
       }
       this.keepNavStatus();
