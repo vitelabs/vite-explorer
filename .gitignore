@@ -6,6 +6,7 @@ dist
 build/
 assets/.DS_Store
 .DS_Store
+package-lock.json
 
 # Logs
 logs
