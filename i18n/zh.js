@@ -352,5 +352,9 @@ module.exports = {
     sError: "搜索无结果",
     tTitle: "代币详情",
     transDetail: "交易详情",
-  }
+  },
+
+  // Compatibility
+  alert: "很抱歉目前不支持您正在使用的浏览器，请尝试其它浏览器或升级最新版本",
+  attention: "提示"
 };

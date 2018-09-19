@@ -352,5 +352,9 @@ module.exports = {
     sError: "Nothing Found",
     tTitle: "Token Detail",
     transDetail: "Transaction Detail",
-  }
+  },
+
+  // Compatibility
+  alert: "We are so sorry that your browser doesn't support our website. Please try to use other browsers or upgrade to latest version.",
+  attention: "Attention"
 };

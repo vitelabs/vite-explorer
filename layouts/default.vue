@@ -1,4 +1,4 @@
- <template>
+<template>
   <div class="default-container">
     <div class="home-nav">
       <div class="home-nav-content">
@@ -6,16 +6,16 @@
         <div class="nav-content">
           <div class="navbar-menu">
             <el-menu :default-active="defaultActive" mode="horizontal" background-color="#ffffff" text-color="#000000"
-              active-text-color="#3498db">
+                     active-text-color="#3498db">
               <el-menu-item :key="index" :index="item" v-for="(item, index) in navs" class="text-hover-transition">
                 <nuxt-link :to="localePath(item)" class="nav-item">
-                {{$t(`nav.${item}`)}}
+                  {{$t(`nav.${item}`)}}
                 </nuxt-link>
               </el-menu-item>
             </el-menu>
           </div>
         </div>
-        
+
         <div class="search-wrapper">
           <div class="vertical-menu" @click="openMenu">
             <div class="v-menu">
@@ -54,16 +54,16 @@
   moment.updateLocale("en", {
     relativeTime: {
       past: "%s ago",
-      s:  "%ds",
-      m:  "1m",
+      s: "%ds",
+      m: "1m",
       mm: "%dm",
-      h:  "1h",
+      h: "1h",
       hh: "%dh",
-      d:  "1d",
+      d: "1d",
       dd: "%dd",
-      M:  "1M",
+      M: "1M",
       MM: "%dM",
-      y:  "1Y",
+      y: "1Y",
       yy: "%dY"
     }
   });
@@ -71,16 +71,16 @@
   moment.updateLocale("zh-cn", {
     relativeTime: {
       past: "%s前",
-      s:  "%d秒",
-      m:  "1分钟",
+      s: "%d秒",
+      m: "1分钟",
       mm: "%d分钟",
-      h:  "1小时",
+      h: "1小时",
       hh: "%d小时",
-      d:  "1天",
+      d: "1天",
       dd: "%d天",
-      M:  "1月",
+      M: "1月",
       MM: "%d月",
-      y:  "1年",
+      y: "1年",
       yy: "%d年"
     }
   });
@@ -95,26 +95,24 @@
     components: {
       logoWithoutWords, viteFooter, search, LangSelect, menuContent
     },
-    head () {
+    head() {
       return {
         title: this.$t("head.home"),
       };
     },
     created() {
-      if (process.browser) {
-        if(window.attachEvent){
-          this.$alert("很抱歉目前不支持您正在使用的浏览器，请尝试其它浏览器或升级最新版本", "提示", {
-            showClose: false,
-            showConfirmButton: false
-          });
-        }else{
-          console.log("not IE or IE >=11");
-        }
+      if (process.browser && window.attachEvent) {
+        this.$alert(this.$t('alert'), this.$t('attention'), {
+          showClose: false,
+          showConfirmButton: false
+        });
+      } else {
+        console.log("not IE or IE >=11");
       }
       this.keepNavStatus();
     },
     watch: {
-      "$route.path": function() {
+      "$route.path": function () {
         this.keepNavStatus();
       }
     },
@@ -167,9 +165,11 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import "assets/css/vars.scss";
+
   .el-menu--horizontal {
     border-bottom: none;
   }
+
   .search-wrapper {
     position: absolute;
     top: 0;
@@ -198,6 +198,7 @@
       display: none;
     }
   }
+
   .content-wrapper {
     min-height: calc(100vh - 200px);
     background-color: #fafcff;
@@ -233,7 +234,7 @@
   .home-nav {
     position: relative;
     background: #FFFFFF;
-    box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
+    box-shadow: 0 6px 36px 0 rgba(0, 62, 100, 0.04);
     .home-nav-content {
       width: 1160px;
       margin: auto;
@@ -257,9 +258,9 @@
           padding: 0px;
         }
         .el-menu-item:hover {
-          background-color: #ffffff!important;
+          background-color: #ffffff !important;
         }
-        .el-menu--horizontal>.el-menu-item {
+        .el-menu--horizontal > .el-menu-item {
           height: 64px;
           line-height: 64px;
         }
@@ -269,7 +270,7 @@
     @media only screen and (min-width: 768px) and (max-width: 1024px) {
       .home-nav-content {
         box-sizing: border-box;
-        padding-left: 20px; 
+        padding-left: 20px;
         width: 768px;
         margin: auto;
       }
@@ -285,14 +286,14 @@
     @media only screen and (min-width: 320px) and (max-width: 767px) {
       .home-nav-content {
         box-sizing: border-box;
-        padding-left: 15px; 
+        padding-left: 15px;
         width: 320px;
         margin: auto;
       }
       .nav-content {
         display: none;
       }
-      
+
       .vertical-menu {
         display: block;
         float: right;
@@ -306,7 +307,7 @@
           line-height: 64px;
           border-right: 1px solid #E5EDF3;
         }
-        .invisible-search  {
+        .invisible-search {
           display: none;
         }
       }
