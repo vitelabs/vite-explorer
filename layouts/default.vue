@@ -50,6 +50,7 @@
   import menuContent from "~/components/menuContent.vue";
   import moment from "moment";
 
+
   moment.updateLocale("en", {
     relativeTime: {
       past: "%s ago",
@@ -100,6 +101,16 @@
       };
     },
     created() {
+      if (process.browser) {
+        if(window.attachEvent){
+          this.$alert("很抱歉目前不支持您正在使用的浏览器，请尝试其它浏览器或升级最新版本", "提示", {
+            showClose: false,
+            showConfirmButton: false
+          });
+        }else{
+          console.log("not IE or IE >=11");
+        }
+      }
       this.keepNavStatus();
     },
     watch: {

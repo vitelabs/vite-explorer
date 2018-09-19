@@ -169,6 +169,10 @@
 .account-content {
   clear: both;
   padding-top: 20px;
+  .profile-link {
+    display: inline-block;
+    max-width: 188px;
+  }
   .hold-button {
     min-width: 158px;
     max-width: 188px;

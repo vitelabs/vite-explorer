@@ -18,7 +18,8 @@ import {
   Select,
   Option,
   Input,
-  Message
+  Message,
+  MessageBox
 } from "element-ui";
 
 import "assets/css/table.scss";
@@ -44,3 +45,4 @@ Vue.use(Input);
 
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$message = Message;
+Vue.prototype.$alert = MessageBox.alert;

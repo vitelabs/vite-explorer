@@ -113,7 +113,7 @@ module.exports = {
   }, {
     prop: "type",
     name: "交易类型",
-    width: "100"
+    width: "120"
   }, {
     prop: "status",
     name: "状态",
