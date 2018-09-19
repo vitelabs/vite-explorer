@@ -13,13 +13,14 @@
 export default {
   head() {
     return {
-      title: this.$t("head.sError")
+      title: this.title
     };
   },
   components: {
   },
   data() {
     return {
+      title: this.$t("head.sError")
     };
   },
   methods: {

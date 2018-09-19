@@ -26,7 +26,7 @@
   export default {
     head() {
       return {
-        title: this.$t("tokenList.title"),
+        title: this.title,
       };
     },
     components: {
@@ -67,6 +67,7 @@
     },
     data() {
       return {
+        title: this.$t("tokenList.title"),
         tokenList: [],
         tokenTitles: this.$t("tokenTitles"),
         error: "",

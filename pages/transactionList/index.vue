@@ -22,7 +22,7 @@
   export default {
     head() {
       return {
-        title: this.$t("head.transTitle")
+        title: this.title
       };
     },
     computed: {
@@ -60,6 +60,7 @@
     data() {
       return {
         error: "",
+        title: this.$t("head.transTitle")
       };
     }
   };

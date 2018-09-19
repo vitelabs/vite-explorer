@@ -23,7 +23,7 @@
   export default {
     head() {
       return {
-        title: this.$t("head.blockList")
+        title: this.title
       };
     },
     components: {
@@ -52,6 +52,7 @@
         loading: false,
         blockTitles: this.$t("blockTitles"),
         error: "",
+        title: this.$t("head.blockList")
       };
     },
     computed: {

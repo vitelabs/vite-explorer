@@ -45,7 +45,7 @@
   export default {
     head() {
       return {
-        title: this.$t("tokenAccount.title")
+        title: this.title
       };
     },
     components: {
@@ -59,6 +59,7 @@
     },
     data() {
       return {
+        title: this.$t("tokenAccount.title"),
         options: this.$t("tokenAccount.dropDownList"),
         value: 100,
         totalObj: {},
