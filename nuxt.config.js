@@ -20,13 +20,10 @@ module.exports = {
     ],
     link: [
       {rel: "icon", type: "image/x-icon", href: "/icon.png"}
-    ],
-    script: [
-      {src: "https://hm.baidu.com/hm.js?89eee9c1cc7546889cee54115a2e0626"},
     ]
   },
   loading: {color: "#7FB2FE"},
-  plugins: [{ src: "~/plugins/element-ui.js", ssr: true }, "~plugins/ga.js"],
+  plugins: [{ src: "~/plugins/element-ui.js", ssr: true }],
   build: {
     vendor: ["babel-polyfill", "axios", "~/plugins/element-ui.js", "moment"],
     babel: {
