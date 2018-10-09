@@ -120,16 +120,25 @@
     margin-top: 30px;
   }
   .row {
-    margin-left: 32px;
+    box-sizing: border-box;
+    padding-left: 32px;
     width: 100%;
     font-size: 14px;
     line-height: 22px;
     margin-bottom: 16px;
     color: #8D9BAE;
-    .name {
+    .name,
+    .value {
       display: inline-block;
+      vertical-align: top;
+      box-sizing: border-box;
       width: 200px;
+    }
+    .name {
       color: #3F3F3F;
+    }
+    .value {
+      width: calc(100% - 200px);
     }
     .describe-link {
       color: $detail-color;

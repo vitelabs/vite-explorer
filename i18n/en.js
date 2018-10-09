@@ -305,7 +305,7 @@ module.exports = {
     to: "To",
     tokenName: "Token",
     amount: "Amount",
-    introduction: "Attachments"
+    data: "Attachments"
   },
 
   // pages/tokenAccount

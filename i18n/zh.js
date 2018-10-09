@@ -305,7 +305,7 @@ module.exports = {
     to: "转入方地址",
     tokenName: "Token",
     amount: "数额",
-    introduction: "附带的文本资料"
+    data: "附带的文本资料"
   },
 
   // pages/tokenAccount

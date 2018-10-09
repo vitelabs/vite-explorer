@@ -65,7 +65,8 @@
           to: toAddr,
           tokenName: tokenName,
           amount: this.transactionDetail.amount ?
-            `${this.transactionDetail.amount}${tokenName}` : ""
+            `${this.transactionDetail.amount}${tokenName}` : "",
+          data: this.transactionDetail.data
         };
       },
       list() {
@@ -88,7 +89,7 @@
             item.link = `${lang}/account/${this.showTransactionDetail[key]}`;
             break;
           case "tokenName":
-            item.link = `${lang}/token/${this.transactionDetail.tokenId}`;
+            item.link = this.transactionDetail.tokenId ? `${lang}/token/${this.transactionDetail.tokenId}` : null;
             break;
           default: break;
           }

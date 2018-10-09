@@ -339,9 +339,9 @@ export default () => {
         tokenSymbol: transaction.token && transaction.token.symbol || "",
         tokenId: transaction.token && transaction.token.id,
         fAmount: transaction.fAmount,
-        confirmBlockHash: transaction.confirmBlockHash
+        confirmBlockHash: transaction.confirmBlockHash,
+        data: transaction.data
       };
-
       body.data = transaction;
       ctx.body = body;
     } catch(err) {

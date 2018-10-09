@@ -2,7 +2,7 @@
   "name": "vite.net",
   "scripts": {
     "mock": "node mock",
-    "dev": "BASE_URL=http://132.232.138.139:8080/test/api backpack dev",
+    "dev": "BASE_URL=http://119.28.221.127:8080/api backpack dev",
     "build": " NODE_ENV=production nuxt build && backpack build",
     "start": "BASE_URL=http://132.232.138.139:8080/test/api NODE_ENV=production node build/main.js",
     "precommit": "npm run lint",
