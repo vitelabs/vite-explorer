@@ -270,9 +270,11 @@ module.exports = {
   tokenTitles: [{
     prop: "icon",
     name: "图标",
+    width: 100
   }, {
     prop: "token",
     name: "代币",
+    width: 300
   }, {
     prop: "price",
     name: "价格",

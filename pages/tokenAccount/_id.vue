@@ -39,7 +39,6 @@
   import error from "~/components/error";
   import VePie from "~/components/Charts/Pie.vue";
   import accountList from "~/components/Token/accountList.vue";
-  import _ from "lodash";
 
 
   export default {
@@ -53,7 +52,7 @@
     },
     async asyncData(ctx) {
       return {
-        tokenName: _.capitalize(ctx.query.tokenName),
+        tokenName: ctx.query.tokenName,
         tokenId: ctx.params.id
       };
     },

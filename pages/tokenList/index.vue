@@ -85,14 +85,19 @@
         this.tokenList && this.tokenList.forEach(token => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
-          list.push({
+          let externalTokenInfo = {};
+          if (token.id === "tti_000000000000000000004cfd") {
+            externalTokenInfo = {
+              price: `$${this.generalDetail.cirPrice}`,
+              upDown: `${this.generalDetail.percent_change_24h}%`,
+              transPrice: `$${this.generalDetail.volume_24h}`,
+              famc: `$${this.generalDetail.ffmCap}`
+            };
+          }
+          list.push(Object.assign({
             icon: `<img src="${token.icon || ""}" width="25" height="25"/>`,
             token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.symbol})</a><div style="white-space:normal;">${token.introduction || ""}</div>`,
-            price: `$${this.generalDetail.cirPrice}`,
-            upDown: `${this.generalDetail.percent_change_24h}%`,
-            transPrice: `$${this.generalDetail.volume_24h}`,
-            famc: `$${this.generalDetail.ffmCap}`
-          });
+          }, externalTokenInfo));
         });
         return list;
       }

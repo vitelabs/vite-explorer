@@ -9,7 +9,7 @@
           <div class="header-container">
             <img :src="tokenDetail.icon" width="60" height="60"/>
             <div class="header-detail">
-              <div class="name">{{ tokenName }}</div>
+              <div class="name">{{ tokenName }} ({{ tokenSymbolName }})</div>
               <div class="introduction">{{ tokenDetail.introduction }}</div>
             </div>
           </div>
@@ -56,7 +56,6 @@
   import token from "~/services/token.js";
   import general from "~/services/general.js";
 
-  import _ from "lodash";
 
   export default {
     head() {
@@ -103,7 +102,10 @@
         return this.$t("transList.title");
       },
       tokenName() {
-        return _.capitalize(this.tokenDetail.name);
+        return this.tokenDetail.name;
+      },
+      tokenSymbolName() {
+        return this.tokenDetail.symbol;
       },
       showTokenDetail() {
         return {
@@ -112,7 +114,7 @@
           totalSupply: this.tokenDetail.totalSupply,
           transactionNumber: this.totalNumber,
           owner: this.tokenDetail.owner,
-          decimals: this.tokenDetail.decimals,
+          decimals: this.tokenDetail.decimals || "0",
         };
       },
       list() {

@@ -65,7 +65,7 @@
           to: toAddr,
           tokenName: tokenName,
           amount: this.transactionDetail.amount ?
-            `${this.transactionDetail.amount}${tokenName}` : "",
+            `${this.transactionDetail.amount}` : "",
           data: this.transactionDetail.data
         };
       },

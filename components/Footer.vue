@@ -2,7 +2,8 @@
   <footer class="footer">
     <div class="footer-content">
       <div class="offical-website">
-        <a href="https://www.vite.org/">Vite {{$t('footer.official')}}</a>
+        <div class="website-link"><a href="https://www.vite.org/">vite.org</a></div>
+        <div class="website-link"><a href="https://www.vite.net/">vite.net</a></div>
       </div>
       <div class="outer-link">
         <a class="img-wrapper" href="https://github.com/vitelabs" target="_blank">
@@ -68,6 +69,12 @@
       display: flex;
       display: -webkit-flex;
       justify-content: space-between;
+      .offical-website {
+        margin-top: 18px; 
+      }
+      .website-link {
+        line-height: 20px;
+      }
       .brand {
         opacity: 0.78;
         font-size: 14px;

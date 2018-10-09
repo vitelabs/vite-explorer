@@ -271,9 +271,11 @@ module.exports = {
   tokenTitles: [{
     prop: "icon",
     name: "Icon",
+    width: 100
   }, {
     prop: "token",
     name: "Token",
+    width: 300
   }, {
     prop: "price",
     name: "Price",

@@ -20,7 +20,7 @@ export function toShort(str) {
   }
 }
 
-export function handleBigNum(str, toFixed, isCMC) {
+export function handleBigNum(str, decimals, toFixed, isCMC) {
   if (!str || str === "null") return "";
   let format = {
     decimalSeparator: ".",
@@ -34,12 +34,12 @@ export function handleBigNum(str, toFixed, isCMC) {
   let y  = new BigNumber(str);
   let num;
   if (toFixed) {
-    num = new BigNumber(y.shiftedBy(-18).toFixed(8)).toFormat();
+    num = new BigNumber(y.shiftedBy(-decimals).toFixed(8)).toFormat();
   } else {
     if (isCMC) {
       num = y.toFormat();
     } else {
-      num = y.shiftedBy(-18).toFormat();
+      num = y.shiftedBy(-decimals).toFormat();
     }
   }
   return num;

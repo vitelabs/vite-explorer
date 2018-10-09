@@ -100,7 +100,7 @@ async function getTransactionList(ctx) {
       hash: transaction.hash,
       fromHash: transaction.fromHash,
       shortHash: toShort(transaction.hash),
-      amount: handleBigNum(transaction.amount, true),
+      amount: handleBigNum(transaction.amount, transaction.token && transaction.token.decimals || 0, true),
       accountAddress: transaction.accountAddress,
       shortAccountAddress: toShort(transaction.accountAddress),
       from: transaction.from,
@@ -116,6 +116,7 @@ async function getTransactionList(ctx) {
       tokenName: transaction.token && transaction.token.name || "",
       tokenSymbol: transaction.token && transaction.token.symbol || "",
       tokenId: transaction.token && transaction.token.id || null,
+      decimals: transaction.token && transaction.token.decimals || 0,
       fAmount: transaction.fAmount,
     });
   });
@@ -326,7 +327,7 @@ export default () => {
       let transaction = body.data || {};
       transaction = {
         hash: transaction.hash,
-        amount: handleBigNum(transaction.amount),
+        amount: handleBigNum(transaction.amount, transaction.token && transaction.token.decimals || 0),
         from: transaction.from,
         to: transaction.to,
         accountAddress: transaction.accountAddress,
@@ -339,6 +340,7 @@ export default () => {
         tokenSymbol: transaction.token && transaction.token.symbol || "",
         tokenId: transaction.token && transaction.token.id,
         fAmount: transaction.fAmount,
+        decimals: transaction.token && transaction.token.decimals || 0,
         confirmBlockHash: transaction.confirmBlockHash,
         data: transaction.data
       };

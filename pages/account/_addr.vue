@@ -37,7 +37,6 @@
   import transList from "~/components/transList.vue";
   import account from "~/services/account.js";
   import { handleBigNum } from "../../utils/util.js";
-  import _ from "lodash";
 
   export default {
     head() {
@@ -94,7 +93,7 @@
         let tokenNameList = [];
         this.tokenList && this.tokenList.forEach((tokenDetail) => {
           if (tokenDetail.token) {
-            let name = _.capitalize(tokenDetail.token.name);
+            let name = tokenDetail.token.name;
             tokenNameList.push(name);
           }
         });
