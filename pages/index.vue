@@ -63,6 +63,9 @@
           rows: lineChart
         };
         chartSettings = {
+          axisSite: { right: ["accountNum"] },
+          yAxisType: ["transactions", "accountNum"],
+          yAxisName: ["Transactions", "Accounts"],
           labelMap: {
             transactions: "Transactions",
             accountNum: "Active Accounts"
