@@ -4,8 +4,19 @@
       <img src="~assets/images/dag.svg"/>
       <span>DAG</span>
     </div>
-    <div class="content">
-      <div id="main" style="width: 100%;height:430px;"></div>
+    <div class="toolbox">
+      <div class="dag-btn" @click="togglePlus">
+        <img src="~assets/images/plus.svg"/>
+      </div>
+      <div class="dag-btn" @click="toggleMinus">
+        <img src="~assets/images/minus.svg"/>
+      </div>
+      <div class="dag-btn" @click="toggleFullscreen">
+        <img src="~assets/images/fullscreen.svg"/>
+      </div>
+    </div>
+    <div class="content" style="width: 100%;height:430px;">
+      <div id="main"></div>
     </div>
   </div>
 </template>
@@ -22,6 +33,8 @@ const colors = ["#FFC313", "#F79F1E", "#EE5B24", "#EA2026"
   , "#9980FA", "#5658BB", "#ED4C67", "#B53471", "#833471", "#6F1E51"];
 
 const MAX_NODE = 200;
+const DEFAULT_ZOOM = 0.3;
+const ZOOM_BALANCE = 0.1;
 
 const defaultSeriesOptions = {
   type: "graph",
@@ -69,7 +82,8 @@ export default {
       nodeLinks: [],
       drawTxList:[],
       addressColors:{},
-      setZoom: false
+      setZoom: false,
+      zoomValue: DEFAULT_ZOOM
     };
   },
   watch: {
@@ -79,8 +93,44 @@ export default {
   },
   mounted() {
     this.fetchList();
+    document.addEventListener("fullscreenchange", this.handleFullscreen);
+    document.addEventListener("webkitfullscreenchange", this.handleFullscreen);
+    document.addEventListener("mozfullscreenchange", this.handleFullscreen);
+    document.addEventListener("msfullscreenchange", this.handleFullscreen);
   },
   methods: {
+    handleFullscreen() {
+      this.echarsInstance.resize("100%", "100%");
+      this.echarsInstance.clear();
+      this.setDefaultZoom();
+      this.draw();
+    },
+    toggleFullscreen() {
+      let element = document.getElementById("main");
+      if (element.webkitRequestFullScreen) {
+        element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT); // Chrome
+      }
+      if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen(); // Firefox
+      }
+      if (element.msRequestFullscreen) {
+        element.msRequestFullscreen(); // IE11
+      }
+    },
+    togglePlus() {
+      this.zoomValue = this.zoomValue + ZOOM_BALANCE;
+      this.seriesOptions.zoom = this.zoomValue;
+      this.setZoom = true;
+      this.draw();
+    },
+    toggleMinus() {
+      if (this.zoomValue > ZOOM_BALANCE) {
+        this.zoomValue = this.zoomValue - ZOOM_BALANCE;
+        this.seriesOptions.zoom = this.zoomValue;
+        this.setZoom = true;
+        this.draw();
+      }
+    },
     fetchList(currentIndex = 1) {
       this.pageIndex = currentIndex;
       transaction.getList({
@@ -172,7 +222,7 @@ export default {
     },
     setDefaultZoom() {
       this.seriesOptions = Object.assign({
-        zoom: 0.3,
+        zoom: DEFAULT_ZOOM,
         data: this.nodes,
         links: this.nodeLinks
       },
@@ -205,7 +255,7 @@ export default {
           borderColor: "#E5EDF3",
           borderWidth: 1,
           padding: 0,
-          position: ["68%", "310px"],
+          position: {right: 5, bottom: 5},
           alwaysShowContent: true,
           formatter: function (params) {
             let content = params.data;
@@ -227,11 +277,38 @@ export default {
 <style rel="stylesheet/scss" lang="scss">
 @import "assets/css/vars.scss";
   .dag-container {
+    position: relative;
     height: 500px;
     background: #FFFFFF;
     border: 1px solid #E5EDF3;
     box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
     border-radius: 4px 4px 0 0;
+    .toolbox {
+      position: absolute;
+      z-index: 999;
+      right: 0;
+      display: flex;
+      display: -webkit-flex;
+    }
+    .dag-btn {
+      padding: 5px 10px;
+      border-left: 1px solid #E5EDF3;
+      border-bottom: 1px solid #E5EDF3;
+      background-color: white;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+     canvas:-webkit-full-screen {
+      width: 100%;
+      height: 100%;
+    }
+    #main {
+      width: 100%;
+      height: 100%;
+      background-color: white;
+    }
+
     .card {
       width: 350px;
       opacity: 0.85;
