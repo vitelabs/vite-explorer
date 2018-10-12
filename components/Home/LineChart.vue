@@ -38,8 +38,8 @@
         rows: [],
         loading: false,
         chartExtend: {
-          yAxis: {      
-            splitLine:{ show:false }
+          legend: {
+            selectedMode: "single"
           }
         }
       };
