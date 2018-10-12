@@ -82,10 +82,7 @@
         letter-spacing: 0;
       }
     }
-    a {
-      text-decoration: none;
-      color: #3F3F3F;
-    }
+    
     img {
       margin-left: 18px;
       display: inline-block;
