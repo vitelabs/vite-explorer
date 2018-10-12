@@ -8,7 +8,8 @@
       :colors="['#3498db', '#ccc']"
       :loading="loading"
       :after-config="afterConfig"
-      :settings="chartSettings">
+      :settings="chartSettings"
+      :extend="chartExtend">
     </ve-line>
   </div>
 </template>
@@ -36,7 +37,11 @@
         dataEmpty: false,
         rows: [],
         loading: false,
-        
+        chartExtend: {
+          yAxis: {      
+            splitLine:{ show:false }
+          }
+        }
       };
     },
     methods: {

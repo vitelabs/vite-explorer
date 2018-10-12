@@ -65,7 +65,7 @@
         chartSettings = {
           axisSite: { right: ["accountNum"] },
           yAxisType: ["transactions", "accountNum"],
-          yAxisName: ["Transactions", "Accounts"],
+          yAxisName: ["TX", "AA"],
           labelMap: {
             transactions: "Transactions",
             accountNum: "Active Accounts"
