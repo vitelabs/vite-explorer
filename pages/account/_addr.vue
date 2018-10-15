@@ -125,7 +125,7 @@
           describe: this.totalNumber
         }].concat(tokenDetail.token && tokenDetail.token.id ? [{
           name: this.$t("account.bAmount"),
-          describe: handleBigNum(tokenDetail.balance, true) || "--"
+          describe: handleBigNum(tokenDetail.balance, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"
         }] : []);
       }
     },
