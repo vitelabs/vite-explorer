@@ -20,7 +20,7 @@ export function toShort(str) {
   }
 }
 
-export function handleBigNum(str, decimals, toFixed, isCMC) {
+export function handleBigNum(str, decimals = 0, toFixed, isCMC) {
   if (!str || str === "null") return "";
   let format = {
     decimalSeparator: ".",
