@@ -204,7 +204,7 @@
     .value {
       display: inline-block;
       vertical-align: middle;
-      width: 200px;
+      width: 90%!important;
       text-overflow:ellipsis;
       white-space: nowrap;
       overflow-x: hidden;
