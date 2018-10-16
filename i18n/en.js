@@ -35,6 +35,11 @@ module.exports = {
     from: "From",
     to: "To",
   },
+  dag: {
+    send: "Send Transaction",
+    receive: "Receive Transaction",
+    arrow: "Represents dependency relationship, next TX points to last TX on the same account chain, receive TX points to send TX"
+  },
 
 
   // components/Token

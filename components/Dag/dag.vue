@@ -1,8 +1,23 @@
 <template>
   <div class="dag-container">
     <div class="header">
-      <img src="~assets/images/dag.svg"/>
-      <span>DAG</span>
+      <div class="left-icon">
+        <img src="~assets/images/dag.svg"/>
+        <span>DAG</span>
+      </div>
+      <div class="explain">
+        <div class="line1">
+          <span class="send-icon icon"></span><span class="text">{{ $t('dag.send') }}</span>
+          <span class="receive-icon icon"></span><span class="text">{{ $t('dag.receive') }}</span>
+        </div>
+        <div class="line2">
+          <div class="arrow">
+            <div class="shaft"></div>
+            <div class="arrowhead"></div>
+          </div>
+          <span class="text">{{ $t('dag.arrow') }}</span>
+        </div>
+      </div> 
     </div>
     <div class="toolbox">
       <div class="dag-btn" @click="togglePlus">
@@ -357,15 +372,61 @@ export default {
       box-sizing: border-box;
       border-bottom: 1px solid #E5EDF3;
       height: 70px;
-      padding: 0 0 0 34px;
-      line-height: 70px;
-      font-weight: 500;
-      font-size: 16px;
-      color: $common-color;
-      letter-spacing: 0.3px;
+      padding: 0 34px 0 34px;
+      display: flex;
+      display: -webkit-flex;
+      justify-content: space-between;
+      .left-icon {
+        line-height: 70px;
+        font-weight: 500;
+        font-size: 16px;
+        color: $common-color;
+        letter-spacing: 0.3px;
+      }
       img {
         vertical-align: middle;
         margin-right: 8px; 
+      }
+      .explain {
+        text-align: right;
+        color: #5E6875;
+        line-height: 30px;
+        font-size: 14px;
+        .icon {
+          display: inline-block;
+          border: 1px solid #5E6875;
+          width: 15px;
+          height: 15px;
+          vertical-align: text-top;
+        }
+        .text {
+          margin-left: 5px; 
+        }
+        .send-icon {
+          border-radius: 15px;
+        }
+        .receive-icon {
+          margin-left: 20px; 
+        }
+        .arrow {
+          display: inline-block;
+          .shaft{
+            width:20px;
+            height:1px;
+            background-color:#5E6875;
+          }
+
+          .arrowhead{
+            margin-left: 20px;
+            margin-top: -6.5px; 
+            width: 0;
+            height: 0;
+            border-top: 6px solid  transparent;
+            border-bottom: 6px solid transparent;
+            border-left: 10px solid #5E6875;
+          }
+        }
+        
       }
     }
   }

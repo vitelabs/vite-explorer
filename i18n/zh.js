@@ -33,6 +33,11 @@ module.exports = {
     from: "转出",
     to: "转入",
   },
+  dag: {
+    send: "发送交易",
+    receive: "接收交易",
+    arrow: "代表依赖关系，下一个交易块指向同一账户链上的上一个交易块，接收交易块指向发送交易块"
+  },
 
   // components/Token
   accList: {
