@@ -36,8 +36,8 @@ module.exports = {
     to: "To",
   },
   dag: {
-    send: "Send Transaction",
-    receive: "Receive Transaction",
+    send: "Request Transaction",
+    receive: "Response Transaction",
     arrow: "Represents dependency relationship, next TX points to last TX on the same account chain, receive TX points to send TX"
   },
 
@@ -160,10 +160,10 @@ module.exports = {
       label: "all",
       value: null
     }, {
-      label: "receive",
+      label: "response",
       value: 1
     }, {
-      label: "send",
+      label: "request",
       value: -1
     }],
     status: [{
@@ -298,8 +298,8 @@ module.exports = {
 
   // pages/transaction
   transaction: {
-    send: "send",
-    receive: "receive",
+    send: "request",
+    receive: "response",
   },
   transactionDetailMap: {
     hash: "Transaction Hash",

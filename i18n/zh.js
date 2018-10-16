@@ -34,9 +34,9 @@ module.exports = {
     to: "转入",
   },
   dag: {
-    send: "发送交易",
-    receive: "接收交易",
-    arrow: "代表依赖关系，下一个交易块指向同一账户链上的上一个交易块，接收交易块指向发送交易块"
+    send: "请求交易",
+    receive: "响应交易",
+    arrow: "代表依赖关系，下一个交易指向同一账户链上的上一个交易，响应交易指向请求交易"
   },
 
   // components/Token
@@ -156,10 +156,10 @@ module.exports = {
       label: "全部",
       value: null
     }, {
-      label: "接收",
+      label: "响应",
       value: 1
     }, {
-      label: "发送",
+      label: "请求",
       value: -1
     }],
     status: [{
@@ -298,8 +298,8 @@ module.exports = {
 
   // pages/transaction
   transaction: {
-    send: "发送",
-    receive: "接收",
+    send: "请求",
+    receive: "响应",
   },
   transactionDetailMap: {
     hash: "交易Hash",
