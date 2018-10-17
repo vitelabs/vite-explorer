@@ -86,7 +86,7 @@
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           let externalTokenInfo = {};
-          if (token.id === "tti_000000000000000000004cfd") {
+          if (token.symbol === "VITE") {
             externalTokenInfo = {
               price: `$${this.generalDetail.cirPrice}`,
               upDown: `${this.generalDetail.percent_change_24h}%`,

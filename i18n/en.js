@@ -213,7 +213,6 @@ module.exports = {
     transactionCount: "Number of Transaction",
     hash: "Snapshot Block Hash",
     producer: "Snapshot Node",
-    amount: "Forging Rewards"
   },
 
 
@@ -243,9 +242,6 @@ module.exports = {
     prop: "hash",
     name: "Hash",
 
-  }, {
-    prop: "price",
-    name: "Forging Rewards",
   }],
 
   // pages/searchError

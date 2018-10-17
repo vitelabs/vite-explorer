@@ -209,7 +209,6 @@ module.exports = {
     transactionCount: "快照交易数",
     hash: "快照块Hash",
     producer: "快照节点",
-    amount: "锻造奖励"
   },
 
 
@@ -239,9 +238,6 @@ module.exports = {
     prop: "hash",
     name: "Hash",
 
-  }, {
-    prop: "price",
-    name: "锻造奖励",
   }],
 
 
