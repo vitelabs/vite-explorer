@@ -49,7 +49,7 @@
     },
     computed: {
       showTransactionDetail() {
-        let tokenName = this.transactionDetail.tokenName;
+        let tokenName = this.transactionDetail.tokenSymbol;
         let fromAddr = this.transactionDetail.fromHash ? this.transactionDetail.from : this.transactionDetail.accountAddress;
         let toAddr = this.transactionDetail.fromHash ? this.transactionDetail.accountAddress : this.transactionDetail.to;
         moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);

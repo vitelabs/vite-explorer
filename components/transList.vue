@@ -147,7 +147,7 @@
             amount,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,
-            tokenName: transaction.tokenName,
+            tokenName: transaction.tokenSymbol,
             accountAddress: `<a href="${lang}/account/${transaction.accountAddress}" target="_blank" title="${transaction.accountAddress}">${transaction.accountAddress}</a>`,
           });
         });

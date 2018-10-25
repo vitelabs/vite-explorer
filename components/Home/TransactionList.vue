@@ -21,7 +21,7 @@
             <span>{{ $t('transactionList.hash') }}：</span>
             <nuxt-link :to="`${locales}/transaction/${item.hash}`" target="_blank" class="hash" :title="`${item.hash}`">{{ item.shortHash }}</nuxt-link>
           </div>
-          <div>{{ item.amount }} {{ item.tokenName }}</div>
+          <div>{{ item.amount }} {{ item.tokenSymbol }}</div>
         </div>  
         <div class="transaction-item-down">
           <div class="down">

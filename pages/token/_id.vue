@@ -31,7 +31,7 @@
         @totalNumber="getTotalNumber">
       </trans-list>
       <div class="account-content" v-if="tabParams === 'account'" >
-        <nuxt-link :to="`${locales}/tokenAccount/${tokenDetail.id}?tokenName=${tokenName}`" target="_blank" class="profile-link">
+        <nuxt-link :to="`${locales}/tokenAccount/${tokenDetail.id}?tokenName=${tokenSymbolName}`" target="_blank" class="profile-link">
           <div class="hold-button"><img src="~assets/images/pie.svg"/><span>{{$t('token.charts')}}</span></div>
         </nuxt-link>
         <account-list

@@ -278,7 +278,7 @@ export default {
             return `<div class="card">
                 <div class="card-header"><a href="${lang}/transaction/${content.hash}" target="_blank">${content.shortHash}</a><span class="time">${timestamp}</span></div>
                 <div class="card-content"><span class="type">${content.type}</span><a href="${lang}/account/${content.accountAddress}" target="_blank">${content.shortAccountAddress}</a></div> 
-                <div class="card-footer"><span class="footer-content" style="background-color: ${content.backgroundColor}">${content.amount} ${content.tokenName}</span></div>
+                <div class="card-footer"><span class="footer-content" style="background-color: ${content.backgroundColor}">${content.amount} ${content.tokenSymbol}</span></div>
               </div>`;
           }
         },
