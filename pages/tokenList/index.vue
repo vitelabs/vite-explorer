@@ -14,7 +14,6 @@
 </template>
 
 <script>
-  import pageHeader from "~/components/pageHeader.vue";
   import pageTable from "~/components/pageTable";
   import error from "~/components/error";
   import token from "~/services/token.js";
@@ -30,7 +29,7 @@
       };
     },
     components: {
-      pageHeader, pageTable, error
+      pageTable, error
     },
     async asyncData(ctx) {
       const pageIndex = 1;

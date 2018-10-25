@@ -1,13 +1,5 @@
 <template>
   <div class="token-container">
-    <!-- <page-table v-if="!error"
-        :loading="loading"
-        :title="blkTitle"
-        :tableTitles="blockTitles"
-        :tableData="showBlockList"
-        :total="totalNumber"
-        :currentChange="pageChange">
-    </page-table> -->
     <block-list v-if="!error"></block-list>
     <error v-else :error="error"></error>
   </div>
@@ -16,10 +8,6 @@
 <script>
   import blockList from "~/components/blockList";
   import error from "~/components/error";
-  import block from "~/services/block.js";
-  // import moment from "moment";
-
-  const pageSize = 20;
 
   export default {
     head() {
@@ -31,19 +19,7 @@
       blockList, error
     },
     async asyncData() {
-      // try {
-      //   let pageIndex = 1;
-      //   let { blockList, totalNumber } = await block.getList({
-      //     pageIndex, pageSize
-      //   });
-      //   return {
-      //     blockList, pageIndex, totalNumber
-      //   };
-      // } catch(err) {
-      //   return {
-      //     error: err.msg || "get blockList failed"
-      //   };
-      // }
+    
     },
     data() {
       return {
@@ -56,51 +32,7 @@
         title: this.$t("head.blockList")
       };
     },
-    computed: {
-      // blkTitle() {
-      //   return this.$t("blkList.title.total") + this.totalNumber;
-      // },
-      // showBlockList() {
-      //   let list = [];
-      //   this.blockList.forEach((block)=>{
-      //     let lang = "";
-      //     this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
-      //     moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
-      //     let timestamp = moment(block.age * 1000).fromNow();
-      //     list.push({
-      //       height: `<a href="${lang}/block/${block.hash}" target="_blank">${block.height}</a>`,
-      //       hash: `<a href="${lang}/block/${block.hash}" target="_blank" title="${block.hash}">${block.shortHash}</a>`,
-      //       price: `${block.amount} vite`,
-      //       accountNum: block.accountNum,
-      //       producer: `<span title="${block.producer}">${block.shortProducer}</span>`,
-      //       age: timestamp
-      //     });
-      //   });
-      //   return list;
-      // }
-    },
     methods: {
-      pageChange(currentInx = 1) {
-        this.loading = true;
-        this.pageIndex = currentInx;
-
-        block.getList({
-          pageIndex: currentInx,
-          pageSize
-        }).then(({ blockList })=>{
-          if (this.pageIndex !== currentInx) {
-            return;
-          }
-          this.loading = false;
-          this.blockList = blockList;
-        }).catch((err) => {
-          if (this.pageIndex !== currentInx) {
-            return;
-          }
-          this.loading = false;
-          this.$message.error(err.msg || "get blockList failed");
-        });
-      }
     }
   };
 </script>

@@ -349,6 +349,43 @@ module.exports = {
     data: "附带的文本资料"
   },
 
+  // pages/superNode
+  superNode: {
+    title: "超级节点列表",
+    total: "快照块出块节点总数："
+  },
+  nodeTitles: [{
+    prop: "orderNum",
+    name: "排名"
+  }, {
+    prop: "nodeName",
+    name: "节点名"
+  }, {
+    prop: "status",
+    name: "状态"
+  }, {
+    prop: "poll",
+    name: "票数"
+  }, {
+    prop: "percent",
+    name: "出块率"
+  }, {
+    prop: "shouldNum",
+    name: "应出块数量"
+  }, {
+    prop: "hasNum",
+    name: "已出块数量"
+  }, {
+    prop: "missed",
+    name: "Missed"
+  }, {
+    prop: "address",
+    name: "出块地址"
+  }, {
+    prop: "place",
+    name: "地点"
+  }],
+
   // pages/tokenAccount
   tokenAccount:{
     title: "持有账户图表",

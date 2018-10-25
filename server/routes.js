@@ -262,6 +262,39 @@ export default () => {
     }
   });
 
+  router.post("/api/node/list", async (ctx) => {
+    try {
+      console.log("/node/list:"+ JSON.stringify(ctx.request.body));
+      // let result = await post("/node/list", ctx.request.body);
+      ctx.body = {
+        code: 0,
+        msg: "ok",
+        data: {
+          nodeList: [{
+            orderNum: 1,
+            nodeName: "aa",
+            status: 0,
+            poll: 3,
+            percent: "2%",
+            shouldNum: 3,
+            hasNum: 2,
+            missed: 1,
+            address: "aaaaaa",
+            shortAddress: "vv",
+            place: "中国"
+          }],
+          totalNumber: 20
+        }
+      } || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err);
+      // console.log(err.code);
+    }
+  });
+
   router.get("/api/token/detail", async (ctx) => {
     try {
       let result = await get("/token/detail", ctx.query);
