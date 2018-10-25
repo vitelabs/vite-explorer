@@ -137,13 +137,16 @@
           } else {
             amount = transaction.fromHash ?  `<span style="color: #5cb85c;">${transaction.amount}</span>` : `<span style="color: #e67e22">-${transaction.amount}</span>`;
           }
+          // TODO test
+          transaction.txType = Math.floor(Math.random()*5);
           list.push({
             hash: `<a href="${lang}/transaction/${transaction.hash}" target="_blank" title="${transaction.hash}">${transaction.shortHash}</a>`,
             timestamp,
             snapshotTimestamp: transaction.confirmBlockHash ? `<a href="${lang}/block/${transaction.confirmBlockHash}" target="_blank" title="${transaction.confirmBlockHash}">${transaction.shortConfirmBlockHash}</a>` : "",
             to: `<a href="${lang}/account/${toAddr}" target="_blank" title="${toAddr}">${shortToAddr}</a>`,
             from: `<a href="${lang}/account/${fromAddr}" target="_blank" title="${fromAddr}">${shortFromAddr}</a>`,
-            type: transaction.fromHash ? `<div class="table-label in-label">${this.$t("transaction.receive")}</div>` : `<div class="table-label out-label">${this.$t("transaction.send")}</div>`,
+            type: transaction.fromHash ? `${this.$t("transaction.receive")}` : `${this.$t("transaction.send")}`,
+            txType: `<div class="table-label label-${transaction.txType}" title="${ this.$t(`transaction.txType.${transaction.txType}.title`) }">${this.$t(`transaction.txType.${transaction.txType}.name`)}</div>`,
             amount,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,
@@ -232,16 +235,25 @@
 <style rel="stylesheet/scss" lang="scss">
 .table-label {
   text-align:center;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 400;
-  width: 50px;
   color: white;
-  border-radius: 4px!important;
+  border-radius: 2px!important;
+  line-height: 18px;
 }
-.in-label {
-  background: #5cb85c;
+.label-0 {
+  background: #FFAE5C;
 }
-.out-label {
-  background: #e67e22
+.label-1 {
+  background: #D07CD2;
+}
+.label-2 {
+  background: #FA7A7A;
+}
+.label-3 {
+  background: #7FD4BB;
+}
+.label-4 {
+  background: #8FAAFA;
 }
 </style>

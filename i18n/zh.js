@@ -117,12 +117,14 @@ module.exports = {
     width: "130"
   }, {
     prop: "type",
-    name: "交易类型",
-    width: "120"
+    // width: "120"
+  }, {
+    prop: "txType",
+    name: "交易类型"
   }, {
     prop: "status",
     name: "状态",
-    width: "100"
+    // width: "100"
   }, {
     prop: "snapshotTimestamp",
     name: "首次快照块",
@@ -152,15 +154,24 @@ module.exports = {
     width: "70"
   }],
   filterObj: {
-    type: [{
+    txType: [{
       label: "全部",
       value: null
     }, {
-      label: "响应",
+      label: "注册合约",
+      value: 0
+    }, {
+      label: "提取奖励",
       value: 1
     }, {
-      label: "请求",
-      value: -1
+      label: "投票合约",
+      value: 2
+    }, {
+      label: "抵押合约",
+      value: 3
+    }, {
+      label: "转账",
+      value: 4
     }],
     status: [{
       label: "all",
@@ -296,6 +307,28 @@ module.exports = {
   transaction: {
     send: "请求",
     receive: "响应",
+    txType: {
+      0: {
+        name: "注册合约",
+        title: "注册成为快照块出块节点候选节点"
+      },
+      1: {
+        name: "提取奖励",
+        title: "提取出块奖励"
+      },
+      2: {
+        name: "投票合约",
+        title: "投票选出快照块出块节点"
+      },
+      3: {
+        name: "抵押合约",
+        title: "抵押VITE获取配额"
+      },
+      4: {
+        name: "转账",
+        title: ""
+      }
+    }
   },
   transactionDetailMap: {
     hash: "交易Hash",

@@ -120,8 +120,10 @@ module.exports = {
     width: "130"
   }, {
     prop: "type",
-    name: "Type",
-    width: "90"
+    width: "81"
+  }, {
+    prop: "txType",
+    name: "Type"
   }, {
     prop: "status",
     name: "Status",
@@ -156,15 +158,24 @@ module.exports = {
     width: "70"
   }],
   filterObj: {
-    type: [{
+    txType: [{
       label: "all",
       value: null
     }, {
-      label: "response",
+      label: "注册合约",
+      value: 0
+    }, {
+      label: "提取奖励",
       value: 1
     }, {
-      label: "request",
-      value: -1
+      label: "投票合约",
+      value: 2
+    }, {
+      label: "抵押合约",
+      value: 3
+    }, {
+      label: "转账",
+      value: 4
     }],
     status: [{
       label: "all",
@@ -296,6 +307,27 @@ module.exports = {
   transaction: {
     send: "request",
     receive: "response",
+    txType: {
+      0: {
+        name: "注册合约",
+        title: "注册成为快照块出块节点候选节点"
+      },
+      1: {
+        name: "提取奖励",
+        title: "提取出块奖励"
+      },
+      2: {
+        name: "投票合约",
+        title: "投票选出快照块出块节点"
+      },
+      3: {
+        name: "抵押合约",
+        title: "抵押VITE获取配额"
+      },
+      4: {
+        name: "转账"
+      }
+    }
   },
   transactionDetailMap: {
     hash: "Transaction Hash",

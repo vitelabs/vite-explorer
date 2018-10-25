@@ -25,7 +25,7 @@
           :sortable="sortItems.indexOf(tT.prop) > -1 ? 'custom' : false"
           :render-header="renderHeader">
           <template slot-scope="scope">
-            <span v-html="scope.row[tT.prop]  || '--'"></span>
+              <div v-html="scope.row[tT.prop]  || '--'"></div>
           </template>
         </el-table-column>
       </el-table>
@@ -155,7 +155,7 @@
       renderHeader(h, { column, $index }) {
         if (this.needFilter) {
           let tableTitles = this.tableTitles;
-          if (tableTitles[$index].prop === "type" || tableTitles[$index].prop === "status") {
+          if (tableTitles[$index].prop === "txType" || tableTitles[$index].prop === "status") {
             return (
               <el-dropdown trigger="click" class="table-dropdown" onCommand={this.commandHandler.bind(this, tableTitles[$index].prop)}>
                 <span>{column.label}<span class="icon"></span></span>
