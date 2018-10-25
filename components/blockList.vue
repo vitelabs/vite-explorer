@@ -1,0 +1,92 @@
+<template>
+  <page-table
+      :loading="loading"
+      :title="hasTitle ? blkTitle : null"
+      :tableTitles="blockTitles"
+      :tableData="showBlockList"
+      :total="totalNumber"
+      :currentChange="pageChange">
+  </page-table>
+</template>
+<script>
+  import pageTable from "~/components/pageTable";
+  import block from "~/services/block.js";
+  import moment from "moment";
+
+  const pageSize = 20;
+
+  export default {
+    components: {
+      pageTable
+    },
+    props: {
+      hasTitle: {
+        type: Boolean,
+        default: true
+      }
+    },
+    data() {
+      return {
+        pageIndex: 1,
+        totalNumber: 0,
+        blockList: [],
+        loading: false,
+        blockTitles: this.$t("blockTitles"),
+        title: this.$t("head.blockList")
+      };
+    },
+    mounted() {
+      this.pageChange();
+    },
+    computed: {
+      blkTitle() {
+        return this.$t("blkList.title.total") + this.totalNumber;
+      },
+      showBlockList() {
+        let list = [];
+        this.blockList.forEach((block)=>{
+          let lang = "";
+          this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
+          moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
+          let timestamp = moment(block.age * 1000).fromNow();
+          list.push({
+            height: `<a href="${lang}/block/${block.hash}" target="_blank">${block.height}</a>`,
+            hash: `<a href="${lang}/block/${block.hash}" target="_blank" title="${block.hash}">${block.shortHash}</a>`,
+            price: `${block.amount} vite`,
+            accountNum: block.accountNum,
+            producer: `<span title="${block.producer}">${block.shortProducer}</span>`,
+            age: timestamp
+          });
+        });
+        return list;
+      }
+    },
+    methods: {
+      pageChange(currentInx = 1) {
+        this.loading = true;
+        this.pageIndex = currentInx;
+        block.getList({
+          pageIndex: currentInx,
+          pageSize
+        }).then(({ blockList, totalNumber })=>{
+          if (this.pageIndex !== currentInx) {
+            return;
+          }
+          this.loading = false;
+          this.blockList = blockList;
+          this.totalNumber = totalNumber;
+        }).catch((err) => {
+          if (this.pageIndex !== currentInx) {
+            return;
+          }
+          this.loading = false;
+          this.$message.error(err.msg || "get blockList failed");
+        });
+      }
+    }
+  };
+</script>
+
+<style lang="scss" rel="stylesheet/scss" scoped>
+
+</style>

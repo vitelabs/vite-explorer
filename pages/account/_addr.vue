@@ -10,12 +10,13 @@
         @getAccountAddr="getAccInputInfo">
         <template slot="footer-tab-content">
           <div class="tab-wrapper">
-            <div class="tab-content is-active">{{$t('transList.label')}}</div>
+            <div class="tab-content" :class="{'is-active': tabParams === 'tx'}" @click="clickTab('tx')">{{$t('transList.label')}}</div>
+            <div class="tab-content" :class="{'is-active': tabParams === 'block'}" @click="clickTab('block')">{{$t('SBP.label')}}</div>
           </div>
         </template>
       </detail-layout>
 
-      <trans-list
+      <trans-list v-if="tabParams === 'tx'"
         :tokenId="activeToken ? activeToken.token.id : null"
         :accountAddress="accountDetail.accountAddress"
         :sub-title="subTitle"
@@ -26,6 +27,9 @@
         :filter-accout-addr="filterAccObj"
         @totalNumber="getTotalNumber">
       </trans-list>
+      <block-list v-if="tabParams === 'block'"
+        :has-title="false">
+      </block-list>
     </div>
     <error v-else :error="error"></error>
   </div>
@@ -35,6 +39,7 @@
   import detailLayout from "~/components/detailLayout";
   import error from "~/components/error";
   import transList from "~/components/transList.vue";
+  import blockList from "~/components/blockList.vue";
   import account from "~/services/account.js";
   import { handleBigNum } from "../../utils/util.js";
 
@@ -45,7 +50,7 @@
       };
     },
     components: {
-      detailLayout, error, transList
+      detailLayout, error, transList, blockList
     },
     validate({ params }) {
       return params.addr;
@@ -70,13 +75,13 @@
       return {
         paths: this.$route.path.split("/"),
         title: this.$t("account.title"),
-        activeTab: "transList",
         error: "",
         accountDetail: {},
         tokenList: [],
         activeTokenIndex: 0,
         filterAccObj: null,
-        totalNumber: 0
+        totalNumber: 0,
+        tabParams: "tx",
       };
     },
     created() {
@@ -110,6 +115,13 @@
       },
       tokenDetailList() {
         let tokenDetail = this.tokenList && this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
+        // TODO test
+        tokenDetail.quota = 123;
+        tokenDetail.blockPercent = "10%";
+        tokenDetail.blockAward = "123 VITE";
+
+        tokenDetail.isSBP = true;
+
         if (!tokenDetail) {
           return [{
             name: this.$t("account.tNum"),
@@ -119,17 +131,30 @@
             describe: "--"
           }];
         }
+        let SBP = tokenDetail.isSBP ? [{
+          name: this.$t("account.blockPercent"),
+          describe: tokenDetail.blockPercent
+        }, {
+          name: this.$t("account.blockAward"),
+          describe: tokenDetail.blockAward
+        }] : [];
 
-        return [{
+        return SBP.concat([{
+          name: this.$t("account.quota"),
+          describe: tokenDetail.quota
+        },{
           name: this.$t("account.tNum"),
           describe: this.totalNumber
-        }].concat(tokenDetail.token && tokenDetail.token.id ? [{
+        }]).concat(tokenDetail.token && tokenDetail.token.id ? [{
           name: this.$t("account.bAmount"),
           describe: handleBigNum(tokenDetail.balance, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"
         }] : []);
       }
     },
     methods: {
+      clickTab(str) {
+        this.tabParams = str;
+      },
       clickLab(lab, index) {
         this.activeTokenIndex = index;
       },

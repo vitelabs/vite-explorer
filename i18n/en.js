@@ -209,9 +209,14 @@ module.exports = {
     bValue: "Balance Value",
     tNum: "Number of Transactions",
     allToken: "All Token Valuation",
-    filterInput: "Filtered By"
+    filterInput: "Filtered By",
+    quota: "配额",
+    blockPercent: "出块率",
+    blockAward: "出块奖励"
   },
-
+  SBP: {
+    label: "出块列表"
+  },
 
   // pages/block
   block: {

@@ -117,10 +117,10 @@ module.exports = {
     width: "130"
   }, {
     prop: "type",
-    // width: "120"
   }, {
     prop: "txType",
-    name: "交易类型"
+    name: "交易类型",
+    width: "100"
   }, {
     prop: "status",
     name: "状态",
@@ -205,9 +205,14 @@ module.exports = {
     bValue: "余额价值",
     tNum: "交易次数",
     allToken: "所有代币估值",
-    filterInput: "筛选"
+    filterInput: "筛选",
+    quota: "配额",
+    blockPercent: "出块率",
+    blockAward: "出块奖励"
   },
-
+  SBP: {
+    label: "出块列表"
+  },
 
   // pages/block
   block: {
