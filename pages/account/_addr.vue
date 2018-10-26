@@ -7,11 +7,17 @@
         :clickLab="clickLab"
         :is-account="true"
         :extral-list="tokenDetailList"
-        @getAccountAddr="getAccInputInfo">
+        @getAccountAddr="getAccInputInfo"
+        @changeTab="changeTab">
         <template slot="footer-tab-content">
           <div class="tab-wrapper">
             <div class="tab-content" :class="{'is-active': tabParams === 'tx'}" @click="clickTab('tx')">{{$t('transList.label')}}</div>
-            <div class="tab-content" :class="{'is-active': tabParams === 'block'}" @click="clickTab('block')">{{$t('SBP.label')}}</div>
+            <div class="tab-content" 
+                 :class="{'is-active': tabParams === 'block'}" 
+                 @click="clickTab('block')"
+                 v-if="this.isSBP && this.blockListNum">
+                 {{$t('SBP.label')}}
+            </div>
           </div>
         </template>
       </detail-layout>
@@ -27,8 +33,10 @@
         :filter-accout-addr="filterAccObj"
         @totalNumber="getTotalNumber">
       </trans-list>
-      <block-list v-if="tabParams === 'block'"
-        :has-title="false">
+      <block-list v-if="this.isSBP || tabParams === 'block'"
+        :has-title="false"
+        :isSBP="this.isSBP"
+        @getTotal="getBlockNum">
       </block-list>
     </div>
     <error v-else :error="error"></error>
@@ -60,7 +68,7 @@
         let accountDetail = await account.getDetail({
           accountAddress: params.addr
         });
-        let tokenList = accountDetail.tokenList ? [{token: {name: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {name: "ALL", id: null}}];
+        let tokenList = accountDetail.tokenList ? [{token: {symbol: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {symbol: "ALL", id: null}}];
         return {
           accountDetail,
           tokenList
@@ -82,6 +90,8 @@
         filterAccObj: null,
         totalNumber: 0,
         tabParams: "tx",
+        isSBP: true,
+        blockListNum: 0
       };
     },
     created() {
@@ -98,11 +108,14 @@
         let tokenNameList = [];
         this.tokenList && this.tokenList.forEach((tokenDetail) => {
           if (tokenDetail.token) {
-            let name = tokenDetail.token.name;
+            let name = tokenDetail.token.symbol;
             tokenNameList.push(name);
           }
         });
         return [{
+          key: "address",
+          isSBP: this.isSBP,
+          iconList: [require("~/assets/images/sbp2.svg"), require("~/assets/images/sbp.svg")],
           name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress
         }, {
@@ -120,7 +133,7 @@
         tokenDetail.blockPercent = "10%";
         tokenDetail.blockAward = "123 VITE";
 
-        tokenDetail.isSBP = true;
+        tokenDetail.isSBP = this.isSBP;
 
         if (!tokenDetail) {
           return [{
@@ -136,7 +149,8 @@
           describe: tokenDetail.blockPercent
         }, {
           name: this.$t("account.blockAward"),
-          describe: tokenDetail.blockAward
+          describe: tokenDetail.blockAward,
+          innerLink: true
         }] : [];
 
         return SBP.concat([{
@@ -152,6 +166,12 @@
       }
     },
     methods: {
+      getBlockNum(num) {
+        this.blockListNum = num;
+      },
+      changeTab(tabName) {
+        this.tabParams = tabName;
+      },
       clickTab(str) {
         this.tabParams = str;
       },
@@ -169,5 +189,4 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
-
 </style>

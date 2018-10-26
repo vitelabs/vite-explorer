@@ -7,7 +7,8 @@
       :is-token="isToken" 
       :extral-list="extralList" 
       :is-account="isAccount"
-      @getAccountAddr="getAccInputInfo">
+      @getAccountAddr="getAccInputInfo"
+      @changeTab="changeTab">
       <template slot="header">
         <slot name="header-content"></slot>
       </template>
@@ -55,6 +56,9 @@
     methods: {
       getAccInputInfo(addrObj) {
         this.$emit("getAccountAddr", addrObj);
+      },
+      changeTab(tabName) {
+        this.$emit("changeTab", tabName);
       },
     }
   };

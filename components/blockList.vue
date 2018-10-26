@@ -23,6 +23,10 @@
       hasTitle: {
         type: Boolean,
         default: true
+      },
+      isSBP: {
+        type: Boolean,
+        default: false
       }
     },
     data() {
@@ -31,7 +35,7 @@
         totalNumber: 0,
         blockList: [],
         loading: false,
-        blockTitles: this.$t("blockTitles"),
+        blockTitles: this.isSBP ? this.$t("blockTitles").concat(this.$t("addedBlockTitles")) : this.$t("blockTitles"),
         title: this.$t("head.blockList")
       };
     },
@@ -69,6 +73,7 @@
           pageIndex: currentInx,
           pageSize
         }).then(({ blockList, totalNumber })=>{
+          this.$emit("getTotal", totalNumber);
           if (this.pageIndex !== currentInx) {
             return;
           }

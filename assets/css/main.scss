@@ -41,7 +41,8 @@ a {
   margin-left: 11px; 
   display: flex;
   .tab-content {
-    width: 98px;
+    min-width: 98px;
+    padding: 0 10px;
     height: 40px;
     font-size: 14px;
     letter-spacing: 0.3px;

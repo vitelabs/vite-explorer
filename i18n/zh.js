@@ -211,7 +211,7 @@ module.exports = {
     blockAward: "出块奖励"
   },
   SBP: {
-    label: "出块列表"
+    label: "打包快照块列表"
   },
 
   // pages/block
@@ -254,6 +254,10 @@ module.exports = {
     prop: "hash",
     name: "Hash",
 
+  }],
+  addedBlockTitles: [{
+    prop: "award",
+    name: "出块奖励"
   }],
 
 

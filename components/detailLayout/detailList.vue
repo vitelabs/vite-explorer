@@ -6,7 +6,17 @@
     <div class="row" v-for="(item, index) in list" :key="index">
       <span class="name">{{item.name}}：</span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
-      <span class="value" v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
+      <span class="value" v-if="!item.link && !item.list">
+        <div v-if="item.key === 'address' && item.isSBP" class="address">
+          {{ item.describe || '--' }}
+          <span v-for="(icon, index) in item.iconList" :key="index">
+            <el-tooltip class="item" effect="dark" content="Snapshot Block Producer" placement="top">
+              <img :src="icon"/>
+            </el-tooltip>
+          </span>
+        </div>
+        <div v-else>{{ item.describe || '--' }}</div>
+      </span>
       <div v-if="item.list && item.list.length" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
             @click="_clickLab(lab, index)" :class="{
@@ -20,7 +30,8 @@
     <div class="extral-wrapper" v-if="extralList.length">
       <div class="extral-row" v-for="(item, index) in extralList" :key="index">
         <span class="name">{{item.name}}：</span>
-        <span v-if="!item.link && !item.list">{{item.describe || '--'}}</span>
+        <a v-if="item.innerLink" @click="changeTab">{{item.describe || '--'}}</a>
+        <span v-else>{{item.describe || '--'}}</span>
       </div>
       <filter-address @getAccountAddr="getAccInputInfo"></filter-address>
     </div>
@@ -76,6 +87,9 @@
       };
     },
     methods: {
+      changeTab() {
+        this.$emit("changeTab", "block");
+      },
       _clickLab(lab, index) {
         this.currentLabInx = index;
         this.clickLab(lab, index);
@@ -136,6 +150,17 @@
     }
     .name {
       color: #3F3F3F;
+    }
+    .address {
+      margin-top: -5px;
+      display: flex;
+      align-items: center;
+      img {
+        margin-left: 10px;
+        &:hover {
+          cursor: pointer;
+        } 
+      }
     }
     .value {
       width: calc(100% - 200px);
