@@ -120,7 +120,7 @@
     },
     data() {
       return {
-        navs: ["index", "transactionList", "blockList", "tokenList"],
+        navs: ["index", "transactionList", "blockList", "tokenList", "SBPList"],
         defaultActive: "index",
         open: false,
         searchOpen: false,

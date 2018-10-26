@@ -84,7 +84,8 @@ module.exports = {
     index: "Home",
     transactionList: "Transactions",
     blockList: "Snapshots",
-    tokenList: "Tokens"
+    tokenList: "Tokens",
+    SBPList: "SBPs"
   },
   pageTable: {
     pre: "Prev",
@@ -105,7 +106,10 @@ module.exports = {
     placeholder: "Enter account address",
     from: "From",
     to: "To",
-    sure: "Confirm"
+    sure: "Confirm",
+    SBP: {
+      placeholder: "搜索节点名称或出块地址"
+    }
   },
 
   // components/transList.vue

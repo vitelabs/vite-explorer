@@ -7,7 +7,9 @@
         :title="nodeTableTitle"
         :tableTitles="nodeTitles"
         :tableData="nodeData"
-        :total="totalNumber">
+        :total="totalNumber"
+        :is-sbp-page="true">
+        <search-input @getInput="filterTable" slot="filter"></search-input>
       </page-table>
     </div>
     <error v-else :error="error"></error>
@@ -18,7 +20,7 @@
   import pageTable from "~/components/pageTable";
   import error from "~/components/error";
   import superNode from "~/services/superNode.js";
-
+  import searchInput from "~/components/searchInput.vue";
 
   export default {
     head() {
@@ -27,7 +29,7 @@
       };
     },
     components: {
-      pageTable, error
+      pageTable, searchInput, error
     },
     async asyncData() {
       const pageIndex = 1;
@@ -55,10 +57,12 @@
         error: "",
         loading: false,
         totalNumber: 0,
-        generalDetail: {}
+        generalDetail: {},
+        filterInput: null
       };
     },
     computed: {
+      
       nodeTableTitle() {
         return this.$t("superNode.total")+`${this.nodeList && this.nodeList.length || 0}`;
       },
@@ -75,6 +79,24 @@
         });
         return list;
       }
+    },
+    methods: {
+      getNodeList() {
+        superNode.getList({
+          pageIndex: 1,
+          pageSize: 30,
+          filterInput: this.filterInput
+        }).then(data=> {
+          this.nodeList = data.nodeList;
+          this.totalNumber = data.totalNumber;
+        }).catch(err=> {
+          console.log(err);
+        });
+      },
+      filterTable(str) {
+        this.filterInput = str || null;
+        this.getNodeList();
+      },
     }
   };
 </script>

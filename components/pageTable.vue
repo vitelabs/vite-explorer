@@ -3,15 +3,19 @@
     <div class="table-title" v-html="title" v-if="title"></div>
     <div class="sub-table-title" v-html="subTitle" v-if="subTitle"></div>
     <div class="sub-table-title common-title" v-html="subCommonTitle" v-if="subCommonTitle"></div>
+    <div class="">
+      <slot name="filter"></slot>
+    </div>
     <div class="table">
       <el-table 
         v-loading="loading" 
-        stripe 
+        :stripe="!isSbpPage"
         :data="tableData" 
         style="width: 100%" 
         @sort-change="sortChange"
         :default-sort="defaultSort"
-        :empty-text="noResult">
+        :empty-text="noResult"
+        :row-class-name="tableRowClassName">
         <el-table-column v-if="showOrder" 
           type="index" 
           :index="indexMethod" 
@@ -50,6 +54,10 @@
     name: "pageTable",
     props: {
       loading: {
+        type: Boolean,
+        default: false
+      },
+      isSbpPage: {
         type: Boolean,
         default: false
       },
@@ -127,6 +135,14 @@
       }
     },
     methods: {
+      tableRowClassName({rowIndex}) {
+        if (this.isSbpPage) {
+          if (rowIndex < 25) {
+            return "success-row";
+          } 
+        }
+        return "";
+      },
       sortChange({prop, order}) {
         if (order === "ascending") {
           order = "asc";
@@ -177,6 +193,9 @@
 
 <style rel="stylesheet/scss" lang="scss">
 .page-table-container {
+  .el-table .success-row {
+    background: rgba(24,91,221,0.08);
+  }
   .table-dropdown {
     color: #5E6875;
     margin: 0;

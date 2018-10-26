@@ -80,7 +80,8 @@ module.exports = {
     index: "首页",
     transactionList: "交易列表",
     blockList: "快照块列表",
-    tokenList: "Token列表"
+    tokenList: "Token列表",
+    SBPList: "SBP列表"
   },
   pageTable: {
     pre: "上一页",
@@ -101,7 +102,10 @@ module.exports = {
     placeholder: "输入账户地址",
     from: "转出方",
     to: "转入方",
-    sure: "确定"
+    sure: "确定",
+    SBP: {
+      placeholder: "搜索节点名称或出块地址"
+    }
   },
 
 
