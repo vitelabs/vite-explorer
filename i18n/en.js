@@ -169,7 +169,7 @@ module.exports = {
       label: "Contract Registration",
       value: 0
     }, {
-      label: "Award Receiving",
+      label: "Award Claiming",
       value: 1
     }, {
       label: "Contract Voting",
@@ -325,7 +325,7 @@ module.exports = {
         title: "Register as SBP"
       },
       1: {
-        name: "Award Receiving",
+        name: "Award Claiming",
         title: "Get your block generation award"
       },
       2: {
