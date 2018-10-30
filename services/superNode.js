@@ -11,5 +11,13 @@ export default {
       producerAddress,
       nodeName
     });
+  },
+  
+  getDetail({
+    producerAddress = null
+  }) {
+    return post(`${PREFIX}/detail`, {
+      producerAddress
+    });
   }
 };

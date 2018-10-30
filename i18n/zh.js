@@ -122,7 +122,7 @@ module.exports = {
   }, {
     prop: "type",
   }, {
-    prop: "txType",
+    prop: "blockType",
     name: "交易类型",
     width: "100"
   }, {
@@ -158,7 +158,7 @@ module.exports = {
     width: "70"
   }],
   filterObj: {
-    txType: [{
+    blockType: [{
       label: "全部",
       value: null
     }, {
@@ -320,7 +320,7 @@ module.exports = {
   transaction: {
     send: "请求",
     receive: "响应",
-    txType: {
+    blockType: {
       0: {
         name: "注册合约",
         title: "注册成为快照块出块节点候选节点"

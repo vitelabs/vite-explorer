@@ -171,7 +171,7 @@
       renderHeader(h, { column, $index }) {
         if (this.needFilter) {
           let tableTitles = this.tableTitles;
-          if (tableTitles[$index].prop === "txType" || tableTitles[$index].prop === "status") {
+          if (tableTitles[$index].prop === "blockType" || tableTitles[$index].prop === "status") {
             return (
               <el-dropdown trigger="click" class="table-dropdown" onCommand={this.commandHandler.bind(this, tableTitles[$index].prop)}>
                 <span>{column.label}<span class="icon"></span></span>

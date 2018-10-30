@@ -137,8 +137,6 @@
           } else {
             amount = transaction.fromHash ?  `<span style="color: #5cb85c;">${transaction.amount}</span>` : `<span style="color: #e67e22">-${transaction.amount}</span>`;
           }
-          // TODO test
-          transaction.txType = Math.floor(Math.random()*5);
           list.push({
             hash: `<a href="${lang}/transaction/${transaction.hash}" target="_blank" title="${transaction.hash}">${transaction.shortHash}</a>`,
             timestamp,
@@ -146,7 +144,7 @@
             to: `<a href="${lang}/account/${toAddr}" target="_blank" title="${toAddr}">${shortToAddr}</a>`,
             from: `<a href="${lang}/account/${fromAddr}" target="_blank" title="${fromAddr}">${shortFromAddr}</a>`,
             type: transaction.fromHash ? `${this.$t("transaction.receive")}` : `${this.$t("transaction.send")}`,
-            txType: `<div class="table-label label-${transaction.txType}" title="${ this.$t(`transaction.txType.${transaction.txType}.title`) }">${this.$t(`transaction.txType.${transaction.txType}.name`)}</div>`,
+            blockType: `<div class="table-label label-${transaction.blockType}" title="${ this.$t(`transaction.blockType.${transaction.blockType}.title`) }">${this.$t(`transaction.blockType.${transaction.blockType}.name`)}</div>`,
             amount,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,

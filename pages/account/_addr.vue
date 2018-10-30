@@ -15,7 +15,7 @@
             <div class="tab-content" 
                  :class="{'is-active': tabParams === 'block'}" 
                  @click="clickTab('block')"
-                 v-if="this.isSBP && this.blockListNum">
+                 v-if="this.isSBP">
                  {{$t('SBP.label')}}
             </div>
           </div>
@@ -33,10 +33,10 @@
         :filter-accout-addr="filterAccObj"
         @totalNumber="getTotalNumber">
       </trans-list>
-      <block-list v-if="this.isSBP || tabParams === 'block'"
+      <block-list v-if="this.isSBP && tabParams === 'block'"
         :has-title="false"
         :isSBP="this.isSBP"
-        @getTotal="getBlockNum">
+        :producer-address="this.accountDetail.accountAddress">
       </block-list>
     </div>
     <error v-else :error="error"></error>
@@ -49,6 +49,7 @@
   import transList from "~/components/transList.vue";
   import blockList from "~/components/blockList.vue";
   import account from "~/services/account.js";
+  import node from "~/services/superNode.js";
   import { handleBigNum } from "../../utils/util.js";
 
   export default {
@@ -69,13 +70,20 @@
           accountAddress: params.addr
         });
         let tokenList = accountDetail.tokenList ? [{token: {symbol: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {symbol: "ALL", id: null}}];
+
+        let superNodeDetail = await node.getDetail({
+          producerAddress: params.addr
+        });
+        let isSBP = superNodeDetail.sbpType ? true : false;
         return {
           accountDetail,
-          tokenList
+          tokenList,
+          superNodeDetail,
+          isSBP
         };
       } catch(err) {
         return {
-          error: err.msg || "get account failed"
+          error: err.msg || "get account || superNodeDetail failed"
         };
       }
     },
@@ -89,9 +97,7 @@
         activeTokenIndex: 0,
         filterAccObj: null,
         totalNumber: 0,
-        tabParams: "tx",
-        isSBP: true,
-        blockListNum: 0
+        tabParams: "tx"
       };
     },
     created() {
@@ -114,8 +120,8 @@
         });
         return [{
           key: "address",
-          isSBP: this.isSBP,
-          iconList: [require("~/assets/images/sbp2.svg"), require("~/assets/images/sbp.svg")],
+          sbpType: this.superNodeDetail.sbpType,
+          iconList: this.superNodeDetail.sbpType === 1 ? [require("~/assets/images/sbp2.svg"), require("~/assets/images/sbp.svg")] : [require("~/assets/images/sbp.svg")],
           name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress
         }, {
@@ -128,12 +134,6 @@
       },
       tokenDetailList() {
         let tokenDetail = this.tokenList && this.tokenList.length ? this.tokenList[this.activeTokenIndex] : null;
-        // TODO test
-        tokenDetail.quota = 123;
-        tokenDetail.blockPercent = "10%";
-        tokenDetail.blockAward = "123 VITE";
-
-        tokenDetail.isSBP = this.isSBP;
 
         if (!tokenDetail) {
           return [{
@@ -144,18 +144,18 @@
             describe: "--"
           }];
         }
-        let SBP = tokenDetail.isSBP ? [{
+        let SBP = this.isSBP  ? [{
           name: this.$t("account.blockPercent"),
-          describe: tokenDetail.blockPercent
+          describe: this.superNodeDetail.totalSNBPercent
         }, {
           name: this.$t("account.blockAward"),
-          describe: tokenDetail.blockAward,
+          describe: this.superNodeDetail.totalSNBAward,
           innerLink: true
         }] : [];
 
         return SBP.concat([{
           name: this.$t("account.quota"),
-          describe: tokenDetail.quota
+          describe: this.superNodeDetail.quota
         },{
           name: this.$t("account.tNum"),
           describe: this.totalNumber
@@ -166,9 +166,6 @@
       }
     },
     methods: {
-      getBlockNum(num) {
-        this.blockListNum = num;
-      },
       changeTab(tabName) {
         this.tabParams = tabName;
       },

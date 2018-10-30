@@ -16,14 +16,16 @@ export default {
   getList({
     pageIndex,
     pageSize = 20,
-    pageNum
+    pageNum,
+    producerAddress = null
   }) {
     return post(`${PREFIX}/list`, {
       paging: {
         index: pageIndex, 
         count: pageSize,
-        num: pageNum
-      }
+        num: pageNum,
+      },
+      producerAddress
     });
   },
   

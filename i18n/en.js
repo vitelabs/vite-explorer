@@ -126,7 +126,7 @@ module.exports = {
     prop: "type",
     width: "81"
   }, {
-    prop: "txType",
+    prop: "blockType",
     name: "Type"
   }, {
     prop: "status",
@@ -162,7 +162,7 @@ module.exports = {
     width: "70"
   }],
   filterObj: {
-    txType: [{
+    blockType: [{
       label: "all",
       value: null
     }, {
@@ -319,7 +319,7 @@ module.exports = {
   transaction: {
     send: "request",
     receive: "response",
-    txType: {
+    blockType: {
       0: {
         name: "Contract Registration",
         title: "Register as SBP"

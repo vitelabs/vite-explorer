@@ -61,11 +61,8 @@ async function getBlockList(ctx) {
 
   rawBlockList.forEach((block) => {
     blockList.push({
-      height: block.height,
-      producer: block.producer,
+      ...block,
       shortProducer: toShort(block.producer),
-      accountNum: block.accountNum,
-      hash: block.hash,
       shortHash: toShort(block.hash),
       amount: handleBigNum(block.amount, true),
       age: block.timestamp
@@ -96,28 +93,18 @@ async function getTransactionList(ctx) {
   let transactionList = [];
   rawTransactionList.forEach((transaction) => {
     transactionList.push({
-      prevHash: transaction.prevHash,
-      hash: transaction.hash,
-      fromHash: transaction.fromHash,
+      ...transaction,
       shortHash: toShort(transaction.hash),
       amount: handleBigNum(transaction.amount, transaction.token && transaction.token.decimals || 0, true),
-      accountAddress: transaction.accountAddress,
       shortAccountAddress: toShort(transaction.accountAddress),
-      from: transaction.from,
       shortFrom: toShort(transaction.from),
-      to: transaction.to,
       shortTo: toShort(transaction.to),
-      status: transaction.status,
-      timestamp: transaction.timestamp,
-      confirmTimes: transaction.confirmTimes,
       confirmBlockHash: transaction.confirmBlockHash || null,
       shortConfirmBlockHash: toShort(transaction.confirmBlockHash) || null,
-      snapshotTimestamp: transaction.snapshotTimestamp,
       tokenName: transaction.token && transaction.token.name || "",
       tokenSymbol: transaction.token && transaction.token.symbol || "",
       tokenId: transaction.token && transaction.token.id || null,
-      decimals: transaction.token && transaction.token.decimals || 0,
-      fAmount: transaction.fAmount,
+      decimals: transaction.token && transaction.token.decimals || 0
     });
   });
 
@@ -300,6 +287,32 @@ export default () => {
           code: 5000,
           msg: "Server Error"
         }
+      };
+    } catch(err) {
+      console.log(err);
+      // console.log(err.code);
+    }
+  });
+  
+  router.post("/api/node/detail", async (ctx) => {
+    try {
+      console.log("/supernode/detail:"+ JSON.stringify(ctx.request.body));
+      // let result = await post("/supernode/detail", ctx.request.body);
+      let result = {
+        data: {
+          code: 0,
+          msg: "ok",
+          data: {
+            sbpType: 1,   // 是否超级节点 0 否，1是，2 history
+            quota: 4200,
+            totalSNBAward: "222 VITE",
+            totalSNBPercent: "10%"
+          }
+        }
+      };
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
       };
     } catch(err) {
       console.log(err);

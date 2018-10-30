@@ -7,7 +7,7 @@
       <span class="name">{{item.name}}：</span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
       <span class="value" v-if="!item.link && !item.list">
-        <div v-if="item.key === 'address' && item.isSBP" class="address">
+        <div v-if="item.key === 'address' && item.sbpType" class="address">
           {{ item.describe || '--' }}
           <span v-for="(icon, index) in item.iconList" :key="index">
             <el-tooltip class="item" effect="dark" content="Snapshot Block Producer" placement="top">

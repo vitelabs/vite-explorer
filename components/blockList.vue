@@ -27,6 +27,10 @@
       isSBP: {
         type: Boolean,
         default: false
+      },
+      producerAddress: {
+        type: String,
+        default: ""
       }
     },
     data() {
@@ -71,9 +75,9 @@
         this.pageIndex = currentInx;
         block.getList({
           pageIndex: currentInx,
-          pageSize
+          pageSize,
+          producerAddress: this.producerAddress || null
         }).then(({ blockList, totalNumber })=>{
-          this.$emit("getTotal", totalNumber);
           if (this.pageIndex !== currentInx) {
             return;
           }
