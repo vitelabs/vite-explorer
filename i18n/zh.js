@@ -30,8 +30,8 @@ module.exports = {
   transactionList: {
     title: "交易列表",
     hash: "交易 Hash",
-    from: "转出",
-    to: "转入",
+    from: "发出",
+    to: "接收",
   },
   dag: {
     send: "请求交易",
@@ -100,8 +100,8 @@ module.exports = {
   filter: {
     filterName: "筛选",
     placeholder: "输入账户地址",
-    from: "转出方",
-    to: "转入方",
+    from: "发出方",
+    to: "接收方",
     sure: "确定",
     SBP: {
       placeholder: "搜索节点名称或出块地址"
@@ -142,11 +142,11 @@ module.exports = {
     width: "100"
   }, {
     prop: "from",
-    name: "转出方",
+    name: "发出方",
     width: "160"
   }, {
     prop: "to",
-    name: "转入方",
+    name: "接收方",
     width: "160"
   }, {
     prop: "amount",
@@ -350,8 +350,8 @@ module.exports = {
     confirmTimes: "确认数",
     snapshotBlockHash: "首次快照块",
     timestamp: "时间戳",
-    from: "转出方地址",
-    to: "转入方地址",
+    from: "接收方地址",
+    to: "发出方地址",
     tokenName: "Token",
     amount: "数额",
     data: "附带的文本资料"
@@ -363,7 +363,7 @@ module.exports = {
     total: "快照块出块节点总数："
   },
   nodeTitles: [{
-    prop: "orderNum",
+    prop: "rank",
     name: "排名"
   }, {
     prop: "nodeName",
@@ -372,25 +372,25 @@ module.exports = {
     prop: "status",
     name: "状态"
   }, {
-    prop: "poll",
+    prop: "voteNum",
     name: "票数"
   }, {
-    prop: "percent",
+    prop: "produceRatio",
     name: "出块率"
   }, {
-    prop: "shouldNum",
+    prop: "expectNum",
     name: "应出块数量"
   }, {
-    prop: "hasNum",
+    prop: "factNum",
     name: "已出块数量"
   }, {
-    prop: "missed",
+    prop: "missNum",
     name: "Missed"
   }, {
-    prop: "address",
+    prop: "producerAddress",
     name: "出块地址"
   }, {
-    prop: "place",
+    prop: "location",
     name: "地点"
   }],
 

@@ -208,7 +208,7 @@ export default {
               color: colors[this.addressColors[item.accountAddress]]
             }
           },
-          type: item.fromHash ? "Receive" : "Send",
+          type: item.fromHash ? "Response" : "Request",
         };
       });
     },
@@ -216,7 +216,7 @@ export default {
       this.nodeLinks = this.drawTxList.map((item)=> {
         return {
           ...item,
-          type: item.fromHash ? "Receive" : "Send",
+          type: item.fromHash ? "Response" : "Request",
           backgroundColor: item.fromHash ? "#5cb85c" : "#e67e22",
           source: item.hash,
           target: item.fromHash,
@@ -227,7 +227,7 @@ export default {
       this.nodeLinks = this.nodeLinks.concat(this.drawTxList.map((item)=> {
         return {
           ...item,
-          type: item.fromHash ? "Receive" : "Send",
+          type: item.fromHash ? "Response" : "Request",
           backgroundColor: item.fromHash ? "#5cb85c" : "#e67e22",
           source: item.prevHash,
           target: item.hash,
@@ -391,7 +391,7 @@ export default {
         text-align: right;
         color: #5E6875;
         line-height: 30px;
-        font-size: 14px;
+        font-size: 12px;
         .icon {
           display: inline-block;
           border: 1px solid #5E6875;

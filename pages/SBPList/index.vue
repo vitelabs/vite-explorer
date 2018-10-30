@@ -32,14 +32,12 @@
       pageTable, searchInput, error
     },
     async asyncData() {
-      const pageIndex = 1;
       try {
         let { nodeList, totalNumber} = await superNode.getList({
-          pageIndex,
-          pageSize: 30
+          producerAddress: null,
+          nodeName: null
         });
         return {
-          pageIndex,
           nodeList,
           totalNumber: +totalNumber,
         };
@@ -58,11 +56,11 @@
         loading: false,
         totalNumber: 0,
         generalDetail: {},
-        filterInput: null
+        producerAddress: null,
+        nodeName: null
       };
     },
     computed: {
-      
       nodeTableTitle() {
         return this.$t("superNode.total")+`${this.nodeList && this.nodeList.length || 0}`;
       },
@@ -74,7 +72,7 @@
           
           list.push({
             ...node,
-            address: `<a href="${lang}/account/${node.address}" target="_blank" title="${node.address}">${node.shortAddress}</a>`
+            producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
           });
         });
         return list;
@@ -83,9 +81,8 @@
     methods: {
       getNodeList() {
         superNode.getList({
-          pageIndex: 1,
-          pageSize: 30,
-          filterInput: this.filterInput
+          producerAddress: this.producerAddress,
+          nodeName: this.nodeName
         }).then(data=> {
           this.nodeList = data.nodeList;
           this.totalNumber = data.totalNumber;
@@ -94,7 +91,14 @@
         });
       },
       filterTable(str) {
-        this.filterInput = str || null;
+        let filterInput = str || null;
+        if (/vite_[A-Za-z0-9]+/.test(filterInput)) {
+          this.producerAddress = filterInput;
+          this.nodeName = null;
+        } else {
+          this.nodeName = filterInput;
+          this.producerAddress = null;
+        }
         this.getNodeList();
       },
     }

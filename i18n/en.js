@@ -38,7 +38,7 @@ module.exports = {
   dag: {
     send: "Request Transaction",
     receive: "Response Transaction",
-    arrow: "Represents dependency relationship, next TX points to last TX on the same account chain, receive TX points to send TX"
+    arrow: "Represents dependency relationship, next TX points to last TX on the same account chain, response TX points to request TX"
   },
 
 
@@ -361,7 +361,7 @@ module.exports = {
     total: "Total amount of SBP:"
   },
   nodeTitles: [{
-    prop: "orderNum",
+    prop: "rank",
     name: "Rank"
   }, {
     prop: "nodeName",
@@ -370,25 +370,27 @@ module.exports = {
     prop: "status",
     name: "Status"
   }, {
-    prop: "poll",
+    prop: "voteNum",
     name: "Poll"
   }, {
-    prop: "percent",
+    prop: "produceRatio",
     name: "Percentage"
   }, {
-    prop: "shouldNum",
-    name: "Predicting Block"
+    prop: "expectNum",
+    name: "Predicting Block",
+    width: 150
   }, {
-    prop: "hasNum",
-    name: "Generated Block"
+    prop: "factNum",
+    name: "Generated Block",
+    width: 150
   }, {
-    prop: "missed",
+    prop: "missNum",
     name: "Missed"
   }, {
-    prop: "address",
+    prop: "producerAddress",
     name: "Address"
   }, {
-    prop: "place",
+    prop: "location",
     name: "Place"
   }],
 
