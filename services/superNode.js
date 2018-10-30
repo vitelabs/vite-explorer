@@ -4,18 +4,12 @@ const PREFIX = "node";
 
 export default {
   getList({
-    pageIndex,
-    pageSize = 20,
-    pageNum,
-    filterInput = null
+    producerAddress = null,
+    nodeName = null
   }) {
     return post(`${PREFIX}/list`, {
-      paging: {
-        index: pageIndex, 
-        count: pageSize,
-        num: pageNum,
-      },
-      filterInput
+      producerAddress,
+      nodeName
     });
   }
 };
