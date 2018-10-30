@@ -163,7 +163,7 @@
           this.getTop10BlockList();
           this.getTop10TxList();
           this.getGeneralDetail();
-        }, 3000);
+        }, 1000);
         
       }
     }

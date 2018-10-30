@@ -42,7 +42,7 @@ myInterval = mySetInterval(async function() {
   txData = defaultTxData;
   blockData = await getBlockList(requestBody);
   txData = await getTransactionList(requestBody);
-}, 3000);
+}, 1000);
 
 async function getBlockList(ctx) {
   let result = await post("/snapshotchain/blocklist", ctx.request.body);
