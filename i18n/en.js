@@ -108,7 +108,7 @@ module.exports = {
     to: "To",
     sure: "Confirm",
     SBP: {
-      placeholder: "搜索节点名称或出块地址"
+      placeholder: "Search node name or address"
     }
   },
 
@@ -166,19 +166,19 @@ module.exports = {
       label: "all",
       value: null
     }, {
-      label: "注册合约",
+      label: "Contract Registration",
       value: 0
     }, {
-      label: "提取奖励",
+      label: "Award Receiving",
       value: 1
     }, {
-      label: "投票合约",
+      label: "Contract Voting",
       value: 2
     }, {
-      label: "抵押合约",
+      label: "Contract Mortgage",
       value: 3
     }, {
-      label: "转账",
+      label: "Transfer",
       value: 4
     }],
     status: [{
@@ -214,12 +214,12 @@ module.exports = {
     tNum: "Number of Transactions",
     allToken: "All Token Valuation",
     filterInput: "Filtered By",
-    quota: "配额",
-    blockPercent: "出块率",
-    blockAward: "出块奖励"
+    quota: "Quota",
+    blockPercent: "Percentage",
+    blockAward: "Award"
   },
   SBP: {
-    label: "打包快照块列表"
+    label: "Snapshot Block List"
   },
 
   // pages/block
@@ -264,7 +264,7 @@ module.exports = {
   }],
   addedBlockTitles: [{
     prop: "award",
-    name: "出块奖励"
+    name: "Award"
   }],
 
   // pages/searchError
@@ -321,23 +321,23 @@ module.exports = {
     receive: "response",
     txType: {
       0: {
-        name: "注册合约",
-        title: "注册成为快照块出块节点候选节点"
+        name: "Contract Registration",
+        title: "Register as SBP"
       },
       1: {
-        name: "提取奖励",
-        title: "提取出块奖励"
+        name: "Award Receiving",
+        title: "Get your block generation award"
       },
       2: {
-        name: "投票合约",
-        title: "投票选出快照块出块节点"
+        name: "Contract Voting",
+        title: "Vote for SBP"
       },
       3: {
-        name: "抵押合约",
-        title: "抵押VITE获取配额"
+        name: "Contract Mortgage",
+        title: "Mortgage VITE to get quota"
       },
       4: {
-        name: "转账"
+        name: "Transfer"
       }
     }
   },
@@ -357,39 +357,39 @@ module.exports = {
 
   // pages/superNode
   superNode: {
-    title: "超级节点列表",
-    total: "快照块出块节点总数："
+    title: "Super Node List",
+    total: "Total amount of SBP:"
   },
   nodeTitles: [{
     prop: "orderNum",
-    name: "排名"
+    name: "Rank"
   }, {
     prop: "nodeName",
-    name: "节点名"
+    name: "Node name"
   }, {
     prop: "status",
-    name: "状态"
+    name: "Status"
   }, {
     prop: "poll",
-    name: "票数"
+    name: "Poll"
   }, {
     prop: "percent",
-    name: "出块率"
+    name: "Percentage"
   }, {
     prop: "shouldNum",
-    name: "应出块数量"
+    name: "Predicting Block"
   }, {
     prop: "hasNum",
-    name: "已出块数量"
+    name: "Generated Block"
   }, {
     prop: "missed",
     name: "Missed"
   }, {
     prop: "address",
-    name: "出块地址"
+    name: "Address"
   }, {
     prop: "place",
-    name: "地点"
+    name: "Place"
   }],
 
   // pages/tokenAccount
