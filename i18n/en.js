@@ -169,13 +169,13 @@ module.exports = {
       label: "Contract Registration",
       value: 0
     }, {
-      label: "Award Receiving",
+      label: "Award Claiming",
       value: 1
     }, {
       label: "Contract Voting",
       value: 2
     }, {
-      label: "Contract Mortgage",
+      label: "Contract Staking",
       value: 3
     }, {
       label: "Transfer",
@@ -325,7 +325,7 @@ module.exports = {
         title: "Register as SBP"
       },
       1: {
-        name: "Award Receiving",
+        name: "Award Claiming",
         title: "Get your block generation award"
       },
       2: {
@@ -333,8 +333,8 @@ module.exports = {
         title: "Vote for SBP"
       },
       3: {
-        name: "Contract Mortgage",
-        title: "Mortgage VITE to get quota"
+        name: "Contract Staking",
+        title: "Stake VITE for quota"
       },
       4: {
         name: "Transfer"
