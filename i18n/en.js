@@ -175,7 +175,7 @@ module.exports = {
       label: "Contract Voting",
       value: 2
     }, {
-      label: "Contract Mortgage",
+      label: "Contract Staking",
       value: 3
     }, {
       label: "Transfer",
@@ -333,8 +333,8 @@ module.exports = {
         title: "Vote for SBP"
       },
       3: {
-        name: "Contract Mortgage",
-        title: "Mortgage VITE to get quota"
+        name: "Contract Staking",
+        title: "Stake VITE for quota"
       },
       4: {
         name: "Transfer"
