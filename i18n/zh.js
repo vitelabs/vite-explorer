@@ -162,20 +162,38 @@ module.exports = {
       label: "全部",
       value: null
     }, {
-      label: "注册合约",
+      label: "转账",
       value: 0
     }, {
-      label: "提取奖励",
+      label: "注册",
       value: 1
     }, {
-      label: "投票合约",
+      label: "更新注册",
       value: 2
     }, {
-      label: "抵押合约",
+      label: "撤销注册",
       value: 3
     }, {
-      label: "转账",
+      label: "提取奖励",
       value: 4
+    }, {
+      label: "投票",
+      value: 5
+    }, {
+      label: "撤销投票",
+      value: 6
+    }, {
+      label: "获取配额",
+      value: 7
+    }, {
+      label: "取回配额抵押",
+      value: 8
+    }, {
+      label: "铸币",
+      value: 9
+    }, {
+      label: "取回铸币抵押",
+      value: 10
     }],
     status: [{
       label: "all",
@@ -322,23 +340,47 @@ module.exports = {
     receive: "响应",
     blockType: {
       0: {
-        name: "注册合约",
-        title: "注册成为快照块出块节点候选节点"
+        name: "转账",
+        title: ""
       },
       1: {
+        name: "注册",
+        title: "注册成为快照块出块节点候选节点"
+      },
+      2: {
+        name: "更新注册",
+        title: "更新SBP注册信息"
+      },
+      3: {
+        name: "撤销注册",
+        title: "撤销注册SBP"
+      },
+      4: {
         name: "提取奖励",
         title: "提取出块奖励"
       },
-      2: {
-        name: "投票合约",
+      5: {
+        name: "投票",
         title: "投票选出快照块出块节点"
       },
-      3: {
-        name: "抵押合约",
+      6: {
+        name: "撤销投票",
+        title: "撤销最近一次投票"
+      },
+      7: {
+        name: "获取配额",
         title: "抵押VITE获取配额"
       },
-      4: {
-        name: "转账",
+      8: {
+        name: "取回配额抵押",
+        title: ""
+      },
+      9: {
+        name: "铸币",
+        title: ""
+      },
+      10: {
+        name: "取回铸币抵押",
         title: ""
       }
     }

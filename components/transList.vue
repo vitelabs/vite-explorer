@@ -143,8 +143,8 @@
             snapshotTimestamp: transaction.confirmBlockHash ? `<a href="${lang}/block/${transaction.confirmBlockHash}" target="_blank" title="${transaction.confirmBlockHash}">${transaction.shortConfirmBlockHash}</a>` : "",
             to: `<a href="${lang}/account/${toAddr}" target="_blank" title="${toAddr}">${shortToAddr}</a>`,
             from: `<a href="${lang}/account/${fromAddr}" target="_blank" title="${fromAddr}">${shortFromAddr}</a>`,
-            type: transaction.fromHash ? `${this.$t("transaction.receive")}` : `${this.$t("transaction.send")}`,
-            blockType: `<div class="table-label label-${transaction.blockType}" title="${ this.$t(`transaction.blockType.${transaction.blockType}.title`) }">${this.$t(`transaction.blockType.${transaction.blockType}.name`)}</div>`,
+            type: transaction.fromHash ? `<div class="table-label in-label">${this.$t("transaction.receive")}</div>` : `<div class="table-label out-label">${this.$t("transaction.send")}</div>`,
+            blockType: `<div title="${ this.$t(`transaction.blockType.${transaction.blockType}.title`) }">${this.$t(`transaction.blockType.${transaction.blockType}.name`)}</div>`,
             amount,
             status: ["unknown", "open", "closed"][transaction.status],
             confirmTimes: transaction.confirmTimes,
@@ -239,19 +239,10 @@
   border-radius: 2px!important;
   line-height: 18px;
 }
-.label-0 {
-  background: #FFAE5C;
+.in-label {
+  background: #5cb85c;
 }
-.label-1 {
-  background: #D07CD2;
-}
-.label-2 {
-  background: #FA7A7A;
-}
-.label-3 {
-  background: #7FD4BB;
-}
-.label-4 {
-  background: #8FAAFA;
+.out-label {
+  background: #e67e22
 }
 </style>
