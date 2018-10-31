@@ -166,37 +166,37 @@ module.exports = {
       label: "all",
       value: null
     }, {
-      label: "转账",
+      label: "Transfer",
       value: 0
     }, {
-      label: "注册",
+      label: "Registration",
       value: 1
     }, {
-      label: "更新注册",
+      label: "Registration Update",
       value: 2
     }, {
-      label: "撤销注册",
+      label: "Registration Cancellation",
       value: 3
     }, {
-      label: "提取奖励",
+      label: "Award Claim",
       value: 4
     }, {
-      label: "投票",
+      label: "Vote",
       value: 5
     }, {
-      label: "撤销投票",
+      label: "Undo Vote",
       value: 6
     }, {
-      label: "获取配额",
+      label: "Get TPS Quota",
       value: 7
     }, {
-      label: "取回配额抵押",
+      label: "Withdrawal of staked tokens for TPS quota",
       value: 8
     }, {
-      label: "铸币",
+      label: "Token Forging",
       value: 9
     }, {
-      label: "取回铸币抵押",
+      label: "Withdrawal of staked tokens for forging",
       value: 10
     }],
     status: [{
@@ -232,9 +232,9 @@ module.exports = {
     tNum: "Number of Transactions",
     allToken: "All Token Valuation",
     filterInput: "Filtered By",
-    quota: "Quota",
+    quota: "TPS Quota",
     blockPercent: "Percentage",
-    blockAward: "Award"
+    blockAward: "Awards"
   },
   SBP: {
     label: "Snapshot Block List"
@@ -282,7 +282,7 @@ module.exports = {
   }],
   addedBlockTitles: [{
     prop: "award",
-    name: "Award"
+    name: "Awards"
   }],
 
   // pages/searchError
@@ -339,47 +339,47 @@ module.exports = {
     receive: "response",
     blockType: {
       0: {
-        name: "转账",
+        name: "Transfer",
         title: ""
       },
       1: {
-        name: "注册",
-        title: "注册成为快照块出块节点候选节点"
+        name: "Registration",
+        title: "Register to become listed SBP"
       },
       2: {
-        name: "更新注册",
-        title: "更新SBP注册信息"
+        name: "Registration Update",
+        title: "Update SBP registration information"
       },
       3: {
-        name: "撤销注册",
-        title: "撤销注册SBP"
+        name: "Registration Cancellation",
+        title: "Cancel to register SBP"
       },
       4: {
-        name: "提取奖励",
-        title: "提取出块奖励"
+        name: "Award Claim",
+        title: "Claim producer awards"
       },
       5: {
-        name: "投票",
-        title: "投票选出快照块出块节点"
+        name: "Vote",
+        title: "Vote for SBP"
       },
       6: {
-        name: "撤销投票",
-        title: "撤销最近一次投票"
+        name: "Undo Vote",
+        title: "Cancel the latest vote"
       },
       7: {
-        name: "获取配额",
-        title: "抵押VITE获取配额"
+        name: "Get Quota",
+        title: "Staking VITE for TPS quota"
       },
       8: {
-        name: "取回配额抵押",
+        name: "Withdrawal of staked tokens for TPS quota",
         title: ""
       },
       9: {
-        name: "铸币",
+        name: "Token Forging",
         title: ""
       },
       10: {
-        name: "取回铸币抵押",
+        name: "Withdrawal of staked tokens for forging",
         title: ""
       }
     }
@@ -400,7 +400,7 @@ module.exports = {
 
   // pages/superNode
   superNode: {
-    title: "Super Node List",
+    title: "SBP List",
     total: "Total amount of SBP:"
   },
   nodeTitles: [{
