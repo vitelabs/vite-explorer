@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+  <defs>
+    <linearGradient id="vcp-a" x1="100%" x2="0%" y1="100%" y2="0%">
+      <stop offset="0%" stop-color="#FAD961"/>
+      <stop offset="100%" stop-color="#F76B1C"/>
+    </linearGradient>
+  </defs>
+  <path fill="url(#vcp-a)" d="M0,6.36113525 L7.7272727,4.61057692 L6.95717937,24.25 L0,6.36113525 Z M9.55892926,4.15649039 L25,0.5 L7.27272728,24.0216346 L9.55892926,4.15649039 Z"/>
+</svg>

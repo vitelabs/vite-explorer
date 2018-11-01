@@ -124,10 +124,6 @@
         this.transactionList.forEach((transaction) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
-          let fromAddr = transaction.fromHash ? transaction.from : transaction.accountAddress;
-          let toAddr = transaction.fromHash ? transaction.accountAddress : transaction.to;
-          let shortFromAddr = transaction.fromHash ? transaction.shortFrom : transaction.shortAccountAddress;
-          let shortToAddr = transaction.fromHash ? transaction.shortAccountAddress : transaction.shortTo;
 
           moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
           let timestamp = moment(transaction.timestamp * 1000).fromNow();
@@ -141,8 +137,8 @@
             hash: `<a href="${lang}/transaction/${transaction.hash}" target="_blank" title="${transaction.hash}">${transaction.shortHash}</a>`,
             timestamp,
             snapshotTimestamp: transaction.confirmBlockHash ? `<a href="${lang}/block/${transaction.confirmBlockHash}" target="_blank" title="${transaction.confirmBlockHash}">${transaction.shortConfirmBlockHash}</a>` : "",
-            to: `<a href="${lang}/account/${toAddr}" target="_blank" title="${toAddr}">${shortToAddr}</a>`,
-            from: `<a href="${lang}/account/${fromAddr}" target="_blank" title="${fromAddr}">${shortFromAddr}</a>`,
+            to: `<a href="${lang}/account/${transaction.to}" target="_blank" title="${transaction.to}">${transaction.shortTo}</a>`,
+            from: `<a href="${lang}/account/${transaction.from}" target="_blank" title="${transaction.from}">${transaction.shortFrom}</a>`,
             type: transaction.fromHash ? `<div class="table-label in-label">${this.$t("transaction.receive")}</div>` : `<div class="table-label out-label">${this.$t("transaction.send")}</div>`,
             blockType: `<div title="${ this.$t(`transaction.blockType.${transaction.blockType}.title`) }">${this.$t(`transaction.blockType.${transaction.blockType}.name`)}</div>`,
             amount,
