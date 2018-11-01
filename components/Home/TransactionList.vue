@@ -26,13 +26,11 @@
         <div class="transaction-item-down">
           <div class="down">
             <div class="label">{{ $t('transactionList.from') }}：</div>
-            <nuxt-link :to="`${locales}/account/${item.from}`" target="_blank" class="label-width" v-if="item.fromHash" :title="`${item.from}`"> {{ item.shortFrom }}</nuxt-link>
-            <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-else :title="`${item.accountAddress}`"> {{ item.shortAccountAddress }}</nuxt-link>
+            <nuxt-link :to="`${locales}/account/${item.from}`" target="_blank" class="label-width" :title="`${item.from}`"> {{ item.shortFrom }}</nuxt-link>
           </div>
           <div class="down">
             <div class="label">{{ $t('transactionList.to') }}：</div>
-            <nuxt-link :to="`${locales}/account/${item.accountAddress}`" target="_blank" class="label-width" v-if="item.fromHash" :title="`${item.accountAddress}`"> {{ item.shortAccountAddress }}</nuxt-link>
-            <nuxt-link :to="`${locales}/account/${item.to}`" target="_blank" class="label-width" v-else :title="`${item.to}`"> {{ item.shortTo }}</nuxt-link>
+            <nuxt-link :to="`${locales}/account/${item.to}`" target="_blank" class="label-width" :title="`${item.to}`"> {{ item.shortTo }}</nuxt-link>
           </div>
         </div>
       </div>
