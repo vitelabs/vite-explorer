@@ -66,6 +66,8 @@ module.exports = {
   footer: {
     official: "官网"
   },
+
+  // Version attached description
   logo: {
     v: "预览版",
     current: "当前版本",
@@ -76,6 +78,7 @@ module.exports = {
       v: "0.0.2"
     }
   },
+
   nav: {
     index: "首页",
     transactionList: "交易列表",
