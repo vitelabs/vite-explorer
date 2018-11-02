@@ -38,7 +38,7 @@ module.exports = {
   dag: {
     send: "Request Transaction",
     receive: "Response Transaction",
-    arrow: "Represents dependency relationship, next TX points to last TX on the same account chain, response TX points to request TX"
+    arrow: "Represents dependency relationship, next Tx points to last Tx on the same account chain, response Tx points to request Tx"
   },
 
 
@@ -70,6 +70,8 @@ module.exports = {
   footer: {
     official: "Official Website"
   },
+
+  // Version attached description
   logo: {
     v: "Preview Version",
     current: "Current Version",
@@ -80,6 +82,7 @@ module.exports = {
       v: "0.0.2"
     }
   },
+
   nav: {
     index: "Home",
     transactionList: "Transactions",
@@ -344,7 +347,7 @@ module.exports = {
       },
       1: {
         name: "Registration",
-        title: "Register to become listed SBP"
+        title: "Register to become a SBP candidate "
       },
       2: {
         name: "Registration Update",
@@ -367,7 +370,7 @@ module.exports = {
         title: "Cancel the latest vote"
       },
       7: {
-        name: "Get Quota",
+        name: "Get TPS Quota",
         title: "Staking VITE for TPS quota"
       },
       8: {
