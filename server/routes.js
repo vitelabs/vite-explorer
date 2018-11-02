@@ -34,7 +34,9 @@ myInterval = mySetInterval(async function() {
   let requestBody = {
     request: {
       body: {
-        count: 10, index: 0
+        paging: {
+          count: 10, index: 1
+        }
       }
     }
   };
