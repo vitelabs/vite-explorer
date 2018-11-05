@@ -73,7 +73,8 @@ async function getBlockList(ctx) {
   rawBlockList = [];
   body.data = {
     blockList,
-    totalNumber: +body.data.totalNumber
+    totalNumber: +body.data.totalNumber,
+    pageTotalNumber: +body.data.pageTotalNumber || 0
   };
   blockData = body;
   return blockData;
@@ -113,7 +114,8 @@ async function getTransactionList(ctx) {
   rawTransactionList = [];
   body.data = {
     transactionList,
-    totalNumber: +body.data.totalNumber
+    totalNumber: +body.data.totalNumber,
+    pageTotalNumber: +body.data.pageTotalNumber || 0
   };
   txData = body;
   return txData;

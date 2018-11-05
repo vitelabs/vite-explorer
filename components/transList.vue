@@ -7,7 +7,7 @@
       :tableData="transactionsData"
       :current-change="total ? fetchList : fetchTransList"
       :currentPage="pageIndex"
-      :total="totalNumber"
+      :total="pageTotalNumber"
       :page-size="pageSize"
       :sub-title="subTitleCom"
       :sub-common-title="subCommonTitle"
@@ -90,8 +90,8 @@
       pageTable
     },
     mounted() {
-      this.totalNumber = this.total;
-      !this.total && this.fetchTransList();
+      this.pageTotalNumber = this.total;
+      !this.pageTotalNumber && this.fetchTransList();
     },
     data() {
       return {
@@ -99,6 +99,7 @@
         pageIndex: 1,
         loading: false,
         totalNumber: 0,
+        pageTotalNumber: 0
       };
     },
     computed: {
@@ -186,10 +187,11 @@
         transaction.getList({
           pageIndex: currentIndex,
           pageSize: this.pageSize
-        }).then(({ transactionList, totalNumber }) => {
+        }).then(({ transactionList, totalNumber, pageTotalNumber}) => {
           this.loading = false;
           this.transactionList = transactionList;
           this.totalNumber = totalNumber;
+          this.pageTotalNumber = pageTotalNumber;
         }).catch((err) => {
           this.$message.error(err.msg || "get transList failed");
         });
@@ -205,13 +207,14 @@
           pageIndex: currentIndex,
           pageSize: this.pageSize,
           sortObj: this.sortObj
-        }, accountAddress, tokenId, this.filterAddressObj, this.selectObj).then(({ transactionList, totalNumber }) => {
+        }, accountAddress, tokenId, this.filterAddressObj, this.selectObj).then(({ transactionList, totalNumber, pageTotalNumber }) => {
           if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
             return;
           }
           this.loading = false;
           this.transactionList = transactionList;
           this.totalNumber = totalNumber;
+          this.pageTotalNumber = pageTotalNumber;
           if (!this.filterAddressObj && !this.selectObj) {
             this.$emit("totalNumber", this.totalNumber);
           }

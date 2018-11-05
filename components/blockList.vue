@@ -4,7 +4,7 @@
       :title="hasTitle ? blkTitle : null"
       :tableTitles="blockTitles"
       :tableData="showBlockList"
-      :total="totalNumber"
+      :total="pageTotalNumber"
       :currentChange="pageChange">
   </page-table>
 </template>
@@ -37,6 +37,7 @@
       return {
         pageIndex: 1,
         totalNumber: 0,
+        pageTotalNumber: 0,
         blockList: [],
         loading: false,
         blockTitles: this.isSBP ? this.$t("blockTitles").concat(this.$t("addedBlockTitles")) : this.$t("blockTitles"),
@@ -77,13 +78,14 @@
           pageIndex: currentInx,
           pageSize,
           producerAddress: this.producerAddress || null
-        }).then(({ blockList, totalNumber })=>{
+        }).then(({ blockList, totalNumber, pageTotalNumber })=>{
           if (this.pageIndex !== currentInx) {
             return;
           }
           this.loading = false;
           this.blockList = blockList;
           this.totalNumber = totalNumber;
+          this.pageTotalNumber = pageTotalNumber;
         }).catch((err) => {
           if (this.pageIndex !== currentInx) {
             return;

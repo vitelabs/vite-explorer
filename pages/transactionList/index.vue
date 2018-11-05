@@ -2,7 +2,7 @@
   <div class="token-container">
     <trans-list v-if="!error"
         :transactions="transactionList"
-        :total="totalNumber"
+        :total="pageTotalNumber"
         :page-size="pageSize"
         :title="txTitle"
         :sub-common-title="subCommonTitle">
@@ -39,13 +39,14 @@
     async asyncData() {
       let pageIndex = 1;
       try {
-        let { transactionList, totalNumber } = await transaction.getList({
+        let { transactionList, totalNumber, pageTotalNumber } = await transaction.getList({
           pageIndex, pageSize
         });
         return {
           pageIndex,
           transactionList,
           totalNumber,
+          pageTotalNumber,
           pageSize
         };
       } catch(err) {
