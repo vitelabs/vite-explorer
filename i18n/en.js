@@ -12,7 +12,7 @@ module.exports = {
     latestHeight: "Latest block height",
     nearMonth: "Transactions(30d)",
     update3: "Update per 3 seconds",
-    tPerSec: "Transactions per second",
+    tPerSec: "Realtime transactions per second / Last-hour transactions per second",
     blockTime: "Average time cost of latest 5000 snapshot blocks",
 
   },
@@ -435,9 +435,6 @@ module.exports = {
   }, {
     prop: "producerAddress",
     name: "Address"
-  }, {
-    prop: "location",
-    name: "Place"
   }],
 
   // pages/tokenAccount

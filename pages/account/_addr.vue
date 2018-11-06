@@ -25,7 +25,6 @@
       <trans-list v-if="tabParams === 'tx'"
         :tokenId="activeToken ? activeToken.token.id : null"
         :accountAddress="accountDetail.accountAddress"
-        :sub-title="subTitle"
         :page-size="20"
         :need-filter="true"
         :sort-items="['timestamp', 'amount']"

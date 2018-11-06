@@ -11,7 +11,7 @@ module.exports = {
     latestHeight: "最新区块高度",
     nearMonth: "近30天交易量",
     update3: "每3秒更新一次",
-    tPerSec: "每秒交易次数",
+    tPerSec: "实时每秒交易次数/最近一小时平均每秒交易次数",
     blockTime: "最新5000个快照块平均出块时间",
   },
   lineChart: {
@@ -434,9 +434,6 @@ module.exports = {
   }, {
     prop: "producerAddress",
     name: "出块地址"
-  }, {
-    prop: "location",
-    name: "地点"
   }],
 
   // pages/tokenAccount

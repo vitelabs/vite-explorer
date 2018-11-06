@@ -15,6 +15,11 @@
         disabled: false
       };
     },
+    watch: {
+      input() {
+        this.sureFilter();
+      }
+    },
     methods: {
       sureFilter() {
         this.$emit("getInput", this.input);

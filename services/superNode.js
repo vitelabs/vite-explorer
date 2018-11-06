@@ -4,12 +4,10 @@ const PREFIX = "node";
 
 export default {
   getList({
-    producerAddress = null,
-    nodeName = null
+    search = null
   }) {
     return post(`${PREFIX}/list`, {
-      producerAddress,
-      nodeName
+      search
     });
   },
   

@@ -34,8 +34,7 @@
     async asyncData() {
       try {
         let { nodeList, totalNumber} = await superNode.getList({
-          producerAddress: null,
-          nodeName: null
+          search: null
         });
         return {
           nodeList,
@@ -56,8 +55,7 @@
         loading: false,
         totalNumber: 0,
         generalDetail: {},
-        producerAddress: null,
-        nodeName: null
+        search: null
       };
     },
     computed: {
@@ -82,8 +80,7 @@
     methods: {
       getNodeList() {
         superNode.getList({
-          producerAddress: this.producerAddress,
-          nodeName: this.nodeName
+          search: this.search
         }).then(data=> {
           this.nodeList = data.nodeList;
           this.totalNumber = data.totalNumber;
@@ -93,13 +90,7 @@
       },
       filterTable(str) {
         let filterInput = str || null;
-        if (/vite_[A-Za-z0-9]+/.test(filterInput)) {
-          this.producerAddress = filterInput;
-          this.nodeName = null;
-        } else {
-          this.nodeName = filterInput;
-          this.producerAddress = null;
-        }
+        this.search = filterInput || null;
         this.getNodeList();
       },
     }
