@@ -181,7 +181,7 @@ module.exports = {
       label: "Registration Cancellation",
       value: 3
     }, {
-      label: "Award Claim",
+      label: "Rewards Claim",
       value: 4
     }, {
       label: "Vote",
@@ -358,8 +358,8 @@ module.exports = {
         title: "Cancel to register SBP"
       },
       4: {
-        name: "Award Claim",
-        title: "Claim producer awards"
+        name: "Rewards Claim",
+        title: "Claim producer Rewardss"
       },
       5: {
         name: "Vote",
