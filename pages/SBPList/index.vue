@@ -66,12 +66,13 @@
       },
       nodeData() {
         let list = [];
-        this.nodeList && this.nodeList.forEach(node => {
+        this.nodeList && this.nodeList.forEach((node,index) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           
           list.push({
             ...node,
+            status: index < 25 ? `<span title="Snapshot Block Producer">${node.status}</span>` : `<span title="Full Node">${node.status}</span>`,
             producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
           });
         });

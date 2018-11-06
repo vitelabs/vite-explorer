@@ -121,7 +121,7 @@
         return [{
           key: "address",
           sbpType: this.superNodeDetail.sbpType,
-          iconList: this.superNodeDetail.sbpType === 1 ? [require("~/assets/images/sbp2.svg"), require("~/assets/images/sbp.svg")] : [require("~/assets/images/sbp.svg")],
+          iconList: this.superNodeDetail.sbpType === 1 ? [require("~/assets/images/sbp2.svg")] : [require("~/assets/images/sbp.svg")],
           name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress
         }, {
@@ -147,19 +147,23 @@
         let SBP = this.isSBP  ? [{
           name: this.$t("account.blockPercent"),
           describe: this.superNodeDetail.totalSNBPercent
-        }, {
-          name: this.$t("account.blockAward"),
-          describe: this.superNodeDetail.totalSNBAward,
-          innerLink: true
-        }] : [];
+        }, 
+        // {
+        //   name: this.$t("account.blockAward"),
+        //   describe: this.superNodeDetail.totalSNBAward,
+        //   innerLink: true
+        // }
+        ] : [];
 
-        return SBP.concat([{
-          name: this.$t("account.quota"),
-          describe: this.superNodeDetail.quota
-        },{
-          name: this.$t("account.tNum"),
-          describe: this.totalNumber
-        }]).concat(tokenDetail.token && tokenDetail.token.id ? [{
+        return SBP.concat([
+        // {
+        //   name: this.$t("account.quota"),
+        //   describe: this.superNodeDetail.quota
+        // },
+          {
+            name: this.$t("account.tNum"),
+            describe: this.totalNumber
+          }]).concat(tokenDetail.token && tokenDetail.token.id ? [{
           name: this.$t("account.bAmount"),
           describe: handleBigNum(tokenDetail.balance, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"
         }] : []);
