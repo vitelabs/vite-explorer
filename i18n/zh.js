@@ -127,7 +127,7 @@ module.exports = {
   }, {
     prop: "blockType",
     name: "交易类型",
-    width: "100"
+    width: "120"
   }, {
     prop: "status",
     name: "状态",
@@ -139,6 +139,7 @@ module.exports = {
   }, {
     prop: "timestamp",
     name: "时间戳",
+    width: "100"
   }, {
     prop: "confirmTimes",
     name: "确认数",

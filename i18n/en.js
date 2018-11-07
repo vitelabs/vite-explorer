@@ -130,7 +130,8 @@ module.exports = {
     width: "81"
   }, {
     prop: "blockType",
-    name: "Type"
+    name: "Type",
+    width: 293
   }, {
     prop: "status",
     name: "Status",
@@ -146,6 +147,7 @@ module.exports = {
   }, {
     prop: "confirmTimes",
     name: "Confirmations",
+    width: "116"
   }, {
     prop: "from",
     name: "From",
