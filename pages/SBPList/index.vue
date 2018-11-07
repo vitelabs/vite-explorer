@@ -33,12 +33,12 @@
     },
     async asyncData() {
       try {
-        let { nodeList, totalNumber} = await superNode.getList({
+        let { nodeList, totalNum} = await superNode.getList({
           search: null
         });
         return {
           nodeList,
-          totalNumber: +totalNumber,
+          totalNumber: +totalNum,
         };
       } catch(err) {
         return {
@@ -60,7 +60,7 @@
     },
     computed: {
       nodeTableTitle() {
-        return this.$t("superNode.total")+`${this.nodeList && this.nodeList.length || 0}`;
+        return this.$t("superNode.total")+`${this.totalNumber || 0}`;
       },
       nodeData() {
         let list = [];
@@ -83,7 +83,6 @@
           search: this.search
         }).then(data=> {
           this.nodeList = data.nodeList;
-          this.totalNumber = data.totalNumber;
         }).catch(err=> {
           console.log(err);
         });

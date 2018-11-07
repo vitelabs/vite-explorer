@@ -256,41 +256,15 @@ export default () => {
   router.post("/api/node/list", async (ctx) => {
     try {
       console.log("/supernode/list:"+ JSON.stringify(ctx.request.body));
-      // let result = await post("/supernode/list", ctx.request.body);
-      ctx.body = {
-        code: 0,
-        msg: "ok",
-        data: {
-          nodeList: [{
-            "rank":1,
-            "nodeName":"DSFADFA",
-            "status":"SBP",
-            "voteNum":1000,
-            "produceRatio":"10%",
-            "expectNum":100,
-            "factNum":10,
-            "missNum":0.1,
-            "producerAddress":"dafdafa",
-            "shortProducerAddress": "daf",
-            "location":"中国"
-          }, {
-            "rank":2,
-            "nodeName":"DSFADFA",
-            "status":"SBP",
-            "voteNum":1000,
-            "produceRatio":"10%",
-            "expectNum":100,
-            "factNum":10,
-            "missNum":0.1,
-            "producerAddress":"dafdafa",
-            "shortProducerAddress": "daf",
-            "location":"中国"
-          }],
-          totalNumber: 20
-        } || {
-          code: 5000,
-          msg: "Server Error"
-        }
+      let result = await post("/supernode/list", ctx.request.body);
+      result.data.data.nodeList.forEach(item=> {
+        if (item.voteNum !== 0 && !item.voteNum ) item.voteNum = "";
+        item.voteNum = handleBigNum(item.voteNum+"", 0 , false, true);
+        item.shortProducerAddress = toShort(item.producerAddress);
+      });
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
       };
     } catch(err) {
       console.log(err);
@@ -301,19 +275,7 @@ export default () => {
   router.post("/api/node/detail", async (ctx) => {
     try {
       console.log("/supernode/detail:"+ JSON.stringify(ctx.request.body));
-      // let result = await post("/supernode/detail", ctx.request.body);
-      let result = {
-        data: {
-          code: 0,
-          msg: "ok",
-          data: {
-            sbpType: 1,   // 是否超级节点 0 否，1是，2 history
-            quota: 4200,
-            totalSNBAward: "222 VITE",
-            totalSNBPercent: "10%"
-          }
-        }
-      };
+      let result = await post("/supernode/detail", ctx.request.body);
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"

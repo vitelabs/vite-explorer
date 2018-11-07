@@ -409,7 +409,8 @@ module.exports = {
   },
   nodeTitles: [{
     prop: "rank",
-    name: "排名"
+    name: "排名",
+    width: 60
   }, {
     prop: "nodeName",
     name: "节点名"
@@ -430,10 +431,11 @@ module.exports = {
     name: "已出块数量"
   }, {
     prop: "missNum",
-    name: "Missed"
+    name: "遗漏块数量"
   }, {
     prop: "producerAddress",
-    name: "出块地址"
+    name: "出块地址",
+    width: 160
   }],
 
   // pages/tokenAccount

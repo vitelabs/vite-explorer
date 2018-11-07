@@ -29,7 +29,8 @@
           :sortable="sortItems.indexOf(tT.prop) > -1 ? 'custom' : false"
           :render-header="renderHeader">
           <template slot-scope="scope">
-              <div v-html="scope.row[tT.prop]  || '--'"></div>
+              <div v-html="scope.row[tT.prop] || '--'" v-if="scope.row[tT.prop] !== 0"></div>
+              <div v-else>0</div>
           </template>
         </el-table-column>
       </el-table>

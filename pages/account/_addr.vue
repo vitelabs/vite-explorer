@@ -143,10 +143,11 @@
             describe: "--"
           }];
         }
-        let SBP = this.isSBP  ? [{
-          name: this.$t("account.blockPercent"),
-          describe: this.superNodeDetail.totalSNBPercent
-        }, 
+        let SBP = this.isSBP  ? [
+        // {
+        //   name: this.$t("account.blockPercent"),
+        //   describe: this.superNodeDetail.totalSNBPercent
+        // }, 
         // {
         //   name: this.$t("account.blockAward"),
         //   describe: this.superNodeDetail.totalSNBAward,

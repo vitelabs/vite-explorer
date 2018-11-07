@@ -3,7 +3,6 @@
     <div class="name">{{ $t('filter.filterName') }}：</div>
     <el-input :placeholder="$t('filter.SBP.placeholder')" v-model="input" class="input-with-select" size="small" clearable>
     </el-input>
-    <el-button type="primary" size="small" class="button" @click="sureFilter" :disabled="disabled">{{ $t('filter.sure') }}</el-button>
   </div>
 </template>
 
@@ -12,7 +11,8 @@
     data() {
       return {
         input: "",
-        disabled: false
+        disabled: false,
+        timer: null
       };
     },
     watch: {
@@ -22,7 +22,10 @@
     },
     methods: {
       sureFilter() {
-        this.$emit("getInput", this.input);
+        this.timer && clearTimeout(this.timer);
+        this.timer = setTimeout(()=> {
+          this.$emit("getInput", this.input);
+        }, 500);
       }
     }
   };

@@ -40,7 +40,7 @@
         pageTotalNumber: 0,
         blockList: [],
         loading: false,
-        blockTitles: this.isSBP ? this.$t("blockTitles").concat(this.$t("addedBlockTitles")) : this.$t("blockTitles"),
+        blockTitles:this.$t("blockTitles"),
         title: this.$t("head.blockList")
       };
     },

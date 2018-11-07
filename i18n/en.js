@@ -408,7 +408,8 @@ module.exports = {
   },
   nodeTitles: [{
     prop: "rank",
-    name: "Rank"
+    name: "Rank",
+    width: 60
   }, {
     prop: "nodeName",
     name: "Node name"
@@ -434,7 +435,8 @@ module.exports = {
     name: "Missed"
   }, {
     prop: "producerAddress",
-    name: "Address"
+    name: "Address",
+    width: 160
   }],
 
   // pages/tokenAccount
