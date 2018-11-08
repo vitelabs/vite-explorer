@@ -71,11 +71,11 @@ module.exports = {
   logo: {
     v: "预览版",
     current: "当前版本",
-    content1: "Vite区块浏览器是查询Vite综合信息的网站，目前支持账户、代币、交易、快照块的查询，基础信息的列表展示。",
-    content2: "预览版V2新增统计信息展示，交易筛选、排序功能，提供持有某种Token的账户图表。",
+    content1: "Vite区块浏览器是查询Vite综合信息的网站，目前支持交易、快照块、代币、SBP、账户的查询及相关信息展示;支持统计信息展示，交易的筛选、排序等功能。",
+    content2: "预览版V3新增SBP列表，SBPs（Snapshot Block Producer）为Vite系统中打包快照块的节点。",
     govite: {
       current: "go-vite 版本",
-      v: "0.0.2"
+      v: "0.1.0"
     }
   },
 
