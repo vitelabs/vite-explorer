@@ -376,7 +376,7 @@ module.exports = {
         title: "Staking VITE for TPS quota"
       },
       8: {
-        name: "Withdrawal of staked tokens for TPS quota",
+        name: "Withdraw Stake for Quota",
         title: ""
       },
       9: {
@@ -384,7 +384,7 @@ module.exports = {
         title: ""
       },
       10: {
-        name: "Withdrawal of staked tokens for forging",
+        name: "Withdraw Stake for Forging",
         title: ""
       }
     }
