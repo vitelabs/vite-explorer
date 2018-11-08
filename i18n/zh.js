@@ -4,9 +4,9 @@ module.exports = {
   // components/Home
   profile: {
     title: "概况",
-    market: "vite流通市值",
+    market: "VITE流通市值",
     tps: "系统TPS",
-    price: "vite流通价格",
+    price: "VITE流通价格",
     totalTrans: "历史总交易量",
     latestHeight: "最新区块高度",
     nearMonth: "近30天交易量",
