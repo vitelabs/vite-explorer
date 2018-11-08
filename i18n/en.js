@@ -76,7 +76,7 @@ module.exports = {
     v: "Preview Version",
     current: "Current Version",
     content1: "Vite's block explorer is a website for searching comprehensive information about Vite. Now, it supports searching by transactions, snapshot blocks, tokens, SBPs, accounts, presenting related information; it also provides statistics information, transactions filter and sort.",
-    content2: "Preview Version V3 provides SBPs list, SBPs(Snapshot Block Producer) are nodes who produce snapshot blocks.",
+    content2: "Preview Version V3 provides SBPs list, SBPs(Snapshot Block Producer) are nodes who produce snapshot blocks in Vite system.",
     govite: {
       current: "go-vite Version",
       v: "0.1.0"
