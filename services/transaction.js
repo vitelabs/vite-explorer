@@ -68,5 +68,8 @@ export default {
   },
   getChartData() {
     return get(`${PREFIX}/timeline`);
+  },
+  getGraphList() {
+    return post(`${PREFIX}/graph/list`);
   }
 };

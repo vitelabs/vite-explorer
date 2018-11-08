@@ -21,7 +21,7 @@
       </div>
     </div>
     <div>
-      <dag :list="transactionList"></dag>
+      <dag :list="dagTransactionList"></dag>
     </div>
   </div>
 </template>
@@ -54,6 +54,7 @@
       let generalMarket = {};
       let blockList = [];
       let transactionList = [];
+      let dagTransactionList = [];
       let chartData = {};
       let chartSettings = {};
       try {
@@ -93,10 +94,17 @@
       }catch(err) {
         console.log(err);
       }
+      try {
+        let graphTransactionObj = await transaction.getGraphList();
+        dagTransactionList = graphTransactionObj.transactionList;
+      }catch(err) {
+        console.log(err);
+      }
       
       return {
         blockList,
         transactionList,
+        dagTransactionList,
         generalDetail,
         generalMarket,
         chartData,
@@ -105,6 +113,7 @@
     },
     mounted() {
       this.getTop10List();
+      this.getGraphList();
     },
     data() {
       return {
@@ -113,6 +122,7 @@
         preBlockList: [],
         transactionList: [],
         preTransactionList: [],
+        dagTransactionList: [],
         generalDetail: null,
         preGeneralDetail: null,
         count: 0,
@@ -122,6 +132,9 @@
     destroyed() {
       if (this.interval) {
         myClearInterval(this.interval);
+      }
+      if (this.gInterval) {
+        myClearInterval(this.gInterval);
       }
     },
     methods: {
@@ -165,6 +178,15 @@
           this.getGeneralDetail();
         }, 1000);
         
+      },
+      getGraphList() {
+        this.gInterval = mySetInterval(() => {
+          transaction.getGraphList().then(data => {
+            this.dagTransactionList = data.transactionList;
+          }).catch(err => {
+            console.log(err);
+          });
+        }, 15000);
       }
     }
   };

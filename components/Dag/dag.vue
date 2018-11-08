@@ -47,7 +47,7 @@ const colors = ["#FFC313", "#F79F1E", "#EE5B24", "#EA2026"
   , "#1289A7", "#0552DD", "#1B1464", "#FDA7DF", "#D980FA"
   , "#9980FA", "#5658BB", "#ED4C67", "#B53471", "#833471", "#6F1E51"];
 
-const MAX_NODE = 200;
+// const MAX_NODE = 1000;
 const DEFAULT_ZOOM = 0.3;
 const ZOOM_BALANCE = 0.1;
 
@@ -93,11 +93,12 @@ export default {
     return {
       echarsInstance: null,
       nodes: [],
-      preList: [],
+      //preList: [],
       nodeLinks: [],
       drawTxList:[],
       addressColors:{},
       setZoom: false,
+      needResetZoom: false,
       zoomValue: DEFAULT_ZOOM
     };
   },
@@ -107,6 +108,7 @@ export default {
     }
   },
   mounted() {
+    // this.draw();
     this.fetchList();
     document.addEventListener("fullscreenchange", this.handleFullscreen);
     document.addEventListener("webkitfullscreenchange", this.handleFullscreen);
@@ -117,7 +119,7 @@ export default {
     handleFullscreen() {
       this.echarsInstance.resize("100%", "100%");
       this.echarsInstance.clear();
-      this.setDefaultZoom();
+      // this.setDefaultZoom();
       this.draw();
     },
     toggleFullscreen() {
@@ -133,6 +135,7 @@ export default {
       }
     },
     togglePlus() {
+      this.needResetZoom = false;
       this.zoomValue = this.zoomValue + ZOOM_BALANCE;
       this.seriesOptions.zoom = this.zoomValue;
       this.setZoom = true;
@@ -140,20 +143,18 @@ export default {
     },
     toggleMinus() {
       if (this.zoomValue > ZOOM_BALANCE) {
+        this.needResetZoom = false;
         this.zoomValue = this.zoomValue - ZOOM_BALANCE;
         this.seriesOptions.zoom = this.zoomValue;
         this.setZoom = true;
         this.draw();
       }
     },
-    fetchList(currentIndex = 1) {
-      this.pageIndex = currentIndex;
-      transaction.getList({
-        pageIndex: currentIndex,
-        pageSize: 100
-      }).then(({ transactionList }) => {
+    fetchList() {
+      transaction.getGraphList().then(({ transactionList }) => {
         this.drawTxList = transactionList;
-        this.setDefaultZoom();
+        // this.setDefaultZoom();
+        this.needResetZoom = true;
         this.draw();
       }).catch((err) => {
         this.$message.error(err.msg || "get transList failed");
@@ -175,15 +176,15 @@ export default {
       //     }
       //   });
       // });
-      this.list.forEach(element => {
-        if (!this.drawTxList.find(e => e.hash === element.hash)) {
-          this.drawTxList.push(element);
-        }
-      });
+      // this.list.forEach(element => {
+      //   if (!this.drawTxList.find(e => e.hash === element.hash)) {
+      //     this.drawTxList.push(element);
+      //   }
+      // });
 
-      if (this.drawTxList.length > MAX_NODE) {
-        this.drawTxList = this.drawTxList.slice(this.drawTxList.length - MAX_NODE);
-      }
+      // if (this.drawTxList.length > MAX_NODE) {
+      //   this.drawTxList = this.drawTxList.slice(this.drawTxList.length - MAX_NODE);
+      // }
     },
     dispatchAddressColor() {
       let i = 0;
@@ -243,27 +244,28 @@ export default {
       },
       defaultSeriesOptions
       );
-      this.setZoom = true;
     },
     clear() {
       this.echarsInstance.clear();
     },
     draw() {
-      this.mergeNewTxList();
+      // this.mergeNewTxList();
       this.generateNode();
       this.generateNodeLinks();
       this.echarsInstance = echarts.init(document.getElementById("main"));
       let lang = "";
       this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
-      if (!this.setZoom) {
-        this.seriesOptions = Object.assign({
-          data: this.nodes,
-          links: this.nodeLinks
-        },
-        defaultSeriesOptions
-        );
+      this.seriesOptions = Object.assign({
+        zoom:  this.zoomValue ,
+        data: this.nodes,
+        links: this.nodeLinks
+      },
+      defaultSeriesOptions
+      );
+
+      if (this.needResetZoom) {
+        this.setDefaultZoom();
       }
-      this.setZoom = false;
       this.echarsInstance.setOption({
         tooltip: {
           backgroundColor: "#fff",

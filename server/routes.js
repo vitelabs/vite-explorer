@@ -24,8 +24,10 @@ const defaultBlockData = {
 const router = new Router();
 var txData = defaultTxData;
 var blockData = defaultBlockData;
+var graphData = defaultTxData;
 
 var myInterval = null;
+var graphInterval = null;
 
 if (myInterval) {
   myClearInterval(myInterval);
@@ -40,11 +42,59 @@ myInterval = mySetInterval(async function() {
       }
     }
   };
-  blockData = defaultTxData; 
+  blockData = defaultBlockData; 
   txData = defaultTxData;
   blockData = await getBlockList(requestBody);
   txData = await getTransactionList(requestBody);
 }, 1000);
+
+if (graphInterval) {
+  myClearInterval(graphInterval);
+}
+graphInterval = mySetInterval(async function() {
+  graphData = defaultTxData;
+  graphData = await getGraphList();
+}, 15000);
+
+async function getGraphList() {
+  let result = await post("/accountchain/blocklistgraph", {});
+  let body = result.data || {
+    code: 5000,
+    msg: "Server Error"
+  };
+
+  if (body.code !== 0) {
+    graphData = body;
+    return graphData;
+  }
+  let rawTransactionList = body.data.blockList || [];
+  let transactionList = [];
+  rawTransactionList.forEach((transaction) => {
+    transactionList.push({
+      ...transaction,
+      shortHash: toShort(transaction.hash),
+      amount: handleBigNum(transaction.amount, transaction.token && transaction.token.decimals || 0, true),
+      shortAccountAddress: toShort(transaction.accountAddress),
+      shortFrom: toShort(transaction.from),
+      shortTo: toShort(transaction.to),
+      confirmBlockHash: transaction.confirmBlockHash || null,
+      shortConfirmBlockHash: toShort(transaction.confirmBlockHash) || null,
+      tokenName: transaction.token && transaction.token.name || "",
+      tokenSymbol: transaction.token && transaction.token.symbol || "",
+      tokenId: transaction.token && transaction.token.id || null,
+      decimals: transaction.token && transaction.token.decimals || 0
+    });
+  });
+
+  rawTransactionList = [];
+  body.data = {
+    transactionList,
+    totalNumber: +body.data.totalNumber,
+    pageTotalNumber: +body.data.pageTotalNumber || 0
+  };
+  graphData = body;
+  return graphData;
+}
 
 async function getBlockList(ctx) {
   let result = await post("/snapshotchain/blocklist", ctx.request.body);
@@ -141,6 +191,14 @@ export default () => {
 
   router.post("/api/block/list", async (ctx) => {
     ctx.body = await getBlockList(ctx);
+  });
+
+  router.post("/api/transaction/graph/list", async (ctx) => {
+    if (graphData.data && !graphData.data.transactionList.length) {
+      ctx.body = await getGraphList();
+    } else {
+      ctx.body = graphData;
+    }
   });
   
   router.post("/api/transaction/list/topTx10", async (ctx) => {
