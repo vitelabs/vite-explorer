@@ -155,6 +155,7 @@ module.exports = {
   }, {
     prop: "amount",
     name: "数量",
+    width: "130"
   }],
   addedTitle: [{
     prop: "tokenName",

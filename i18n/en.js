@@ -131,7 +131,7 @@ module.exports = {
   }, {
     prop: "blockType",
     name: "Type",
-    width: 293
+    width: 192
   }, {
     prop: "status",
     name: "Status",
@@ -159,7 +159,7 @@ module.exports = {
   }, {
     prop: "amount",
     name: "Amount",
-    width: "98"
+    width: "130"
   }],
   addedTitle: [{
     prop: "tokenName",
@@ -195,13 +195,13 @@ module.exports = {
       label: "Get TPS Quota",
       value: 7
     }, {
-      label: "Withdrawal of staked tokens for TPS quota",
+      label: "Withdraw Stake for Quota",
       value: 8
     }, {
       label: "Token Forging",
       value: 9
     }, {
-      label: "Withdrawal of staked tokens for forging",
+      label: "Withdraw Stake for Forging",
       value: 10
     }],
     status: [{
