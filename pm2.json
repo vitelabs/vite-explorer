@@ -16,7 +16,7 @@
     },
     "env_production": {
       "NODE_ENV": "production",
-      "BASE_URL": "http://172.19.16.13/api"
+      "BASE_URL": "http://150.109.32.175:8080/api"
     }
   }]
 }
