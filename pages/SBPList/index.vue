@@ -64,13 +64,14 @@
       },
       nodeData() {
         let list = [];
-        this.nodeList && this.nodeList.forEach((node,index) => {
+        this.nodeList && this.nodeList.forEach((node) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           
           list.push({
             ...node,
-            status: index < 25 ? `<span title="Snapshot Block Producer">${node.status}</span>` : `<span title="Block Producer">${node.status}</span>`,
+            bwStatus: node.status,
+            status: node.status === "SBP" ? `<span title="Snapshot Block Producer">${node.status}</span>` : `<span title="Snapshot Block Producer Candidate">${node.status}</span>`,
             producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
           });
         });

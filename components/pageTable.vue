@@ -136,9 +136,9 @@
       }
     },
     methods: {
-      tableRowClassName({rowIndex}) {
+      tableRowClassName({row}) {
         if (this.isSbpPage) {
-          if (rowIndex < 25) {
+          if (row.bwStatus === "SBP") {
             return "success-row";
           } 
         }
