@@ -50,8 +50,6 @@
     computed: {
       showTransactionDetail() {
         let tokenName = this.transactionDetail.tokenSymbol;
-        let fromAddr = this.transactionDetail.fromHash ? this.transactionDetail.from : this.transactionDetail.accountAddress;
-        let toAddr = this.transactionDetail.fromHash ? this.transactionDetail.accountAddress : this.transactionDetail.to;
         moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
         let timestamp = moment(this.transactionDetail.timestamp * 1000).fromNow();
         return {
@@ -61,8 +59,8 @@
           confirmTimes: this.transactionDetail.confirmTimes,
           snapshotBlockHash: this.transactionDetail.confirmBlockHash,
           timestamp,
-          from: fromAddr,
-          to: toAddr,
+          from: this.transactionDetail.from,
+          to: this.transactionDetail.to,
           tokenName: tokenName,
           amount: this.transactionDetail.amount ?
             `${this.transactionDetail.amount}` : "",
