@@ -79,7 +79,7 @@ module.exports = {
     content2: "Preview Version V3 provides SBPs list, SBPs(Snapshot Block Producer) are nodes who produce snapshot blocks in Vite system.",
     govite: {
       current: "go-vite Version",
-      v: "0.1.0"
+      v: "1.0.0"
     }
   },
 

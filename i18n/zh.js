@@ -75,7 +75,7 @@ module.exports = {
     content2: "预览版V3新增SBP列表，SBPs（Snapshot Block Producer）为Vite系统中打包快照块的节点。",
     govite: {
       current: "go-vite 版本",
-      v: "0.1.0"
+      v: "1.0.0"
     }
   },
 
