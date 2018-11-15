@@ -479,26 +479,14 @@ export default () => {
   router.get("/api/search/tokenNameOrSymbol", async (ctx) => {
     try {
       console.log("/api/search/tokenNameOrSymbol:"+ ctx.query.str);
-      let nameResult = await get("/token/detail", { tokenName: ctx.query.str });
       let symbolResult= await get("/token/detail", { tokenSymbol: ctx.query.str });
-
-      let tokenNameList = [];
       let tokenSymbolList = [];
 
-      if (nameResult.data.code === 0) {
-        tokenNameList = nameResult.data.data.tokenList || [];
-      }
       if (symbolResult.data.code === 0) {
         tokenSymbolList = symbolResult.data.data.tokenList || [];
       }
 
-      let tokenList = tokenNameList.concat(tokenSymbolList) || [];
-      if (tokenNameList.length === 1 && !tokenSymbolList.length) {
-        tokenList = tokenNameList;
-      }
-      if (tokenSymbolList.length === 1 && !tokenNameList.length) {
-        tokenList = tokenSymbolList;
-      }
+      let tokenList = tokenSymbolList || [];
       return ctx.body = {
         code: 0,
         data: tokenList,
