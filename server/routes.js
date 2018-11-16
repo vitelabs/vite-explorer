@@ -408,25 +408,15 @@ export default () => {
 
       let transaction = body.data || {};
       transaction = {
-        hash: transaction.hash,
+        ...transaction,
         amount: handleBigNum(transaction.amount, transaction.token && transaction.token.decimals || 0),
-        from: transaction.from,
-        to: transaction.to,
-        accountAddress: transaction.accountAddress,
-        fromHash: transaction.fromHash,
-        status: transaction.status,
-        timestamp: transaction.timestamp,
-        confirmTimes: transaction.confirmTimes,
-        snapshotTimestamp: transaction.snapshotTimestamp,
         tokenName: transaction.token && transaction.token.name,
         tokenSymbol: transaction.token && transaction.token.symbol || "",
         tokenId: transaction.token && transaction.token.id,
-        fAmount: transaction.fAmount,
         decimals: transaction.token && transaction.token.decimals || 0,
-        confirmBlockHash: transaction.confirmBlockHash,
-        data: transaction.data
       };
       body.data = transaction;
+      console.log(JSON.stringify(body.data));
       ctx.body = body;
     } catch(err) {
       console.log(err);

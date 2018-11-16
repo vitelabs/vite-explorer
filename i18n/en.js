@@ -391,6 +391,8 @@ module.exports = {
   },
   transactionDetailMap: {
     hash: "Transaction Hash",
+    fromHash: "Request Hash",
+    toHash: "Response Hash",
     type: "Transaction Type",
     status: "Transaction Status",
     confirmTimes: "Confirmations",
@@ -476,6 +478,7 @@ module.exports = {
   },
 
   pie: "Holding Amount:",
+  responseHash: "Waiting for response transaction",
 
   // Head titles of all pages
   head: {

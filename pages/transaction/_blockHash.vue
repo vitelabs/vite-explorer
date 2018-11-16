@@ -52,8 +52,8 @@
         let tokenName = this.transactionDetail.tokenSymbol;
         moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
         let timestamp = moment(this.transactionDetail.timestamp * 1000).fromNow();
-        return {
-          hash: this.transactionDetail.hash,
+
+        let commonObj = {
           type: this.transactionDetail.fromHash ? this.$t("transaction.receive") : this.$t("transaction.send"),
           status: ["unkown", "open", "closed"][this.transactionDetail.status],
           confirmTimes: this.transactionDetail.confirmTimes,
@@ -66,6 +66,18 @@
             `${this.transactionDetail.amount}` : "",
           data: this.transactionDetail.data
         };
+
+        if (this.transactionDetail.fromHash) {
+          return Object.assign( {
+            hash: this.transactionDetail.hash,
+            fromHash: this.transactionDetail.fromHash || null,
+          },commonObj);
+        } else {
+          return Object.assign({
+            hash: this.transactionDetail.hash,
+            toHash: this.transactionDetail.toHash || null,
+          }, commonObj);
+        }
       },
       list() {
         const transactionDetailMap = this.$t("transactionDetailMap");
@@ -73,7 +85,7 @@
         let list = [];
         let lang;
         this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
-        for(let key in transactionDetailMap) {
+        for(let key in this.showTransactionDetail) {
           let item = {
             name: transactionDetailMap[key],
             describe: this.showTransactionDetail[key] || "--"
@@ -85,6 +97,11 @@
           case "from":
           case "to":
             item.link = `${lang}/account/${this.showTransactionDetail[key]}`;
+            break;
+          case "fromHash":
+          case "toHash":
+            item.link = this.showTransactionDetail[key] ? `${lang}/transaction/${this.showTransactionDetail[key]}` : null;
+            item.describe = this.showTransactionDetail[key] || this.$t("responseHash");
             break;
           case "tokenName":
             item.link = this.transactionDetail.tokenId ? `${lang}/token/${this.transactionDetail.tokenId}` : null;

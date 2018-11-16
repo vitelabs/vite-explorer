@@ -392,6 +392,8 @@ module.exports = {
   },
   transactionDetailMap: {
     hash: "交易Hash",
+    fromHash: "Request交易Hash",
+    toHash: "Response交易Hash",
     type: "交易类型",
     status: "交易状态",
     confirmTimes: "确认数",
@@ -475,6 +477,7 @@ module.exports = {
   },
 
   pie: "持有量：",
+  responseHash: "正在等待response",
 
   // Head titles of all pages
   head: {
