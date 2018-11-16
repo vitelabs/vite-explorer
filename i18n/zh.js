@@ -249,7 +249,7 @@ module.exports = {
     height: "快照块高度",
     age: "快照块年龄",
     accountNum: "被快照账户数",
-    transactionCount: "快照交易数",
+    transactionCount: "被快照交易数",
     hash: "快照块Hash",
     producer: "快照节点",
   },
