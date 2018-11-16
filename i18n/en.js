@@ -5,7 +5,7 @@ module.exports = {
   // components/Home
   profile: {
     title: "Profile",
-    market: "Market value of VITE",
+    market: "Market cap of VITE",
     tps: "System TPS",
     price: "Current price of VITE",
     totalTrans: "Transactions",
@@ -38,7 +38,7 @@ module.exports = {
   dag: {
     send: "Request Transaction",
     receive: "Response Transaction",
-    arrow: "Represents dependency relationship, next Tx points to last Tx on the same account chain, response Tx points to request Tx"
+    arrow: "Represents dependency relationship. A Tx links to its previous Tx on the same account chain, and request Tx is referenced by response Tx"
   },
 
 
@@ -62,7 +62,7 @@ module.exports = {
   }],
   addedAccTitles: [{
     prop: "countNum",
-    name: "Transaction Times"
+    name: "Transactions"
   }],
 
 
@@ -73,10 +73,10 @@ module.exports = {
 
   // Version attached description
   logo: {
-    v: "Preview Version",
+    v: "Version 1.0.0",
     current: "Current Version",
-    content1: "Vite's block explorer is a website for searching comprehensive information about Vite. Now, it supports searching by transactions, snapshot blocks, tokens, SBPs, accounts, presenting related information; it also provides statistics information, transactions filter and sort.",
-    content2: "Preview Version V3 provides SBPs list, SBPs(Snapshot Block Producer) are nodes who produce snapshot blocks in Vite system.",
+    content1: "Vite's block explorer is a website for searching comprehensive information about Vite. Now, it supports searching by transactions, snapshot blocks, tokens, SBPs, accounts and presents related information; it also provides statistics information, transactions filter and sorting.",
+    content2: "Version 1.0.0 introduces SBPs list. SBPs(Snapshot Block Producer) are nodes who produce snapshot blocks in Vite system.",
     govite: {
       current: "go-vite Version",
       v: "1.0.0"
@@ -117,9 +117,9 @@ module.exports = {
 
   // components/transList.vue
   transList: {
-    title: "Total amount of transactions：",
+    title: "Total transactions：",
     label: "Transactions",
-    time: "Latest Updating at:"
+    time: "Latest Updated at:"
   },
   transTitles: [{
     prop: "hash",
@@ -138,7 +138,7 @@ module.exports = {
     width: "85"
   }, {
     prop: "snapshotTimestamp",
-    name: "First Snapshot",
+    name: "Snapshotted by",
     width: "130"
   }, {
     prop: "timestamp",
@@ -158,7 +158,7 @@ module.exports = {
     width: "160"
   }, {
     prop: "amount",
-    name: "Amount",
+    name: "Quantity",
     width: "130"
   }],
   addedTitle: [{
@@ -229,17 +229,17 @@ module.exports = {
   account: {
     title: "Account Details",
     accHash: "Address",
-    accType: "Types of Tokens Held by Account",
-    accToken: "Tokens Held by Account",
+    accType: "Types of Tokens Held",
+    accToken: "Tokens Held",
     token: "Token",
-    bAmount: "Balance Amount",
+    bAmount: "Balance Quantity",
     bValue: "Balance Value",
     tNum: "Number of Transactions",
-    allToken: "All Token Valuation",
+    allToken: "Total Value",
     filterInput: "Filtered By",
     quota: "TPS Quota",
     blockPercent: "Percentage",
-    blockAward: "Awards"
+    blockAward: "Rewards"
   },
   SBP: {
     label: "Snapshot Block List"
@@ -252,10 +252,10 @@ module.exports = {
   blockDetailMap: {
     height: "Snapshot Block Height",
     age: "Snapshot Block Age",
-    accountNum: "Number of Account",
-    transactionCount: "Number of Transaction",
+    accountNum: "Number of Accounts Snapshotted",
+    transactionCount: "Number of Transaction Snapshotted",
     hash: "Snapshot Block Hash",
-    producer: "Snapshot Node",
+    producer: "SBP Address",
   },
 
 
@@ -269,17 +269,17 @@ module.exports = {
   },
   blockTitles: [{
     prop: "height",
-    name: "Snapshot Height",
+    name: "Height",
   }, {
     prop: "age",
-    name: "Snapshot Age",
+    name: "Age",
   }, {
     prop: "accountNum",
-    name: "Snapshot Accounts",
+    name: "Accounts Snapshotted",
 
   }, {
     prop: "producer",
-    name: "Snapshot Node",
+    name: "SBP Address",
 
   }, {
     prop: "hash",
@@ -287,7 +287,7 @@ module.exports = {
   }],
   addedBlockTitles: [{
     prop: "award",
-    name: "Awards"
+    name: "Rewards"
   }],
 
   // pages/searchError
@@ -302,9 +302,9 @@ module.exports = {
     charts: "Token Holders Chart",
   },
   tokenDetailMap: {
-    accountNum: "Number of Holders",
-    totalSupply: "Forging Totals",
-    owner: "Forging Address",
+    accountNum: "Holders",
+    totalSupply: "Total Supply",
+    owner: "Issuer",
     transactionNumber: "Transactions",
     decimals: "Decimals"
   },
@@ -313,7 +313,7 @@ module.exports = {
   // pages/tokenList
   tokenList: {
     title: "Tokens",
-    total: "Token types:",
+    total: "Total Tokens:",
   },
   tokenTitles: [{
     prop: "icon",
@@ -328,13 +328,13 @@ module.exports = {
     name: "Price",
   }, {
     prop: "upDown",
-    name: "Up & Down",
+    name: "Price Change",
   }, {
     prop: "transPrice",
-    name: "Transaction Amount",
+    name: "Volume(24h)",
   }, {
     prop: "famc",
-    name: "Circulation Market Value",
+    name: "Market Cap",
     width: "190"
   }],
 
@@ -396,19 +396,19 @@ module.exports = {
     type: "Transaction Type",
     status: "Transaction Status",
     confirmTimes: "Confirmations",
-    snapshotBlockHash: "First Snapshot Block",
+    snapshotBlockHash: "Firstly Snapshotted by",
     timestamp: "Timestamp",
     from: "From",
     to: "To",
     tokenName: "Token",
-    amount: "Amount",
-    data: "Attachments"
+    amount: "Quantity",
+    data: "Input Data"
   },
 
   // pages/superNode
   superNode: {
     title: "SBP List",
-    total: "Total amount of SBP:"
+    total: "Total SBPs:"
   },
   nodeTitles: [{
     prop: "rank",
@@ -416,23 +416,23 @@ module.exports = {
     width: 60
   }, {
     prop: "nodeName",
-    name: "Node name"
+    name: "Name"
   }, {
     prop: "status",
     name: "Status"
   }, {
     prop: "voteNum",
-    name: "Poll"
+    name: "Votes"
   }, {
     prop: "produceRatio",
-    name: "Percentage"
+    name: "Ratio"
   }, {
     prop: "expectNum",
-    name: "Predicting Block",
+    name: "Forged",
     width: 150
   }, {
     prop: "factNum",
-    name: "Generated Block",
+    name: "Hit",
     width: 150
   }, {
     prop: "missNum",
@@ -448,7 +448,7 @@ module.exports = {
     title: "Chart of Holders",
     c1: "Holders",
     c2: "Select Please",
-    info: "{tokenName} top {value} holders",
+    info: "{tokenName} Top {value} Holders",
     info2: "Top {value} holders contain {percent} (from a total of {totalNum} holders) of {tokenName} in total",
     c8: "Total Supply:",
     c0: "Holders in Total:",
