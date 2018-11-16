@@ -391,8 +391,8 @@ module.exports = {
   },
   transactionDetailMap: {
     hash: "Transaction Hash",
-    fromHash: "Request Hash",
-    toHash: "Response Hash",
+    fromHash: "Request Transaction Hash",
+    toHash: "Response Transaction Hash",
     type: "Transaction Type",
     status: "Transaction Status",
     confirmTimes: "Confirmations",
