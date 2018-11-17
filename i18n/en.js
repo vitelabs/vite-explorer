@@ -142,7 +142,7 @@ module.exports = {
     width: "130"
   }, {
     prop: "timestamp",
-    name: "Timestamp",
+    name: "Age",
     width: "120"
   }, {
     prop: "confirmTimes",
@@ -229,11 +229,11 @@ module.exports = {
   account: {
     title: "Account Details",
     accHash: "Address",
-    accType: "Types of Tokens Held",
-    accToken: "Tokens Held",
+    accType: "Tokens",
+    accToken: "",
     token: "Token",
-    bAmount: "Balance Quantity",
-    bValue: "Balance Value",
+    bAmount: "Balance",
+    bValue: "Value",
     tNum: "Number of Transactions",
     allToken: "Total Value",
     filterInput: "Filtered By",
@@ -297,7 +297,7 @@ module.exports = {
 
   // pages/token
   token: {
-    aLabel: "Accounts",
+    aLabel: "Holders",
     tLabel: "Transactions",
     charts: "Token Holders Chart",
   },
@@ -328,7 +328,7 @@ module.exports = {
     name: "Price",
   }, {
     prop: "upDown",
-    name: "Price Change",
+    name: "%Change",
   }, {
     prop: "transPrice",
     name: "Volume(24h)",
@@ -349,19 +349,19 @@ module.exports = {
       },
       1: {
         name: "Registration",
-        title: "Register to become a SBP candidate "
+        title: "Register SBP"
       },
       2: {
         name: "Registration Update",
-        title: "Update SBP registration information"
+        title: "Update SBP registration"
       },
       3: {
         name: "Registration Cancellation",
-        title: "Cancel to register SBP"
+        title: "Cancel SBP Registration"
       },
       4: {
         name: "Rewards Claim",
-        title: "Claim producer Rewardss"
+        title: "Claim Mining Rewards"
       },
       5: {
         name: "Vote",
@@ -397,7 +397,6 @@ module.exports = {
     status: "Transaction Status",
     confirmTimes: "Confirmations",
     snapshotBlockHash: "Firstly Snapshotted by",
-    timestamp: "Timestamp",
     from: "From",
     to: "To",
     tokenName: "Token",
