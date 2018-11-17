@@ -397,6 +397,7 @@ module.exports = {
     status: "Transaction Status",
     confirmTimes: "Confirmations",
     snapshotBlockHash: "Firstly Snapshotted by",
+    timestamp: "Age",
     from: "From",
     to: "To",
     tokenName: "Token",
