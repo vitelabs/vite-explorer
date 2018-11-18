@@ -428,7 +428,7 @@ module.exports = {
     name: "Ratio"
   }, {
     prop: "expectNum",
-    name: "Forged",
+    name: "Target",
     width: 150
   }, {
     prop: "factNum",
