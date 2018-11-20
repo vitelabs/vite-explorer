@@ -69,10 +69,10 @@ module.exports = {
 
   // Version attached description
   logo: {
-    v: "预览版",
+    v: "版本1.0.0",
     current: "当前版本",
     content1: "Vite区块浏览器是查询Vite综合信息的网站，目前支持交易、快照块、代币、SBP、账户的查询及相关信息展示;支持统计信息展示，交易的筛选、排序等功能。",
-    content2: "预览版V3新增SBP列表，SBPs（Snapshot Block Producer）为Vite系统中打包快照块的节点。",
+    content2: "1.0.0新增SBP列表，SBPs（Snapshot Block Producer）为Vite系统中打包快照块的节点。",
     govite: {
       current: "go-vite 版本",
       v: "1.0.0"
@@ -248,8 +248,8 @@ module.exports = {
   blockDetailMap: {
     height: "快照块高度",
     age: "快照块年龄",
-    accountNum: "快照账户数",
-    transactionCount: "快照交易数",
+    accountNum: "被快照账户数",
+    transactionCount: "被快照交易数",
     hash: "快照块Hash",
     producer: "快照节点",
   },
@@ -271,7 +271,7 @@ module.exports = {
     name: "快照块年龄",
   }, {
     prop: "accountNum",
-    name: "快照账户数",
+    name: "被快照账户数",
 
   }, {
     prop: "producer",
