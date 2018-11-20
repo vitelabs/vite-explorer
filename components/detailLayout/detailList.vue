@@ -4,7 +4,7 @@
       <slot name="header"></slot>
     </div>
     <div class="row" v-for="(item, index) in list" :key="index">
-      <span class="name">{{item.name}}：</span>
+      <span class="name">{{item.name}}<span v-if="item.name">：</span></span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
       <span class="value" v-if="!item.link && !item.list">
         <div v-if="item.key === 'address' && item.sbpType" class="address">
