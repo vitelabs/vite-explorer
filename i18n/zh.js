@@ -399,8 +399,8 @@ module.exports = {
     confirmTimes: "确认数",
     snapshotBlockHash: "首次快照块",
     timestamp: "时间戳",
-    from: "接收方地址",
-    to: "发出方地址",
+    from: "发出方地址",
+    to: "接收方地址",
     tokenName: "Token",
     amount: "数额",
     data: "附带的文本资料"
