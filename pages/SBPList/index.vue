@@ -71,6 +71,8 @@
           list.push({
             ...node,
             status: node.status,
+            voteAward: node.voteAward + " VITE",
+            superNodeAward:  node.superNodeAward + " VITE",
             producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
           });
         });

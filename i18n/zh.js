@@ -440,6 +440,12 @@ module.exports = {
     prop: "producerAddress",
     name: "出块地址",
     width: 160
+  }, {
+    prop: "voteAward",
+    name: "投票奖励"
+  }, {
+    prop: "superNodeAward",
+    name: "出块奖励"
   }],
 
   // pages/tokenAccount
