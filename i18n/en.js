@@ -416,10 +416,12 @@ module.exports = {
     width: 60
   }, {
     prop: "nodeName",
-    name: "Name"
+    name: "Name",
+    width: 100
   }, {
     prop: "status",
-    name: "SBP Status"
+    name: "SBP Status",
+    width: 100
   }, {
     prop: "voteNum",
     name: "Votes"
@@ -443,10 +445,12 @@ module.exports = {
     width: 160
   }, {
     prop: "voteAward",
-    name: "Vote Award"
+    name: "Vote Award",
+    width: 100
   }, {
     prop: "superNodeAward",
-    name: "SuperNode Award"
+    name: "SuperNode Award",
+    width: 100
   }],
 
   // pages/tokenAccount
