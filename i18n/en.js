@@ -419,7 +419,7 @@ module.exports = {
     name: "Name"
   }, {
     prop: "status",
-    name: "Status"
+    name: "SBP Status"
   }, {
     prop: "voteNum",
     name: "Votes"
