@@ -152,6 +152,7 @@
       justify-content: space-between;
       box-sizing: border-box;
       padding: 6px 6px 6px 16px;
+      
       .timestamp {
         margin-top: 25px;
         font-size: 12px;
@@ -160,6 +161,8 @@
         text-align: right;
         line-height: 16px;
       }
+
+      
       
       .height {
         width: 71px;
@@ -176,6 +179,25 @@
           color: $common-color;
           letter-spacing: 0;
           line-height: 25px;
+        }
+      }
+    }
+    @media only screen and (min-width: 320px) and (max-width: 767px) {
+      .snapshot-item-left {
+        width: 100px;
+        flex-wrap: wrap;
+        .timestamp {
+          margin-top: 5px;
+          font-size: 12px;
+          color: #5E6875;
+          letter-spacing: 0;
+          text-align: right;
+          line-height: 16px;
+        }
+        .height {
+          .height-value {
+            margin-top: 5px; 
+          }
         }
       }
     }
@@ -198,6 +220,20 @@
         font-weight: 450;
       }
     }
+    @media only screen and (min-width: 320px) and (max-width: 767px) {
+      .snapshot-item-right {
+        margin-left: 10px;
+        .producer {
+          .producer-value {
+            display: block;
+          }
+        }
+        .pack {
+          margin-top: 10px; 
+        }
+      }
+    }
   }
 }
+
 </style>

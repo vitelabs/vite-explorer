@@ -138,7 +138,7 @@
     methods: {
       tableRowClassName({row}) {
         if (this.isSbpPage) {
-          if (row.bwStatus === "SBP") {
+          if (row.status === "Active") {
             return "success-row";
           } 
         }

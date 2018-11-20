@@ -183,7 +183,7 @@ module.exports = {
       label: "Registration Cancellation",
       value: 3
     }, {
-      label: "Rewards Claim",
+      label: "Retrieval of Rewards",
       value: 4
     }, {
       label: "Vote",
@@ -360,8 +360,8 @@ module.exports = {
         title: "Cancel SBP Registration"
       },
       4: {
-        name: "Rewards Claim",
-        title: "Claim Mining Rewards"
+        name: "Retrieve Rewards",
+        title: "Retrieval of Rewards"
       },
       5: {
         name: "Vote",
@@ -369,7 +369,7 @@ module.exports = {
       },
       6: {
         name: "Undo Vote",
-        title: "Cancel the latest vote"
+        title: "Revoke latest vote"
       },
       7: {
         name: "Get TPS Quota",

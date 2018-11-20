@@ -70,8 +70,7 @@
           
           list.push({
             ...node,
-            bwStatus: node.status,
-            status: node.status === "SBP" ? `<span title="Snapshot Block Producer">${node.status}</span>` : `<span title="Snapshot Block Producer Candidate">${node.status}</span>`,
+            status: node.status,
             producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
           });
         });

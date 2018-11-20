@@ -30,7 +30,7 @@
             <el-tooltip class="item" effect="dark" :content="$t('profile.blockTime') " placement="right-end">
               <div>
                 <span class="height-value" :class="chainHeightAnimate ? 'animated fadeIn': ''">{{ generalDetail.chainHeight }}</span>
-                <span>({{ generalDetail.avgTime }}s)</span>
+                <span class="avg-time">({{ generalDetail.avgTime }}s)</span>
               </div>
             </el-tooltip>
           </div>
@@ -262,7 +262,7 @@
   /** iPhone **/
   @media only screen and (min-width: 320px) and (max-width: 767px) {
     .vite-profile {
-      padding: 25px 20px 21px 20px;
+      padding: 25px 20px 21px 18px;
       .title {
         line-height: 14px;
       }
@@ -281,10 +281,10 @@
           span {
             display: inline-block;
             margin-top: 25px;
-            font-size: 36px;
+            font-size: 32px;
             line-height: 30px;
             &.noData {
-              font-size: 34px;
+              font-size: 28px;
             }
           }
         }
@@ -297,10 +297,18 @@
           box-sizing: border-box;
           padding: 15px 16px 9px 15px;
           span {
-            font-size: 36px;
+            font-size: 16px;
             letter-spacing: 0;
+            &.height-value {
+              display: inline-block;
+              margin-top: 20px;
+              font-size: 32px;
+            }
+            &.avg-time {
+              display: block;
+            }
             &.noData {
-              font-size: 36px;
+              font-size: 32px;
             }
           }
         }
