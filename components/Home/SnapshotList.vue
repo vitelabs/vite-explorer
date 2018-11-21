@@ -25,9 +25,9 @@
         <div class="snapshot-item-right">
           <div class="producer">
             <span class="producer-text">{{ $t('snapshotList.node')}}：</span> 
-            <span class="producer-value" :title="`${item.producer }`">{{ item.shortProducer }}</span>
+            <span class="producer-value"><nuxt-link :to="`${locales}/SBPDetail/${item.superNodeName}`" target="_blank">{{ item.superNodeName }}</nuxt-link></span>
           </div>
-          <div class="pack">{{ $t('snapshotList.pack')}} {{ item.accountNum }} {{ $t('snapshotList.account') }}</div>
+          <div class="pack">{{ $t('snapshotList.pack')}} {{ item.transactionCount }} {{ $t('snapshotList.account') }}</div>
         </div>
       </div>
     </div>

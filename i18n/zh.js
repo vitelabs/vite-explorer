@@ -22,7 +22,7 @@ module.exports = {
     height: "快照块高度",
     node: "快照节点",
     pack: "快照",
-    account: "账户",
+    account: "笔交易",
     cost: "耗时",
     sec: "秒",
     secAgo: "秒前",
@@ -220,6 +220,31 @@ module.exports = {
     exception: "发生错误异常",
   },
 
+  // pages/SBPDetail
+  superNodeDetail: {
+    title: "节点详情"
+  },
+
+  // components/SBPAwardList
+  SBPAwardList: {
+    label: "奖励列表",
+    titles: [{
+      prop: "date",
+      name: "日期"
+    }, {
+      prop: "account",
+      name: "出块数"
+    }, {
+      prop: "blockAward",
+      name: "出块奖励"
+    }, {
+      prop: "voteAward",
+      name: "按票奖励"
+    }, {
+      prop: "totalAward",
+      name: "总奖励"
+    }]
+  },
 
   // pages/account
   account: {

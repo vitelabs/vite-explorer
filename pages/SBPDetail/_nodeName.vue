@@ -1,0 +1,111 @@
+<template>
+  <div class="account-container">
+    <div v-if="!error">
+      <detail-layout
+        :title="`${title}`"
+        :list="nodeList"
+        :is-account="true">
+        <template slot="footer-tab-content">
+          <div class="tab-wrapper">
+            <div class="tab-content" :class="{'is-active': tabParams === 'award'}">{{$t('SBPAwardList.label')}}</div>
+          </div>
+        </template>
+      </detail-layout>
+
+      <award-list v-if="tabParams === 'award'"
+        :has-title="false"
+        :producer-address="this.accountDetail.accountAddress">
+      </award-list>
+    </div>
+    <error v-else :error="error"></error>
+  </div>
+</template>
+
+<script>
+  import detailLayout from "~/components/detailLayout";
+  import error from "~/components/error";
+  import awardList from "~/components/awardList.vue";
+  import account from "~/services/account.js";
+  import node from "~/services/superNode.js";
+
+  export default {
+    head() {
+      return {
+        title: this.title
+      };
+    },
+    components: {
+      detailLayout, error, awardList
+    },
+    validate({ params }) {
+      return params.nodeName;
+    },
+    async asyncData({ params }) {
+      try {
+        let accountDetail = await account.getDetail({
+          accountAddress: params.nodeName
+        });
+        let tokenList = accountDetail.tokenList ? [{token: {symbol: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {symbol: "ALL", id: null}}];
+
+        let superNodeDetail = await node.getDetail({
+          producerAddress: params.nodeName
+        });
+        let isSBP = superNodeDetail.sbpType ? true : false;
+        return {
+          accountDetail,
+          tokenList,
+          superNodeDetail,
+          isSBP
+        };
+      } catch(err) {
+        return {
+          error: err.msg || "get account || superNodeDetail failed"
+        };
+      }
+    },
+    data() {
+      return {
+        paths: this.$route.path.split("/"),
+        title: this.$t("superNodeDetail.title"),
+        error: "",
+        accountDetail: {},
+        tokenList: [],
+        filterAccObj: null,
+        totalNumber: 0,
+        tabParams: "award"
+      };
+    },
+    created() {
+      this.accountDetail.accountAddress = this.paths[this.paths.length - 1];
+    },
+    computed: {
+      nodeList() {
+        let tokenNameList = [];
+        this.tokenList && this.tokenList.forEach((tokenDetail) => {
+          if (tokenDetail.token) {
+            let name = tokenDetail.token.symbol;
+            tokenNameList.push(name);
+          }
+        });
+        return [{
+          key: "address",
+          sbpType: this.superNodeDetail.sbpType,
+          iconList: this.superNodeDetail.sbpType === 1 ? [require("~/assets/images/sbp2.svg")] : [require("~/assets/images/sbp.svg")],
+          name: this.$t("account.accHash"),
+          describe: this.accountDetail.accountAddress
+        }, {
+          name: this.$t("account.accType"),
+          describe: tokenNameList.length ? tokenNameList.length - 1 : 0
+        }, {
+          name: this.$t("account.accToken"),
+          list: tokenNameList
+        }];
+      }
+    },
+    methods: {
+    }
+  };
+</script>
+
+<style lang="scss" rel="stylesheet/scss" scoped>
+</style>

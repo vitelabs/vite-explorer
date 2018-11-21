@@ -24,7 +24,7 @@ module.exports = {
     height: "Height",
     node: "Node",
     pack: "",
-    account: " account(s)",
+    account: " transaction(s)",
     cost: "Cost ",
     sec: " sec(s)",
     secAgo: " sec ago",
@@ -224,6 +224,31 @@ module.exports = {
     exception: "Error Exception Occurs",
   },
 
+  // pages/SBPDetail
+  superNodeDetail: {
+    title: "SuperNode Details"
+  },
+
+  // components/SBPAwardList
+  SBPAwardList: {
+    label: "奖励列表",
+    titles: [{
+      prop: "date",
+      name: "日期"
+    }, {
+      prop: "account",
+      name: "出块数"
+    }, {
+      prop: "blockAward",
+      name: "出块奖励"
+    }, {
+      prop: "voteAward",
+      name: "按票奖励"
+    }, {
+      prop: "totalAward",
+      name: "总奖励"
+    }]
+  },
 
   // pages/account
   account: {
