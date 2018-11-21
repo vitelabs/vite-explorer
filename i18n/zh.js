@@ -446,6 +446,12 @@ module.exports = {
   }, {
     prop: "superNodeAward",
     name: "出块奖励"
+  }, {
+    prop: "curVoteAward",
+    name: "今日投票奖励",
+  }, {
+    prop: "curSuperNodeAward",
+    name: "今日出块奖励",
   }],
 
   // pages/tokenAccount

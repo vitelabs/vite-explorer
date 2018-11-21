@@ -431,11 +431,9 @@ module.exports = {
   }, {
     prop: "expectNum",
     name: "Target",
-    width: 150
   }, {
     prop: "factNum",
     name: "Hit",
-    width: 150
   }, {
     prop: "missNum",
     name: "Missed"
@@ -445,12 +443,20 @@ module.exports = {
     width: 160
   }, {
     prop: "voteAward",
-    name: "Vote Award",
-    width: 100
+    name: "Voting Reward",
+    width: 120
   }, {
     prop: "superNodeAward",
-    name: "SuperNode Award",
-    width: 100
+    name: "Block Creation Reward",
+    width: 120
+  }, {
+    prop: "curVoteAward",
+    name: "Voting Reward Of Today",
+    width: 120
+  }, {
+    prop: "curSuperNodeAward",
+    name: "Block Creation Reward Of Today",
+    width: 180
   }],
 
   // pages/tokenAccount
