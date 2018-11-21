@@ -318,8 +318,8 @@ export default () => {
       result.data.data.nodeList.forEach(item=> {
         if (item.voteNum !== 0 && !item.voteNum ) item.voteNum = "";
         item.voteNum = handleBigNum(item.voteNum+"", 0 , false, true);
-        item.voteAward = handleBigNum(item.voteAward, 0 , false, true) || "0";
-        item.superNodeAward = handleBigNum(item.superNodeAward, 0 , false, true) || "0";
+        item.voteAward = handleBigNum(item.voteAward, 0 , false, true);
+        item.superNodeAward = handleBigNum(item.superNodeAward, 0 , false, true);
         item.shortProducerAddress = toShort(item.producerAddress);
       });
       ctx.body = result.data || {
