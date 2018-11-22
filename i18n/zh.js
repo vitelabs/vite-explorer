@@ -45,7 +45,7 @@ module.exports = {
   },
   accTitles: [{
     prop: "orderNum",
-    name: "排名",
+    name: "#",
     width: "70"
   }, {
     prop: "accountAddress",
@@ -413,7 +413,7 @@ module.exports = {
   },
   nodeTitles: [{
     prop: "rank",
-    name: "排名",
+    name: "#",
     width: 60
   }, {
     prop: "nodeName",
