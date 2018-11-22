@@ -6,6 +6,7 @@
         :list="accountList"
         :clickLab="clickLab"
         :is-account="true"
+        :has-filter="true"
         :extral-list="tokenDetailList"
         @getAccountAddr="getAccInputInfo"
         @changeTab="changeTab">

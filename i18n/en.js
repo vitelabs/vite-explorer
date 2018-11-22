@@ -226,7 +226,20 @@ module.exports = {
 
   // pages/SBPDetail
   superNodeDetail: {
-    title: "SuperNode Details"
+    title: "SuperNode Details",
+    nodeName: "节点名称",
+    registerTime: "注册时间",
+    registerAddress: "注册地址",
+    blockAddress: "出块地址",
+    blockNum: "出块数",
+    blockPercent: "出块率",
+    blockReward: "出块奖励",
+    voteReward: "按票奖励",
+    totalReward: "总奖励",
+    actualReward: "已发奖励",
+    downloadDetail: "下载得票明细",
+    downloadTips: "现行周期为1322，一次性可下载最多30个周期的得票明细",
+    verify: "您输入的起始周期早于注册时间所属周期，请重新输入"
   },
 
   // components/SBPAwardList

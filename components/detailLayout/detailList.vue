@@ -33,7 +33,9 @@
         <a v-if="item.innerLink" @click="changeTab">{{item.describe || '--'}}</a>
         <span v-else>{{item.describe || '--'}}</span>
       </div>
-      <filter-address @getAccountAddr="getAccInputInfo"></filter-address>
+      <no-ssr>
+        <filter-address @getAccountAddr="getAccInputInfo" v-if="hasFilter"></filter-address>
+      </no-ssr>
     </div>
     <slot name="footer"></slot>
   </div>
@@ -61,6 +63,10 @@
         default: ()=>[]
       },
       isAccount: {
+        type: Boolean,
+        default: false
+      },
+      hasFilter: {
         type: Boolean,
         default: false
       }

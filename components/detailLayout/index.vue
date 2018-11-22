@@ -7,6 +7,7 @@
       :is-token="isToken" 
       :extral-list="extralList" 
       :is-account="isAccount"
+      :has-filter="hasFilter"
       @getAccountAddr="getAccInputInfo"
       @changeTab="changeTab">
       <template slot="header">
@@ -49,6 +50,10 @@
         default: ()=>[]
       },
       isAccount: {
+        type: Boolean,
+        default: false
+      },
+      hasFilter: {
         type: Boolean,
         default: false
       }
