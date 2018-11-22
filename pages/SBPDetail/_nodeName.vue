@@ -5,7 +5,10 @@
         :title="`${title}`"
         :list="nodeList"
         :is-account="true"
-        :extral-list="nodeList">
+        :extral-list="externalNodeList">
+        <template slot="external-item">
+          <download-node-detail></download-node-detail>
+        </template>
         <template slot="footer-tab-content">
           <div class="tab-wrapper">
             <div class="tab-content" :class="{'is-active': tabParams === 'award'}">{{$t('SBPAwardList.label')}}</div>
@@ -14,7 +17,8 @@
       </detail-layout>
 
       <award-list v-if="tabParams === 'award'"
-        :has-title="false">
+        :list="rewardList"
+        :loading="loading">
       </award-list>
     </div>
     <error v-else :error="error"></error>
@@ -23,8 +27,12 @@
 
 <script>
   import detailLayout from "~/components/detailLayout";
+  import downloadNodeDetail from "~/components/downloadNodeDetail";
   import error from "~/components/error";
   import awardList from "~/components/awardList.vue";
+  import node from "~/services/superNode.js";
+  import moment from "moment";
+  import { handleBigNum } from "~/utils/util.js";
 
   export default {
     head() {
@@ -33,23 +41,23 @@
       };
     },
     components: {
-      detailLayout, error, awardList
+      detailLayout, error, awardList, downloadNodeDetail
     },
     validate({ params }) {
       return params.nodeName;
     },
-    async asyncData() {
+    async asyncData({ params }) {
       try {
-        // let superNodeDetail = await node.getDetail({
-        //   producerAddress: params.nodeName
-        // });
-        let superNodeDetail = {
-          nodeName: "hhhh"
-        };
-        let isSBP = superNodeDetail.sbpType ? true : false;
+        let loading = true;
+        let { nodeDetails, rewardList } = await node.getSuperNodeDetail({
+          nodeName: params.nodeName
+        });
+        loading = false;
+        let superNodeDetail = nodeDetails;
         return {
           superNodeDetail,
-          isSBP
+          rewardList,
+          loading
         };
       } catch(err) {
         return {
@@ -62,26 +70,52 @@
         paths: this.$route.path.split("/"),
         title: this.$t("superNodeDetail.title"),
         error: "",
-        accountDetail: {},
-        nodeList: [],
+        superNodeDetail: {},
         tabParams: "award"
       };
     },
     created() {
-      this.accountDetail.accountAddress = this.paths[this.paths.length - 1];
+      this.superNodeDetail.nodeName = this.paths[this.paths.length - 1];
     },
     computed: {
       nodeList() {
-        return [{
-          key: "address",
-          sbpType: this.superNodeDetail.sbpType,
-          iconList: this.superNodeDetail.sbpType === 1 ? [require("~/assets/images/sbp2.svg")] : [require("~/assets/images/sbp.svg")],
-          name: this.$t("superNodeDetail.nodeName"),
-          describe: this.superNodeDetail.nodeName
-        }, {
-          name: this.$t("account.accType"),
-          describe: ""
-        }];
+        let superNodeDetailMap = this.$t("superNodeDetail.key");
+        let list = [];
+        for(let key in superNodeDetailMap) {
+          let item = {
+            name: superNodeDetailMap[key],
+            describe: this.superNodeDetail[key] || "--"
+          };
+          switch(key) {
+          case "registerTime":
+            item.describe = `${moment(this.superNodeDetail[key] * 1000).format("YYYY-MM-DD HH:mm:ss")}（${this.$t("superNodeDetail.registerCycle")} ${ this.superNodeDetail.registerCycle }）`|| "--";
+            break;
+          default: break;
+          }
+          list.push(item);
+        }
+        return list;
+      },
+      externalNodeList() {
+        let superNodeDetailMap = this.$t("superNodeDetail.externalKey");
+        let list = [];
+        for(let key in superNodeDetailMap) {
+          let item = {
+            name: superNodeDetailMap[key],
+            describe: this.superNodeDetail[key] || "--"
+          };
+          switch(key) {
+          case "totalBlockAward":
+          case "totalVoteAward":
+          case "totalAward":
+          case "unSettledAward":
+            item.describe = this.superNodeDetail[key] ? handleBigNum(this.superNodeDetail[key], 18) + " VITE" : null;
+            break;
+          default: break;
+          }
+          list.push(item);
+        }
+        return list;
       }
     },
     methods: {

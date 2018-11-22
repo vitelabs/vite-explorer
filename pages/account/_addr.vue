@@ -6,10 +6,11 @@
         :list="accountList"
         :clickLab="clickLab"
         :is-account="true"
-        :has-filter="true"
         :extral-list="tokenDetailList"
-        @getAccountAddr="getAccInputInfo"
         @changeTab="changeTab">
+        <template slot="external-item">
+          <filter-address @getAccountAddr="getAccInputInfo"></filter-address>
+        </template>
         <template slot="footer-tab-content">
           <div class="tab-wrapper">
             <div class="tab-content" :class="{'is-active': tabParams === 'tx'}" @click="clickTab('tx')">{{$t('transList.label')}}</div>
@@ -51,6 +52,7 @@
   import account from "~/services/account.js";
   import node from "~/services/superNode.js";
   import { handleBigNum } from "../../utils/util.js";
+  import filterAddress from "~/components/filterAddress.vue";
 
   export default {
     head() {
@@ -59,7 +61,7 @@
       };
     },
     components: {
-      detailLayout, error, transList, blockList
+      detailLayout, filterAddress, error, transList, blockList
     },
     validate({ params }) {
       return params.addr;

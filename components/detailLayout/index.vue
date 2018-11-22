@@ -7,11 +7,12 @@
       :is-token="isToken" 
       :extral-list="extralList" 
       :is-account="isAccount"
-      :has-filter="hasFilter"
-      @getAccountAddr="getAccInputInfo"
       @changeTab="changeTab">
       <template slot="header">
         <slot name="header-content"></slot>
+      </template>
+      <template slot="externalSpecial">
+        <slot name="external-item"></slot>
       </template>
       <template slot="footer">
         <slot name="footer-tab-content"></slot>
@@ -52,16 +53,9 @@
       isAccount: {
         type: Boolean,
         default: false
-      },
-      hasFilter: {
-        type: Boolean,
-        default: false
       }
     },
     methods: {
-      getAccInputInfo(addrObj) {
-        this.$emit("getAccountAddr", addrObj);
-      },
       changeTab(tabName) {
         this.$emit("changeTab", tabName);
       },

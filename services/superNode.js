@@ -17,5 +17,13 @@ export default {
     return post(`${PREFIX}/detail`, {
       producerAddress
     });
+  },
+  
+  getSuperNodeDetail({
+    nodeName = null
+  }) {
+    return post(`${PREFIX}/supernode/detail`, {
+      nodeName
+    });
   }
 };

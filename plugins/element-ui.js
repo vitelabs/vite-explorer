@@ -19,8 +19,11 @@ import {
   Option,
   Input,
   Message,
-  MessageBox
+  MessageBox,
+  DatePicker,
 } from "element-ui";
+
+Vue.component(DatePicker.name, DatePicker);
 
 import "assets/css/table.scss";
 

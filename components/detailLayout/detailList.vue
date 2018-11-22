@@ -33,17 +33,13 @@
         <a v-if="item.innerLink" @click="changeTab">{{item.describe || '--'}}</a>
         <span v-else>{{item.describe || '--'}}</span>
       </div>
-      <no-ssr>
-        <filter-address @getAccountAddr="getAccInputInfo" v-if="hasFilter"></filter-address>
-      </no-ssr>
+      <slot name="externalSpecial"></slot>
     </div>
     <slot name="footer"></slot>
   </div>
 </template>
 
 <script>
-  import filterAddress from "~/components/filterAddress.vue";
-
   export default {
     props: {
       list: {
@@ -65,14 +61,9 @@
       isAccount: {
         type: Boolean,
         default: false
-      },
-      hasFilter: {
-        type: Boolean,
-        default: false
       }
     },
     components: {
-      filterAddress
     },
     computed: {
       classObj() {
@@ -99,9 +90,6 @@
       _clickLab(lab, index) {
         this.currentLabInx = index;
         this.clickLab(lab, index);
-      },
-      getAccInputInfo(accountObj) {
-        this.$emit("getAccountAddr", accountObj);
       }
     }
   };

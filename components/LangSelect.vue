@@ -15,13 +15,18 @@
 </template>
 
 <script type="text/babel">
-  export default {
-    computed: {
-      locales: function () {
-        return this.$i18n.locales;
-      }
+import locale from "element-ui/lib/locale";
+import zhLang from "element-ui/lib/locale/lang/zh-CN";
+import enLang from "element-ui/lib/locale/lang/en";
+
+export default {
+  computed: {
+    locales: function () {
+      this.$i18n.locale === "en" ? locale.use(enLang) : locale.use(zhLang) ;
+      return this.$i18n.locales;
     }
-  };
+  }
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss">

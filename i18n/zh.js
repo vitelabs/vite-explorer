@@ -223,29 +223,34 @@ module.exports = {
   // pages/SBPDetail
   superNodeDetail: {
     title: "节点详情",
-    nodeName: "节点名称",
-    registerTime: "注册时间",
-    registerAddress: "注册地址",
-    blockAddress: "出块地址",
-    blockNum: "出块数",
-    blockPercent: "出块率",
-    blockReward: "出块奖励",
-    voteReward: "按票奖励",
-    totalReward: "总奖励",
-    actualReward: "已发奖励",
+    key: {
+      nodeName: "节点名称",
+      registerTime: "注册时间",
+      registerAddress: "注册地址",
+      blockAddress: "出块地址",
+      blockCount: "出块数",
+      blockRatio: "出块率"
+    },
+    externalKey: {
+      totalBlockAward: "出块奖励",
+      totalVoteAward: "按票奖励",
+      totalAward: "总奖励",
+      unSettledAward: "已发奖励",
+    },
     downloadDetail: "下载得票明细",
     downloadTips: "现行周期为1322，一次性可下载最多30个周期的得票明细",
-    verify: "您输入的起始周期早于注册时间所属周期，请重新输入"
+    verify: "您输入的起始周期早于注册时间所属周期，请重新输入",
+    registerCycle: "所属周期"
   },
 
   // components/SBPAwardList
   SBPAwardList: {
     label: "奖励列表",
     titles: [{
-      prop: "date",
+      prop: "cycle",
       name: "日期"
     }, {
-      prop: "account",
+      prop: "blockCount",
       name: "出块数"
     }, {
       prop: "blockAward",
@@ -455,7 +460,8 @@ module.exports = {
     width: 60
   }, {
     prop: "nodeName",
-    name: "节点名"
+    name: "节点名",
+    width: 100
   }, {
     prop: "status",
     name: "状态"

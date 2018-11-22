@@ -344,6 +344,50 @@ export default () => {
     }
   });
 
+  router.post("/api/node/supernode/detail", async (ctx) => {
+    try {
+      console.log("/supernode/detail:"+ JSON.stringify(ctx.request.body));
+      // let result = await post("/supernode/detail", ctx.request.body);
+      let result = {};
+      result.data = {
+        code: 0,
+        msg: "ok",
+        data: {
+          "rewardList": [
+            {
+              "cycle": 1,
+              "blockCount": 14,
+              "blockAward": "13345678921000000000",
+              "voteAward": "13345678921000000000",
+              "totalAward": "13345678921000000000"
+            }
+          ],
+          "nodeDetails": {
+            "nodeName": "s1",
+            "registerTime": "1541650394",
+            "registerCycle": 14,
+            "registerAddress": "vite_XXXXXXX",
+            "blockAddress": "vite_XXXXXXXX",
+            "blockCount": 11111,
+            "blockRatio": "0.22222222222222(18位)",
+            "totalBlockAward": "13345678921000000000",
+            "totalVoteAward": "13000000000000000000",
+            "totalAward": "13000000000000000000",
+            "settledAward": "13000000000000000000",
+            "unSettledAward": "13000000000000000000"
+          }
+        }
+      };
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err);
+      // console.log(err.code);
+    }
+  });
+
   router.get("/api/token/detail", async (ctx) => {
     try {
       let result = await get("/token/detail", ctx.query);
