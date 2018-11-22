@@ -417,7 +417,8 @@ module.exports = {
     width: 60
   }, {
     prop: "nodeName",
-    name: "节点名"
+    name: "节点名",
+    width: 100
   }, {
     prop: "status",
     name: "状态"
