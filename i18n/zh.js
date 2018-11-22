@@ -442,16 +442,20 @@ module.exports = {
     width: 160
   }, {
     prop: "voteAward",
-    name: "投票奖励"
+    name: "投票奖励",
+    width: 120
   }, {
     prop: "superNodeAward",
-    name: "出块奖励"
+    name: "出块奖励",
+    width: 120
   }, {
     prop: "curVoteAward",
     name: "今日投票奖励",
+    width: 120
   }, {
     prop: "curSuperNodeAward",
     name: "今日出块奖励",
+    width: 120
   }],
 
   // pages/tokenAccount
