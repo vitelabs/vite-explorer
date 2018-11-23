@@ -45,7 +45,7 @@ module.exports = {
   },
   accTitles: [{
     prop: "orderNum",
-    name: "排名",
+    name: "#",
     width: "70"
   }, {
     prop: "accountAddress",
@@ -421,7 +421,7 @@ module.exports = {
   },
   nodeTitles: [{
     prop: "rank",
-    name: "排名",
+    name: "#",
     width: 60
   }, {
     prop: "nodeName",
@@ -450,20 +450,20 @@ module.exports = {
     name: "出块地址",
     width: 160
   }, {
-    prop: "voteAward",
-    name: "投票奖励",
-    width: 120
-  }, {
-    prop: "superNodeAward",
-    name: "出块奖励",
-    width: 120
-  }, {
     prop: "curVoteAward",
-    name: "今日投票奖励",
+    name: "今日得票奖励",
     width: 120
   }, {
     prop: "curSuperNodeAward",
     name: "今日出块奖励",
+    width: 120
+  }, {
+    prop: "voteAward",
+    name: "得票奖励",
+    width: 120
+  }, {
+    prop: "superNodeAward",
+    name: "出块奖励",
     width: 120
   }],
 

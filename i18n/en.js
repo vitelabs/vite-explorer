@@ -48,7 +48,7 @@ module.exports = {
   },
   accTitles: [{
     prop: "orderNum",
-    name: "Rank",
+    name: "#",
     width: "75"
   }, {
     prop: "accountAddress",
@@ -420,7 +420,7 @@ module.exports = {
   },
   nodeTitles: [{
     prop: "rank",
-    name: "Rank",
+    name: "#",
     width: 60
   }, {
     prop: "nodeName",
@@ -450,21 +450,21 @@ module.exports = {
     name: "Address",
     width: 160
   }, {
+    prop: "curVoteAward",
+    name: "Rewards in Votes of Today",
+    width: 120
+  }, {
+    prop: "curSuperNodeAward",
+    name: "Block Creation Reward of Today",
+    width: 180
+  }, {
     prop: "voteAward",
-    name: "Voting Reward",
+    name: "Rewards in Votes",
     width: 120
   }, {
     prop: "superNodeAward",
     name: "Block Creation Reward",
     width: 120
-  }, {
-    prop: "curVoteAward",
-    name: "Voting Reward Of Today",
-    width: 120
-  }, {
-    prop: "curSuperNodeAward",
-    name: "Block Creation Reward Of Today",
-    width: 180
   }],
 
   // pages/tokenAccount
