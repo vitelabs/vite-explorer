@@ -88,7 +88,15 @@ module.exports = {
     transactionList: "Transactions",
     blockList: "Snapshots",
     tokenList: "Tokens",
-    SBPList: "SBPs"
+    SBPList: "SBPs",
+    mining: {
+      name: "Mining",
+      childs: {
+        SBPList: "SBPs",
+        voteReward: "Voting Reward",
+        registerSBP: "SBP Registration"
+      }
+    }
   },
   pageTable: {
     pre: "Prev",
