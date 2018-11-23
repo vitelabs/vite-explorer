@@ -12,6 +12,17 @@
                   {{$t(`nav.${item}`)}}
                 </nuxt-link>
               </el-menu-item>
+              <el-submenu :index="item.key" v-for="item in doubleNavs" :key="item.key" >
+                <template slot="title">{{$t(`nav.${item.key}.name`)}}</template>
+                <el-menu-item :key="child.name" :index="child.name" v-for="child in item.childs">
+                  <a :href="links[item.key][child.name]" target="_blank" class="sub-a" v-if="child.key === 'outer'">
+                    {{$t(`nav.${item.key}.childs.${child.name}`)}}
+                  </a>
+                  <nuxt-link :to="localePath(child.name)" class="nav-item" v-if="child.key === 'inner'">
+                    {{$t(`nav.${item.key}.childs.${child.name}`)}}
+                  </nuxt-link>
+                </el-menu-item>
+              </el-submenu>
             </el-menu>
           </div>
         </div>
@@ -120,7 +131,27 @@
     },
     data() {
       return {
-        navs: ["index", "transactionList", "blockList", "tokenList", "SBPList"],
+        navs: ["index", "transactionList", "blockList", "tokenList"],
+        doubleNavs: [{
+          key: "mining",
+          childs: [{
+            key: "inner",
+            name: "SBPList"
+          }, {
+            key: "outer",
+            name: "voteReward"
+          }, {
+            key: "outer",
+            name: "registerSBP"
+          }]
+        }],
+        links: {
+          mining: {
+            SBPList: "/SBPList",
+            voteReward: "https://reward.vite.net/#/",
+            registerSBP: "https://wallet.vite.net/SBP"
+          }
+        },
         defaultActive: "index",
         open: false,
         searchOpen: false,
@@ -167,6 +198,12 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import "assets/css/vars.scss";
+
+  a {
+    display: inline-block;
+    width: 100%;
+    color: black;
+  }
 
   .el-menu--horizontal {
     border-bottom: none;

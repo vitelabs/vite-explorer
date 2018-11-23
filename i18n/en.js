@@ -88,7 +88,15 @@ module.exports = {
     transactionList: "Transactions",
     blockList: "Snapshots",
     tokenList: "Tokens",
-    SBPList: "SBPs"
+    SBPList: "SBPs",
+    mining: {
+      name: "挖矿",
+      childs: {
+        SBPList: "SBPs",
+        voteReward: "投票奖励",
+        registerSBP: "注册SBP"
+      }
+    }
   },
   pageTable: {
     pre: "Prev",
