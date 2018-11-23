@@ -90,11 +90,11 @@ module.exports = {
     tokenList: "Tokens",
     SBPList: "SBPs",
     mining: {
-      name: "挖矿",
+      name: "Mining",
       childs: {
         SBPList: "SBPs",
-        voteReward: "投票奖励",
-        registerSBP: "注册SBP"
+        voteReward: "Voting Reward",
+        registerSBP: "SBP Registration"
       }
     }
   },
