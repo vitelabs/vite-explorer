@@ -7,7 +7,7 @@
         :is-account="true"
         :extral-list="externalNodeList">
         <template slot="external-item">
-          <download-node-detail></download-node-detail>
+          <download-node-detail :node-name="superNodeDetail.nodeName"></download-node-detail>
         </template>
         <template slot="footer-tab-content">
           <div class="tab-wrapper">

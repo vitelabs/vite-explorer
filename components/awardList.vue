@@ -9,7 +9,7 @@
 <script>
   import pageTable from "~/components/pageTable";
   import { handleBigNum } from "~/utils/util.js";
-  // import moment from "moment";
+  import moment from "moment";
 
   export default {
     components: {
@@ -43,6 +43,7 @@
           // let timestamp = moment(block.age * 1000).fromNow();
           list.push({
             ...award,
+            cycle: this.cycleToDate(award.cycle),
             blockAward: this.handleAward(award.blockAward),
             voteAward: this.handleAward(award.voteAward),
             totalAward: this.handleAward(award.totalAward)
@@ -54,7 +55,10 @@
     methods: {
       handleAward(num) {
         return num ? handleBigNum(num, 18) + " VITE" : null;
-      }
+      },
+      cycleToDate(cycle) {
+        return moment((cycle * 1152 * 75 + 1541650394) * 1000).format("YYYY-MM-DD");
+      },
     }
   };
 </script>

@@ -241,6 +241,8 @@ module.exports = {
       totalAward: "总奖励",
       unSettledAward: "已发奖励",
     },
+    startDate: "start date",
+    endDate: "end date",
     downloadDetail: "下载得票明细",
     downloadTips: "现行周期为1322，一次性可下载最多30个周期的得票明细",
     verify: "您输入的起始周期早于注册时间所属周期，请重新输入",

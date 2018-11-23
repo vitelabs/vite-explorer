@@ -1,18 +1,15 @@
 <template>
   <div class="download-node-detail">
-    <div class="name">{{ $t('superNodeDetail.downloadDetail') }}：
-      <el-tooltip :content="$t('superNodeDetail.downloadTips')" placement="right" effect="light">
-        <img src="~assets/images/tips.svg" class="tool-tip"/>
-      </el-tooltip>
-    </div>
+    <div class="name">{{ $t('superNodeDetail.downloadDetail') }}：</div>
     <div class="date-picker">
       <el-date-picker
-        v-model="value6"
+        v-model="dateRange"
         type="daterange"
         range-separator="--"
-        start-placeholder="开始日期"
-        end-placeholder="结束日期"
+        :start-placeholder="$t('superNodeDetail.startDate')"
+        :end-placeholder="$t('superNodeDetail.endDate')"
         size="small"
+        :picker-options="pickerOptions"
         >
       </el-date-picker>
       <el-button type="primary" size="small" class="button" @click="sureFilter" :disabled="disabled">{{ $t('filter.sure') }}</el-button>
@@ -22,29 +19,59 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        disabled: false,
-        value6: ""
-      };
-    },
-    methods: {
-      sureFilter() {
-        // let accountAddrInput = {
-        //   type: this.select,
-        //   address: this.input
-        // };
-        // if (!this.input) {
-        //   accountAddrInput = {
-        //     type: null,
-        //     address: null
-        //   };
-        // }
-        // this.$emit("getAccountAddr", accountAddrInput);
+import moment from "moment";
+export default {
+  props: {
+    nodeName: {
+      type: String,
+      default: ""
+    }
+  },
+  data() {
+    return {
+      disabled: true,
+      dateRange: [],
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() < 1542859994000;
+        },
+        onPick: ({ maxDate, minDate}) => {
+          if (maxDate) {
+            let endDate = moment(maxDate)._d.getTime();
+            let startDate = moment(minDate)._d.getTime();
+            if(endDate - startDate > 30 * 24 * 60 * 60 * 1000) {
+              this.disabled = true;
+              this.$message("不能超过30天");
+            } else {
+              this.disabled = false;
+            }
+          }
+        }
+      }
+    };
+  },
+  watch: {
+    dateRange(val) {
+      if(!val) {
+        this.disabled = true;
       }
     }
-  };
+  },
+  methods: {
+    dateToCycle(date) {
+      return (date/1000 -  1541650394)/75/1152;
+    },
+    sureFilter() {
+      let endDate = moment(this.dateRange[1])._d.getTime();
+      let startDate = moment(this.dateRange[0])._d.getTime();
+      let startCycle = Math.ceil(this.dateToCycle(startDate));
+      let endCycle = Math.ceil(this.dateToCycle(endDate));
+      if(process.browser) {
+        location.href = `http://148.70.107.158:8084/test/vote/node/excel?nodeName=${this.nodeName}&fromCycle=${startCycle}&toCycle=${endCycle}`;
+      }
+    }
+  }
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
