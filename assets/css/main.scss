@@ -21,6 +21,29 @@ a {
   outline:none;
 }
 
+.text-hover-transition {
+  transition: color 0.4s ease-in-out;
+}
+.el-menu--popup-bottom-start {
+  background-color: white!important;
+}
+.el-menu--horizontal>.el-submenu .el-submenu__title{
+  border-bottom: none;
+  height: 64px;
+  line-height: 64px;
+  &:hover {
+    background: none!important;
+  }
+}
+.el-menu--horizontal .el-menu .el-menu-item, .el-menu--horizontal .el-menu .el-submenu__title{
+  &:hover {
+    background: none!important;
+  }
+}
+.el-menu--horizontal>.el-submenu.is-active .el-submenu__title{
+  border-bottom: none;
+}
+
 .head, .title h2, h1, h2, h3, h4, h5, h6 {
   font-family: $family-title;
   font-weight: 450; 
