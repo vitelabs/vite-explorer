@@ -89,7 +89,7 @@
         let list = [];
         for(let i = 0; i < this.fullNodeList.length; i++) {
           if( this.fullNodeList[i].nodeName.toLowerCase().indexOf(this.search.toLowerCase()) > -1 
-          || this.fullNodeList[i].nodeName.toLowerCase().indexOf(this.search.toLowerCase()) > -1 ) {
+          || this.fullNodeList[i].producerAddress.toLowerCase().indexOf(this.search.toLowerCase()) > -1 ) {
             list.push(this.fullNodeList[i]);
           }
         }
