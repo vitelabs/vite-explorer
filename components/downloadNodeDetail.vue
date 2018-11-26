@@ -1,7 +1,7 @@
 <template>
   <div class="download-node-detail">
     <div class="name">{{ $t('superNodeDetail.downloadDetail') }}：</div>
-    <div class="date-picker">
+    <div class="date-picker-container">
       <el-date-picker
         v-model="dateRange"
         type="daterange"
@@ -10,16 +10,27 @@
         :end-placeholder="$t('superNodeDetail.endDate')"
         size="small"
         :picker-options="pickerOptions"
-        >
+        class="date-picker">
       </el-date-picker>
       <el-button type="primary" size="small" class="button" @click="sureFilter" :disabled="disabled">{{ $t('filter.sure') }}</el-button>
+      <el-button type="primary" size="small" class="button" @click="showCycleTime">{{ $t('superNodeDetail.cycleTime') }}</el-button>
     </div>
-    
+    <el-dialog :title="$t('superNodeDetail.cycleTime')" :visible.sync="dialogTableVisible">
+      <page-table class="token-table" 
+        :pagination="false"
+        :loading="loading"
+        :tableTitles="cycleTitles"
+        :tableData="cycleList">
+      </page-table>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import pageTable from "~/components/pageTable";
+import superNode from "~/services/superNode.js";
+
 export default {
   props: {
     nodeName: {
@@ -27,10 +38,17 @@ export default {
       default: ""
     }
   },
+  components: {
+    pageTable
+  },
   data() {
     return {
+      cycleTitles: this.$t("superNodeDetail.cycleTitles"),
+      dialogTableVisible: false,
       disabled: true,
       dateRange: [],
+      loading: false,
+      cycleList: [],
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() < 1542859994000;
@@ -41,7 +59,7 @@ export default {
             let startDate = moment(minDate)._d.getTime();
             if(endDate - startDate > 30 * 24 * 60 * 60 * 1000) {
               this.disabled = true;
-              this.$message("不能超过30天");
+              this.$message(this.$t("superNodeDetail.alertMsg"));
             } else {
               this.disabled = false;
             }
@@ -49,6 +67,9 @@ export default {
         }
       }
     };
+  },
+  mounted() {
+    this.fetchCycleTime();
   },
   watch: {
     dateRange(val) {
@@ -58,6 +79,13 @@ export default {
     }
   },
   methods: {
+    fetchCycleTime() {
+      superNode.getCycleTime().then(data=> {
+        this.cycleList = data.cycleList;
+      }).catch(err => {
+        console.log(err || "get cycle list fail");
+      });
+    },
     dateToCycle(date) {
       return (date/1000 -  1541650394)/75/1152;
     },
@@ -69,6 +97,9 @@ export default {
       if(process.browser) {
         location.href = `http://148.70.107.158:8084/test/vote/node/excel?nodeName=${this.nodeName}&fromCycle=${startCycle}&toCycle=${endCycle}`;
       }
+    },
+    showCycleTime() {
+      this.dialogTableVisible = true;
     }
   }
 };
@@ -87,8 +118,11 @@ export default {
     .tool-tip {
       vertical-align: text-top;
     }
-    .date-picker {
+    .date-picker-container {
       margin-top: 10px;
+      .date-picker {
+        width: 250px;
+      }
     }
     .el-button--primary {
       background-color: $common-color;

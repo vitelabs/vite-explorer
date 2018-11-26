@@ -244,9 +244,28 @@ module.exports = {
     startDate: "start date",
     endDate: "end date",
     downloadDetail: "下载得票明细",
-    downloadTips: "现行周期为1322，一次性可下载最多30个周期的得票明细",
     verify: "您输入的起始周期早于注册时间所属周期，请重新输入",
-    registerCycle: "所属周期"
+    registerCycle: "所属周期",
+    cycleTime: "周期时间对照表",
+    alertMsg: "不能超过30天",
+    cycleTitles: [{
+      prop: "cycle",
+      name: "周期"
+    }, {
+      prop: "beginRound",
+      name: "开始轮数"
+    }, {
+      prop: "endRound",
+      name: "结束轮数"
+    }, {
+      prop: "beginTime",
+      name: "周期开始时间",
+      width: 160
+    }, {
+      prop: "endTime",
+      name: "周期结束时间",
+      width: 160
+    }]
   },
 
   // components/SBPAwardList

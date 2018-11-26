@@ -343,6 +343,41 @@ export default () => {
       // console.log(err.code);
     }
   });
+  
+  router.get("/api/node/supernode/cycleExcel", async (ctx) => {
+    try {
+      // console.log("/account/detail:" + JSON.stringify(ctx.query));
+      // let result = await get("/account/detail", ctx.query);
+      let result = {};
+      result.data = {
+        code: 0,
+        msg: "ok",
+        data: {
+          "cycleList": [
+            {
+              "cycle": 1,
+              "beginRound": 1,
+              "endRound": 1152,
+              "beginTime": "1543161600000",
+              "endTime": "1543248000000"
+            }
+          ]
+        }
+      };
+      let cycleList = result.data.data.cycleList || [];
+      cycleList = cycleList.map(item=> {
+        return {
+          ...item,
+          beginTime: new Date(+item.beginTime).toLocaleString(),
+          endTime: new Date(+item.endTime).toLocaleString()
+        };
+      });
+      result.data.data.cycleList  = cycleList;
+      ctx.body = result.data;
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
 
   router.post("/api/node/supernode/detail", async (ctx) => {
     try {
