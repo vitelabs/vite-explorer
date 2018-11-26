@@ -6,6 +6,21 @@
           {{$t(`nav.${item}`)}}
         </nuxt-link>
       </div>
+      <div class="double-navs">
+        <div v-for="item in doubleNavs" :key="item.key">
+          <div class="menu-item">
+            <div class="nav-item" @click="clickDropdown">{{$t(`nav.${item.key}.name`)}}</div>
+          </div>
+          <div :key="child.name" :index="child.name" v-for="child in item.childs" class="menu-item" v-if="dropDownVisible">
+            <a :href="links[item.key][child.name]" target="_blank" class="nav-item double-nav-item" v-if="child.key === 'outer'">
+              {{$t(`nav.${item.key}.childs.${child.name}`)}}
+            </a>
+            <nuxt-link :to="localePath(child.name)" class="nav-item double-nav-item" v-if="child.key === 'inner'">
+              {{$t(`nav.${item.key}.childs.${child.name}`)}}
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -17,14 +32,23 @@
         type: Array,
         default: () => []
       },
+      doubleNavs: {
+        type: Array,
+        default: () => []
+      },
       visible: {
         type: Boolean,
         default: false
+      },
+      links: {
+        type: Object,
+        default: () => {}
       }
     },
     data() {
       return {
-        open: this.visible
+        open: this.visible,
+        dropDownVisible: false
       };
     },
     watch: {
@@ -47,6 +71,9 @@
       clickMenu() {
         this.open = false;
         this.$emit("is-open", this.open);
+      },
+      clickDropdown() {
+        this.dropDownVisible = !this.dropDownVisible;
       }
     }
   };
@@ -82,6 +109,10 @@
         width: 100%;
         font-size: 14px;
         color: #3F3F3F;
+        cursor: pointer;
+      }
+      .double-nav-item {
+        padding-left: 15px; 
       }
     }
   }

@@ -513,22 +513,6 @@ module.exports = {
     prop: "producerAddress",
     name: "出块地址",
     width: 160
-  }, {
-    prop: "curVoteAward",
-    name: "今日得票奖励",
-    width: 120
-  }, {
-    prop: "curSuperNodeAward",
-    name: "今日出块奖励",
-    width: 120
-  }, {
-    prop: "voteAward",
-    name: "得票奖励",
-    width: 120
-  }, {
-    prop: "superNodeAward",
-    name: "出块奖励",
-    width: 120
   }],
 
   // pages/tokenAccount

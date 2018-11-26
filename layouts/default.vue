@@ -44,7 +44,7 @@
       </div>
     </div>
     <div class="vertail-menu-content">
-      <menu-content :navs="navs" :visible.sync="open" @is-open="closeMenu"></menu-content>
+      <menu-content :navs="navs" :visible.sync="open" @is-open="closeMenu" :double-navs="doubleNavs" :links="links"></menu-content>
     </div>
     <div class="content-wrapper">
       <nuxt class="content"/>

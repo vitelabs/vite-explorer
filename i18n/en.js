@@ -513,22 +513,6 @@ module.exports = {
     prop: "producerAddress",
     name: "Address",
     width: 160
-  }, {
-    prop: "curVoteAward",
-    name: "Today's Candidate Additional Reward",
-    width: 120
-  }, {
-    prop: "curSuperNodeAward",
-    name: "Today's Block Creation Reward",
-    width: 180
-  }, {
-    prop: "voteAward",
-    name: "Candidate Additional Reward",
-    width: 120
-  }, {
-    prop: "superNodeAward",
-    name: "Block Creation Reward",
-    width: 120
   }],
 
   // pages/tokenAccount
