@@ -21,6 +21,9 @@
           </div>
         </div>
       </div>
+      <div class="menu-item vite-link">
+        <a href="https://vite.net" target="_blank">{{ $t("nav.vitenet") }}</a>
+      </div>
     </div>
   </div>
 </template>
@@ -99,6 +102,9 @@
     width: 768px;
     margin: auto;
     padding-left: 20px;
+    .vite-link {
+      font-size: 14px;
+    }
     .menu-item {
       box-sizing: border-box;
       height: 57px;

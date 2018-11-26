@@ -96,7 +96,8 @@ module.exports = {
         voteReward: "Voting Reward",
         registerSBP: "SBP Registration"
       }
-    }
+    },
+    vitenet: "使用Vite其他产品"
   },
   pageTable: {
     pre: "Prev",

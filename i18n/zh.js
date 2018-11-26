@@ -92,7 +92,8 @@ module.exports = {
         voteReward: "投票奖励",
         registerSBP: "注册SBP"
       }
-    }
+    },
+    vitenet: "使用Vite其他产品"
   },
   pageTable: {
     pre: "上一页",
