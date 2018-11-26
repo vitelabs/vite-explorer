@@ -451,15 +451,15 @@ module.exports = {
     width: 160
   }, {
     prop: "curVoteAward",
-    name: "Rewards in Votes of Today",
+    name: "Today's Candidate Additional Reward",
     width: 120
   }, {
     prop: "curSuperNodeAward",
-    name: "Block Creation Reward of Today",
+    name: "Today's Block Creation Reward",
     width: 180
   }, {
     prop: "voteAward",
-    name: "Rewards in Votes",
+    name: "Candidate Additional Reward",
     width: 120
   }, {
     prop: "superNodeAward",
