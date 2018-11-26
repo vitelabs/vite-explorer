@@ -37,8 +37,10 @@
         let { nodeList, totalNum} = await superNode.getList({
           search: null
         });
+        let fullNodeList = nodeList;
         return {
           nodeList,
+          fullNodeList,
           totalNumber: +totalNum,
         };
       } catch(err) {
@@ -80,19 +82,18 @@
       }
     },
     methods: {
-      getNodeList() {
-        superNode.getList({
-          search: this.search
-        }).then(data=> {
-          this.nodeList = data.nodeList;
-        }).catch(err=> {
-          console.log(err);
-        });
-      },
       filterTable(str) {
         let filterInput = str || null;
         this.search = filterInput || null;
-        this.getNodeList();
+        if (!this.search) return this.nodeList = this.fullNodeList;
+        let list = [];
+        for(let i = 0; i < this.fullNodeList.length; i++) {
+          if( this.fullNodeList[i].nodeName.toLowerCase().indexOf(this.search.toLowerCase()) > -1 
+          || this.fullNodeList[i].nodeName.toLowerCase().indexOf(this.search.toLowerCase()) > -1 ) {
+            list.push(this.fullNodeList[i]);
+          }
+        }
+        this.nodeList = list;
       },
     }
   };
