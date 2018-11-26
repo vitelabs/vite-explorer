@@ -28,9 +28,9 @@ a {
   background-color: white!important;
 }
 .el-menu--horizontal>.el-submenu .el-submenu__title{
-  border-bottom: none;
-  height: 64px;
-  line-height: 64px;
+  border-bottom: none!important;
+  height: 64px!important;
+  line-height: 64px!important;
   &:hover {
     background: none!important;
   }
@@ -41,7 +41,7 @@ a {
   }
 }
 .el-menu--horizontal>.el-submenu.is-active .el-submenu__title{
-  border-bottom: none;
+  border-bottom: none!important;
 }
 
 .head, .title h2, h1, h2, h3, h4, h5, h6 {
