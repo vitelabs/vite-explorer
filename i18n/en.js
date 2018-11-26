@@ -241,8 +241,8 @@ module.exports = {
       registerTime: "Registration Time",
       registerAddress: "Registration Address",
       blockAddress: "Block Creation Address",
-      blockCount: "Block Creation Count",
-      blockRatio: "Block Creation Ratio"
+      blockCount: "Count",
+      blockRatio: "Ratio"
     },
     externalKey: {
       totalBlockAward: "Block Creation Rewards",
