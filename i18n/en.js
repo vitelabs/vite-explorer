@@ -97,7 +97,7 @@ module.exports = {
         registerSBP: "SBP Registration"
       }
     },
-    vitenet: "使用Vite其他产品"
+    vitenet: "Use other products of Vite"
   },
   pageTable: {
     pre: "Prev",
@@ -237,64 +237,64 @@ module.exports = {
   superNodeDetail: {
     title: "SuperNode Details",
     key: {
-      nodeName: "节点名称",
-      registerTime: "注册时间",
-      registerAddress: "注册地址",
-      blockAddress: "出块地址",
-      blockCount: "出块数",
-      blockRatio: "出块率"
+      nodeName: "Node Name",
+      registerTime: "Registration Time",
+      registerAddress: "Registration Address",
+      blockAddress: "Block Creation Address",
+      blockCount: "Block Creation Count",
+      blockRatio: "Block Creation Ratio"
     },
     externalKey: {
-      totalBlockAward: "出块奖励",
-      totalVoteAward: "按票奖励",
-      totalAward: "总奖励",
-      unSettledAward: "已发奖励",
+      totalBlockAward: "Block Creation Rewards",
+      totalVoteAward: "Rewards of Votes",
+      totalAward: "Rewards in Total",
+      unSettledAward: "Issued Rewards",
     },
-    startDate: "start date",
-    endDate: "end date",
-    downloadDetail: "下载得票明细",
-    verify: "您输入的起始周期早于注册时间所属周期，请重新输入",
-    registerCycle: "所属周期",
-    cycleTime: "周期时间对照表",
-    alertMsg: "不能超过30天",
+    startDate: "Start Date",
+    endDate: "End Date",
+    downloadDetail: "Download Details",
+    verify: "The Start cycle you input is earlier than the registration cycle, please try again",
+    registerCycle: "Registration Cycle",
+    cycleTime: "Cycle time comparison chart",
+    alertMsg: "A cycle cannot over 30 days",
     cycleTitles: [{
       prop: "cycle",
-      name: "周期"
+      name: "Cycle"
     }, {
       prop: "beginRound",
-      name: "开始轮数"
+      name: "Start Round"
     }, {
       prop: "endRound",
-      name: "结束轮数"
+      name: "End Round"
     }, {
       prop: "beginTime",
-      name: "周期开始时间",
+      name: "Start Time of Cycle",
       width: 160
     }, {
       prop: "endTime",
-      name: "周期结束时间",
+      name: "End Time of Cycle",
       width: 160
     }]
   },
 
   // components/SBPAwardList
   SBPAwardList: {
-    label: "奖励列表",
+    label: "Rewards",
     titles: [{
       prop: "cycle",
-      name: "日期"
+      name: "Date"
     }, {
       prop: "blockCount",
-      name: "出块数"
+      name: "Block creation count"
     }, {
       prop: "blockAward",
-      name: "出块奖励"
+      name: "Block creation rewards"
     }, {
       prop: "voteAward",
-      name: "按票奖励"
+      name: "Rewards of votes"
     }, {
       prop: "totalAward",
-      name: "总奖励"
+      name: "Rewards in total"
     }]
   },
 
