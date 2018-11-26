@@ -45,7 +45,7 @@ module.exports = {
   },
   accTitles: [{
     prop: "orderNum",
-    name: "排名",
+    name: "#",
     width: "70"
   }, {
     prop: "accountAddress",
@@ -84,7 +84,15 @@ module.exports = {
     transactionList: "交易列表",
     blockList: "快照块列表",
     tokenList: "Token列表",
-    SBPList: "SBP列表"
+    SBPList: "SBP列表",
+    mining: {
+      name: "挖矿",
+      childs: {
+        SBPList: "SBP列表",
+        voteReward: "投票奖励",
+        registerSBP: "注册SBP"
+      }
+    }
   },
   pageTable: {
     pre: "上一页",
@@ -477,7 +485,7 @@ module.exports = {
   },
   nodeTitles: [{
     prop: "rank",
-    name: "排名",
+    name: "#",
     width: 60
   }, {
     prop: "nodeName",
@@ -505,6 +513,22 @@ module.exports = {
     prop: "producerAddress",
     name: "出块地址",
     width: 160
+  }, {
+    prop: "curVoteAward",
+    name: "今日得票奖励",
+    width: 120
+  }, {
+    prop: "curSuperNodeAward",
+    name: "今日出块奖励",
+    width: 120
+  }, {
+    prop: "voteAward",
+    name: "得票奖励",
+    width: 120
+  }, {
+    prop: "superNodeAward",
+    name: "出块奖励",
+    width: 120
   }],
 
   // pages/tokenAccount

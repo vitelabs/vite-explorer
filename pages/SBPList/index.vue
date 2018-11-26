@@ -72,6 +72,10 @@
             ...node,
             nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
             status: node.status,
+            voteAward: node.voteAward ? node.voteAward + " VITE" : node.voteAward,
+            curVoteAward: node.curVoteAward ? node.curVoteAward + " VITE" : node.curVoteAward,
+            curSuperNodeAward: node.curSuperNodeAward ? node.curSuperNodeAward + " VITE" : node.curSuperNodeAward,
+            superNodeAward:  node.superNodeAward  ? node.superNodeAward + " VITE" : node.superNodeAward,
             producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
           });
         });

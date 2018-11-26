@@ -48,7 +48,7 @@ module.exports = {
   },
   accTitles: [{
     prop: "orderNum",
-    name: "Rank",
+    name: "#",
     width: "75"
   }, {
     prop: "accountAddress",
@@ -88,7 +88,15 @@ module.exports = {
     transactionList: "Transactions",
     blockList: "Snapshots",
     tokenList: "Tokens",
-    SBPList: "SBPs"
+    SBPList: "SBPs",
+    mining: {
+      name: "Mining",
+      childs: {
+        SBPList: "SBPs",
+        voteReward: "Voting Reward",
+        registerSBP: "SBP Registration"
+      }
+    }
   },
   pageTable: {
     pre: "Prev",
@@ -476,7 +484,7 @@ module.exports = {
   },
   nodeTitles: [{
     prop: "rank",
-    name: "Rank",
+    name: "#",
     width: 60
   }, {
     prop: "nodeName",
@@ -484,7 +492,8 @@ module.exports = {
     width: 100
   }, {
     prop: "status",
-    name: "Status"
+    name: "SBP Status",
+    width: 100
   }, {
     prop: "voteNum",
     name: "Votes"
@@ -494,11 +503,9 @@ module.exports = {
   }, {
     prop: "expectNum",
     name: "Target",
-    width: 150
   }, {
     prop: "factNum",
     name: "Hit",
-    width: 150
   }, {
     prop: "missNum",
     name: "Missed"
@@ -506,6 +513,22 @@ module.exports = {
     prop: "producerAddress",
     name: "Address",
     width: 160
+  }, {
+    prop: "curVoteAward",
+    name: "Today's Candidate Additional Reward",
+    width: 120
+  }, {
+    prop: "curSuperNodeAward",
+    name: "Today's Block Creation Reward",
+    width: 180
+  }, {
+    prop: "voteAward",
+    name: "Candidate Additional Reward",
+    width: 120
+  }, {
+    prop: "superNodeAward",
+    name: "Block Creation Reward",
+    width: 120
   }],
 
   // pages/tokenAccount

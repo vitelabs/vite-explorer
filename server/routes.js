@@ -318,6 +318,8 @@ export default () => {
       result.data.data.nodeList.forEach(item=> {
         if (item.voteNum !== 0 && !item.voteNum ) item.voteNum = "";
         item.voteNum = handleBigNum(item.voteNum+"", 0 , false, true);
+        item.voteAward = handleBigNum(item.voteAward, 0 , false, true);
+        item.superNodeAward = handleBigNum(item.superNodeAward, 0 , false, true);
         item.shortProducerAddress = toShort(item.producerAddress);
       });
       ctx.body = result.data || {
@@ -453,13 +455,8 @@ export default () => {
 
       let block = body.data || {};
       block = {
-        height: block.height,
-        accountNum: block.accountNum,
-        transactionCount: block.transactionCount,
-        producer: block.producer,
-        hash: block.hash,
+        ...block,
         amount: handleBigNum(block.amount),
-        timestamp: block.timestamp,
         age: block.timestamp
       };
 
