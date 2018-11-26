@@ -489,11 +489,11 @@ module.exports = {
   }, {
     prop: "nodeName",
     name: "Name",
-    width: 100
+    width: 120
   }, {
     prop: "status",
     name: "SBP Status",
-    width: 100
+    width: 120
   }, {
     prop: "voteNum",
     name: "Votes"

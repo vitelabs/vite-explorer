@@ -8,7 +8,8 @@
         :tableTitles="nodeTitles"
         :tableData="nodeData"
         :total="totalNumber"
-        :is-sbp-page="true">
+        :is-sbp-page="true"
+        :fe-sort="true">
         <search-input @getInput="filterTable" slot="filter"></search-input>
       </page-table>
     </div>
