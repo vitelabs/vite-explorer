@@ -97,7 +97,7 @@ module.exports = {
         registerSBP: "SBP Registration"
       }
     },
-    vitenet: "Use other products of Vite"
+    vitenet: "Use other products"
   },
   pageTable: {
     pre: "Prev",
@@ -282,7 +282,8 @@ module.exports = {
     label: "Rewards",
     titles: [{
       prop: "cycle",
-      name: "Date"
+      name: "Date",
+      width: 306
     }, {
       prop: "blockCount",
       name: "Block creation count"

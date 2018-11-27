@@ -22,7 +22,7 @@ export default {
   getSuperNodeDetail({
     nodeName = null
   }) {
-    return post(`${PREFIX}/supernode/detail`, {
+    return get(`${PREFIX}/supernode/detail`, {
       nodeName
     });
   },

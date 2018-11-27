@@ -348,24 +348,8 @@ export default () => {
   
   router.get("/api/node/supernode/cycleExcel", async (ctx) => {
     try {
-      // console.log("/account/detail:" + JSON.stringify(ctx.query));
-      // let result = await get("/account/detail", ctx.query);
-      let result = {};
-      result.data = {
-        code: 0,
-        msg: "ok",
-        data: {
-          "cycleList": [
-            {
-              "cycle": 1,
-              "beginRound": 1,
-              "endRound": 1152,
-              "beginTime": "1543161600000",
-              "endTime": "1543248000000"
-            }
-          ]
-        }
-      };
+      console.log("/supernode/cycleExcel:" + JSON.stringify(ctx.query));
+      let result = await axios.get("http://192.168.31.190:8080/dev/reward/cycle/query");
       let cycleList = result.data.data.cycleList || [];
       cycleList = cycleList.map(item=> {
         return {
@@ -381,40 +365,13 @@ export default () => {
     }
   });
 
-  router.post("/api/node/supernode/detail", async (ctx) => {
+  router.get("/api/node/supernode/detail", async (ctx) => {
     try {
-      console.log("/supernode/detail:"+ JSON.stringify(ctx.request.body));
-      // let result = await post("/supernode/detail", ctx.request.body);
-      let result = {};
-      result.data = {
-        code: 0,
-        msg: "ok",
-        data: {
-          "rewardList": [
-            {
-              "cycle": 1,
-              "blockCount": 14,
-              "blockAward": "13345678921000000000",
-              "voteAward": "13345678921000000000",
-              "totalAward": "13345678921000000000"
-            }
-          ],
-          "nodeDetails": {
-            "nodeName": "s1",
-            "registerTime": "1541650394",
-            "registerCycle": 14,
-            "registerAddress": "vite_XXXXXXX",
-            "blockAddress": "vite_XXXXXXXX",
-            "blockCount": 11111,
-            "blockRatio": "0.22222222222222(18位)",
-            "totalBlockAward": "13345678921000000000",
-            "totalVoteAward": "13000000000000000000",
-            "totalAward": "13000000000000000000",
-            "settledAward": "13000000000000000000",
-            "unSettledAward": "13000000000000000000"
-          }
-        }
-      };
+      console.log("/supernode/detail:"+ JSON.stringify(ctx.query));
+      console.log(ctx.query);
+      let result = await axios.get("http://192.168.31.190:8080/dev/reward/node/queryDetails", {
+        params: ctx.query
+      });
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"

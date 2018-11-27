@@ -87,8 +87,14 @@
             describe: this.superNodeDetail[key] || "--"
           };
           switch(key) {
+          case "nodeName":
+            item.link = this.superNodeDetail.detailsUrl;
+            break;
+          case "blockRatio":
+            item.describe = (this.superNodeDetail[key] * 100).toFixed(1) + "%";
+            break;
           case "registerTime":
-            item.describe = `${moment(this.superNodeDetail[key] * 1000).format("YYYY-MM-DD HH:mm:ss")}（${this.$t("superNodeDetail.registerCycle")} ${ this.superNodeDetail.registerCycle }）`|| "--";
+            item.describe = `${moment(this.superNodeDetail[key]).format("YYYY-MM-DD HH:mm:ss")}（${this.$t("superNodeDetail.registerCycle")} ${ this.superNodeDetail.registerCycle }）`|| "--";
             break;
           default: break;
           }
@@ -109,7 +115,7 @@
           case "totalVoteAward":
           case "totalAward":
           case "unSettledAward":
-            item.describe = this.superNodeDetail[key] ? handleBigNum(this.superNodeDetail[key], 18) + " VITE" : null;
+            item.describe = this.superNodeDetail[key] ? handleBigNum((+this.superNodeDetail[key]).toFixed(4)) + " VITE" : null;
             break;
           default: break;
           }

@@ -278,7 +278,8 @@ module.exports = {
     label: "奖励列表",
     titles: [{
       prop: "cycle",
-      name: "日期"
+      name: "日期",
+      width: 306
     }, {
       prop: "blockCount",
       name: "出块数"
