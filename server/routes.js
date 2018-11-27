@@ -349,8 +349,8 @@ export default () => {
   router.get("/api/node/supernode/cycleExcel", async (ctx) => {
     try {
       console.log("/supernode/cycleExcel:" + JSON.stringify(ctx.query));
-      let result = await axios.get("http://192.168.31.190:8080/dev/reward/cycle/query");
-      let cycleList = result.data.data.cycleList || [];
+      let result = await axios.get("http://132.232.22.247:8080/test/reward/cycle/query");
+      let cycleList = result.data.data || [];
       cycleList = cycleList.map(item=> {
         return {
           ...item,
@@ -358,7 +358,8 @@ export default () => {
           endTime: new Date(+item.endTime).toLocaleString()
         };
       });
-      result.data.data.cycleList  = cycleList;
+      result.data.data= cycleList;
+      console.log(JSON.stringify(result.data));
       ctx.body = result.data;
     } catch(err) {
       console.log(err.code);
@@ -369,7 +370,7 @@ export default () => {
     try {
       console.log("/supernode/detail:"+ JSON.stringify(ctx.query));
       console.log(ctx.query);
-      let result = await axios.get("http://192.168.31.190:8080/dev/reward/node/queryDetails", {
+      let result = await axios.get("http://132.232.22.247:8080/test/reward/node/queryDetails", {
         params: ctx.query
       });
       ctx.body = result.data || {

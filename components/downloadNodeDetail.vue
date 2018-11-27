@@ -81,7 +81,7 @@ export default {
   methods: {
     fetchCycleTime() {
       superNode.getCycleTime().then(data=> {
-        this.cycleList = data.cycleList;
+        this.cycleList = data;
       }).catch(err => {
         console.log(err || "get cycle list fail");
       });
