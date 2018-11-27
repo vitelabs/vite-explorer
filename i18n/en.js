@@ -235,7 +235,7 @@ module.exports = {
 
   // pages/SBPDetail
   superNodeDetail: {
-    title: "SuperNode Details",
+    title: "Node Details",
     key: {
       nodeName: "Node Name",
       registerTime: "Registration Time",
@@ -252,7 +252,7 @@ module.exports = {
     },
     startDate: "Start Date",
     endDate: "End Date",
-    downloadDetail: "Download Details",
+    downloadDetail: "Download Voting Details",
     verify: "The Start cycle you input is earlier than the registration cycle, please try again",
     registerCycle: "Registration Cycle",
     cycleTime: "Cycle time comparison chart",
