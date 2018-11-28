@@ -12,7 +12,7 @@
         :picker-options="pickerOptions"
         class="date-picker">
       </el-date-picker>
-      <el-button type="primary" size="small" class="button" @click="sureFilter" :disabled="disabled">{{ $t('filter.sure') }}</el-button>
+      <el-button type="primary" size="small" class="button" @click="sureFilter" :disabled="disabled">{{ $t('superNodeDetail.download') }}</el-button>
       <el-button size="small" class="button custom-button" @click="showCycleTime">{{ $t('superNodeDetail.cycleTime') }}</el-button>
     </div>
     <el-dialog :title="$t('superNodeDetail.cycleTime')" :visible.sync="dialogTableVisible">
@@ -136,6 +136,7 @@ export default {
     }
     .custom-button {
       color: $common-color;
+      border-color:  $common-color;
     }
     .button {
       margin-left: 8px; 
