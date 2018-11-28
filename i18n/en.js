@@ -248,7 +248,7 @@ module.exports = {
       totalBlockAward: "Block Creation Rewards",
       totalVoteAward: "Rewards of Votes",
       totalAward: "Rewards in Total",
-      unSettledAward: "Issued Rewards",
+      settledAward: "Issued Rewards",
     },
     download: "Download",
     startDate: "Start Date",
