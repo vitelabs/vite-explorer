@@ -73,10 +73,10 @@ module.exports = {
 
   // Version attached description
   logo: {
-    v: "Version 1.0.0",
+    v: "Version 1.1.0",
     current: "Current Version",
-    content1: "Vite's block explorer is a website for searching comprehensive information about Vite. Now, it supports searching by transactions, snapshot blocks, tokens, SBPs, accounts and presents related information; it also provides statistics information, transactions filter and sorting.",
-    content2: "Version 1.0.0 introduces SBPs list. SBPs(Snapshot Block Producer) are nodes who produce snapshot blocks in Vite system.",
+    content1: "Vite's block explorer is a website for searching comprehensive information about Vite. Now, it supports searching by transactions, snapshot blocks, tokens, SBPs, accounts and presenting related information such as voting status and node details; it also provides statistics information, transactions filter and sorting.",
+    content2: "Version 1.1.0 introduces SBP detail page. This version also added new features such as rewards enquiry and download voting details",
     govite: {
       current: "go-vite Version",
       v: "1.0.0"
@@ -482,7 +482,7 @@ module.exports = {
   // pages/superNode
   superNode: {
     title: "SBP List",
-    total: "Total SBPs:"
+    total: "Total Nodes:"
   },
   nodeTitles: [{
     prop: "rank",
