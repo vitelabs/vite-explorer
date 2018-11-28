@@ -8,7 +8,8 @@
         :tableTitles="nodeTitles"
         :tableData="nodeData"
         :total="totalNumber"
-        :is-sbp-page="true">
+        :is-sbp-page="true"
+        :fe-sort="false">
         <search-input @getInput="filterTable" slot="filter"></search-input>
       </page-table>
     </div>
@@ -36,8 +37,10 @@
         let { nodeList, totalNum} = await superNode.getList({
           search: null
         });
+        let fullNodeList = nodeList;
         return {
           nodeList,
+          fullNodeList,
           totalNumber: +totalNum,
         };
       } catch(err) {
@@ -70,11 +73,10 @@
           
           list.push({
             ...node,
+            nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
             status: node.status,
-            voteAward: node.voteAward ? node.voteAward + " VITE" : node.voteAward,
             curVoteAward: node.curVoteAward ? node.curVoteAward + " VITE" : node.curVoteAward,
             curSuperNodeAward: node.curSuperNodeAward ? node.curSuperNodeAward + " VITE" : node.curSuperNodeAward,
-            superNodeAward:  node.superNodeAward  ? node.superNodeAward + " VITE" : node.superNodeAward,
             producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
           });
         });
@@ -82,19 +84,18 @@
       }
     },
     methods: {
-      getNodeList() {
-        superNode.getList({
-          search: this.search
-        }).then(data=> {
-          this.nodeList = data.nodeList;
-        }).catch(err=> {
-          console.log(err);
-        });
-      },
       filterTable(str) {
         let filterInput = str || null;
         this.search = filterInput || null;
-        this.getNodeList();
+        if (!this.search) return this.nodeList = this.fullNodeList;
+        let list = [];
+        for(let i = 0; i < this.fullNodeList.length; i++) {
+          if( this.fullNodeList[i].nodeName.toLowerCase().indexOf(this.search.toLowerCase()) > -1 
+          || this.fullNodeList[i].producerAddress.toLowerCase().indexOf(this.search.toLowerCase()) > -1 ) {
+            list.push(this.fullNodeList[i]);
+          }
+        }
+        this.nodeList = list;
       },
     }
   };

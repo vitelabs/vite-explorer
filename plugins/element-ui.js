@@ -19,13 +19,18 @@ import {
   Option,
   Input,
   Message,
-  MessageBox
+  MessageBox,
+  DatePicker,
+  Dialog
 } from "element-ui";
+
+Vue.component(DatePicker.name, DatePicker);
 
 import "assets/css/table.scss";
 
 Vue.use(Loading.directive);
 Vue.use(Icon);
+Vue.use(Dialog);
 Vue.use(Pagination);
 Vue.use(Menu);
 Vue.use(Submenu);

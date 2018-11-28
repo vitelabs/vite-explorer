@@ -1,4 +1,4 @@
-import { post } from "../api/axios";
+import { get, post } from "../api/axios";
 
 const PREFIX = "node";
 
@@ -17,5 +17,17 @@ export default {
     return post(`${PREFIX}/detail`, {
       producerAddress
     });
+  },
+  
+  getSuperNodeDetail({
+    nodeName = null
+  }) {
+    return get(`${PREFIX}/supernode/detail`, {
+      nodeName
+    });
+  },
+
+  getCycleTime() {
+    return get(`${PREFIX}/supernode/cycleExcel`);
   }
 };

@@ -15,7 +15,7 @@
             </el-tooltip>
           </span>
         </div>
-        <div v-else>{{ item.describe || '--' }}</div>
+        <div v-else>{{ item.describe === 0 ? 0 : (item.describe || '--') }}</div>
       </span>
       <div v-if="item.list && item.list.length" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
@@ -31,17 +31,15 @@
       <div class="extral-row" v-for="(item, index) in extralList" :key="index">
         <span class="name">{{item.name}}：</span>
         <a v-if="item.innerLink" @click="changeTab">{{item.describe || '--'}}</a>
-        <span v-else>{{item.describe || '--'}}</span>
+        <span v-else>{{ item.describe === 0 ? 0 : (item.describe || '--') }}</span>
       </div>
-      <filter-address @getAccountAddr="getAccInputInfo"></filter-address>
+      <slot name="externalSpecial"></slot>
     </div>
     <slot name="footer"></slot>
   </div>
 </template>
 
 <script>
-  import filterAddress from "~/components/filterAddress.vue";
-
   export default {
     props: {
       list: {
@@ -66,7 +64,6 @@
       }
     },
     components: {
-      filterAddress
     },
     computed: {
       classObj() {
@@ -93,9 +90,6 @@
       _clickLab(lab, index) {
         this.currentLabInx = index;
         this.clickLab(lab, index);
-      },
-      getAccInputInfo(accountObj) {
-        this.$emit("getAccountAddr", accountObj);
       }
     }
   };

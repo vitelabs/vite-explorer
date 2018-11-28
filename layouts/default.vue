@@ -34,6 +34,7 @@
             </div>
           </div>
           <lang-select class="lang-select"></lang-select>
+          <div class="vite-net"><a href="https://vite.net" target="_blank">{{ $t("nav.vitenet") }}</a></div>
           <search class="search" :visible="searchOpen" @search-open="closeSearch"></search>
           <div :class="phoneSearchClass" @click="openSearch">
             <div class="p-search">
@@ -222,6 +223,15 @@
     .search {
       float: right;
     }
+    .vite-net {
+      float: right;
+      padding: 0 20px;
+      font-size: 14px;
+      border-right: 1px solid #E5EDF3;
+      a {
+        color: $common-color;
+      }
+    }
     .lang-select {
       float: right;
       &:hover {
@@ -289,7 +299,7 @@
       top: 0px;
       .navbar-menu {
         .nav-item {
-          padding: 0 33px;
+          padding: 0 20px;
           text-decoration: none;
           display: block;
         }
@@ -333,6 +343,7 @@
         display: none;
       }
 
+
       .vertical-menu {
         display: block;
         float: right;
@@ -347,6 +358,9 @@
           border-right: 1px solid #E5EDF3;
         }
         .invisible-search {
+          display: none;
+        }
+        .vite-net {
           display: none;
         }
       }

@@ -345,6 +345,42 @@ export default () => {
       // console.log(err.code);
     }
   });
+  
+  router.get("/api/node/supernode/cycleExcel", async (ctx) => {
+    try {
+      console.log("/supernode/cycleExcel:" + JSON.stringify(ctx.query));
+      let result = await axios.get("http://150.109.62.152:8080/reward/cycle/query");
+      let cycleList = result.data.data || [];
+      cycleList = cycleList.map(item=> {
+        return {
+          ...item,
+          beginTime: new Date(+item.beginTime).toLocaleString(),
+          endTime: new Date(+item.endTime).toLocaleString()
+        };
+      });
+      result.data.data= cycleList;
+      ctx.body = result.data;
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
+
+  router.get("/api/node/supernode/detail", async (ctx) => {
+    try {
+      console.log("/supernode/detail:"+ JSON.stringify(ctx.query));
+      console.log(ctx.query);
+      let result = await axios.get("http://150.109.62.152:8080/reward/node/queryDetails", {
+        params: ctx.query
+      });
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err);
+      // console.log(err.code);
+    }
+  });
 
   router.get("/api/token/detail", async (ctx) => {
     try {

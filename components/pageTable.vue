@@ -26,7 +26,7 @@
           :prop="tT.prop"
           :label="tT.name" :width="tT.width || ''" 
           :show-overflow-tooltip="true"
-          :sortable="sortItems.indexOf(tT.prop) > -1 ? 'custom' : false"
+          :sortable="sortItems.indexOf(tT.prop) > -1 ? 'custom' : feSort"
           :render-header="renderHeader">
           <template slot-scope="scope">
               <div v-html="scope.row[tT.prop] || '--'" v-if="scope.row[tT.prop] !== 0"></div>
@@ -121,6 +121,10 @@
       subCommonTitle: {
         type: String,
         default: ""
+      },
+      feSort: {
+        type: Boolean,
+        default: false
       }
     },
     // serverCacheKey: props => props.currentPage,

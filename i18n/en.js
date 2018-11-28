@@ -24,7 +24,7 @@ module.exports = {
     height: "Height",
     node: "Node",
     pack: "",
-    account: " account(s)",
+    account: " transaction(s)",
     cost: "Cost ",
     sec: " sec(s)",
     secAgo: " sec ago",
@@ -73,10 +73,10 @@ module.exports = {
 
   // Version attached description
   logo: {
-    v: "Version 1.0.0",
+    v: "Version 1.1.0",
     current: "Current Version",
-    content1: "Vite's block explorer is a website for searching comprehensive information about Vite. Now, it supports searching by transactions, snapshot blocks, tokens, SBPs, accounts and presents related information; it also provides statistics information, transactions filter and sorting.",
-    content2: "Version 1.0.0 introduces SBPs list. SBPs(Snapshot Block Producer) are nodes who produce snapshot blocks in Vite system.",
+    content1: "Vite's block explorer is a website for searching comprehensive information about Vite. Now, it supports searching by transactions, snapshot blocks, tokens, SBPs, accounts and presenting related information such as voting status and node details; it also provides statistics information, transactions filter and sorting.",
+    content2: "Version 1.1.0 introduces SBP detail page. This version also added new features such as rewards enquiry and download voting details",
     govite: {
       current: "go-vite Version",
       v: "1.0.0"
@@ -93,10 +93,11 @@ module.exports = {
       name: "Mining",
       childs: {
         SBPList: "SBPs",
-        voteReward: "Voting Reward",
+        voteReward: "Voting Rewards",
         registerSBP: "SBP Registration"
       }
-    }
+    },
+    vitenet: "Use other products"
   },
   pageTable: {
     pre: "Prev",
@@ -232,6 +233,71 @@ module.exports = {
     exception: "Error Exception Occurs",
   },
 
+  // pages/SBPDetail
+  superNodeDetail: {
+    title: "Node Details",
+    key: {
+      nodeName: "Node Name",
+      registerTime: "Registration Time",
+      registerAddress: "Registration Address",
+      blockAddress: "Block Creation Address",
+      blockCount: "Count",
+      blockRatio: "Ratio"
+    },
+    externalKey: {
+      totalBlockAward: "Block Creation Rewards",
+      totalVoteAward: "Rewards of Votes",
+      totalAward: "Rewards in Total",
+      unSettledAward: "Issued Rewards",
+    },
+    startDate: "Start Date",
+    endDate: "End Date",
+    downloadDetail: "Download Voting Details",
+    verify: "The Start cycle you input is earlier than the registration cycle, please try again",
+    registerCycle: "Registration Cycle",
+    cycleTime: "Cycle time comparison chart",
+    alertMsg: "A cycle cannot over 30 days",
+    cycleTitles: [{
+      prop: "cycle",
+      name: "Cycle"
+    }, {
+      prop: "beginRound",
+      name: "Start Round"
+    }, {
+      prop: "endRound",
+      name: "End Round"
+    }, {
+      prop: "beginTime",
+      name: "Start Time of Cycle",
+      width: 160
+    }, {
+      prop: "endTime",
+      name: "End Time of Cycle",
+      width: 160
+    }]
+  },
+
+  // components/SBPAwardList
+  SBPAwardList: {
+    label: "Rewards",
+    titles: [{
+      prop: "cycle",
+      name: "Date",
+      width: 306
+    }, {
+      prop: "blockCount",
+      name: "Block creation count"
+    }, {
+      prop: "blockAward",
+      name: "Block creation rewards"
+    }, {
+      prop: "voteAward",
+      name: "Rewards of votes"
+    }, {
+      prop: "totalAward",
+      name: "Rewards in total"
+    }]
+  },
 
   // pages/account
   account: {
@@ -416,7 +482,7 @@ module.exports = {
   // pages/superNode
   superNode: {
     title: "SBP List",
-    total: "Total SBPs:"
+    total: "Total Nodes:"
   },
   nodeTitles: [{
     prop: "rank",
@@ -425,45 +491,40 @@ module.exports = {
   }, {
     prop: "nodeName",
     name: "Name",
-    width: 100
+    width: 120
   }, {
     prop: "status",
     name: "SBP Status",
-    width: 100
+    width: 120
   }, {
     prop: "voteNum",
-    name: "Votes"
+    name: "Votes",
+    width: 90
   }, {
     prop: "produceRatio",
     name: "Ratio"
   }, {
     prop: "expectNum",
     name: "Target",
+    width: 90
   }, {
     prop: "factNum",
     name: "Hit",
   }, {
     prop: "missNum",
-    name: "Missed"
+    name: "Missed",
+    width: 95
   }, {
     prop: "producerAddress",
     name: "Address",
     width: 160
   }, {
     prop: "curVoteAward",
-    name: "Today's Candidate Additional Reward",
+    name: "Today's Candidate Additional Rewards",
     width: 120
   }, {
     prop: "curSuperNodeAward",
-    name: "Today's Block Creation Reward",
-    width: 180
-  }, {
-    prop: "voteAward",
-    name: "Candidate Additional Reward",
-    width: 120
-  }, {
-    prop: "superNodeAward",
-    name: "Block Creation Reward",
+    name: "Today's Block Creation Rewards",
     width: 120
   }],
 

@@ -22,7 +22,7 @@ module.exports = {
     height: "快照块高度",
     node: "快照节点",
     pack: "快照",
-    account: "账户",
+    account: "笔交易",
     cost: "耗时",
     sec: "秒",
     secAgo: "秒前",
@@ -69,10 +69,10 @@ module.exports = {
 
   // Version attached description
   logo: {
-    v: "版本1.0.0",
+    v: "版本1.1.0",
     current: "当前版本",
-    content1: "Vite区块浏览器是查询Vite综合信息的网站，目前支持交易、快照块、代币、SBP、账户的查询及相关信息展示;支持统计信息展示，交易的筛选、排序等功能。",
-    content2: "1.0.0新增SBP列表，SBPs（Snapshot Block Producer）为Vite系统中打包快照块的节点。",
+    content1: "Vite区块浏览器是查询Vite综合信息的网站，目前支持交易、快照块、代币、SBP、账户的查询，投票情况、节点详情及相关信息展示;支持统计信息展示，交易的筛选、排序等功能。",
+    content2: "1.1.0新增节点详情页，支持查看奖励情况，支持下载得票明细。",
     govite: {
       current: "go-vite 版本",
       v: "1.0.0"
@@ -92,7 +92,8 @@ module.exports = {
         voteReward: "投票奖励",
         registerSBP: "注册SBP"
       }
-    }
+    },
+    vitenet: "使用Vite其他产品"
   },
   pageTable: {
     pre: "上一页",
@@ -228,6 +229,71 @@ module.exports = {
     exception: "发生错误异常",
   },
 
+  // pages/SBPDetail
+  superNodeDetail: {
+    title: "节点详情",
+    key: {
+      nodeName: "节点名称",
+      registerTime: "注册时间",
+      registerAddress: "注册地址",
+      blockAddress: "出块地址",
+      blockCount: "出块数",
+      blockRatio: "出块率"
+    },
+    externalKey: {
+      totalBlockAward: "出块奖励",
+      totalVoteAward: "按票奖励",
+      totalAward: "总奖励",
+      unSettledAward: "已发奖励",
+    },
+    startDate: "开始日期",
+    endDate: "结束日期",
+    downloadDetail: "下载得票明细",
+    verify: "您输入的起始周期早于注册时间所属周期，请重新输入",
+    registerCycle: "所属周期",
+    cycleTime: "周期时间对照表",
+    alertMsg: "不能超过30天",
+    cycleTitles: [{
+      prop: "cycle",
+      name: "周期"
+    }, {
+      prop: "beginRound",
+      name: "开始轮数"
+    }, {
+      prop: "endRound",
+      name: "结束轮数"
+    }, {
+      prop: "beginTime",
+      name: "周期开始时间",
+      width: 160
+    }, {
+      prop: "endTime",
+      name: "周期结束时间",
+      width: 160
+    }]
+  },
+
+  // components/SBPAwardList
+  SBPAwardList: {
+    label: "奖励列表",
+    titles: [{
+      prop: "cycle",
+      name: "时间",
+      width: 306
+    }, {
+      prop: "blockCount",
+      name: "出块数"
+    }, {
+      prop: "blockAward",
+      name: "出块奖励"
+    }, {
+      prop: "voteAward",
+      name: "按票奖励"
+    }, {
+      prop: "totalAward",
+      name: "总奖励"
+    }]
+  },
 
   // pages/account
   account: {
@@ -417,7 +483,7 @@ module.exports = {
   // pages/superNode
   superNode: {
     title: "超级节点列表",
-    total: "快照块出块节点总数："
+    total: "节点总数："
   },
   nodeTitles: [{
     prop: "rank",
@@ -426,7 +492,7 @@ module.exports = {
   }, {
     prop: "nodeName",
     name: "节点名",
-    width: 100
+    width: 120
   }, {
     prop: "status",
     name: "状态"
@@ -435,16 +501,20 @@ module.exports = {
     name: "票数"
   }, {
     prop: "produceRatio",
-    name: "出块率"
+    name: "出块率",
+    width: 90
   }, {
     prop: "expectNum",
-    name: "应出块数量"
+    name: "应出块数量",
+    width: 115
   }, {
     prop: "factNum",
-    name: "已出块数量"
+    name: "已出块数量",
+    width: 115
   }, {
     prop: "missNum",
-    name: "遗漏块数量"
+    name: "遗漏块数量",
+    width: 115
   }, {
     prop: "producerAddress",
     name: "出块地址",
@@ -452,19 +522,11 @@ module.exports = {
   }, {
     prop: "curVoteAward",
     name: "今日得票奖励",
-    width: 120
+    width: 130
   }, {
     prop: "curSuperNodeAward",
     name: "今日出块奖励",
-    width: 120
-  }, {
-    prop: "voteAward",
-    name: "得票奖励",
-    width: 120
-  }, {
-    prop: "superNodeAward",
-    name: "出块奖励",
-    width: 120
+    width: 130
   }],
 
   // pages/tokenAccount
