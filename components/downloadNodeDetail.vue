@@ -13,7 +13,7 @@
         class="date-picker">
       </el-date-picker>
       <el-button type="primary" size="small" class="button" @click="sureFilter" :disabled="disabled">{{ $t('filter.sure') }}</el-button>
-      <el-button type="primary" size="small" class="button" @click="showCycleTime">{{ $t('superNodeDetail.cycleTime') }}</el-button>
+      <el-button size="small" class="button custom-button" @click="showCycleTime">{{ $t('superNodeDetail.cycleTime') }}</el-button>
     </div>
     <el-dialog :title="$t('superNodeDetail.cycleTime')" :visible.sync="dialogTableVisible">
       <page-table class="token-table" 
@@ -108,12 +108,14 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
   @import "~assets/css/vars.scss";
   .download-node-detail {
+    display: flex;
+    display: -webkit-flex;
     margin-top: 16px;
     .name {
       font-size: 14px;
       width: 200px;
       color: #3F3F3F;
-      line-height: 32px;
+      line-height: 48px;
     }
     .tool-tip {
       vertical-align: text-top;
@@ -132,7 +134,9 @@ export default {
         border-color:  $disabled-color;
       }
     }
-    
+    .custom-button {
+      color: $common-color;
+    }
     .button {
       margin-left: 8px; 
       vertical-align: top;
@@ -142,10 +146,10 @@ export default {
 
   /** iPhone **/
   @media only screen and (min-width: 320px) and (max-width: 767px) {
-    .filter-address {
+    .download-node-detail {
+      flex-wrap: wrap;
       margin-top: 16px;
       .name {
-        display: inline-block;
         color: #3F3F3F;
         line-height: 32px;
       }
@@ -165,6 +169,7 @@ export default {
       }
       
       .button {
+        margin-top: 10px;
         height: 31px;
         margin-left: 0px; 
         vertical-align: top;

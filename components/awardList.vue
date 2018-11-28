@@ -57,8 +57,11 @@
         return num ? handleBigNum((+num).toFixed(4)) + " VITE" : null;
       },
       cycleToDate(cycle) {
-        let date = moment((cycle * 1152 * 75 + 1541650394) * 1000).format("YYYY-MM-DD");
-        let endDate = moment((cycle * 1152 * 75 + 1541650394 + 60 * 60 * 24) * 1000).format("YYYY-MM-DD");
+        if (cycle === 0) {
+          return "2018-11-08 12:13:14 -- 2018-11-08 12:13:14";
+        }
+        let date = moment((cycle * 1152 * 75 + 1541650394 - 60 * 60 * 24) * 1000).format("YYYY-MM-DD");
+        let endDate = moment((cycle * 1152 * 75 + 1541650394 ) * 1000).format("YYYY-MM-DD");
         return  date + " 12:13:14" + " -- " + endDate +" 12:13:13";
       },
     }

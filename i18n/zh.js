@@ -483,7 +483,7 @@ module.exports = {
   // pages/superNode
   superNode: {
     title: "超级节点列表",
-    total: "快照块出块节点总数："
+    total: "节点总数："
   },
   nodeTitles: [{
     prop: "rank",
