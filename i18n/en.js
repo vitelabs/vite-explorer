@@ -269,11 +269,11 @@ module.exports = {
     }, {
       prop: "beginTime",
       name: "Start Time of Cycle",
-      width: 160
+      width: 200
     }, {
       prop: "endTime",
       name: "End Time of Cycle",
-      width: 160
+      width: 200
     }]
   },
 

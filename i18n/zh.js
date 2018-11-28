@@ -265,11 +265,11 @@ module.exports = {
     }, {
       prop: "beginTime",
       name: "周期开始时间",
-      width: 160
+      width: 200
     }, {
       prop: "endTime",
       name: "周期结束时间",
-      width: 160
+      width: 200
     }]
   },
 
