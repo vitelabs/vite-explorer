@@ -9,7 +9,7 @@
         :tableData="nodeData"
         :total="totalNumber"
         :is-sbp-page="true"
-        :fe-sort="true">
+        :fe-sort="false">
         <search-input @getInput="filterTable" slot="filter"></search-input>
       </page-table>
     </div>
