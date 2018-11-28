@@ -93,7 +93,7 @@ module.exports = {
       name: "Mining",
       childs: {
         SBPList: "SBPs",
-        voteReward: "Voting Reward",
+        voteReward: "Voting Rewards",
         registerSBP: "SBP Registration"
       }
     },
@@ -520,11 +520,11 @@ module.exports = {
     width: 160
   }, {
     prop: "curVoteAward",
-    name: "Today's Candidate Additional Reward",
+    name: "Today's Candidate Additional Rewards",
     width: 120
   }, {
     prop: "curSuperNodeAward",
-    name: "Today's Block Creation Reward",
+    name: "Today's Block Creation Rewards",
     width: 120
   }],
 
