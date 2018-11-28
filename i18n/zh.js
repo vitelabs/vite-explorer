@@ -501,20 +501,32 @@ module.exports = {
     name: "票数"
   }, {
     prop: "produceRatio",
-    name: "出块率"
+    name: "出块率",
+    width: 90
   }, {
     prop: "expectNum",
-    name: "应出块数量"
+    name: "应出块数量",
+    width: 115
   }, {
     prop: "factNum",
-    name: "已出块数量"
+    name: "已出块数量",
+    width: 115
   }, {
     prop: "missNum",
-    name: "遗漏块数量"
+    name: "遗漏块数量",
+    width: 115
   }, {
     prop: "producerAddress",
     name: "出块地址",
     width: 160
+  }, {
+    prop: "curVoteAward",
+    name: "今日得票奖励",
+    width: 130
+  }, {
+    prop: "curSuperNodeAward",
+    name: "今日出块奖励",
+    width: 130
   }],
 
   // pages/tokenAccount

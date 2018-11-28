@@ -84,7 +84,7 @@
         for(let key in superNodeDetailMap) {
           let item = {
             name: superNodeDetailMap[key],
-            describe: this.superNodeDetail[key] || "--"
+            describe: this.superNodeDetail[key] === 0 ? 0 : (this.superNodeDetail[key] || "--")
           };
           switch(key) {
           case "nodeName":

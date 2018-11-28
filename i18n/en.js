@@ -498,23 +498,34 @@ module.exports = {
     width: 120
   }, {
     prop: "voteNum",
-    name: "Votes"
+    name: "Votes",
+    width: 90
   }, {
     prop: "produceRatio",
     name: "Ratio"
   }, {
     prop: "expectNum",
     name: "Target",
+    width: 90
   }, {
     prop: "factNum",
     name: "Hit",
   }, {
     prop: "missNum",
-    name: "Missed"
+    name: "Missed",
+    width: 95
   }, {
     prop: "producerAddress",
     name: "Address",
     width: 160
+  }, {
+    prop: "curVoteAward",
+    name: "Today's Candidate Additional Reward",
+    width: 120
+  }, {
+    prop: "curSuperNodeAward",
+    name: "Today's Block Creation Reward",
+    width: 120
   }],
 
   // pages/tokenAccount

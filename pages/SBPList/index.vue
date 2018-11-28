@@ -75,6 +75,8 @@
             ...node,
             nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
             status: node.status,
+            curVoteAward: node.curVoteAward ? node.curVoteAward + " VITE" : node.curVoteAward,
+            curSuperNodeAward: node.curSuperNodeAward ? node.curSuperNodeAward + " VITE" : node.curSuperNodeAward,
             producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
           });
         });

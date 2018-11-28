@@ -359,7 +359,6 @@ export default () => {
         };
       });
       result.data.data= cycleList;
-      console.log(JSON.stringify(result.data));
       ctx.body = result.data;
     } catch(err) {
       console.log(err.code);
