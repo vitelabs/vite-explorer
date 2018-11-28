@@ -349,7 +349,7 @@ export default () => {
   router.get("/api/node/supernode/cycleExcel", async (ctx) => {
     try {
       console.log("/supernode/cycleExcel:" + JSON.stringify(ctx.query));
-      let result = await axios.get("http://132.232.22.247:8080/test/reward/cycle/query");
+      let result = await axios.get("http://150.109.62.152:8080/reward/cycle/query");
       let cycleList = result.data.data || [];
       cycleList = cycleList.map(item=> {
         return {
@@ -369,7 +369,7 @@ export default () => {
     try {
       console.log("/supernode/detail:"+ JSON.stringify(ctx.query));
       console.log(ctx.query);
-      let result = await axios.get("http://132.232.22.247:8080/test/reward/node/queryDetails", {
+      let result = await axios.get("http://150.109.62.152:8080/reward/node/queryDetails", {
         params: ctx.query
       });
       ctx.body = result.data || {

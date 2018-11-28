@@ -69,10 +69,10 @@ module.exports = {
 
   // Version attached description
   logo: {
-    v: "版本1.0.0",
+    v: "版本1.1.0",
     current: "当前版本",
-    content1: "Vite区块浏览器是查询Vite综合信息的网站，目前支持交易、快照块、代币、SBP、账户的查询及相关信息展示;支持统计信息展示，交易的筛选、排序等功能。",
-    content2: "1.0.0新增SBP列表，SBPs（Snapshot Block Producer）为Vite系统中打包快照块的节点。",
+    content1: "Vite区块浏览器是查询Vite综合信息的网站，目前支持交易、快照块、代币、SBP、账户的查询，投票情况、节点详情及相关信息展示;支持统计信息展示，交易的筛选、排序等功能。",
+    content2: "1.1.0新增节点详情页，支持查看奖励情况，支持下载得票明细。",
     govite: {
       current: "go-vite 版本",
       v: "1.0.0"
@@ -278,7 +278,7 @@ module.exports = {
     label: "奖励列表",
     titles: [{
       prop: "cycle",
-      name: "日期",
+      name: "时间",
       width: 306
     }, {
       prop: "blockCount",
