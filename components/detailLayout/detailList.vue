@@ -15,7 +15,7 @@
             </el-tooltip>
           </span>
         </div>
-        <div v-else>{{ item.describe || '--' }}</div>
+        <div v-else>{{ item.describe === 0 ? 0 : (item.describe || '--') }}</div>
       </span>
       <div v-if="item.list && item.list.length" class="lab-list">
           <span v-for="(lab, index) in item.list" :key="index"
@@ -31,7 +31,7 @@
       <div class="extral-row" v-for="(item, index) in extralList" :key="index">
         <span class="name">{{item.name}}：</span>
         <a v-if="item.innerLink" @click="changeTab">{{item.describe || '--'}}</a>
-        <span v-else>{{item.describe || '--'}}</span>
+        <span v-else>{{ item.describe === 0 ? 0 : (item.describe || '--') }}</span>
       </div>
       <slot name="externalSpecial"></slot>
     </div>
