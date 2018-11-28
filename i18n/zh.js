@@ -246,6 +246,7 @@ module.exports = {
       totalAward: "总奖励",
       unSettledAward: "已发奖励",
     },
+    download: "下载",
     startDate: "开始日期",
     endDate: "结束日期",
     downloadDetail: "下载得票明细",

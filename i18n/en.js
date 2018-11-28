@@ -250,6 +250,7 @@ module.exports = {
       totalAward: "Rewards in Total",
       unSettledAward: "Issued Rewards",
     },
+    download: "Download",
     startDate: "Start Date",
     endDate: "End Date",
     downloadDetail: "Download Voting Details",
@@ -282,7 +283,7 @@ module.exports = {
     label: "Rewards",
     titles: [{
       prop: "cycle",
-      name: "Date",
+      name: "Time",
       width: 306
     }, {
       prop: "blockCount",
