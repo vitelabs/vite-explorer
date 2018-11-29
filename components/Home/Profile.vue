@@ -147,13 +147,13 @@
         border: 1px solid rgba(255,255,255,0.33);
         box-shadow: 4px 4px 12px 0 rgba(0,92,199,0.44);
         box-sizing: border-box;
-        padding: 15px 0px 9px 15px;
+        padding: 15px 0px 9px 10px;
         border-radius: 2px;
         span {
           letter-spacing: 0;
           font-size: 12px;
           &.height-value {
-            font-size: 48px;
+            font-size: 46px;
           }
           &.noData {
             font-size: 40px;

@@ -57,7 +57,7 @@
       search() {
         let str = this.searchStr.trim();
         if (!str) {
-          this.$message("不能为空");
+          this.$message(this.$t("utils.noEmpty"));
           return;
         }
         let langStrPath = "";

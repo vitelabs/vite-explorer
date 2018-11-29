@@ -107,7 +107,8 @@ module.exports = {
   utils: {
     noData: "暂无数据",
     more: "更多",
-    noResult: "暂无数据"
+    noResult: "暂无数据",
+    noEmpty: "搜索条件不能为空"
   },
   filter: {
     filterName: "筛选",
@@ -172,6 +173,16 @@ module.exports = {
     width: "70"
   }],
   filterObj: {
+    type: [{
+      label: "全部",
+      value: null
+    }, {
+      label: "请求",
+      value: -1
+    }, {
+      label: "响应",
+      value: 1
+    }],
     blockType: [{
       label: "全部",
       value: null

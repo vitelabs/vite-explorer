@@ -176,12 +176,13 @@
       renderHeader(h, { column, $index }) {
         if (this.needFilter) {
           let tableTitles = this.tableTitles;
-          if (tableTitles[$index].prop === "blockType" || tableTitles[$index].prop === "status") {
+          let prop = tableTitles[$index].prop;
+          if (prop === "blockType" || prop === "status" || prop === "type") {
             return (
-              <el-dropdown trigger="click" class="table-dropdown" onCommand={this.commandHandler.bind(this, tableTitles[$index].prop)}>
+              <el-dropdown trigger="click" class="table-dropdown" onCommand={this.commandHandler.bind(this, prop)}>
                 <span>{column.label}<span class="icon"></span></span>
                 <el-dropdown-menu slot="dropdown">
-                  {this.$t("filterObj")[tableTitles[$index].prop].map((item)=> {
+                  {this.$t("filterObj")[prop].map((item)=> {
                     return <el-dropdown-item command={item.value}>{item.label}</el-dropdown-item>;
                   })}
                 </el-dropdown-menu>

@@ -88,7 +88,7 @@
   justify-content: space-between;
   border-bottom: 1px solid $border-color;
   .snapshot-title {
-    margin-left: 36px;
+    margin-left: 32px;
     margin-top: 24px; 
     margin-bottom: 21px; 
     .title-icon {

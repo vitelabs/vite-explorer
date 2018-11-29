@@ -111,7 +111,8 @@ module.exports = {
   utils: {
     noData: "No Data",
     more: "More",
-    noResult: "No Result"
+    noResult: "No Result",
+    noEmpty: "搜索条件不能为空"
   },
   filter: {
     filterName: "Filter",
@@ -176,6 +177,16 @@ module.exports = {
     width: "70"
   }],
   filterObj: {
+    type: [{
+      label: "all",
+      value: null
+    }, {
+      label: "request",
+      value: -1
+    }, {
+      label: "response",
+      value: 1
+    }],
     blockType: [{
       label: "all",
       value: null

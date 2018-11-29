@@ -45,7 +45,8 @@ export default {
       accountAddress : accountAddress || null,
       tokenId: tokenId || null,
       status: selectObj && selectObj.status || null,
-      blockType: selectObj && selectObj.blockType && (selectObj.blockType === 0 ? selectObj.blockType : selectObj.blockType || null), // 
+      type: selectObj && selectObj.type && (selectObj.type === 0 ? selectObj.type : selectObj.type || null),
+      blockType: selectObj && selectObj.blockType && (selectObj.blockType === 0 ? selectObj.blockType : selectObj.blockType || null),  
       outAccountAddress,
       inAccountAddress
     });
