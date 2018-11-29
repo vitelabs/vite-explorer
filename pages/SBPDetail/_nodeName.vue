@@ -81,12 +81,18 @@
       nodeList() {
         let superNodeDetailMap = this.$t("superNodeDetail.key");
         let list = [];
+        let lang;
+        this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
         for(let key in superNodeDetailMap) {
           let item = {
             name: superNodeDetailMap[key],
             describe: this.superNodeDetail[key] === 0 ? 0 : (this.superNodeDetail[key] || "--")
           };
           switch(key) {
+          case "registerAddress":
+          case "blockAddress":
+            item.link = `${lang}/account/${this.superNodeDetail[key]}`;
+            break;
           case "nodeName":
             item.link = this.superNodeDetail.detailsUrl;
             break;
