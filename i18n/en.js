@@ -325,7 +325,8 @@ module.exports = {
     filterInput: "Filtered By",
     quota: "TPS Quota",
     blockPercent: "Percentage",
-    blockAward: "Rewards"
+    blockAward: "Rewards",
+    onroad: "在途金额"
   },
   accountAddrMap: {
     0: "",
@@ -339,6 +340,9 @@ module.exports = {
   },
   SBP: {
     label: "Snapshot Block List"
+  },
+  onroad: {
+    label: "在途交易列表"
   },
 
   // pages/block

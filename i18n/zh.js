@@ -321,7 +321,8 @@ module.exports = {
     filterInput: "筛选",
     quota: "配额",
     blockPercent: "出块率",
-    blockAward: "出块奖励"
+    blockAward: "出块奖励",
+    onroad: "在途金额"
   },
   accountAddrMap: {
     0: "",
@@ -335,6 +336,9 @@ module.exports = {
   },
   SBP: {
     label: "打包快照块列表"
+  },
+  onroad: {
+    label: "在途交易列表"
   },
 
   // pages/block

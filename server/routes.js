@@ -132,7 +132,12 @@ async function getBlockList(ctx) {
 
 
 async function getTransactionList(ctx) {
-  let result = await post("/accountchain/blocklist", ctx.request.body);
+  let result = {};
+  if(!ctx.request.body.onRoad) {
+    result = await post("/accountchain/blocklist", ctx.request.body);
+  } else {
+    result = await post("/accountchain/blocklistonroad", ctx.request.body);
+  }
   let body = result.data || {
     code: 5000,
     msg: "Server Error"

@@ -21,7 +21,7 @@ export default {
     pageSize = 20,
     pageNum,
     sortObj
-  }, accountAddress, tokenId, blockHash, filterAddressObj, selectObj) {
+  }, accountAddress, tokenId, blockHash, filterAddressObj, selectObj, onRoad = false) {
     let outAccountAddress = null;
     let inAccountAddress = null;
     if (filterAddressObj && filterAddressObj.type) {
@@ -39,8 +39,8 @@ export default {
         index: pageIndex,
         count: pageSize,
         num: pageNum,
-        sort: sortObj && sortObj.sort || null,
-        order: sortObj && sortObj.order || null
+        sort: sortObj && sortObj.sort || "timestamp",
+        order: sortObj && sortObj.order || "desc"
       },
       snapshotBlockHash: blockHash || null,
       accountAddress : accountAddress || null,
@@ -49,7 +49,8 @@ export default {
       type: selectObj && selectObj.type && (selectObj.type === 0 ? selectObj.type : selectObj.type || null),
       blockType: selectObj && selectObj.blockType && (selectObj.blockType === 0 ? selectObj.blockType : selectObj.blockType || null),  
       outAccountAddress,
-      inAccountAddress
+      inAccountAddress,
+      onRoad
     });
   },
 

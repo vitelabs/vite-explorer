@@ -15,6 +15,12 @@
           <div class="tab-wrapper">
             <div class="tab-content" :class="{'is-active': tabParams === 'tx'}" @click="clickTab('tx')">{{$t('transList.label')}}</div>
             <div class="tab-content" 
+                 :class="{'is-active': tabParams === 'onroad'}" 
+                 @click="clickTab('onroad')"
+                 v-if="activeTokenIndex">
+                 {{$t('onroad.label')}}
+            </div>
+            <div class="tab-content" 
                  :class="{'is-active': tabParams === 'block'}" 
                  @click="clickTab('block')"
                  v-if="this.isSBP">
@@ -24,10 +30,11 @@
         </template>
       </detail-layout>
 
-      <trans-list v-if="tabParams === 'tx'"
+      <trans-list v-if="tabParams === 'tx' || tabParams === 'onroad'"
         :tokenId="activeToken ? activeToken.token.id : null"
         :accountAddress="accountDetail.accountAddress"
         :page-size="20"
+        :on-road="tabParams === 'onroad'"
         :need-filter="true"
         :sort-items="['timestamp', 'amount']"
         :default-sort="{ prop: 'timestamp', order: 'descending' }"
@@ -76,7 +83,7 @@
         let superNodeDetail = await node.getDetail({
           producerAddress: params.addr
         });
-        let isSBP = superNodeDetail.sbpType ? true : false;
+        let isSBP = superNodeDetail.sbpType === 1 ? true : false;
         return {
           accountDetail,
           tokenList,
@@ -169,6 +176,9 @@
           }]).concat(tokenDetail.token && tokenDetail.token.id ? [{
           name: this.$t("account.bAmount"),
           describe: handleBigNum(tokenDetail.balance, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"
+        }, {
+          name: this.$t("account.onroad"),
+          describe: handleBigNum(tokenDetail.onroad, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"
         }] : []);
       }
     },

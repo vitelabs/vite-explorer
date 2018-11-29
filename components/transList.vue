@@ -47,6 +47,10 @@
         type: Boolean,
         default: false
       },
+      onRoad: {
+        type: Boolean,
+        default: false
+      },
       tokenTitle: {
         type: Boolean,
         default: true
@@ -161,6 +165,7 @@
     },
     watch: {
       tokenId() {
+        this.resetParams();
         this.fetchTransList();
       },
       accountAddress() {
@@ -170,6 +175,12 @@
         this.filterAddressObj = val || null;
         val && this.fetchTransList();
       },
+      onRoad(val) {
+        if (val) {
+          this.resetParams();
+        }
+        this.fetchTransList();
+      }
     },
     methods: {
       isRightRequest(currentIndex, accountAddress, tokenId) {
@@ -203,28 +214,43 @@
           this.$message.error(err.msg || "get transList failed");
         });
       },
+      handleResponse(currentIndex, accountAddress, tokenId, transactionList, totalNumber, pageTotalNumber) {
+        if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
+          return;
+        }
+        this.loading = false;
+        this.transactionList = transactionList;
+        this.totalNumber = totalNumber;
+        this.pageTotalNumber = pageTotalNumber;
+        if (!this.filterAddressObj && !this.selectObj) {
+          this.$emit("totalNumber", this.totalNumber);
+        }
+      },
+      resetParams() {
+        //TODO  need check
+        this.pageIndex = 1;
+        this.sortObj = {sort: "timestamp", order: "desc"};
+        this.filterAddressObj = null;
+        this.selectObj = null;
+      },
 
       fetchTransList(currentIndex = 1) {
         this.loading = true;
         this.pageIndex = currentIndex;
         let tokenId = this.tokenId;
         let accountAddress = this.accountAddress;
-
-        transaction.getList({
+        let defaultPagination = {
           pageIndex: currentIndex,
           pageSize: this.pageSize,
           sortObj: this.sortObj
-        }, accountAddress, tokenId, this.blockHash, this.filterAddressObj, this.selectObj).then(({ transactionList, totalNumber, pageTotalNumber }) => {
-          if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
-            return;
-          }
-          this.loading = false;
-          this.transactionList = transactionList;
-          this.totalNumber = totalNumber;
-          this.pageTotalNumber = pageTotalNumber;
-          if (!this.filterAddressObj && !this.selectObj) {
-            this.$emit("totalNumber", this.totalNumber);
-          }
+        };
+        this.getCommonTxList(defaultPagination, currentIndex, accountAddress, tokenId);
+      },
+      getCommonTxList(defaultPagination, currentIndex, accountAddress, tokenId) {
+        transaction.getList({
+          ...defaultPagination
+        }, accountAddress, tokenId, this.blockHash, this.filterAddressObj, this.selectObj, this.onRoad).then(({ transactionList, totalNumber, pageTotalNumber }) => {
+          this.handleResponse(currentIndex, accountAddress, tokenId, transactionList, totalNumber, pageTotalNumber);
         }).catch((err) => {
           if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
             return;
