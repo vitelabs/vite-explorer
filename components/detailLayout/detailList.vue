@@ -10,9 +10,11 @@
         <div v-if="item.key === 'address' && item.sbpType" class="address">
           {{ item.describe || '--' }}
           <span v-for="(icon, index) in item.iconList" :key="index">
-            <el-tooltip class="item" effect="dark" content="Snapshot Block Producer" placement="top">
-              <img :src="icon"/>
-            </el-tooltip>
+            <a :href="icon.link" target="_blank">
+              <el-tooltip class="item" effect="dark" :content="$t(`accountAddrMap.${icon.key}`)" placement="top">
+                  <img :src="icon.icon"/>
+              </el-tooltip>
+            </a>
           </span>
         </div>
         <div v-else>{{ item.describe === 0 ? 0 : (item.describe || '--') }}</div>

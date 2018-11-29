@@ -55,6 +55,10 @@
         type: String,
         default: ""
       },
+      blockHash: { // block detail page
+        type: String,
+        default: ""
+      },
       tokenId: {
         type: String,
         default: ""
@@ -114,6 +118,9 @@
         let titles = this.$t("transTitles");
         if(this.tokenTitle){
           titles = titles.concat(this.$t("addedTitle"));
+        }
+        if (this.blockHash) {
+          titles.splice(4, 1);
         }
         return titles;
       },
@@ -207,7 +214,7 @@
           pageIndex: currentIndex,
           pageSize: this.pageSize,
           sortObj: this.sortObj
-        }, accountAddress, tokenId, this.filterAddressObj, this.selectObj).then(({ transactionList, totalNumber, pageTotalNumber }) => {
+        }, accountAddress, tokenId, this.blockHash, this.filterAddressObj, this.selectObj).then(({ transactionList, totalNumber, pageTotalNumber }) => {
           if (!this.isRightRequest(currentIndex, accountAddress, tokenId)) {
             return;
           }

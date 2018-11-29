@@ -3,8 +3,18 @@
     <detail-layout v-if="!error"
         :title="`${title}`"
         :list="list"
-        :error="error">
+        :error="error"
+        :is-account="true">
+        <template slot="footer-tab-content">
+          <div class="tab-wrapper">
+            <div class="tab-content" :class="{'is-active': tabParams === 'tx'}">{{$t('transList.label')}}</div>
+          </div>
+        </template>
     </detail-layout>
+    <trans-list v-if="tabParams === 'tx'"
+        :pagination="false"
+        :blockHash="blockHash">
+      </trans-list>
     <error v-if="error" :error="error"></error>
   </div>
 </template>
@@ -14,10 +24,11 @@
   import error from "~/components/error";
   import block from "~/services/block.js";
   import moment from "moment";
+  import transList from "~/components/transList.vue";
 
   export default {
     components: {
-      detailLayout, error
+      detailLayout, error, transList
     },
     validate ({ params }) {
       return params.blockHash;
@@ -40,10 +51,14 @@
       return {
         title: this.$t("block.title"),
         blockDetail: {},
-        error: ""
+        error: "",
+        tabParams: "tx"
       };
     },
     computed: {
+      blockHash() {
+        return this.blockDetail.hash;
+      },
       showBlockDetail() {
         moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
         let age = moment(this.blockDetail.age * 1000).fromNow();
@@ -53,7 +68,7 @@
           accountNum: this.blockDetail.accountNum || 0,
           transactionCount: this.blockDetail.transactionCount || 0,
           producer: this.blockDetail.producer || "",
-          amount: this.blockDetail.amount ? `${this.blockDetail.amount} vite` : "",
+          amount: this.blockDetail.amount ? `${this.blockDetail.amount} VITE` : "",
           age: age + "（" + moment(this.blockDetail.timestamp * 1000).format("YYYY-MM-DD HH:mm:ss") + "）"
         };
       },

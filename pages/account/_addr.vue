@@ -123,7 +123,7 @@
         return [{
           key: "address",
           sbpType: this.superNodeDetail.sbpType,
-          iconList: this.superNodeDetail.sbpType === 1 ? [require("~/assets/images/sbp2.svg")] : [require("~/assets/images/sbp.svg")],
+          iconList: this.iconListMap(this.superNodeDetail.sbpType),
           name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress
         }, {
@@ -187,6 +187,44 @@
       },
       getTotalNumber(num) {
         this.totalNumber = num;
+      },
+      iconListMap(sbpType) {
+        let lang = "";
+        lang = this.$i18n.locale !== "en" ? `/${this.$i18n.locale}` : "";
+        let map = {
+          0: [],
+          1: [{
+            key: 1,
+            icon: require("~/assets/images/sbp2.svg"),
+            link: `${lang}/SBPDetail/${this.accountDetail.nodeName}`
+          }],
+          2: [{
+            key: 2,
+            icon: require("~/assets/images/sbp.svg"),
+            link: `${lang}/SBPDetail/${this.accountDetail.nodeName}`
+          }],
+          3: [{
+            key: 3,
+            icon: require("~/assets/images/bank.svg"),
+          }],
+          10: [{ 
+            key: 10,
+            icon: require("~/assets/images/register.svg") 
+          }],
+          11: [{
+            key: 11,
+            icon: require("~/assets/images/vote.svg") 
+          }],
+          12: [{
+            key: 12,
+            icon: require("~/assets/images/quota.svg")
+          }],
+          14: [ {
+            key: 14,
+            icon: require("~/assets/images/coin.svg")
+          }]
+        };
+        return map[sbpType];
       }
     }
   };

@@ -21,7 +21,7 @@ export default {
     pageSize = 20,
     pageNum,
     sortObj
-  }, accountAddress, tokenId, filterAddressObj, selectObj) {
+  }, accountAddress, tokenId, blockHash, filterAddressObj, selectObj) {
     let outAccountAddress = null;
     let inAccountAddress = null;
     if (filterAddressObj && filterAddressObj.type) {
@@ -42,6 +42,7 @@ export default {
         sort: sortObj && sortObj.sort || null,
         order: sortObj && sortObj.order || null
       },
+      snapshotBlockHash: blockHash || null,
       accountAddress : accountAddress || null,
       tokenId: tokenId || null,
       status: selectObj && selectObj.status || null,

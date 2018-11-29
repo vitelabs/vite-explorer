@@ -323,6 +323,16 @@ module.exports = {
     blockPercent: "出块率",
     blockAward: "出块奖励"
   },
+  accountAddrMap: {
+    0: "",
+    1: "出块地址",
+    2: "出块地址",
+    3: "全节点奖池",  
+    10: "注册SBP合约",
+    11: "投票合约",
+    12: "获取配额合约",
+    14: "铸币合约"
+  },
   SBP: {
     label: "打包快照块列表"
   },
@@ -333,11 +343,13 @@ module.exports = {
   },
   blockDetailMap: {
     height: "快照块高度",
-    age: "快照块年龄",
-    accountNum: "被快照账户数",
-    transactionCount: "被快照交易数",
     hash: "快照块Hash",
-    producer: "快照节点",
+    age: "快照块年龄",
+    accountNum: "快照账户数",
+    transactionCount: "快照交易数",
+    producerNode: "出块节点",
+    producer: "出块地址",
+    amount: "锻造奖励"
   },
 
 

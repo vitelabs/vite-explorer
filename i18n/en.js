@@ -327,6 +327,16 @@ module.exports = {
     blockPercent: "Percentage",
     blockAward: "Rewards"
   },
+  accountAddrMap: {
+    0: "",
+    1: "出块地址",
+    2: "出块地址",
+    3: "全节点奖池",  
+    10: "注册SBP合约",
+    11: "投票合约",
+    12: "获取配额合约",
+    14: "铸币合约"
+  },
   SBP: {
     label: "Snapshot Block List"
   },
@@ -337,13 +347,14 @@ module.exports = {
   },
   blockDetailMap: {
     height: "Snapshot Block Height",
-    age: "Snapshot Block Age",
-    accountNum: "Number of Accounts Snapshotted",
-    transactionCount: "Number of Transaction Snapshotted",
     hash: "Snapshot Block Hash",
-    producer: "SBP Address",
+    age: "Snapshot Block Age",
+    accountNum: "快照账户数",
+    transactionCount: "快照交易数",
+    producerNode: "出块节点",
+    producer: "出块地址",
+    amount: "锻造奖励"
   },
-
 
   // pages/blockList
   blkList: {
