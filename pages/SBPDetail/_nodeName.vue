@@ -11,7 +11,12 @@
         </template>
         <template slot="footer-tab-content">
           <div class="tab-wrapper">
-            <div class="tab-content" :class="{'is-active': tabParams === 'award'}">{{$t('SBPAwardList.label')}}</div>
+            <div class="tab-content" :class="{'is-active': tabParams === 'award'}"  @click="clickTab('award')">{{$t('SBPAwardList.label')}}</div>
+            <div class="tab-content" 
+              :class="{'is-active': tabParams === 'producer'}" 
+              @click="clickTab('producer')">
+              {{$t('SBPProducerList.label')}}
+            </div>
           </div>
         </template>
       </detail-layout>
@@ -20,6 +25,10 @@
         :list="rewardList"
         :loading="loading">
       </award-list>
+      <producer-list v-if="tabParams === 'producer'"
+        :list="producerAddrList"
+        :loading="false">
+      </producer-list>
     </div>
     <error v-else :error="error"></error>
   </div>
@@ -30,6 +39,7 @@
   import downloadNodeDetail from "~/components/downloadNodeDetail";
   import error from "~/components/error";
   import awardList from "~/components/awardList.vue";
+  import producerList from "~/components/producerList.vue";
   import node from "~/services/superNode.js";
   import moment from "moment";
   import { handleBigNum } from "~/utils/util.js";
@@ -41,7 +51,7 @@
       };
     },
     components: {
-      detailLayout, error, awardList, downloadNodeDetail
+      detailLayout, error, awardList, downloadNodeDetail, producerList
     },
     validate({ params }) {
       return params.nodeName;
@@ -52,11 +62,15 @@
         let { nodeDetails, rewardList } = await node.getSuperNodeDetail({
           nodeName: params.nodeName
         });
+        let producerAddrList = await node.getProducerList({
+          nodeName: params.nodeName
+        });
         loading = false;
         let superNodeDetail = nodeDetails;
         return {
           superNodeDetail,
           rewardList,
+          producerAddrList,
           loading
         };
       } catch(err) {
@@ -125,6 +139,9 @@
       }
     },
     methods: {
+      clickTab(str) {
+        this.tabParams = str;
+      },
     }
   };
 </script>

@@ -311,6 +311,19 @@ module.exports = {
     }]
   },
 
+  // components/SBPProducerList
+  SBPProducerList: {
+    label: "出块地址列表",
+    titles: [{
+      prop: "cycle",
+      name: "时间",
+      width: 306
+    }, {
+      prop: "producerAddress",
+      name: "出块地址"
+    }]
+  },
+
   // pages/account
   account: {
     title: "Account Details",
@@ -414,7 +427,7 @@ module.exports = {
   // pages/tokenList
   tokenList: {
     title: "Tokens",
-    total: "Total Tokens:",
+    total: "Total Tokens: "
   },
   tokenTitles: [{
     prop: "icon",

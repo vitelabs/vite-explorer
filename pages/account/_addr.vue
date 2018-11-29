@@ -73,22 +73,27 @@
     validate({ params }) {
       return params.addr;
     },
-    async asyncData({ params }) {
+    async asyncData(ctx) {
       try {
         let accountDetail = await account.getDetail({
-          accountAddress: params.addr
+          accountAddress: ctx.params.addr
         });
         let tokenList = accountDetail.tokenList ? [{token: {symbol: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {symbol: "ALL", id: null}}];
 
         let superNodeDetail = await node.getDetail({
-          producerAddress: params.addr
+          producerAddress: ctx.params.addr
         });
         let isSBP = superNodeDetail.sbpType === 1 ? true : false;
+        let tabParams = "tx";
+        if (isSBP && ctx.query.showBlockList === "true") {
+          tabParams = "block";
+        }
         return {
           accountDetail,
           tokenList,
           superNodeDetail,
-          isSBP
+          isSBP,
+          tabParams
         };
       } catch(err) {
         return {

@@ -29,5 +29,13 @@ export default {
 
   getCycleTime() {
     return get(`${PREFIX}/supernode/cycleExcel`);
+  },
+
+  getProducerList({
+    nodeName = null
+  }) {
+    return get(`${PREFIX}/supernode/producer/list`, {
+      nodeName
+    });
   }
 };

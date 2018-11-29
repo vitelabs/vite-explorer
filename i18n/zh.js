@@ -307,6 +307,19 @@ module.exports = {
     }]
   },
 
+  // components/SBPProducerList
+  SBPProducerList: {
+    label: "出块地址列表",
+    titles: [{
+      prop: "cycle",
+      name: "时间",
+      width: 306
+    }, {
+      prop: "producerAddress",
+      name: "出块地址"
+    }]
+  },
+
   // pages/account
   account: {
     title: "账户详情",

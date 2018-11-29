@@ -373,10 +373,32 @@ export default () => {
   router.get("/api/node/supernode/detail", async (ctx) => {
     try {
       console.log("/supernode/detail:"+ JSON.stringify(ctx.query));
-      console.log(ctx.query);
       let result = await axios.get("http://150.109.62.152:8080/reward/node/queryDetails", {
         params: ctx.query
       });
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err);
+      // console.log(err.code);
+    }
+  });
+
+  router.get("/api/node/supernode/producer/list", async (ctx) => {
+    try {
+      console.log("/producer/list:"+ JSON.stringify(ctx.query));
+      // let result = await get("/xxxx", ctx.query);
+      let result = {};
+      result.data = {
+        code: 0,
+        msg: "ok",
+        data: [{
+          cycle: 1,
+          producerAddress: "vite_9e6b126962c05bc814b7c6ed44759cfc2999559b39d94ce7f4"
+        }]
+      };
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"
