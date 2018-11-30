@@ -82,14 +82,14 @@
         loading: false,
         totalNumber: 0,
         generalDetail: {},
-        latestCycle: 1
+        latestCycle: 1,
+        producingNode: ""
       };
     },
     mounted() {
-      // loopSBPList
+      this.loopSBPList();
     },
     computed: {
-      
       nodeTableTitle() {
         return this.$t("superNode.total")+`${this.totalNumber || 0}`;
       },
@@ -98,7 +98,7 @@
         this.nodeList && this.nodeList.forEach((node, index) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
-          if (node.nodeName === "s6") {
+          if (node.nodeName === this.producingNode) {
             this.nodeList[index].status = "Producing";
           }
           list.push({
@@ -115,6 +115,13 @@
       }
     },
     methods: {
+      loopSBPList() {
+        superNode.loopSBPList().then(data=> {
+          this.producingNode = data.snapshotBlockView;
+        }).catch(err=> {
+          console.log(err);
+        });
+      },
       getSBPList() {
         superNode.getList({
           latestCycle: this.latestCycle
