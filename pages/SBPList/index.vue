@@ -1,24 +1,35 @@
 <template>
   <div class="node-list-container">
     <div v-if="!error">
-      <page-table class="node-table" 
+      <div class="table-title" v-html="nodeTableTitle"></div>
+      <div class="search-container">
+        <search-input @getInput="filterTable"></search-input>
+        <div class="producer-cycle">
+          {{ $t('filter.SBP.cycle.name') }}
+          <span 
+            :class="{'lab-selected': latestCycle === item.key}" 
+            @click="clickLab(item.key)" 
+            v-for="(item, index) in tabList" 
+            :key="index">
+            {{ $t(`filter.SBP.cycle.${item.label}`) }}
+          </span>
+        </div>
+      </div>
+      <SBP-table class="node-table" 
         :pagination="false"
         :loading="loading"
         :title="nodeTableTitle"
         :tableTitles="nodeTitles"
         :tableData="nodeData"
-        :total="totalNumber"
-        :is-sbp-page="true"
-        :fe-sort="false">
-        <search-input @getInput="filterTable" slot="filter"></search-input>
-      </page-table>
+        :total="totalNumber">
+      </SBP-table>
     </div>
     <error v-else :error="error"></error>
   </div>
 </template>
 
 <script>
-  import pageTable from "~/components/pageTable";
+  import SBPTable from "~/components/SBPTable";
   import error from "~/components/error";
   import superNode from "~/services/superNode.js";
   import searchInput from "~/components/searchInput.vue";
@@ -30,12 +41,12 @@
       };
     },
     components: {
-      pageTable, searchInput, error
+      SBPTable, searchInput, error
     },
     async asyncData() {
       try {
         let { nodeList, totalNum} = await superNode.getList({
-          search: null
+          latestCycle: 1
         });
         let fullNodeList = nodeList;
         return {
@@ -51,6 +62,19 @@
     },
     data() {
       return {
+        tabList: [{
+          key: 1,
+          label: "one"
+        }, {
+          key: 3,
+          label: "three"
+        }, {
+          key: 7,
+          label: "seven"
+        }, {
+          key: -1,
+          label: "history"
+        }],
         title: this.$t("superNode.title"),
         nodeList: [],
         nodeTitles: this.$t("nodeTitles"),
@@ -58,23 +82,30 @@
         loading: false,
         totalNumber: 0,
         generalDetail: {},
-        search: null
+        latestCycle: 1
       };
     },
+    mounted() {
+      // loopSBPList
+    },
     computed: {
+      
       nodeTableTitle() {
         return this.$t("superNode.total")+`${this.totalNumber || 0}`;
       },
       nodeData() {
         let list = [];
-        this.nodeList && this.nodeList.forEach((node) => {
+        this.nodeList && this.nodeList.forEach((node, index) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
-          
+          if (node.nodeName === "s6") {
+            this.nodeList[index].status = "Producing";
+          }
           list.push({
             ...node,
             nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
-            status: node.status,
+            pureStatus: node.status,
+            status: this.handleStatus(node.status),
             curVoteAward: node.curVoteAward ? node.curVoteAward + " VITE" : node.curVoteAward,
             curSuperNodeAward: node.curSuperNodeAward ? node.curSuperNodeAward + " VITE" : node.curSuperNodeAward,
             producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
@@ -84,6 +115,30 @@
       }
     },
     methods: {
+      getSBPList() {
+        superNode.getList({
+          latestCycle: this.latestCycle
+        }).then(({ nodeList })=> {
+          this.nodeList = nodeList;
+        }).catch(err=> {
+          console.log(err);
+        });
+      },
+      clickLab(key) {
+        this.latestCycle = key;
+        this.getSBPList();
+      },
+      handleStatus(status) {
+        if (status === "Producing") {
+          return `<div class="producing"><img src="${require("~/assets/images/tips.svg")}" class="producing-icon"></img><div class="producing-label">${status}</div></div>`;
+        }
+        if (status === "Active") {
+          return `<div class="table-label active-label">${status}</div>`;
+        }
+        if(status === "Standby") {
+          return `<div class="table-label standby-label">${status}</div>`;
+        }
+      },
       filterTable(str) {
         let filterInput = str || null;
         this.search = filterInput || null;
@@ -101,6 +156,69 @@
   };
 </script>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
+<style lang="scss" rel="stylesheet/scss">
+ @import "~assets/css/vars.scss";
+
+.node-list-container {
+  .table-label {
+    text-align:center;
+    font-size: 12px;
+    font-weight: 400;
+    color: white;
+    border-radius: 2px!important;
+    line-height: 18px;
+    width: 60px;
+  }
+  .search-container {
+    margin-top: 20px;
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    .producer-cycle {
+      font-size: 14px;
+      color: #3F3F3F;
+      line-height: 22px;
+      span {
+        display: inline-block;
+        border: 1px solid #E5EDF3;
+        border-radius: 2px;
+        color: $common-color;
+        font-size: 12px;
+        padding: 3px 4px;
+        margin-left: 14px;
+        line-height: 16px; 
+        cursor: pointer;
+        &:hover {
+          color: white;
+          border: 1px solid $common-color;
+          background: $common-color;
+        }
+      }
+      span.lab-selected {
+        background: $common-color;
+        border: 1px solid $common-color;
+        color: white;
+      }
+    }
+  }
+  .active-label {
+    background: #5cb85c;
+  }
+  .standby-label {
+    background: #e67e22
+  }
+  .producing {
+    display: flex;
+    display: -webkit-flex;
+  }
+  .producing-label {
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 3px;
+  }
+  .producing-icon {
+    vertical-align: middle;
+  }
+}
 
 </style>

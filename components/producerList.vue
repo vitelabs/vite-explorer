@@ -40,7 +40,7 @@
           // let timestamp = moment(block.age * 1000).fromNow();
           list.push({
             ...producer,
-            producerAddress: `<a href="${lang}/account/${producer.producerAddress}?showBlockList=true" target="_blank">${producer.producerAddress}</a>`
+            address: `<a href="${lang}/account/${producer.address}?showBlockList=true" target="_blank">${producer.address}</a>`
           });
         });
         return list;

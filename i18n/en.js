@@ -121,7 +121,14 @@ module.exports = {
     to: "To",
     sure: "Confirm",
     SBP: {
-      placeholder: "Search node name or address"
+      placeholder: "Search node name or address",
+      cycle: {
+        name: "查看出块情况",
+        one: "最近1个周期",
+        three: "最近3个周期",
+        seven: "最近7个周期",
+        history: "历史"
+      }
     }
   },
 
@@ -315,11 +322,11 @@ module.exports = {
   SBPProducerList: {
     label: "出块地址列表",
     titles: [{
-      prop: "cycle",
+      prop: "date",
       name: "时间",
       width: 306
     }, {
-      prop: "producerAddress",
+      prop: "address",
       name: "出块地址"
     }]
   },

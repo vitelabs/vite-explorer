@@ -386,17 +386,39 @@ export default () => {
     }
   });
 
-  router.get("/api/node/supernode/producer/list", async (ctx) => {
+  // loop sbplist
+  router.post("/api/node/supernode/list/cursbp", async (ctx) => {
     try {
-      console.log("/producer/list:"+ JSON.stringify(ctx.query));
-      // let result = await get("/xxxx", ctx.query);
+      console.log("/supernode/cursbp:"+ JSON.stringify(ctx.request.body));
+      // let result = await post("/supernode/cursbp", ctx.request.body);
+      let result = {};
+      result.data = {
+        code: 0,
+        msg: "ok",
+        data: {
+          snapshotBlockView: "s6"
+        }
+      };
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err);
+    }
+  });
+
+  router.post("/api/node/supernode/detail/producer/list", async (ctx) => {
+    try {
+      console.log("/supernode/getSuperNodeDetail:"+ JSON.stringify(ctx.request.body));
+      // let result = await post("/supernode/getSuperNodeDetail", ctx.request.body);
       let result = {};
       result.data = {
         code: 0,
         msg: "ok",
         data: [{
-          cycle: 1,
-          producerAddress: "vite_9e6b126962c05bc814b7c6ed44759cfc2999559b39d94ce7f4"
+          date: "2018-11-10",
+          address: "vite_9e6b126962c05bc814b7c6ed44759cfc2999559b39d94ce7f4"
         }]
       };
       ctx.body = result.data || {
@@ -405,7 +427,6 @@ export default () => {
       };
     } catch(err) {
       console.log(err);
-      // console.log(err.code);
     }
   });
 

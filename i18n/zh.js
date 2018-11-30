@@ -117,7 +117,14 @@ module.exports = {
     to: "接收方",
     sure: "确定",
     SBP: {
-      placeholder: "搜索节点名称或出块地址"
+      placeholder: "搜索节点名称或出块地址",
+      cycle: {
+        name: "查看出块情况",
+        one: "最近1个周期",
+        three: "最近3个周期",
+        seven: "最近7个周期",
+        history: "历史"
+      }
     }
   },
 
@@ -311,11 +318,11 @@ module.exports = {
   SBPProducerList: {
     label: "出块地址列表",
     titles: [{
-      prop: "cycle",
+      prop: "date",
       name: "时间",
       width: 306
     }, {
-      prop: "producerAddress",
+      prop: "address",
       name: "出块地址"
     }]
   },
@@ -536,7 +543,8 @@ module.exports = {
     width: 120
   }, {
     prop: "status",
-    name: "状态"
+    name: "状态",
+    width: 100
   }, {
     prop: "voteNum",
     name: "票数"

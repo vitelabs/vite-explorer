@@ -4,10 +4,10 @@ const PREFIX = "node";
 
 export default {
   getList({
-    search = null
+    latestCycle = 1
   }) {
     return post(`${PREFIX}/list`, {
-      search
+      latestCycle
     });
   },
   
@@ -34,8 +34,11 @@ export default {
   getProducerList({
     nodeName = null
   }) {
-    return get(`${PREFIX}/supernode/producer/list`, {
+    return post(`${PREFIX}/supernode/detail/producer/list`, {
       nodeName
     });
+  },
+  loopSBPList() {
+    return post(`${PREFIX}/supernode/list/cursbp`, {});
   }
 };

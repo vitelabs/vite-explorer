@@ -9,13 +9,12 @@
     <div class="table">
       <el-table 
         v-loading="loading" 
-        :stripe="!isSbpPage"
+        :stripe="true"
         :data="tableData" 
         style="width: 100%" 
         @sort-change="sortChange"
         :default-sort="defaultSort"
-        :empty-text="noResult"
-        :row-class-name="tableRowClassName">
+        :empty-text="noResult">
         <el-table-column v-if="showOrder" 
           type="index" 
           :index="indexMethod" 
@@ -26,7 +25,7 @@
           :prop="tT.prop"
           :label="tT.name" :width="tT.width || ''" 
           :show-overflow-tooltip="true"
-          :sortable="sortItems.indexOf(tT.prop) > -1 ? 'custom' : feSort"
+          :sortable="sortItems.indexOf(tT.prop) > -1 ? 'custom' : false"
           :render-header="renderHeader">
           <template slot-scope="scope">
               <div v-html="scope.row[tT.prop] || '--'" v-if="scope.row[tT.prop] !== 0"></div>
@@ -55,10 +54,6 @@
     name: "pageTable",
     props: {
       loading: {
-        type: Boolean,
-        default: false
-      },
-      isSbpPage: {
         type: Boolean,
         default: false
       },
@@ -121,10 +116,6 @@
       subCommonTitle: {
         type: String,
         default: ""
-      },
-      feSort: {
-        type: Boolean,
-        default: false
       }
     },
     // serverCacheKey: props => props.currentPage,
@@ -140,14 +131,6 @@
       }
     },
     methods: {
-      tableRowClassName({row}) {
-        if (this.isSbpPage) {
-          if (row.status === "Active") {
-            return "success-row";
-          } 
-        }
-        return "";
-      },
       sortChange({prop, order}) {
         if (order === "ascending") {
           order = "asc";
@@ -200,7 +183,11 @@
 <style rel="stylesheet/scss" lang="scss">
 .page-table-container {
   .el-table .success-row {
-    background: rgba(24,91,221,0.08);
+    background: #5cb85c;
+    color: white;
+    a {
+      color: white;
+    }
   }
   .table-dropdown {
     color: #5E6875;

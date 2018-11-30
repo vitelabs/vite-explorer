@@ -36,7 +36,6 @@
   .filter {
     display: flex;
     display: -webkit-flex;
-    margin-top: 20px;
     .name {
       font-size: 14px;
       display: inline-block;
