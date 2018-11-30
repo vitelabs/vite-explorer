@@ -33,6 +33,7 @@
   import error from "~/components/error";
   import superNode from "~/services/superNode.js";
   import searchInput from "~/components/searchInput.vue";
+  import { mySetInterval, myClearInterval} from "~/utils/myInterval.js";
 
   export default {
     head() {
@@ -83,11 +84,17 @@
         totalNumber: 0,
         generalDetail: {},
         latestCycle: 1,
-        producingNode: ""
+        producingNode: "",
+        interval: null
       };
     },
     mounted() {
       this.loopSBPList();
+    },
+    destroyed() {
+      if (this.interval) {
+        myClearInterval(this.interval);
+      }
     },
     computed: {
       nodeTableTitle() {
@@ -116,11 +123,13 @@
     },
     methods: {
       loopSBPList() {
-        superNode.loopSBPList().then(data=> {
-          this.producingNode = data.snapshotBlockView;
-        }).catch(err=> {
-          console.log(err);
-        });
+        this.interval = mySetInterval(() => {
+          superNode.loopSBPList().then(data=> {
+            this.producingNode = data.snapshotBlockView;
+          }).catch(err=> {
+            console.log(err);
+          });
+        }, 1000);
       },
       getSBPList() {
         superNode.getList({
