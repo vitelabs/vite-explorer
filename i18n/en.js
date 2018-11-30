@@ -5,11 +5,11 @@ module.exports = {
   // components/Home
   profile: {
     title: "Profile",
-    market: "Market cap of VITE",
+    market: "Market Cap of Vite",
     tps: "System TPS",
-    price: "Current price of VITE",
+    price: "Current Price of Vite",
     totalTrans: "Transactions",
-    latestHeight: "Latest block height",
+    latestHeight: "Latest Block Height",
     nearMonth: "Transactions(30d)",
     update3: "Update per 3 seconds",
     tPerSec: "Realtime transactions per second / Last-hour transactions per second",
@@ -97,7 +97,7 @@ module.exports = {
         registerSBP: "SBP Registration"
       }
     },
-    vitenet: "Use other products"
+    vitenet: "Use Other Products"
   },
   pageTable: {
     pre: "Prev",
