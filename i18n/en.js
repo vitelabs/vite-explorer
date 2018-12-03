@@ -284,7 +284,7 @@ module.exports = {
     titles: [{
       prop: "cycle",
       name: "Time",
-      width: 306
+      width: 400
     }, {
       prop: "blockCount",
       name: "Block creation count"
