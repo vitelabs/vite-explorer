@@ -298,10 +298,13 @@ module.exports = {
     titles: [{
       prop: "cycle",
       name: "时间",
-      width: 306
+      width: 400
     }, {
       prop: "blockCount",
       name: "出块数"
+    }, {
+      prop: "missedCount",
+      name: "遗漏块数量"
     }, {
       prop: "blockAward",
       name: "出块奖励"
