@@ -289,6 +289,9 @@ module.exports = {
       prop: "blockCount",
       name: "Block creation count"
     }, {
+      prop: "missedCount",
+      name: "Missed"
+    }, {
       prop: "blockAward",
       name: "Block creation rewards"
     }, {
