@@ -136,6 +136,7 @@ async function getTransactionList(ctx) {
   if(!ctx.request.body.onRoad) {
     result = await post("/accountchain/blocklist", ctx.request.body);
   } else {
+    ctx.request.body.status = 1;
     result = await post("/accountchain/blocklistonroad", ctx.request.body);
   }
   let body = result.data || {
@@ -390,15 +391,7 @@ export default () => {
   router.post("/api/node/supernode/list/cursbp", async (ctx) => {
     try {
       console.log("/supernode/cursbp:"+ JSON.stringify(ctx.request.body));
-      // let result = await post("/supernode/cursbp", ctx.request.body);
-      let result = {};
-      result.data = {
-        code: 0,
-        msg: "ok",
-        data: {
-          snapshotBlockView: "s6"
-        }
-      };
+      let result = await post("/supernode/cursbp", ctx.request.body);
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"
@@ -411,16 +404,7 @@ export default () => {
   router.post("/api/node/supernode/detail/producer/list", async (ctx) => {
     try {
       console.log("/supernode/getSuperNodeDetail:"+ JSON.stringify(ctx.request.body));
-      // let result = await post("/supernode/getSuperNodeDetail", ctx.request.body);
-      let result = {};
-      result.data = {
-        code: 0,
-        msg: "ok",
-        data: [{
-          date: "2018-11-10",
-          address: "vite_9e6b126962c05bc814b7c6ed44759cfc2999559b39d94ce7f4"
-        }]
-      };
+      let result = await post("/supernode/getSuperNodeDetail", ctx.request.body);
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"

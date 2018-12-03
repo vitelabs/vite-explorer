@@ -62,9 +62,10 @@
         let { nodeDetails, rewardList } = await node.getSuperNodeDetail({
           nodeName: params.nodeName
         });
-        let producerAddrList = await node.getProducerList({
+        let { list }= await node.getProducerList({
           nodeName: params.nodeName
         });
+        let producerAddrList = list;
         loading = false;
         let superNodeDetail = nodeDetails;
         return {

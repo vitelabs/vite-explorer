@@ -346,7 +346,7 @@ module.exports = {
     quota: "TPS Quota",
     blockPercent: "Percentage",
     blockAward: "Rewards",
-    onroad: "在途金额"
+    balanceOnroad: "在途金额"
   },
   accountAddrMap: {
     0: "",
@@ -362,7 +362,8 @@ module.exports = {
     label: "Snapshot Block List"
   },
   onroad: {
-    label: "在途交易列表"
+    label: "在途交易列表",
+    tips: "最近50笔在途交易金额"
   },
 
   // pages/block
@@ -375,7 +376,7 @@ module.exports = {
     age: "Snapshot Block Age",
     accountNum: "快照账户数",
     transactionCount: "快照交易数",
-    producerNode: "出块节点",
+    superNodeName: "出块节点",
     producer: "出块地址"
   },
 

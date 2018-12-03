@@ -102,17 +102,18 @@
       },
       nodeData() {
         let list = [];
-        this.nodeList && this.nodeList.forEach((node, index) => {
+        this.nodeList && this.nodeList.forEach((node) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
+          let producingNode;
           if (node.nodeName === this.producingNode) {
-            this.nodeList[index].status = "Producing";
+            producingNode = "Producing";
           }
           list.push({
             ...node,
             nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
-            pureStatus: node.status,
-            status: this.handleStatus(node.status),
+            pureStatus: producingNode ? producingNode : node.status,
+            status: producingNode ? this.handleStatus(producingNode) : this.handleStatus(node.status),
             curVoteAward: node.curVoteAward ? node.curVoteAward + " VITE" : node.curVoteAward,
             curSuperNodeAward: node.curSuperNodeAward ? node.curSuperNodeAward + " VITE" : node.curSuperNodeAward,
             producerAddress: `<a href="${lang}/account/${node.producerAddress}" target="_blank" title="${node.producerAddress}">${node.shortProducerAddress}</a>`
@@ -125,7 +126,7 @@
       loopSBPList() {
         this.interval = mySetInterval(() => {
           superNode.loopSBPList().then(data=> {
-            this.producingNode = data.snapshotBlockView;
+            this.producingNode = data.superNodeName;
           }).catch(err=> {
             console.log(err);
           });
@@ -226,15 +227,16 @@
   .producing {
     display: flex;
     display: -webkit-flex;
+    .producing-label {
+      font-size: 12px;
+      font-weight: 400;
+      margin-left: 3px;
+    }
+    .producing-icon {
+      vertical-align: middle;
+    }
   }
-  .producing-label {
-    font-size: 12px;
-    font-weight: 400;
-    margin-left: 3px;
-  }
-  .producing-icon {
-    vertical-align: middle;
-  }
+  
 }
 
 </style>

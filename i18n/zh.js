@@ -342,7 +342,7 @@ module.exports = {
     quota: "配额",
     blockPercent: "出块率",
     blockAward: "出块奖励",
-    onroad: "在途金额"
+    balanceOnroad: "在途金额"
   },
   accountAddrMap: {
     0: "",
@@ -358,7 +358,8 @@ module.exports = {
     label: "打包快照块列表"
   },
   onroad: {
-    label: "在途交易列表"
+    label: "在途交易列表",
+    tips: "最近50笔在途交易金额"
   },
 
   // pages/block
@@ -371,7 +372,7 @@ module.exports = {
     age: "快照块年龄",
     accountNum: "快照账户数",
     transactionCount: "快照交易数",
-    producerNode: "出块节点",
+    superNodeName: "出块节点",
     producer: "出块地址"
   },
 

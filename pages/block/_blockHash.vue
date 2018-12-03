@@ -68,19 +68,28 @@
           accountNum: this.blockDetail.accountNum || 0,
           transactionCount: this.blockDetail.transactionCount || 0,
           producer: this.blockDetail.producer || "",
+          superNodeName: this.blockDetail.superNodeName || "",
           amount: this.blockDetail.amount ? `${this.blockDetail.amount} VITE` : "",
           age: age + "（" + moment(this.blockDetail.timestamp * 1000).format("YYYY-MM-DD HH:mm:ss") + "）"
         };
       },
       list() {
         const blockDetailMap = this.$t("blockDetailMap");
-
         let list = [];
+        let lang;
+        this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
         for (let key in blockDetailMap) {
-          list.push({
-            describe: this.showBlockDetail[key] || "--",
-            name: blockDetailMap[key]
-          });
+          let item = {
+            name: blockDetailMap[key],
+            describe: this.showBlockDetail[key] || "--"
+          };
+          switch(key) {
+          case "superNodeName":
+            item.link = `${lang}/SBPDetail/${this.showBlockDetail[key]}`;
+            break;
+          default: break;
+          }
+          list.push(item);
         }
         return list;
       },

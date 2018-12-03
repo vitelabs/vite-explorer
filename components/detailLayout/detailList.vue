@@ -32,8 +32,12 @@
     <div class="extral-wrapper" v-if="extralList.length">
       <div class="extral-row" v-for="(item, index) in extralList" :key="index">
         <span class="name">{{item.name}}：</span>
-        <a v-if="item.innerLink" @click="changeTab">{{item.describe || '--'}}</a>
-        <span v-else>{{ item.describe === 0 ? 0 : (item.describe || '--') }}</span>
+        <el-tooltip effect="dark" :content="$t(`onroad.tips`)" placement="top">
+          <a v-if="(item.describe || item.describe === 0) && item.innerLink" @click="changeTab(item.innerLink)">
+            {{item.describe || '--'}}
+          </a>
+        </el-tooltip>
+        <span v-if="!item.innerLink">{{ item.describe === 0 ? 0 : (item.describe || '--') }}</span>
       </div>
       <slot name="externalSpecial"></slot>
     </div>
@@ -86,8 +90,8 @@
       };
     },
     methods: {
-      changeTab() {
-        this.$emit("changeTab", "block");
+      changeTab(tab) {
+        this.$emit("changeTab", tab);
       },
       _clickLab(lab, index) {
         this.currentLabInx = index;

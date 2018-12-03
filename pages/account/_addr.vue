@@ -16,8 +16,7 @@
             <div class="tab-content" :class="{'is-active': tabParams === 'tx'}" @click="clickTab('tx')">{{$t('transList.label')}}</div>
             <div class="tab-content" 
                  :class="{'is-active': tabParams === 'onroad'}" 
-                 @click="clickTab('onroad')"
-                 v-if="activeTokenIndex">
+                 @click="clickTab('onroad')">
                  {{$t('onroad.label')}}
             </div>
             <div class="tab-content" 
@@ -169,7 +168,7 @@
         //   innerLink: true
         // }
         ] : [];
-
+        tokenDetail.balanceOnroad = "aaaaassss";
         return SBP.concat([
         // {
         //   name: this.$t("account.quota"),
@@ -182,8 +181,9 @@
           name: this.$t("account.bAmount"),
           describe: handleBigNum(tokenDetail.balance, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"
         }, {
-          name: this.$t("account.onroad"),
-          describe: handleBigNum(tokenDetail.onroad, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"
+          name: this.$t("account.balanceOnroad"),
+          describe: tokenDetail.balanceOnroad,
+          innerLink: "onroad"
         }] : []);
       }
     },
@@ -195,13 +195,16 @@
         this.tabParams = str;
       },
       clickLab(lab, index) {
+        this.tabParams = "tx";
         this.activeTokenIndex = index;
       },
       getAccInputInfo(accObj) {
         this.filterAccObj = accObj;
       },
       getTotalNumber(num) {
-        this.totalNumber = num;
+        if (this.tabParams === "tx") {
+          this.totalNumber = num;
+        }
       },
       iconListMap(sbpType) {
         let lang = "";
