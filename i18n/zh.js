@@ -372,8 +372,7 @@ module.exports = {
     accountNum: "快照账户数",
     transactionCount: "快照交易数",
     producerNode: "出块节点",
-    producer: "出块地址",
-    amount: "锻造奖励"
+    producer: "出块地址"
   },
 
 
