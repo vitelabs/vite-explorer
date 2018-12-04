@@ -97,7 +97,7 @@ module.exports = {
         registerSBP: "SBP Registration"
       }
     },
-    vitenet: "Use Other Products"
+    vitenet: "Use Other Products of Vite"
   },
   pageTable: {
     pre: "Prev",
