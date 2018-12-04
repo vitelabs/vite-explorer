@@ -2,7 +2,7 @@
   "name": "vite.net",
   "scripts": {
     "mock": "node mock",
-    "dev": "BASE_URL=http://132.232.138.139:8080/test/api backpack dev",
+    "dev": "NODE_ENV=production BASE_URL=http://132.232.138.139:8080/test/api backpack dev",
     "build": " NODE_ENV=production nuxt build && backpack build",
     "start": "BASE_URL=http://132.232.138.139:8080/test/api NODE_ENV=production node build/main.js",
     "precommit": "npm run lint",
@@ -17,6 +17,7 @@
     "@nuxtjs/pwa": "^2.0.8",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
+    "config": "^3.0.0",
     "echarts": "^4.1.0",
     "element-ui": "^2.4.5",
     "koa": "^2.5.1",

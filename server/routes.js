@@ -4,6 +4,18 @@ import { toShort, handleBigNum, formatTx } from "../utils/util.js";
 import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
 import axios from "axios";
 import fs from "fs";
+import path from "path";
+
+
+process.env["NODE_CONFIG_DIR"] = path.resolve(__dirname , "./config");
+const config = require("config");
+
+console.log(process.env["NODE_CONFIG_DIR"]);
+console.log(config);
+
+let { sbpDetailApi } = config;
+
+console.log(sbpDetailApi);
 
 const defaultTxData = {
   code: 0,
@@ -355,7 +367,7 @@ export default () => {
   router.get("/api/node/supernode/cycleExcel", async (ctx) => {
     try {
       console.log("/supernode/cycleExcel:" + JSON.stringify(ctx.query));
-      let result = await axios.get("http://150.109.62.152:8080/reward/cycle/query");
+      let result = await axios.get(sbpDetailApi + "/reward/cycle/query");
       let cycleList = result.data.data || [];
       cycleList = cycleList.map(item=> {
         return {
@@ -374,7 +386,7 @@ export default () => {
   router.get("/api/node/supernode/detail", async (ctx) => {
     try {
       console.log("/supernode/detail:"+ JSON.stringify(ctx.query));
-      let result = await axios.get("http://150.109.62.152:8080/reward/node/queryDetails", {
+      let result = await axios.get(sbpDetailApi + "/reward/node/queryDetails", {
         params: ctx.query
       });
       ctx.body = result.data || {
