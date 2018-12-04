@@ -112,7 +112,7 @@ module.exports = {
     noData: "No Data",
     more: "More",
     noResult: "No Result",
-    noEmpty: "搜索条件不能为空"
+    noEmpty: "Search field cannot be empty"
   },
   filter: {
     filterName: "Filter",
@@ -123,11 +123,11 @@ module.exports = {
     SBP: {
       placeholder: "Search node name or address",
       cycle: {
-        name: "查看出块情况",
-        one: "最近1个周期",
-        three: "最近3个周期",
-        seven: "最近7个周期",
-        history: "历史"
+        name: "View Block Creation Status",
+        one: "Last 1 Cycle",
+        three: "Last 3 Cycles",
+        seven: "Last 7 Cycles",
+        history: "History"
       }
     }
   },
@@ -213,22 +213,22 @@ module.exports = {
       label: "Retrieval of Rewards",
       value: 4
     }, {
-      label: "Vote",
+      label: "Voting",
       value: 5
     }, {
-      label: "Undo Vote",
+      label: "Revoke Voting",
       value: 6
     }, {
       label: "Get TPS Quota",
       value: 7
     }, {
-      label: "Withdraw Stake for Quota",
+      label: "Withdraw Staking for Quota",
       value: 8
     }, {
-      label: "Token Forging",
+      label: "Token Issuance",
       value: 9
     }, {
-      label: "Withdraw Stake for Forging",
+      label: "Withdraw Staking for Token Issuance",
       value: 10
     }],
     status: [{
@@ -323,14 +323,14 @@ module.exports = {
 
   // components/SBPProducerList
   SBPProducerList: {
-    label: "出块地址列表",
+    label: "Block Creation Addresses",
     titles: [{
       prop: "date",
-      name: "时间",
+      name: "Date",
       width: 306
     }, {
       prop: "address",
-      name: "出块地址"
+      name: "Block Creation Address"
     }]
   },
 
@@ -343,30 +343,30 @@ module.exports = {
     token: "Token",
     bAmount: "Balance",
     bValue: "Value",
-    tNum: "Number of Transactions",
+    tNum: "Transactions",
     allToken: "Total Value",
     filterInput: "Filtered By",
     quota: "TPS Quota",
     blockPercent: "Percentage",
     blockAward: "Rewards",
-    balanceOnroad: "在途金额"
+    balanceOnroad: "Unreceived"
   },
   accountAddrMap: {
     0: "",
-    1: "出块地址",
-    2: "出块地址",
-    3: "全节点奖池",  
-    10: "注册SBP合约",
-    11: "投票合约",
-    12: "获取配额合约",
-    14: "铸币合约"
+    1: "Block Creation Address",
+    2: "Block Creation Address",
+    3: "Reward Pool for Full Nodes",
+    10: "SBP Registration Contract",
+    11: "Voting Contract",
+    12: "Contract of Obtaining Quotas",
+    14: "Token Issuance Contract"
   },
   SBP: {
     label: "Snapshot Block List"
   },
   onroad: {
-    label: "在途交易列表",
-    tips: "最近50笔在途交易金额"
+    label: "Unreceived Transactions",
+    tips: "Last 50 Unreceived Transactions"
   },
 
   // pages/block
@@ -377,10 +377,10 @@ module.exports = {
     height: "Snapshot Block Height",
     hash: "Snapshot Block Hash",
     age: "Snapshot Block Age",
-    accountNum: "快照账户数",
-    transactionCount: "快照交易数",
-    superNodeName: "出块节点",
-    producer: "出块地址"
+    accountNum: "Snapshot Accounts",
+    transactionCount: "Snapshot Transactions",
+    superNodeName: "Block Creation Node",
+    producer: "Block Creation Address"
   },
 
   // pages/blockList
@@ -488,27 +488,27 @@ module.exports = {
         title: "Retrieval of Rewards"
       },
       5: {
-        name: "Vote",
+        name: "Voting",
         title: "Vote for SBP"
       },
       6: {
-        name: "Undo Vote",
-        title: "Revoke latest vote"
+        name: "Revoke Voting",
+        title: "Revoke latest voting"
       },
       7: {
         name: "Get TPS Quota",
         title: "Staking VITE for TPS quota"
       },
       8: {
-        name: "Withdraw Stake for Quota",
+        name: "Withdraw Staking for Quota",
         title: ""
       },
       9: {
-        name: "Token Forging",
+        name: "Token Issuance",
         title: ""
       },
       10: {
-        name: "Withdraw Stake for Forging",
+        name: "Withdraw Staking for Token Issuance",
         title: ""
       }
     }
