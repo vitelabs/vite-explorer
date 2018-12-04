@@ -2,7 +2,6 @@ import Router from "koa-trie-router";
 import { get, post } from "./server.js";
 import { toShort, handleBigNum, formatTx } from "../utils/util.js";
 import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
-import axios from "axios";
 import fs from "fs";
 import path from "path";
 
@@ -10,12 +9,7 @@ import path from "path";
 process.env["NODE_CONFIG_DIR"] = path.resolve(__dirname , "./config");
 const config = require("config");
 
-console.log(process.env["NODE_CONFIG_DIR"]);
-console.log(config);
-
-let { sbpDetailApi } = config;
-
-console.log(sbpDetailApi);
+let { explorerApi, sbpDetailApi } = config;
 
 const defaultTxData = {
   code: 0,
@@ -69,7 +63,7 @@ graphInterval = mySetInterval(async function() {
 }, 15000);
 
 async function getGraphList() {
-  let result = await post("/accountchain/blocklistgraph", {});
+  let result = await post(explorerApi + "/accountchain/blocklistgraph", {});
   let body = result.data || {
     code: 5000,
     msg: "Server Error"
@@ -109,7 +103,7 @@ async function getGraphList() {
 }
 
 async function getBlockList(ctx) {
-  let result = await post("/snapshotchain/blocklist", ctx.request.body);
+  let result = await post(explorerApi + "/snapshotchain/blocklist", ctx.request.body);
   let body = result.data || {
     code: 5000,
     msg: "Server Error"
@@ -146,10 +140,10 @@ async function getBlockList(ctx) {
 async function getTransactionList(ctx) {
   let result = {};
   if(!ctx.request.body.onRoad) {
-    result = await post("/accountchain/blocklist", ctx.request.body);
+    result = await post(explorerApi + "/accountchain/blocklist", ctx.request.body);
   } else {
     ctx.request.body.status = 1;
-    result = await post("/accountchain/blocklistonroad", ctx.request.body);
+    result = await post(explorerApi + "/accountchain/blocklistonroad", ctx.request.body);
   }
   let body = result.data || {
     code: 5000,
@@ -234,7 +228,7 @@ export default () => {
   router.post("/api/account/newtesttoken", async(ctx) => {
     try {
       console.log(ctx.path + ":" + JSON.stringify(ctx.request.body));
-      let result = await post("/account/newtesttoken", ctx.request.body);
+      let result = await post(explorerApi + "/account/newtesttoken", ctx.request.body);
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
@@ -247,7 +241,7 @@ export default () => {
 
   router.get("/api/general/market", async(ctx) => {
     try {
-      let result = await axios.get("https://api.coinmarketcap.com/v2/ticker/2937/");
+      let result = await get("https://api.coinmarketcap.com/v2/ticker/2937/");
       ctx.type = "json";
       let body = result.data;
       ctx.body = {
@@ -266,7 +260,7 @@ export default () => {
 
   router.get("/api/general/detail", async(ctx) => {
     try {
-      let generalBody= await get("/general/detail", ctx.query);
+      let generalBody= await get(explorerApi + "/general/detail", ctx.query);
       ctx.type = "json";
       let generalDetail = generalBody.data;
       ctx.body = {
@@ -285,7 +279,7 @@ export default () => {
   router.get("/api/account/detail", async (ctx) => {
     try {
       console.log("/account/detail:" + JSON.stringify(ctx.query));
-      let result = await get("/account/detail", ctx.query);
+      let result = await get(explorerApi + "/account/detail", ctx.query);
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
@@ -299,7 +293,7 @@ export default () => {
   router.post("/api/account/list", async (ctx) => {
     try {
       console.log(ctx.path + ":" + JSON.stringify(ctx.request.body));
-      let result = await post("/token/accountList", ctx.request.body);
+      let result = await post(explorerApi + "/token/accountList", ctx.request.body);
       ctx.type = "json";
 
       result.data.data.tokenAccountViewList.forEach(item=> {
@@ -317,7 +311,7 @@ export default () => {
   router.post("/api/token/list", async (ctx) => {
     try {
       console.log("/token/list:"+ JSON.stringify(ctx.request.body));
-      let result = await post("/token/list", ctx.request.body);
+      let result = await post(explorerApi + "/token/list", ctx.request.body);
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
@@ -332,7 +326,7 @@ export default () => {
   router.post("/api/node/list", async (ctx) => {
     try {
       console.log("/supernode/list:"+ JSON.stringify(ctx.request.body));
-      let result = await post("/supernode/list", ctx.request.body);
+      let result = await post(explorerApi + "/supernode/list", ctx.request.body);
       result.data.data.nodeList.forEach(item=> {
         if (item.voteNum !== 0 && !item.voteNum ) item.voteNum = "";
         item.voteNum = handleBigNum(item.voteNum+"", 0 , false, true);
@@ -353,7 +347,7 @@ export default () => {
   router.post("/api/node/detail", async (ctx) => {
     try {
       console.log("/supernode/detail:"+ JSON.stringify(ctx.request.body));
-      let result = await post("/supernode/detail", ctx.request.body);
+      let result = await post(explorerApi + "/supernode/detail", ctx.request.body);
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"
@@ -367,7 +361,7 @@ export default () => {
   router.get("/api/node/supernode/cycleExcel", async (ctx) => {
     try {
       console.log("/supernode/cycleExcel:" + JSON.stringify(ctx.query));
-      let result = await axios.get(sbpDetailApi + "/reward/cycle/query");
+      let result = await get(sbpDetailApi + "/reward/cycle/query");
       let cycleList = result.data.data || [];
       cycleList = cycleList.map(item=> {
         return {
@@ -386,9 +380,7 @@ export default () => {
   router.get("/api/node/supernode/detail", async (ctx) => {
     try {
       console.log("/supernode/detail:"+ JSON.stringify(ctx.query));
-      let result = await axios.get(sbpDetailApi + "/reward/node/queryDetails", {
-        params: ctx.query
-      });
+      let result = await get(sbpDetailApi + "/reward/node/queryDetails", ctx.query);
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"
@@ -403,7 +395,7 @@ export default () => {
   router.post("/api/node/supernode/list/cursbp", async (ctx) => {
     try {
       console.log("/supernode/cursbp:"+ JSON.stringify(ctx.request.body));
-      let result = await post("/supernode/cursbp", ctx.request.body);
+      let result = await post(explorerApi + "/supernode/cursbp", ctx.request.body);
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"
@@ -416,7 +408,7 @@ export default () => {
   router.post("/api/node/supernode/detail/producer/list", async (ctx) => {
     try {
       console.log("/supernode/getSuperNodeDetail:"+ JSON.stringify(ctx.request.body));
-      let result = await post("/supernode/getSuperNodeDetail", ctx.request.body);
+      let result = await post(explorerApi + "/supernode/getSuperNodeDetail", ctx.request.body);
       ctx.body = result.data || {
         code: 5000,
         msg: "Server Error"
@@ -428,7 +420,7 @@ export default () => {
 
   router.get("/api/token/detail", async (ctx) => {
     try {
-      let result = await get("/token/detail", ctx.query);
+      let result = await get(explorerApi + "/token/detail", ctx.query);
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
@@ -442,7 +434,7 @@ export default () => {
 
   router.get("/api/block/detail", async (ctx) => {
     try {
-      let result = await get("/snapshotchain/block", ctx.query);
+      let result = await get(explorerApi + "/snapshotchain/block", ctx.query);
       ctx.type = "json";
       let body = result.data || {
         code: 5000,
@@ -471,7 +463,7 @@ export default () => {
 
   router.get("/api/transaction/detail", async (ctx) => {
     try {  
-      let result = await get("/accountchain/block", ctx.query);
+      let result = await get(explorerApi + "/accountchain/block", ctx.query);
       ctx.type = "json";
       let body = result.data || {
         code: 5000,
@@ -503,7 +495,7 @@ export default () => {
 
   router.get("/api/transaction/timeline", async (ctx) => {
     try {
-      let result = await get("/transaction/timeline");
+      let result = await get(explorerApi + "/transaction/timeline");
       ctx.type = "json";
       ctx.body = result.data || {
         code: 5000,
@@ -517,8 +509,8 @@ export default () => {
   router.get("/api/search/judgeTransOrBlock", async (ctx) => {
     try {
       console.log("/api/search/judgeTransOrBlock:"+ ctx.query.addr);
-      let transactionDetail = await get("/accountchain/block", { blockHash: ctx.query.addr });
-      let blockDetail = await get("/snapshotchain/block", { blockHash: ctx.query.addr });
+      let transactionDetail = await get(explorerApi + "/accountchain/block", { blockHash: ctx.query.addr });
+      let blockDetail = await get(explorerApi + "/snapshotchain/block", { blockHash: ctx.query.addr });
       let judgeString = "null";
       if (transactionDetail.data.code !== 0) {
         transactionDetail.data.data = null;
@@ -546,7 +538,7 @@ export default () => {
   router.get("/api/search/tokenNameOrSymbol", async (ctx) => {
     try {
       console.log("/api/search/tokenNameOrSymbol:"+ ctx.query.str);
-      let symbolResult= await get("/token/detail", { tokenSymbol: ctx.query.str });
+      let symbolResult= await get(explorerApi + "/token/detail", { tokenSymbol: ctx.query.str });
       let tokenSymbolList = [];
 
       if (symbolResult.data.code === 0) {

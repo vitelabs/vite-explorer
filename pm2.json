@@ -8,15 +8,14 @@
     "node_args"   : "--harmony",
     "cwd"         : "/var/www/vite.net",
     "env": {
-      "BASE_URL": "http://132.232.138.139:8080/test/api",
+      "NODE_ENV": "test",
       "PORT": "8080"
     },
     "env_qa": {
-      "BASE_URL": "http://132.232.138.139:8080/test/api"
+      "NODE_ENV": "test"
     },
     "env_production": {
-      "NODE_ENV": "production",
-      "BASE_URL": "http://172.19.0.30:8080/api"
+      "NODE_ENV": "production"
     }
   }]
 }
