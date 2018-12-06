@@ -9,7 +9,7 @@ async function start() {
   const port = process.env.PORT || config.port;
 
   let nuxtConfig = require("../nuxt.config.js");
-  nuxtConfig.dev = !(app.env === "production");
+  nuxtConfig.dev = (app.env === "development");
   const nuxt = new Nuxt(nuxtConfig);
 
   // Build in development
