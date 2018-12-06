@@ -402,9 +402,8 @@ module.exports = {
     name: "Snapshot Transactions",
 
   }, {
-    prop: "superNodeName",
-    name: "Block Creation Node",
-
+    prop: "hash",
+    name: "Hash"
   }, {
     prop: "producer",
     name: "Block Creation Address",

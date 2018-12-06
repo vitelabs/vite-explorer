@@ -84,6 +84,9 @@
             describe: this.showBlockDetail[key] || "--"
           };
           switch(key) {
+          case "producer": 
+            item.link = `${lang}/account/${this.showBlockDetail[key]}`;
+            break;
           case "superNodeName":
             item.link = `${lang}/SBPDetail/${this.showBlockDetail[key]}`;
             break;

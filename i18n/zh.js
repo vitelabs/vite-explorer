@@ -398,9 +398,8 @@ module.exports = {
     prop: "transactionCount",
     name: "快照交易数",
   }, {
-    prop: "superNodeName",
-    name: "出块节点",
-
+    prop: "hash",
+    name: "Hash",
   }, {
     prop: "producer",
     name: "出块地址",
