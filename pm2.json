@@ -8,12 +8,12 @@
     "node_args"   : "--harmony",
     "cwd"         : "/var/www/vite.net",
     "env": {
-      "NODE_ENV": "test",
+      "NODE_ENV": "qa",
       "NODE_CONFIG_DIR": "./server/config",
       "PORT": "8080"
     },
     "env_qa": {
-      "NODE_ENV": "test",
+      "NODE_ENV": "qa",
       "NODE_CONFIG_DIR": "./server/config"
     },
     "env_production": {
