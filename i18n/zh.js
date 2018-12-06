@@ -395,17 +395,15 @@ module.exports = {
     prop: "age",
     name: "快照块年龄",
   }, {
-    prop: "accountNum",
-    name: "被快照账户数",
+    prop: "transactionCount",
+    name: "快照交易数",
+  }, {
+    prop: "superNodeName",
+    name: "出块节点",
 
   }, {
     prop: "producer",
-    name: "快照节点",
-
-  }, {
-    prop: "hash",
-    name: "Hash",
-
+    name: "出块地址",
   }],
   addedBlockTitles: [{
     prop: "award",

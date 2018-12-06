@@ -398,16 +398,16 @@ module.exports = {
     prop: "age",
     name: "Age",
   }, {
-    prop: "accountNum",
-    name: "Accounts Snapshotted",
+    prop: "transactionCount",
+    name: "Snapshot Transactions",
+
+  }, {
+    prop: "superNodeName",
+    name: "Block Creation Node",
 
   }, {
     prop: "producer",
-    name: "SBP Address",
-
-  }, {
-    prop: "hash",
-    name: "Hash",
+    name: "Block Creation Address",
   }],
   addedBlockTitles: [{
     prop: "award",

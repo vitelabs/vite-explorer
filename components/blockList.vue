@@ -62,6 +62,8 @@
             height: `<a href="${lang}/block/${block.hash}" target="_blank">${block.height}</a>`,
             hash: `<a href="${lang}/block/${block.hash}" target="_blank" title="${block.hash}">${block.shortHash}</a>`,
             price: `${block.amount} VITE`,
+            transactionCount: block.transactionCount,
+            superNodeName: `<a href="${lang}/SBPDetail/${block.superNodeName}" target="_blank">${block.superNodeName}</a>`,
             accountNum: block.accountNum,
             producer: `<span title="${block.producer}">${block.shortProducer}</span>`,
             age: timestamp

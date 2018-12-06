@@ -168,7 +168,6 @@
         //   innerLink: true
         // }
         ] : [];
-        tokenDetail.balanceOnroad = "aaaaassss";
         return SBP.concat([
         // {
         //   name: this.$t("account.quota"),
@@ -214,12 +213,12 @@
           1: [{
             key: 1,
             icon: require("~/assets/images/sbp2.svg"),
-            link: `${lang}/SBPDetail/${this.accountDetail.nodeName}`
+            link: `${lang}/SBPDetail/${this.superNodeDetail.nodeName}`
           }],
           2: [{
             key: 2,
             icon: require("~/assets/images/sbp.svg"),
-            link: `${lang}/SBPDetail/${this.accountDetail.nodeName}`
+            link: `${lang}/SBPDetail/${this.superNodeDetail.nodeName}`
           }],
           3: [{
             key: 3,
