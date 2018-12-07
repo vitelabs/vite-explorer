@@ -399,7 +399,7 @@ module.exports = {
     name: "快照交易数",
   }, {
     prop: "hash",
-    name: "Hash",
+    name: "快照块Hash",
   }, {
     prop: "producer",
     name: "出块地址",

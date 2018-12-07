@@ -403,7 +403,7 @@ module.exports = {
 
   }, {
     prop: "hash",
-    name: "Hash"
+    name: "Snapshot Block Hash"
   }, {
     prop: "producer",
     name: "Block Creation Address",
