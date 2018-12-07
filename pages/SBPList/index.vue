@@ -218,6 +218,19 @@
       }
     }
   }
+  @media only screen and (min-width: 320px) and (max-width: 767px) {
+    .search-container {
+        flex-wrap: wrap;
+        .producer-cycle {
+          margin-top: 10px;
+        span {
+          display: block;
+          margin-top: 10px;
+          margin-left: 0px;
+        }
+      }
+    }
+  }
   .active-label {
     background: #5cb85c;
   }
