@@ -63,7 +63,7 @@
           nodeName: params.nodeName
         });
         let { list }= await node.getProducerList({
-          nodeName: params.nodeName
+          superNodeName: params.nodeName
         });
         let producerAddrList = list;
         loading = false;

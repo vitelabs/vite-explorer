@@ -32,10 +32,10 @@ export default {
   },
 
   getProducerList({
-    nodeName = null
+    superNodeName = null
   }) {
     return post(`${PREFIX}/supernode/detail/producer/list`, {
-      nodeName
+      superNodeName
     });
   },
   loopSBPList() {

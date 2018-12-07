@@ -82,7 +82,7 @@
         let superNodeDetail = await node.getDetail({
           producerAddress: ctx.params.addr
         });
-        let isSBP = superNodeDetail.sbpType === 1 ? true : false;
+        let isSBP = (superNodeDetail.sbpType === 1 || superNodeDetail.sbpType === 2) ? true : false;
         let tabParams = "tx";
         if (isSBP && ctx.query.showBlockList === "true") {
           tabParams = "block";
