@@ -25,6 +25,7 @@ FullNode.prototype.handleWSMsg = function(msg) {
 };
 
 FullNode.prototype.handleWSClose = function() {
+  this.socket.close();
   console.log("WebSocket Connection Closed.");
 };
 
