@@ -612,6 +612,11 @@ module.exports = {
 
   },
 
+  // pages/fullNode
+  fullNode: {
+    title: "全节点"
+  },
+
   pie: "持有量：",
   responseHash: "正在等待response",
 

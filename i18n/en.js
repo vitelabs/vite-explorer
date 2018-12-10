@@ -610,6 +610,11 @@ module.exports = {
     }],
 
   },
+  
+  // pages/fullNode
+  fullNode: {
+    title: "Full Node"
+  },
 
   pie: "Holding Amount:",
   responseHash: "Waiting for response transaction",
