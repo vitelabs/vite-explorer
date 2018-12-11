@@ -3,9 +3,7 @@ function FullNode() {
   this.array = [];
 }
 
-FullNode.prototype.connect = function() {
-  let url = "ws://123.207.109.139:8080/ws/user/aa";
-  
+FullNode.prototype.connect = function(url) {
   /* eslint-disable */
   let wsCtor = window["MozWebSocket"] ? MozWebSocket : WebSocket;
   /* eslint-disable */

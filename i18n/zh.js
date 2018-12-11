@@ -614,7 +614,15 @@ module.exports = {
 
   // pages/fullNode
   fullNode: {
-    title: "全节点"
+    title: "全节点",
+    contentTitle: {
+      block: "最新快照块",
+      nodeOnline: "在线节点",
+      pageDelay: "页面延迟",
+      broadcast: "块广播",
+      nodePosition: "节点所在位置图",
+      onlinePercent: "全部节点平均在线率"
+    }
   },
 
   pie: "持有量：",

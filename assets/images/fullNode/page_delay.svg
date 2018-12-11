@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="22px" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>页面延迟</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="全节点-2-copy-4" transform="translate(-960.000000, -127.000000)" fill-rule="nonzero">
+            <g id="页面延迟" transform="translate(938.000000, 104.000000)">
+                <g id="分组" transform="translate(22.000000, 22.000000)">
+                    <g id="页面延迟" transform="translate(0.000000, 1.000000)">
+                        <circle id="椭圆形" fill="#FFC800" cx="11" cy="11" r="11"></circle>
+                        <rect id="矩形" stroke="#FFFFFF" stroke-width="1.32" x="9.46" y="6.52666667" width="1" height="7.48" rx="0.5"></rect>
+                        <path d="M12.19,10.9266667 C12.1402944,10.9266667 12.1,10.966961 12.1,11.0166667 L12.1,16.1166667 C12.1,16.1663723 12.1402944,16.2066667 12.19,16.2066667 L12.89,16.2066667 C12.9397056,16.2066667 12.98,16.1663723 12.98,16.1166667 L12.98,11.0166667 C12.98,10.966961 12.9397056,10.9266667 12.89,10.9266667 L12.19,10.9266667 Z" id="矩形-copy" stroke="#FFFFFF" stroke-width="1.32" transform="translate(12.540000, 13.566667) rotate(90.000000) translate(-12.540000, -13.566667) "></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

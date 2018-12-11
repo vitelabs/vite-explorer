@@ -1,9 +1,16 @@
 <template>
-  <div class="token-list-container">
+  <div class="full-node-container">
     <div v-if="!error">
-      <div v-for="(item, index) in array" :key="index">
-        <p>{{ item }}</p>
+      <div class="line">
+        <card :info="info.block" class="card-text"></card>
+        <card :info="info.nodeOnline" class="card-text"></card>
+        <card :info="info.pageDelay" class="card-text"></card>
       </div>
+      <div class="line">
+        <card :info="info.broadcast" class="card-multi"></card>
+        <card :info="info.nodePosition" class="card-multi"></card>
+      </div>
+      <full-node-table></full-node-table>
     </div>
     <error v-else :error="error"></error>
   </div>
@@ -12,6 +19,8 @@
 <script>
   import error from "~/components/error";
   import fullNode from "./fullNode.js";
+  import card from "~/components/fullNode/card.vue";
+  import fullNodeTable from "~/components/fullNode/fullNodeTable.vue";
 
   export default {
     head() {
@@ -20,22 +29,49 @@
       };
     },
     components: {
-      error
+      error, card, fullNodeTable
     },
     async asyncData() {
       
     },
     mounted() {
       let client = new fullNode();
-      client.connect();
-
+      client.connect("ws://123.207.109.139:8080/ws/user/aa");
       this.array = client.array;
+      console.log(this.array);
+
     },
     data() {
       return {
         title: this.$t("fullNode.title"),
         error: "",
-        array: []
+        array: [],
+        info: {
+          block: {
+            img: require("~/assets/images/fullNode/newest_block.svg"),
+            title: this.$t("fullNode.contentTitle.block"),
+            text: "2222"
+          },
+          nodeOnline: {
+            img: require("~/assets/images/fullNode/online.svg"),
+            title: this.$t("fullNode.contentTitle.nodeOnline"),
+            text: "2222"
+          },
+          pageDelay: {
+            img: require("~/assets/images/fullNode/page_delay.svg"),
+            title: this.$t("fullNode.contentTitle.pageDelay"),
+            text: "2222"
+          },
+          broadcast: {
+            img: require("~/assets/images/fullNode/broadcast.svg"),
+            title: this.$t("fullNode.contentTitle.broadcast"),
+            text: "2222"
+          },
+          nodePosition: {
+            img: require("~/assets/images/fullNode/node_position.svg"),
+            title: this.$t("fullNode.contentTitle.nodePosition"),
+          }
+        }
       };
     },
     computed: {
@@ -44,5 +80,20 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.full-node-container {
+  .line {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    margin-bottom: 36px;
+  }
+  .card-text {
+    width: 362px;
+  }
+  .card-multi {
+    width: 558px;
+  }
+}
+
 
 </style>

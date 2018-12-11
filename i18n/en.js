@@ -613,7 +613,15 @@ module.exports = {
   
   // pages/fullNode
   fullNode: {
-    title: "Full Node"
+    title: "Full Node",
+    contentTitle: {
+      block: "最新快照块",
+      nodeOnline: "在线节点",
+      pageDelay: "页面延迟",
+      broadcast: "块广播",
+      nodePosition: "节点所在位置图",
+      onlinePercent: "全部节点平均在线率"
+    }
   },
 
   pie: "Holding Amount:",
