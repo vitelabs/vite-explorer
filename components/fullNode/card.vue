@@ -2,8 +2,15 @@
   <div class="full-node-container">
     <div class="head">
       <div class="node-title">
-        <img :src="info.img" class="title-icon"/>
-        {{ info.title }}
+        <el-popover trigger="hover" placement="top-start" :disabled="!info.popover">
+          <no-ssr>
+            <slot name="popoverContent"></slot>
+          </no-ssr>
+          <span slot="reference">
+            <img :src="info.img" class="title-icon"/>
+            {{ info.title }}
+          </span>
+        </el-popover>
       </div>
     </div>
     <div class="node-content">
@@ -22,7 +29,8 @@
         default: ()=> {
           return {
             img: "",
-            title: ""
+            title: "",
+            popover: false
           };
         }
       }

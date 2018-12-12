@@ -3,7 +3,12 @@
     <div v-if="!error">
       <div class="line">
         <card :info="info.block" class="card-text"></card>
-        <card :info="info.nodeOnline" class="card-text"></card>
+        <card :info="info.nodeOnline" class="card-text">
+          <i18n path="fullNode.popover.nodeOnline" tag="span" class="title" slot="popoverContent">
+            <span place="onlineNode">{{ onlineNode }}</span>
+            <span place="historyNode">{{ historyNode }}</span>
+          </i18n>
+        </card>
         <card :info="info.pageDelay" class="card-text"></card>
       </div>
       <div class="line">
@@ -54,7 +59,13 @@
         array: [],
         nodeList: [],
         nodeTitles: this.$t("fullNode.nodeTitles"),
-        info: {
+        onlineNode: 36,
+        historyNode: 42
+      };
+    },
+    computed: {
+      info() {
+        return {
           block: {
             img: require("~/assets/images/fullNode/newest_block.svg"),
             title: this.$t("fullNode.contentTitle.block"),
@@ -63,7 +74,8 @@
           nodeOnline: {
             img: require("~/assets/images/fullNode/online.svg"),
             title: this.$t("fullNode.contentTitle.nodeOnline"),
-            text: "2222"
+            text: `${this.onlineNode}/${this.historyNode}`,
+            popover: true
           },
           pageDelay: {
             img: require("~/assets/images/fullNode/page_delay.svg"),
@@ -73,16 +85,13 @@
           broadcast: {
             img: require("~/assets/images/fullNode/broadcast.svg"),
             title: this.$t("fullNode.contentTitle.broadcast"),
-            text: "2222"
           },
           nodePosition: {
             img: require("~/assets/images/fullNode/node_position.svg"),
             title: this.$t("fullNode.contentTitle.nodePosition"),
           }
-        }
-      };
-    },
-    computed: {
+        };
+      },
       nodeData() {
         let list = [];
         this.nodeList && this.nodeList.forEach((node) => {
