@@ -6,12 +6,15 @@
           <no-ssr>
             <slot name="popoverContent"></slot>
           </no-ssr>
-          <span slot="reference">
-            <img :src="info.img" class="title-icon"/>
-            {{ info.title }}
-          </span>
+          <div slot="reference">
+            <div class="title-content">
+              <img :src="info.img" class="title-icon"/>
+              {{ info.title }}
+            </div>
+          </div>
         </el-popover>
       </div>
+      <div v-if="info.rightTitle" class="right-title">{{ info.rightTitle }}</div>
     </div>
     <div class="node-content">
       <div class="node-text" v-if="info.text">{{ info.text }}</div>
@@ -30,6 +33,7 @@
           return {
             img: "",
             title: "",
+            rightTitle: "",
             popover: false
           };
         }
@@ -61,14 +65,24 @@
     display: -webkit-flex;
     justify-content: space-between;
     border-bottom: 1px solid $border-color;
+    padding: 24px 22px 19px 22px;
     .node-title {
-      margin-left: 22px;
-      margin-top: 24px; 
-      margin-bottom: 21px; 
-      .title-icon {
-        vertical-align: top;
-        margin-right: 3px; 
-      }    
+      .title-content {
+        .title-icon {
+          vertical-align: top;
+          margin-right: 3px; 
+        }   
+      } 
+    }
+    .right-title {
+      margin-top: -5px;
+      background: rgba(239,243,252,0.69);
+      border-radius: 1px;
+      font-size: 12px;
+      padding: 3px 8px;
+      color: #5E6875;
+      letter-spacing: 0.3px;
+      line-height: 24px;
     }
   }
   .node-content {

@@ -65,6 +65,7 @@
     },
     computed: {
       info() {
+        let percent = "90%";
         return {
           block: {
             img: require("~/assets/images/fullNode/newest_block.svg"),
@@ -89,6 +90,7 @@
           nodePosition: {
             img: require("~/assets/images/fullNode/node_position.svg"),
             title: this.$t("fullNode.contentTitle.nodePosition"),
+            rightTitle: `全部节点平均在线率：${percent}`
           }
         };
       },
