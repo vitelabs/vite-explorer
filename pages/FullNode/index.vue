@@ -10,7 +10,11 @@
         <card :info="info.broadcast" class="card-multi"></card>
         <card :info="info.nodePosition" class="card-multi"></card>
       </div>
-      <full-node-table></full-node-table>
+      <full-node-table
+        :pagination="false"
+        :tableTitles="nodeTitles"
+        :tableData="nodeData">
+      </full-node-table>
     </div>
     <error v-else :error="error"></error>
   </div>
@@ -40,12 +44,16 @@
       this.array = client.array;
       console.log(this.array);
 
+      this.getNodeList();
+
     },
     data() {
       return {
         title: this.$t("fullNode.title"),
         error: "",
         array: [],
+        nodeList: [],
+        nodeTitles: this.$t("fullNode.nodeTitles"),
         info: {
           block: {
             img: require("~/assets/images/fullNode/newest_block.svg"),
@@ -75,6 +83,44 @@
       };
     },
     computed: {
+      nodeData() {
+        let list = [];
+        this.nodeList && this.nodeList.forEach((node) => {
+          let lang = "";
+          this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
+          list.push({
+            ...node,
+            nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
+          });
+        });
+        return list;
+      }
+    },
+    methods: {
+      getNodeList() {
+        this.nodeList = [{
+          nodeName: "aaaa",
+          network: "fff",
+          nodeSystem: "v1.8.10-stabel-eacccle",
+          nodeDelay: "6s",
+          neighbour: 18,
+          newestBlock: 1232,
+          newestTime: 123,
+          broadcastTime: "0ms",
+          avgTime: "0ms",
+          onlinePercent: "98%"
+        }, {
+          nodeName: "ccccccccccccc",
+          nodeSystem: "v1.8.10-stabel-eacccle",
+          nodeDelay: "6s",
+          neighbour: 18,
+          newestBlock: 1232,
+          newestTime: 123,
+          broadcastTime: "0ms",
+          avgTime: "0ms",
+          onlinePercent: "98%"
+        }];
+      }
     }
   };
 </script>

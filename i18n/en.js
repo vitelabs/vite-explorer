@@ -621,6 +621,51 @@ module.exports = {
       broadcast: "块广播",
       nodePosition: "节点所在位置图",
       onlinePercent: "全部节点平均在线率"
+    },
+    nodeTitles: [{
+      prop: "radio",
+      name: "",
+      width: 40
+    }, {
+      prop: "nodeName",
+      name: "节点名",
+      popover: true
+    }, {
+      prop: "nodeSystem",
+      name: "节点系统"
+    }, {
+      prop: "nodeDelay",
+      name: "节点延迟",
+    }, {
+      prop: "neighbour",
+      name: "邻居数",
+    }, {
+      prop: "newestBlock",
+      name: "最新块",
+    }, {
+      prop: "newestTime",
+      name: "最新块时间",
+      popover: true
+    }, {
+      prop: "broadcastTime",
+      name: "广播时间",
+      popover: true
+    }, {
+      prop: "",
+      name: "",
+    }, {
+      prop: "avgTime",
+      name: "平均广播时间",
+    }, {
+      prop: "onlinePercent",
+      name: "在线率",
+    }],
+    popover: {
+      network: "网络",
+      protocol: "协议",
+      position: "位置",
+      newestTime: "收到最新块的时间",
+      broadcastTime: "收到最新块所需时间"
     }
   },
 

@@ -8,8 +8,8 @@
             <g id="列表" transform="translate(139.000000, 589.000000)">
                 <g id="1" transform="translate(16.000000, 75.000000)">
                     <g id="分组-7" transform="translate(0.000000, 2.000000)">
-                        <circle id="circle" stroke="#185BDD" cx="7" cy="7" r="6.5"></circle>
-                        <circle id="circle-copy" fill="#185BDD" cx="7" cy="7" r="4"></circle>
+                        <circle id="circle" stroke="#3498db" cx="7" cy="7" r="6.5"></circle>
+                        <circle id="circle-copy" fill="#3498db" cx="7" cy="7" r="4"></circle>
                     </g>
                 </g>
             </g>

@@ -6,16 +6,35 @@
         :stripe="false"
         :data="tableData" 
         style="width: 100%" 
-        :empty-text="noResult"
-        :row-class-name="tableRowClassName">
+        :empty-text="noResult">
         <el-table-column v-for="(tT, index) in tableTitles" 
           :key="index"
           :prop="tT.prop"
           :label="tT.name" :width="tT.width || ''" 
           :show-overflow-tooltip="true">
           <template slot-scope="scope">
-              <div v-html="scope.row[tT.prop] || '--'" v-if="scope.row[tT.prop] !== 0"></div>
-              <div v-else>0</div>
+            <el-popover trigger="hover" placement="top" :disabled="!tT.popover">
+              <div v-if="tT.prop === 'nodeName'">
+                <p>{{ $t("fullNode.popover.network") }}: {{ scope.row.network }}</p>
+                <p>{{ $t("fullNode.popover.protocol") }}: {{ scope.row.protocol }}</p>
+                <p>{{ $t("fullNode.popover.position") }}: {{ scope.row.position }}</p>
+              </div>
+              <div v-if="tT.prop === 'newestTime'">
+                <span>{{ $t("fullNode.popover.newestTime") }}</span>
+              </div>
+              <div v-if="tT.prop === 'broadcastTime'">
+                <span>{{ $t("fullNode.popover.broadcastTime") }}</span>
+              </div>
+              <span slot="reference">
+                <div v-if="!tT.name">
+                  <img src="~assets/images/fullNode/unchoice.svg" v-if="tT.prop === 'radio'"/>
+                </div>
+                <span v-else>
+                  <span v-html="scope.row[tT.prop] || '--'" v-if="scope.row[tT.prop] !== 0"></span>
+                  <span v-else>0</span>
+                </span>
+              </span>
+            </el-popover>
           </template>
         </el-table-column>
       </el-table>
@@ -88,18 +107,9 @@
       }
     },
     methods: {
-      tableRowClassName({row}) {
-        if (row.pureStatus === "Producing") {
-          return "success-row";
-        } 
-        return "";
-      },
       _currentChange(index) {
         this.currentInx = index;
         this.currentChange(index);
-      },
-      linkTo(url) {
-        location.href=url;
       },
     }
   };
@@ -107,16 +117,6 @@
 
 <style rel="stylesheet/scss" lang="scss">
 .page-table-container {
-  .el-table .success-row {
-    background: #5cb85c;
-    color: white;
-    &:hover>td {
-      background: #5cb85c;
-    }
-    a {
-      color: white;
-    }
-  }
   .table {
     box-sizing: border-box;
     background: #FFFFFF;
