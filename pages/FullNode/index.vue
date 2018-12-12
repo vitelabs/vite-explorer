@@ -12,8 +12,14 @@
         <card :info="info.pageDelay" class="card-text"></card>
       </div>
       <div class="line">
-        <card :info="info.broadcast" class="card-multi"></card>
-        <card :info="info.nodePosition" class="card-multi"></card>
+        <card :info="info.broadcast" class="card-multi">
+          <div slot="nodeContent">
+            <bar></bar>
+          </div>
+        </card>
+        <card :info="info.nodePosition" class="card-multi">
+          <!-- <pie slot="nodeContent"></pie> -->
+        </card>
       </div>
       <full-node-table
         :pagination="false"
@@ -30,6 +36,8 @@
   import fullNode from "./fullNode.js";
   import card from "~/components/fullNode/card.vue";
   import fullNodeTable from "~/components/fullNode/fullNodeTable.vue";
+  import Bar from "~/components/Charts/Bar.vue";
+  import Pie from "~/components/Charts/Pie.vue";
 
   export default {
     head() {
@@ -38,7 +46,7 @@
       };
     },
     components: {
-      error, card, fullNodeTable
+      error, card, fullNodeTable, Bar, Pie
     },
     async asyncData() {
       
@@ -149,6 +157,7 @@
   }
   .card-multi {
     width: 558px;
+    height: 242px;
   }
 }
 
