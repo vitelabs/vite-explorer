@@ -4,7 +4,7 @@
       <el-table 
         v-loading="loading" 
         :stripe="true"
-        :data="showTableData" 
+        :data="copyTableData" 
         style="width: 100%" 
         :empty-text="noResult"
         :row-class-name="tableRowClassName">
@@ -28,7 +28,7 @@
               </div>
               <span slot="reference">
                 <div v-if="!tT.name">
-                  <div @click="onClickItem(scope.row, scope.$index)">
+                  <div @click="onClickItem(scope.row)">
                     <img :src="scope.row.radio" v-if="tT.prop === 'radio'" class="choice-icon"/>
                   </div>
                 </div>
@@ -100,6 +100,7 @@
     },
     data() {
       return {
+        currentWeight : 100000,
         copyTableData: [],
         currentInx: this.currentPage,
         noResult: this.$t("utils.noResult"),
@@ -113,10 +114,28 @@
       },
       tableData() {
         this.copyTableData = [].concat(this.tableData);
-        this.showTableData = [].concat(this.tableData);
       }
     },
     methods: {
+      sort() {
+        this.copyTableData.sort(function(left, right) {
+          if (left.weight > right.weight) {
+            return -1;
+          }
+          if(left.weight < right.weight) {
+            return 1;
+          }
+          if(left.weight === right.weight) {
+            if (left.originIndex > right.originIndex) {
+              return 1;
+           }
+           if(left.originIndex < right.originIndex) {
+             return -1;
+            }
+          }
+          return 0;
+        })
+      },
       tableRowClassName({row}) {
         if (row.status === 0) {
           return "disable-row";
@@ -127,18 +146,21 @@
         this.currentInx = index;
         this.currentChange(index);
       },
-      onClickItem(row, index) {
+      onClickItem(row) {
         row.tag = !row.tag;
         row.radio = row.status ? 
           row.tag ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg") 
           : row.tag ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg") ;
-        row.tag ? this.setTop(row, index) : this.cancelTop(row, index);
+        row.tag ? this.setTop(row) : this.cancelTop(row);
       },
-      setTop(row, index) {
-        console.log("top",row, index);
+      setTop(row) {
+        row.weight = this.currentWeight;
+        this.currentWeight--;
+        this.sort();
       },
-      cancelTop(row, index) {
-        console.log("cancel",row, index);
+      cancelTop(row) {
+        row.weight = 0;
+        this.sort();
       }
     }
   };

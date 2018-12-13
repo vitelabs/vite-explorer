@@ -106,11 +106,13 @@
       },
       nodeData() {
         let list = [];
-        this.nodeList && this.nodeList.forEach((node) => {
+        this.nodeList && this.nodeList.forEach((node, index) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
             ...node,
+            originIndex: index,
+            weight: 0,
             tag: 0,
             radio: node.status ? require("~/assets/images/fullNode/unchoice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg"),
             nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
