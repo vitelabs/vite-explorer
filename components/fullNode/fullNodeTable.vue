@@ -3,8 +3,8 @@
     <div class="table">
       <el-table 
         v-loading="loading" 
-        :stripe="false"
-        :data="tableData" 
+        :stripe="true"
+        :data="showTableData" 
         style="width: 100%" 
         :empty-text="noResult"
         :row-class-name="tableRowClassName">
@@ -28,7 +28,7 @@
               </div>
               <span slot="reference">
                 <div v-if="!tT.name">
-                  <div @click="onClickItem(scope.row)">
+                  <div @click="onClickItem(scope.row, scope.$index)">
                     <img :src="scope.row.radio" v-if="tT.prop === 'radio'" class="choice-icon"/>
                   </div>
                 </div>
@@ -98,17 +98,22 @@
         default: 1
       }
     },
-    mounted() {
-    },
     data() {
       return {
+        copyTableData: [],
         currentInx: this.currentPage,
-        noResult: this.$t("utils.noResult")
+        noResult: this.$t("utils.noResult"),
+        choicedArray: [],
+        showTableData: []
       };
     },
     watch: {
       currentPage() {
         this.currentInx = this.currentPage;
+      },
+      tableData() {
+        this.copyTableData = [].concat(this.tableData);
+        this.showTableData = [].concat(this.tableData);
       }
     },
     methods: {
@@ -122,11 +127,18 @@
         this.currentInx = index;
         this.currentChange(index);
       },
-      onClickItem(row) {
+      onClickItem(row, index) {
         row.tag = !row.tag;
         row.radio = row.status ? 
           row.tag ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg") 
           : row.tag ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg") ;
+        row.tag ? this.setTop(row, index) : this.cancelTop(row, index);
+      },
+      setTop(row, index) {
+        console.log("top",row, index);
+      },
+      cancelTop(row, index) {
+        console.log("cancel",row, index);
       }
     }
   };
