@@ -14,7 +14,7 @@ const colors = ["rgb(164,205,238)","rgb(42,170,227)","rgb(25,46,94)","rgb(195,22
 
 const defaultSeriesOptions = {
   type: "bar",
-  data: [120, 200, 150, 80],
+  data: [10, 20, 30, 40, 50, 60],
   itemStyle: {
     color: function (params){
       let colorList = colors;
@@ -56,10 +56,10 @@ export default {
       this.echarsInstance.setOption({
         xAxis: {
           type: "category",
-          data: ["鲜花", "星星", "香蕉", "嫌弃"]
+          data: ["0s", "2s", "4s", "6s", "8s", "10s"]
         },
-        yAxis: {
-          type: "value"
+        yAxis:{ 
+          position: "right"
         },
         series: [defaultSeriesOptions]
       });

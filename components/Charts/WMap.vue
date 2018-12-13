@@ -1,7 +1,7 @@
 <template>
   <div class="map-container">
     <div class="content">
-      <div id="map" style="width: 100%; height: 180px;"></div>
+      <div id="map" style="width: 100%; height: 173px;"></div>
     </div>
   </div>
 </template>
@@ -9,11 +9,6 @@
 <script>
 import echarts from "echarts";
 require("echarts/map/js/world.js");
-
-const defaultSeriesOptions = {
-  type: "map",
-  map: "world"
-};
 
 export default {
   props: {
@@ -44,7 +39,18 @@ export default {
     draw() {
       this.mapInstance = echarts.init(document.getElementById("map"));
       this.mapInstance.setOption({
-        series: [defaultSeriesOptions]
+        geo: {
+          roam: true,
+          map: "world",
+          layoutCenter: ["50%", "70%"],
+          layoutSize: 500,
+          itemStyle: {
+            normal: {
+              borderWidth: 0
+            }
+          }
+        },
+        // series: [defaultSeriesOptions]
       },true);
     }
   }
