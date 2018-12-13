@@ -100,7 +100,7 @@
           nodePosition: {
             img: require("~/assets/images/fullNode/node_position.svg"),
             title: this.$t("fullNode.contentTitle.nodePosition"),
-            rightTitle: `全部节点平均在线率：${percent}`
+            rightTitle: `${this.$t("fullNode.contentTitle.onlinePercent")}：${percent}`
           }
         };
       },
@@ -111,6 +111,8 @@
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
             ...node,
+            tag: 0,
+            radio: node.status ? require("~/assets/images/fullNode/unchoice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg"),
             nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
           });
         });
@@ -120,6 +122,8 @@
     methods: {
       getNodeList() {
         this.nodeList = [{
+          id: 1,
+          status: 1,
           nodeName: "aaaa",
           network: "fff",
           nodeSystem: "v1.8.10-stabel-eacccle",
@@ -131,7 +135,21 @@
           avgTime: "0ms",
           onlinePercent: "98%"
         }, {
+          id: 2,
+          status: 1,
           nodeName: "ccccccccccccc",
+          nodeSystem: "v1.8.10-stabel-eacccle",
+          nodeDelay: "6s",
+          neighbour: 18,
+          newestBlock: 1232,
+          newestTime: 123,
+          broadcastTime: "0ms",
+          avgTime: "0ms",
+          onlinePercent: "98%"
+        }, {
+          id: 3,
+          status: 0,
+          nodeName: "cahsjhdjas",
           nodeSystem: "v1.8.10-stabel-eacccle",
           nodeDelay: "6s",
           neighbour: 18,

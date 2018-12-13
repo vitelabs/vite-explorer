@@ -6,7 +6,8 @@
         :stripe="false"
         :data="tableData" 
         style="width: 100%" 
-        :empty-text="noResult">
+        :empty-text="noResult"
+        :row-class-name="tableRowClassName">
         <el-table-column v-for="(tT, index) in tableTitles" 
           :key="index"
           :prop="tT.prop"
@@ -27,7 +28,9 @@
               </div>
               <span slot="reference">
                 <div v-if="!tT.name">
-                  <img src="~assets/images/fullNode/unchoice.svg" v-if="tT.prop === 'radio'"/>
+                  <div @click="onClickItem(scope.row)">
+                    <img :src="scope.row.radio" v-if="tT.prop === 'radio'" class="choice-icon"/>
+                  </div>
                 </div>
                 <span v-else>
                   <span v-html="scope.row[tT.prop] || '--'" v-if="scope.row[tT.prop] !== 0"></span>
@@ -95,6 +98,8 @@
         default: 1
       }
     },
+    mounted() {
+    },
     data() {
       return {
         currentInx: this.currentPage,
@@ -107,16 +112,34 @@
       }
     },
     methods: {
+      tableRowClassName({row}) {
+        if (row.status === 0) {
+          return "disable-row";
+        } 
+        return "";
+      },
       _currentChange(index) {
         this.currentInx = index;
         this.currentChange(index);
       },
+      onClickItem(row) {
+        row.tag = !row.tag;
+        row.radio = row.status ? 
+          row.tag ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg") 
+          : row.tag ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg") ;
+      }
     }
   };
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
 .page-table-container {
+  .el-table .disable-row {
+    color: #C1C3C5;
+    a {
+      color: #C1C3C5;
+    }
+  }
   .table {
     box-sizing: border-box;
     background: #FFFFFF;
@@ -125,6 +148,10 @@
     box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
     border-radius: 4px;
     margin-top: 30px;
+    .choice-icon {
+      vertical-align: middle;
+      cursor: pointer;
+    }
   }
   .page-table-container {
     width: 100%;
