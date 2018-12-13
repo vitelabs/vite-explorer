@@ -1,7 +1,7 @@
 <template>
   <div class="bar-container">
     <div class="content">
-      <div id="main" style="width: 100%; height: 172px"></div>
+      <div id="main" style="width: 100%; height: 225px; margin-top: -32px;"></div>
     </div>
   </div>
 </template>

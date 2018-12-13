@@ -19,13 +19,10 @@
     <div class="node-content" v-if="info.text">
       <div class="node-text">{{ info.text }}</div>
     </div>
-    <no-ssr>
-      <slot name="nodeContent"></slot>
-    </no-ssr>
+    <slot name="nodeContent"></slot>
   </div>
 </template>
 <script>
-
   export default {
     components: {
     },
