@@ -128,13 +128,13 @@
           if(left.weight === right.weight) {
             if (left.originIndex > right.originIndex) {
               return 1;
-           }
-           if(left.originIndex < right.originIndex) {
-             return -1;
+            }
+            if(left.originIndex < right.originIndex) {
+              return -1;
             }
           }
           return 0;
-        })
+        });
       },
       tableRowClassName({row}) {
         if (row.status === 0) {
