@@ -46,6 +46,7 @@ export default {
           layoutSize: 500,
           itemStyle: {
             normal: {
+              areaColor: "rgba(85,122,198,0.25)",
               borderWidth: 0
             }
           }
