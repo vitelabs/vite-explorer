@@ -1,7 +1,7 @@
 <template>
   <div class="bar-container">
     <div class="content">
-      <div id="main" style="width: 110%; height: 225px; margin-top: -32px; margin-left: -40px;"></div>
+      <div :style="barStyle" ref="bar"></div>
     </div>
   </div>
 </template>
@@ -184,6 +184,14 @@ export default {
     list: {
       type: Array,
       default: ()=> []
+    },
+    barStyle: {
+      type: Object,
+      default: ()=> {}
+    },
+    showAxis: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -216,15 +224,17 @@ export default {
       return "";
     },
     draw() {
-      this.echarsInstance = echarts.init(document.getElementById("main"));
+      this.echarsInstance = echarts.init(this.$refs.bar);
       this.echarsInstance.setOption({
         xAxis: {
+          show: this.showAxis,
           type: "category",
           data: data.percents.map(item => {
             return item.name;
           })
         },
-        yAxis:{ 
+        yAxis:{
+          show: this.showAxis,
           position: "right",
           axisLabel : { 
             formatter : "{value}%" 

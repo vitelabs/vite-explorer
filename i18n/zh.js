@@ -652,8 +652,9 @@ module.exports = {
       name: "广播时间",
       popover: true
     }, {
-      prop: "",
+      prop: "broadcastTimeList",
       name: "",
+      width: 180
     }, {
       prop: "avgTime",
       name: "平均广播时间",

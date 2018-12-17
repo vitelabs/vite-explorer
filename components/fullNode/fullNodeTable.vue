@@ -26,10 +26,14 @@
               <div v-if="tT.prop === 'broadcastTime'">
                 <span>{{ $t("fullNode.popover.broadcastTime") }}</span>
               </div>
+              
               <span slot="reference">
                 <div v-if="!tT.name">
                   <div @click="onClickItem(scope.row)">
                     <img :src="scope.row.radio" v-if="tT.prop === 'radio'" class="choice-icon"/>
+                  </div>
+                  <div v-if="tT.prop === 'broadcastTimeList'">
+                    <bar :bar-style="barStyle" :show-axis="false"></bar>
                   </div>
                 </div>
                 <span v-else>
@@ -54,6 +58,7 @@
 </template>
 
 <script type="text/babel">
+  import Bar from "~/components/Charts/Bar.vue";
 
   export default {
     props: {
@@ -98,6 +103,9 @@
         default: 1
       }
     },
+    components: {
+      Bar
+    },
     data() {
       return {
         currentWeight : 100000,
@@ -105,7 +113,13 @@
         currentInx: this.currentPage,
         noResult: this.$t("utils.noResult"),
         choicedArray: [],
-        showTableData: []
+        showTableData: [],
+        barStyle: {
+          width: "100%",
+          height: "50px",
+          marginTop: "0px",
+          marginLeft: "-20px"
+        }
       };
     },
     watch: {

@@ -14,7 +14,7 @@
       <div class="line">
         <card :info="info.broadcast" class="card-multi">
           <template slot="nodeContent">
-            <bar></bar>
+            <bar :bar-style="barStyle"></bar>
           </template>
         </card>
         <card :info="info.nodePosition" class="card-multi">
@@ -70,7 +70,13 @@
         nodeList: [],
         nodeTitles: this.$t("fullNode.nodeTitles"),
         onlineNode: 36,
-        historyNode: 42
+        historyNode: 42,
+        barStyle: {
+          width: "110%",
+          height: "225px",
+          marginTop: "-32px",
+          marginLeft: "-40px"
+        }
       };
     },
     computed: {

@@ -10,6 +10,46 @@
 import echarts from "echarts";
 require("echarts/map/js/world.js");
 
+const nodeViewList = [{
+  "avgBroadcastTime": 0,
+  "broadcastTime": 0,
+  "getAvgBroadcastTime": 0,
+  "ipInfo": {
+    "area_code": 0,
+    "country_name": "USA",
+    "found": 0,
+    "lat": 31.0,
+    "lng": 111.0,
+    "metro_code": 0,
+    "region_name": "California"
+  },
+  "latestBlockHeight": 0,
+  "latestBlockTime": 0,
+  "nodeDelayTime": 0,
+  "nodeName": "AAABBB",
+  "onlinePercent": 0.0,
+  "peersNum": 0
+}, {
+  "avgBroadcastTime": 0,
+  "broadcastTime": 0,
+  "getAvgBroadcastTime": 0,
+  "ipInfo": {
+    "area_code": 0,
+    "country_name": "USA",
+    "found": 0,
+    "lat": 36.0,
+    "lng": 110.0,
+    "metro_code": 0,
+    "region_name": "California"
+  },
+  "latestBlockHeight": 0,
+  "latestBlockTime": 0,
+  "nodeDelayTime": 0,
+  "nodeName": "AAA",
+  "onlinePercent": 0.0,
+  "peersNum": 0
+}];
+
 export default {
   props: {
     list: {
@@ -32,13 +72,31 @@ export default {
     // this.fetchList();
   },
   methods: {
-    fetchList() {},
+    fetchList() {
+
+    },
     clear() {
       this.mapInstance.clear();
+    },
+    convertData() {
+      let res = [];
+      for (var i = 0; i < nodeViewList.length; i++) {
+        res.push({
+          name: "节点名称",
+          value: [nodeViewList[i].ipInfo.lng, nodeViewList[i].ipInfo.lat, nodeViewList[i].nodeName]
+        });
+      }
+      return res;
     },
     draw() {
       this.mapInstance = echarts.init(document.getElementById("map"));
       this.mapInstance.setOption({
+        tooltip: {
+          trigger: "item",
+          formatter: function (params) {
+            return params.name + " : " + params.value[2];
+          }
+        },
         geo: {
           roam: true,
           map: "world",
@@ -51,7 +109,11 @@ export default {
             }
           }
         },
-        // series: [defaultSeriesOptions]
+        series: [{
+          type: "scatter",
+          coordinateSystem: "geo",
+          data: this.convertData()
+        }]
       },true);
     }
   }
