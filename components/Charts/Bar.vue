@@ -192,6 +192,10 @@ export default {
     showAxis: {
       type: Boolean,
       default: true
+    },
+    type: {
+      type: String,
+      default: "large"
     }
   },
   data() {
@@ -260,9 +264,13 @@ export default {
             }
           },
           tooltip: {
+            position: "top",
             formatter: params=> {
               let index = params.dataIndex;
               let item = data.percents[index];
+              if (this.type === "mini") {
+                return `<div class="card-header">${item.name}</div>`;
+              }
               return `<div class="card">
                 <div class="card-header">${item.name}</div>
                 <div class="card-content">${this.$t("fullNode.popover.percent")}：${item.percent * 100}%</div> 

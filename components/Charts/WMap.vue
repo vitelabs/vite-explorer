@@ -38,7 +38,7 @@ const nodeViewList = [{
     "country_name": "USA",
     "found": 0,
     "lat": 36.0,
-    "lng": 110.0,
+    "lng": 87.0,
     "metro_code": 0,
     "region_name": "California"
   },

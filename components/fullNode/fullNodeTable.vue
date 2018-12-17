@@ -33,7 +33,7 @@
                     <img :src="scope.row.radio" v-if="tT.prop === 'radio'" class="choice-icon"/>
                   </div>
                   <div v-if="tT.prop === 'broadcastTimeList'">
-                    <bar :bar-style="barStyle" :show-axis="false"></bar>
+                    <bar :bar-style="barStyle" :show-axis="false" type="mini"></bar>
                   </div>
                 </div>
                 <span v-else>
