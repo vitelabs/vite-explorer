@@ -666,7 +666,9 @@ module.exports = {
       position: "位置",
       newestTime: "收到最新块的时间",
       broadcastTime: "收到最新块所需时间",
-      nodeOnline: "现在有{onlineNode}个节点在线，历史最多在线节点数{historyNode}个"
+      nodeOnline: "现在有{onlineNode}个节点在线，历史最多在线节点数{historyNode}个",
+      percent: "广播比例",
+      sumPercent: "累积比例"
     }
   },
 

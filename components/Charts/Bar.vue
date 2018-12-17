@@ -169,11 +169,11 @@ const data = {
     sumPercent: 0.5
   }, {
     name: "9.75s",
-    percent: 0.13,
+    percent: 0.23,
     sumPercent: 0.5
   }, {
     name: "10s",
-    percent: 0.13,
+    percent: 0.33,
     sumPercent: 0.5
   }]
 };
@@ -234,18 +234,30 @@ export default {
           }
         },
         tooltip: {
-          trigger: "axis"
+          trigger: "item"
         },
         series: [{
           type: "bar",
           data: data.percents.map(item => {
             return item.percent * 100;
           }),
+          barWidth: "50%",
           itemStyle: {
             color: params =>{
               let itemName = data.percents[params.dataIndex].name;
-              data.percents[params.dataIndex].name = itemName.substring(0, itemName.length - 1);
-              return this.dispatchBarColor(+data.percents[params.dataIndex].name);
+              let name = itemName.substring(0, itemName.length - 1);
+              return this.dispatchBarColor(+name);
+            }
+          },
+          tooltip: {
+            formatter: params=> {
+              let index = params.dataIndex;
+              let item = data.percents[index];
+              return `<div class="card">
+                <div class="card-header">${item.name}</div>
+                <div class="card-content">${this.$t("fullNode.popover.percent")}：${item.percent * 100}%</div> 
+                <div class="card-footer">${this.$t("fullNode.popover.sumPercent")}：${item.sumPercent * 100}%</div>
+              </div>`;
             }
           }
         }]
