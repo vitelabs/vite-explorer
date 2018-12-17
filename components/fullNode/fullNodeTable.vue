@@ -20,7 +20,7 @@
                 <p>{{ $t("fullNode.popover.protocol") }}: {{ scope.row.protocol }}</p>
                 <p>{{ $t("fullNode.popover.position") }}: {{ scope.row.position }}</p>
               </div>
-              <div v-if="tT.prop === 'newestTime'">
+              <div v-if="tT.prop === 'latestBlockTime'">
                 <span>{{ $t("fullNode.popover.newestTime") }}</span>
               </div>
               <div v-if="tT.prop === 'broadcastTime'">
@@ -151,7 +151,7 @@
         });
       },
       tableRowClassName({row}) {
-        if (row.status === 0) {
+        if (row.status === -1) {
           return "disable-row";
         } 
         return "";
@@ -163,8 +163,8 @@
       onClickItem(row) {
         row.tag = !row.tag;
         row.radio = row.status ? 
-          row.tag ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg") 
-          : row.tag ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg") ;
+          row.tag ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
+          : row.tag ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
         row.tag ? this.setTop(row) : this.cancelTop(row);
       },
       setTop(row) {

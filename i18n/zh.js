@@ -632,19 +632,19 @@ module.exports = {
       name: "节点名",
       popover: true
     }, {
-      prop: "nodeSystem",
+      prop: "nodeSysInfo",
       name: "节点系统"
     }, {
-      prop: "nodeDelay",
+      prop: "nodeDelayTime",
       name: "节点延迟",
     }, {
-      prop: "neighbour",
+      prop: "peersNum",
       name: "邻居数",
     }, {
-      prop: "newestBlock",
+      prop: "latestBlockHeight",
       name: "最新块",
     }, {
-      prop: "newestTime",
+      prop: "latestBlockTime",
       name: "最新块时间",
       popover: true
     }, {
@@ -656,7 +656,7 @@ module.exports = {
       name: "",
       width: 180
     }, {
-      prop: "avgTime",
+      prop: "avgBroadcastTime",
       name: "平均广播时间",
     }, {
       prop: "onlinePercent",

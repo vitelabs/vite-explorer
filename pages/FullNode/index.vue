@@ -5,8 +5,8 @@
         <card :info="info.block" class="card-text"></card>
         <card :info="info.nodeOnline" class="card-text">
           <i18n path="fullNode.popover.nodeOnline" tag="span" class="title" slot="popoverContent">
-            <span place="onlineNode">{{ onlineNode }}</span>
-            <span place="historyNode">{{ historyNode }}</span>
+            <span place="onlineNode">{{ generalview.onlineNum }}</span>
+            <span place="historyNode">{{ generalview.totalNum  }}</span>
           </i18n>
         </card>
         <card :info="info.pageDelay" class="card-text"></card>
@@ -67,15 +67,19 @@
         title: this.$t("fullNode.title"),
         error: "",
         array: [],
-        nodeList: [],
+        nodeViewList: [],
         nodeTitles: this.$t("fullNode.nodeTitles"),
-        onlineNode: 36,
-        historyNode: 42,
         barStyle: {
           width: "110%",
           height: "225px",
           marginTop: "-32px",
           marginLeft: "-40px"
+        },
+        generalview: {
+          latestSnapshotBlockHeight: 1111,
+          onlineNum: 44,
+          sysTime: 1545028435359,
+          totalNum: 100
         }
       };
     },
@@ -86,22 +90,22 @@
           block: {
             img: require("~/assets/images/fullNode/newest_block.svg"),
             title: this.$t("fullNode.contentTitle.block"),
-            text: "2222"
+            text: this.generalview.latestSnapshotBlockHeight
           },
           nodeOnline: {
             img: require("~/assets/images/fullNode/online.svg"),
             title: this.$t("fullNode.contentTitle.nodeOnline"),
-            text: `${this.onlineNode}/${this.historyNode}`,
+            text: `${this.generalview.onlineNum}/${this.generalview.totalNum}`,
             popover: true
           },
           pageDelay: {
             img: require("~/assets/images/fullNode/page_delay.svg"),
             title: this.$t("fullNode.contentTitle.pageDelay"),
-            text: "2222"
+            text: this.generalview.sysTime
           },
           broadcast: {
             img: require("~/assets/images/fullNode/broadcast.svg"),
-            title: this.$t("fullNode.contentTitle.broadcast"),
+            title: this.$t("fullNode.contentTitle.broadcast")
           },
           nodePosition: {
             img: require("~/assets/images/fullNode/node_position.svg"),
@@ -112,7 +116,7 @@
       },
       nodeData() {
         let list = [];
-        this.nodeList && this.nodeList.forEach((node, index) => {
+        this.nodeViewList && this.nodeViewList.forEach((node, index) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
@@ -120,7 +124,7 @@
             originIndex: index,
             weight: 0,
             tag: 0,
-            radio: node.status ? require("~/assets/images/fullNode/unchoice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg"),
+            radio: node.status ? require("~/assets/images/fullNode/disable_unchoice.svg") : require("~/assets/images/fullNode/unchoice.svg"),
             nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
           });
         });
@@ -129,42 +133,42 @@
     },
     methods: {
       getNodeList() {
-        this.nodeList = [{
-          id: 1,
-          status: 1,
+        this.nodeViewList = [{
+          uniqId: 1,
+          status: 0,
           nodeName: "aaaa",
           network: "fff",
-          nodeSystem: "v1.8.10-stabel-eacccle",
-          nodeDelay: "6s",
-          neighbour: 18,
-          newestBlock: 1232,
-          newestTime: 123,
+          nodeSysInfo: "v1.8.10-stabel-eacccle",
+          nodeDelayTime: "6s",
+          peersNum: 18,
+          latestBlockHeight: 1232,
+          latestBlockTime: 123,
           broadcastTime: "0ms",
-          avgTime: "0ms",
+          avgBroadcastTime: "0ms",
           onlinePercent: "98%"
         }, {
-          id: 2,
-          status: 1,
-          nodeName: "ccccccccccccc",
-          nodeSystem: "v1.8.10-stabel-eacccle",
-          nodeDelay: "6s",
-          neighbour: 18,
-          newestBlock: 1232,
-          newestTime: 123,
-          broadcastTime: "0ms",
-          avgTime: "0ms",
-          onlinePercent: "98%"
-        }, {
-          id: 3,
+          uniqId: 2,
           status: 0,
-          nodeName: "cahsjhdjas",
-          nodeSystem: "v1.8.10-stabel-eacccle",
-          nodeDelay: "6s",
-          neighbour: 18,
-          newestBlock: 1232,
-          newestTime: 123,
+          nodeName: "ccccccccccccc",
+          nodeSysInfo: "v1.8.10-stabel-eacccle",
+          nodeDelayTime: "6s",
+          peersNum: 18,
+          latestBlockHeight: 1232,
+          latestBlockTime: 123,
           broadcastTime: "0ms",
-          avgTime: "0ms",
+          avgBroadcastTime: "0ms",
+          onlinePercent: "98%"
+        }, {
+          uniqId: 3,
+          status: -1,
+          nodeName: "dddd",
+          nodeSysInfo: "v1.8.10-stabel-eacccle",
+          nodeDelayTime: "6s",
+          peersNum: 18,
+          latestBlockHeight: 1232,
+          latestBlockTime: 123,
+          broadcastTime: "0ms",
+          avgBroadcastTime: "0ms",
           onlinePercent: "98%"
         }];
       }
