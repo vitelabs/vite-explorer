@@ -210,12 +210,8 @@ export default {
   },
   mounted() {
     this.draw();
-    // this.fetchList();
   },
   methods: {
-    fetchList() {
-      
-    },
     clear() {
       this.echarsInstance.clear();
     },

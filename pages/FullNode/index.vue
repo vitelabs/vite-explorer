@@ -19,7 +19,7 @@
         </card>
         <card :info="info.nodePosition" class="card-multi">
           <template slot="nodeContent">
-            <w-map></w-map>
+            <w-map :list="mapList"></w-map>
           </template>
         </card>
       </div>
@@ -40,6 +40,7 @@
   import fullNodeTable from "~/components/fullNode/fullNodeTable.vue";
   import Bar from "~/components/Charts/Bar.vue";
   import WMap from "~/components/Charts/WMap.vue";
+  import { mySetInterval, myClearInterval} from "~/utils/myInterval.js";
 
   export default {
     head() {
@@ -56,7 +57,8 @@
       this.generalview = this.socket.generalView;
       this.percents = this.socket.percents;
 
-      this.getNodeList();
+      // this.getNodeList();
+      this.intervalGetInfo();
 
     },
     watch: {
@@ -68,10 +70,27 @@
           this.percents = val;
         },
         deep: true
+      },
+      "socket.mapList": {
+        handler: function(val) {
+          this.mapList = val;
+        },
+        deep: true
       }
+
+      // "socket.nodeViewList": {
+      //   handler: function(val) {
+      //     this.nodeViewList = val;
+      //   },
+      //   deep: true
+      // }
     },
     destroyed() {
       this.socket.close();
+      if (this.interval) {
+        myClearInterval(this.interval);
+      }
+      
     },
     data() {
       return {
@@ -86,8 +105,10 @@
           marginLeft: "-40px"
         },
         nodeViewList: [],
+        mapList: [],
         generalview: {},
-        percents: []
+        percents: [],
+        interval: null
       };
     },
     computed: {
@@ -123,14 +144,14 @@
       },
       nodeData() {
         let list = [];
-        this.nodeViewList && this.nodeViewList.forEach((node, index) => {
+        this.nodeViewList && this.nodeViewList.forEach((node) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           list.push({
             ...node,
-            originIndex: index,
-            weight: 0,
-            tag: 0,
+            // originIndex: index,
+            // weight: 0,
+            // tag: 0,
             radio: node.status ? require("~/assets/images/fullNode/disable_unchoice.svg") : require("~/assets/images/fullNode/unchoice.svg"),
             nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
           });
@@ -139,6 +160,14 @@
       }
     },
     methods: {
+      intervalGetInfo() {
+        this.nodeViewList = this.socket.nodeViewList;
+        this.interval = mySetInterval(() => {
+          console.log("view", this.nodeViewList[0]);
+          this.nodeViewList = this.socket.nodeViewList;
+
+        }, 1000);
+      },
       getNodeList() {
         this.nodeViewList = [{
           uniqId: 1,

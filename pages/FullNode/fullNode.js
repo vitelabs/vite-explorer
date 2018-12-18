@@ -46,7 +46,7 @@ class FullNode_WS {
     this.generalView = { ...defaultGeneralView };  // generalMsg
     this.percents = [{ ...defaultPercent }];     // block broadcast
     this.mapList = [{ ...defaultNodeList }];      // map
-    this.nodeViewList = [{ ...defaultNodeList }]; // list
+    this.nodeViewList = []; // list
 
     this.connect();
   }
@@ -82,10 +82,39 @@ class FullNode_WS {
   dispatchMsg(method, data) {
     if (method === 'generalview') {
       this.generalView = data;
+    } else if (method === 'blockbroadcastview') {
+
+      this.percents = data.percents;
+      console.log("network_percents", this.percents, new Date())
+      
+    } else if(method === 'nodelocationlistview') {
+
+      this.mapList = data.nodeViewList;
+      console.log("network_map", this.mapList)
+
+    } else if (method === 'nodelistview') {
+  
+      data.nodeViewList.forEach((newitem) => {
+        let olditemIndex = this.nodeViewList.findIndex(oldItem=>{
+          return oldItem.uniqId === newitem.uniqId;
+        })
+        if(olditemIndex > -1) {
+          newitem.weight = this.nodeViewList[olditemIndex].weight
+          newitem.originIndex = this.nodeViewList[olditemIndex].originIndex
+          newitem.tag = this.nodeViewList[olditemIndex].tag
+          this.nodeViewList[olditemIndex] = newitem
+        } else {
+          this.nodeViewList.push({
+            ...newitem,
+            originIndex: this.nodeViewList.length,
+            tag: 0,
+            weight: 0
+          })
+        }
+      })
+      console.log("network", this.nodeViewList[0])
+  
     }
-    // if (method === 'blockbroadcastview') {
-    //   this.percents = data.percents;
-    // }
   }
   
   onClose() {
