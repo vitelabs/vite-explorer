@@ -55,9 +55,7 @@
     },
     mounted() {
       let client = new fullNode();
-      this.array = client.array;
-      console.log(this.array);
-
+      console.log(client);
       this.getNodeList();
 
     },

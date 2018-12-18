@@ -1,10 +1,52 @@
+const defaultGeneralView = {
+  latestSnapshotBlockHeight: null,
+  onlineNum: null,
+  sysTime: null,
+  totalNum: null
+};
+
+const defaultPercent = {
+  name: null,
+  percent: null,
+  sumPercent: null
+};
+
+const defaultNodeList = {
+  uniqId: 0,
+  status: -1,
+  nodeName: null,
+  nodeSysInfo: null,
+  nodeDelayTime: null,
+  peersNum: null,
+  latestBlockHeight: null,
+  latestBlockTime: null,
+  broadcastTime: null,
+  avgBroadcastTime: null,
+  onlinePercent: null,
+  ipInfo: {
+    area_code: 0,
+    country_name: "USA", 
+    found: 0,
+    lat: 0.0,
+    lng: 0.0,
+    metro_code: 0,
+    region_name: "California"
+  }
+};
+
 class FullNode_WS {
   constructor(
-    url = "ws://123.207.109.139:8080/ws/user/aa"
+    url = "wss://stats.vite.net/ws/user/aaaa",
+    config
   ) {
     this.url = url;
+    this.config = config;
     this.socket = null;
-    this.array = [];
+
+    this.generalView = { ...defaultGeneralView };  // generalMsg
+    this.percents = [{ ...defaultPercent }];     // block broadcast
+    this.mapList = [{ ...defaultNodeList }];      // map
+    this.nodeViewList = [{ ...defaultNodeList }]; // list
 
     this.connect();
   }
@@ -14,24 +56,47 @@ class FullNode_WS {
     let wsCtor = window["MozWebSocket"] ? MozWebSocket : WebSocket;
     /* eslint-disable */
     this.socket = new wsCtor(this.url);
-    this.socket.onopen = this.handleWSOpen.bind(this);
-    this.socket.onmessage = this.handleWSMsg.bind(this);
+    this.socket.onopen = this.onOpen.bind(this);
+    this.socket.onmessage = this.onUpdate.bind(this);
+    this.socket.onerror = this.onError.bind(this);
+    this.socket.onclose = this.onClose.bind(this);
   }
 
-  handleWSOpen() {
-    this.socket.send("Hello Server!");
+  onOpen() {
     console.log("WebSocket Connection Open.");
   }
   
-  handleWSMsg(msg) {
+  onUpdate(msg) {
     let command = JSON.parse(msg.data);
-    this.array.push(command);
-    console.log(this.array);
+    console.log(command);
+    this.dispatchMsg(command.method, command.data);
   }
 
-  handleWSClose() {
+  send(msg) {
+    this.socket.send(JSON.stringify(msg));
+  }
+
+  onError(event) {
+    console.error("WebSocket error observed:", event);
+  }
+  
+  dispatchMsg(method, data) {
+    let msgMap = {};
+    msgMap[method] = data;
+  }
+  
+  onClose() {
+    console.log("WebSocket is closed now.");
+  }
+
+  close() {
     this.socket.close();
     console.log("WebSocket Connection Closed.");
+  }
+
+  reconnect() {
+    this.close();
+    this.connect();
   }
 }
 
