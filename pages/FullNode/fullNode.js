@@ -68,7 +68,6 @@ class FullNode_WS {
   
   onUpdate(msg) {
     let command = JSON.parse(msg.data);
-    console.log(command);
     this.dispatchMsg(command.method, command.data);
   }
 
@@ -79,14 +78,19 @@ class FullNode_WS {
   onError(event) {
     console.error("WebSocket error observed:", event);
   }
-  
+
   dispatchMsg(method, data) {
-    let msgMap = {};
-    msgMap[method] = data;
+    if (method === 'generalview') {
+      this.generalView = data;
+    }
+    // if (method === 'blockbroadcastview') {
+    //   this.percents = data.percents;
+    // }
   }
   
   onClose() {
     console.log("WebSocket is closed now.");
+    // this.reconnect();
   }
 
   close() {
@@ -95,6 +99,7 @@ class FullNode_WS {
   }
 
   reconnect() {
+    console.log("try to reconnect");
     this.close();
     this.connect();
   }

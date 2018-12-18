@@ -14,7 +14,7 @@
       <div class="line">
         <card :info="info.broadcast" class="card-multi">
           <template slot="nodeContent">
-            <bar :bar-style="barStyle"></bar>
+            <bar :bar-style="barStyle" :list="percents"></bar>
           </template>
         </card>
         <card :info="info.nodePosition" class="card-multi">
@@ -50,21 +50,34 @@
     components: {
       error, card, fullNodeTable, Bar, WMap
     },
-    async asyncData() {
-      
-    },
+    
     mounted() {
-      let client = new fullNode();
-      console.log(client);
+      this.socket = new fullNode();
+      this.generalview = this.socket.generalView;
+      this.percents = this.socket.percents;
+
       this.getNodeList();
 
     },
+    watch: {
+      "socket.generalView": function(val) {
+        this.generalview = val;
+      },
+      "socket.percents": {
+        handler: function(val) {
+          this.percents = val;
+        },
+        deep: true
+      }
+    },
+    destroyed() {
+      this.socket.close();
+    },
     data() {
       return {
+        socket: null,
         title: this.$t("fullNode.title"),
         error: "",
-        array: [],
-        nodeViewList: [],
         nodeTitles: this.$t("fullNode.nodeTitles"),
         barStyle: {
           width: "110%",
@@ -72,12 +85,9 @@
           marginTop: "-32px",
           marginLeft: "-40px"
         },
-        generalview: {
-          latestSnapshotBlockHeight: 1111,
-          onlineNum: 44,
-          sysTime: 1545028435359,
-          totalNum: 100
-        }
+        nodeViewList: [],
+        generalview: {},
+        percents: []
       };
     },
     computed: {
@@ -87,7 +97,7 @@
           block: {
             img: require("~/assets/images/fullNode/newest_block.svg"),
             title: this.$t("fullNode.contentTitle.block"),
-            text: this.generalview.latestSnapshotBlockHeight
+            text: `${this.generalview.latestSnapshotBlockHeight}`
           },
           nodeOnline: {
             img: require("~/assets/images/fullNode/online.svg"),
