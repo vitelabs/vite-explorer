@@ -55,7 +55,6 @@
     },
     mounted() {
       let client = new fullNode();
-      client.connect("ws://123.207.109.139:8080/ws/user/aa");
       this.array = client.array;
       console.log(this.array);
 
