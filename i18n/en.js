@@ -627,7 +627,7 @@ module.exports = {
       name: "",
       width: 40
     }, {
-      prop: "nodeName",
+      prop: "nodeViewName",
       name: "节点名",
       popover: true
     }, {
@@ -669,7 +669,8 @@ module.exports = {
       broadcastTime: "收到最新块所需时间",
       nodeOnline: "现在有{onlineNode}个节点在线，历史最多在线节点数{historyNode}个",
       percent: "广播比例",
-      sumPercent: "累积比例"
+      sumPercent: "累积比例",
+      nodeName: "节点名称"
     }
   },
 

@@ -36,18 +36,18 @@ const defaultNodeList = {
 
 class FullNode_WS {
   constructor(
-    url = "wss://stats.vite.net/ws/user/aaaa",
-    config
+    nodeViewList,
+    config,
+    url = "wss://stats.vite.net/ws/user/aaaa"
   ) {
     this.url = url;
     this.config = config;
+    this.nodeViewList = nodeViewList;
     this.socket = null;
 
     this.generalView = { ...defaultGeneralView };  // generalMsg
     this.percents = [{ ...defaultPercent }];     // block broadcast
     this.mapList = [{ ...defaultNodeList }];      // map
-    this.nodeViewList = []; // list
-
     this.connect();
   }
 
@@ -83,26 +83,20 @@ class FullNode_WS {
     if (method === 'generalview') {
       this.generalView = data;
     } else if (method === 'blockbroadcastview') {
-
       this.percents = data.percents;
-      console.log("network_percents", this.percents, new Date())
-      
     } else if(method === 'nodelocationlistview') {
-
       this.mapList = data.nodeViewList;
-      console.log("network_map", this.mapList)
-
     } else if (method === 'nodelistview') {
   
       data.nodeViewList.forEach((newitem) => {
         let olditemIndex = this.nodeViewList.findIndex(oldItem=>{
+          
           return oldItem.uniqId === newitem.uniqId;
         })
         if(olditemIndex > -1) {
           newitem.weight = this.nodeViewList[olditemIndex].weight
           newitem.originIndex = this.nodeViewList[olditemIndex].originIndex
-          newitem.tag = this.nodeViewList[olditemIndex].tag
-          this.nodeViewList[olditemIndex] = newitem
+          this.nodeViewList.splice(olditemIndex, 1, newitem);
         } else {
           this.nodeViewList.push({
             ...newitem,
@@ -112,8 +106,6 @@ class FullNode_WS {
           })
         }
       })
-      console.log("network", this.nodeViewList[0])
-  
     }
   }
   

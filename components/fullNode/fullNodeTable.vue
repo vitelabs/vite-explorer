@@ -4,7 +4,7 @@
       <el-table 
         v-loading="loading" 
         :stripe="true"
-        :data="copyTableData" 
+        :data="tableData" 
         style="width: 100%" 
         :empty-text="noResult"
         :row-class-name="tableRowClassName">
@@ -15,7 +15,7 @@
           :show-overflow-tooltip="true">
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" :disabled="!tT.popover">
-              <div v-if="tT.prop === 'nodeName'">
+              <div v-if="tT.prop === 'nodeViewName'">
                 <p>{{ $t("fullNode.popover.network") }}: {{ scope.row.network }}</p>
                 <p>{{ $t("fullNode.popover.protocol") }}: {{ scope.row.protocol }}</p>
                 <p>{{ $t("fullNode.popover.position") }}: {{ scope.row.position }}</p>
@@ -29,7 +29,7 @@
               
               <span slot="reference">
                 <div v-if="!tT.name">
-                  <div @click="onClickItem(scope.row)">
+                  <div @click="onClickItem(scope.row, scope.$index)">
                     <img :src="scope.row.radio" v-if="tT.prop === 'radio'" class="choice-icon"/>
                   </div>
                   <div v-if="tT.prop === 'broadcastTimeList'">
@@ -109,7 +109,6 @@
     data() {
       return {
         currentWeight : 100000,
-        copyTableData: [],
         currentInx: this.currentPage,
         noResult: this.$t("utils.noResult"),
         choicedArray: [],
@@ -125,14 +124,11 @@
     watch: {
       currentPage() {
         this.currentInx = this.currentPage;
-      },
-      tableData() {
-        this.copyTableData = [].concat(this.tableData);
       }
     },
     methods: {
       sort() {
-        this.copyTableData.sort(function(left, right) {
+        this.tableData.sort(function(left, right) {
           if (left.weight > right.weight) {
             return -1;
           }
@@ -160,20 +156,17 @@
         this.currentInx = index;
         this.currentChange(index);
       },
-      onClickItem(row) {
-        row.tag = !row.tag;
+      onClickItem(row, index) {
+        if(row.weight) {
+          row.weight = 0;
+        } else{
+          row.weight = this.currentWeight;
+          this.currentWeight--;
+        }
         row.radio = row.status ? 
-          row.tag ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
-          : row.tag ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
-        row.tag ? this.setTop(row) : this.cancelTop(row);
-      },
-      setTop(row) {
-        row.weight = this.currentWeight;
-        this.currentWeight--;
-        this.sort();
-      },
-      cancelTop(row) {
-        row.weight = 0;
+          row.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
+          : row.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
+        this.tableData[index] = row;
         this.sort();
       }
     }

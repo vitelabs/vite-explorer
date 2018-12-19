@@ -26,7 +26,8 @@
       <full-node-table
         :pagination="false"
         :tableTitles="nodeTitles"
-        :tableData="nodeData">
+        :tableData="nodeData"
+        ref="tableData">
       </full-node-table>
     </div>
     <error v-else :error="error"></error>
@@ -53,36 +54,21 @@
     },
     
     mounted() {
-      this.socket = new fullNode();
-      this.generalview = this.socket.generalView;
-      this.percents = this.socket.percents;
-
-      // this.getNodeList();
-      this.intervalGetInfo();
-
+      this.socket = new fullNode(this.nodeViewList);
+      this.mapList = this.socket.mapList;
     },
     watch: {
       "socket.generalView": function(val) {
         this.generalview = val;
       },
-      "socket.percents": {
-        handler: function(val) {
-          this.percents = val;
-        },
-        deep: true
+      "socket.percents": function(val){
+        this.percents = val;
       },
-      "socket.mapList": {
-        handler: function(val) {
-          this.mapList = val;
-        },
-        deep: true
-      }
-
-      // "socket.nodeViewList": {
-      //   handler: function(val) {
-      //     this.nodeViewList = val;
-      //   },
-      //   deep: true
+      "socket.mapList": function(val){
+        this.mapList = val;
+      },
+      // "socket.nodeViewList": function(val) {
+      //   this.nodeViewList = val;
       // }
     },
     destroyed() {
@@ -118,18 +104,18 @@
           block: {
             img: require("~/assets/images/fullNode/newest_block.svg"),
             title: this.$t("fullNode.contentTitle.block"),
-            text: `${this.generalview.latestSnapshotBlockHeight}`
+            text: `${this.generalview.latestSnapshotBlockHeight === 0 || this.generalview.latestSnapshotBlockHeight ? this.generalview.latestSnapshotBlockHeight : "--"}`
           },
           nodeOnline: {
             img: require("~/assets/images/fullNode/online.svg"),
             title: this.$t("fullNode.contentTitle.nodeOnline"),
-            text: `${this.generalview.onlineNum}/${this.generalview.totalNum}`,
+            text: this.generalview.onlineNum || this.generalview.onlineNum === 0 ? `${this.generalview.onlineNum}/${this.generalview.totalNum}` : "--",
             popover: true
           },
           pageDelay: {
             img: require("~/assets/images/fullNode/page_delay.svg"),
             title: this.$t("fullNode.contentTitle.pageDelay"),
-            text: this.generalview.sysTime
+            text: this.generalview.sysTime || "--"
           },
           broadcast: {
             img: require("~/assets/images/fullNode/broadcast.svg"),
@@ -143,20 +129,15 @@
         };
       },
       nodeData() {
-        let list = [];
         this.nodeViewList && this.nodeViewList.forEach((node) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
-          list.push({
-            ...node,
-            // originIndex: index,
-            // weight: 0,
-            // tag: 0,
-            radio: node.status ? require("~/assets/images/fullNode/disable_unchoice.svg") : require("~/assets/images/fullNode/unchoice.svg"),
-            nodeName: `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`,
-          });
+          node.radio = node.status ? 
+            node.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
+            : node.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
+          node.nodeViewName = `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`;
         });
-        return list;
+        return this.nodeViewList;
       }
     },
     methods: {
@@ -167,46 +148,6 @@
           this.nodeViewList = this.socket.nodeViewList;
 
         }, 1000);
-      },
-      getNodeList() {
-        this.nodeViewList = [{
-          uniqId: 1,
-          status: 0,
-          nodeName: "aaaa",
-          network: "fff",
-          nodeSysInfo: "v1.8.10-stabel-eacccle",
-          nodeDelayTime: "6s",
-          peersNum: 18,
-          latestBlockHeight: 1232,
-          latestBlockTime: 123,
-          broadcastTime: "0ms",
-          avgBroadcastTime: "0ms",
-          onlinePercent: "98%"
-        }, {
-          uniqId: 2,
-          status: 0,
-          nodeName: "ccccccccccccc",
-          nodeSysInfo: "v1.8.10-stabel-eacccle",
-          nodeDelayTime: "6s",
-          peersNum: 18,
-          latestBlockHeight: 1232,
-          latestBlockTime: 123,
-          broadcastTime: "0ms",
-          avgBroadcastTime: "0ms",
-          onlinePercent: "98%"
-        }, {
-          uniqId: 3,
-          status: -1,
-          nodeName: "dddd",
-          nodeSysInfo: "v1.8.10-stabel-eacccle",
-          nodeDelayTime: "6s",
-          peersNum: 18,
-          latestBlockHeight: 1232,
-          latestBlockTime: 123,
-          broadcastTime: "0ms",
-          avgBroadcastTime: "0ms",
-          onlinePercent: "98%"
-        }];
       }
     }
   };
