@@ -629,7 +629,8 @@ module.exports = {
     }, {
       prop: "nodeViewName",
       name: "节点名",
-      popover: true
+      popover: true,
+      width: 120
     }, {
       prop: "nodeSysInfo",
       name: "节点系统"
@@ -653,7 +654,7 @@ module.exports = {
     }, {
       prop: "broadcastTimeList",
       name: "",
-      width: 180
+      width: 260
     }, {
       prop: "avgBroadcastTime",
       name: "平均广播时间",

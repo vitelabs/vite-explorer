@@ -36,18 +36,17 @@ const defaultNodeList = {
 
 class FullNode_WS {
   constructor(
-    nodeViewList,
     config,
     url = "wss://stats.vite.net/ws/user/aaaa"
   ) {
     this.url = url;
     this.config = config;
-    this.nodeViewList = nodeViewList;
     this.socket = null;
-
+    
     this.generalView = { ...defaultGeneralView };  // generalMsg
     this.percents = [{ ...defaultPercent }];     // block broadcast
     this.mapList = [{ ...defaultNodeList }];      // map
+    this.nodeViewList = [];
     this.connect();
   }
 
@@ -80,6 +79,7 @@ class FullNode_WS {
   }
 
   dispatchMsg(method, data) {
+    console.log("dispatchMsg")
     if (method === 'generalview') {
       this.generalView = data;
     } else if (method === 'blockbroadcastview') {
@@ -87,26 +87,14 @@ class FullNode_WS {
     } else if(method === 'nodelocationlistview') {
       this.mapList = data.nodeViewList;
     } else if (method === 'nodelistview') {
-  
-      data.nodeViewList.forEach((newitem) => {
-        let olditemIndex = this.nodeViewList.findIndex(oldItem=>{
-          
-          return oldItem.uniqId === newitem.uniqId;
-        })
-        if(olditemIndex > -1) {
-          newitem.weight = this.nodeViewList[olditemIndex].weight
-          newitem.originIndex = this.nodeViewList[olditemIndex].originIndex
-          this.nodeViewList.splice(olditemIndex, 1, newitem);
-        } else {
-          this.nodeViewList.push({
-            ...newitem,
-            originIndex: this.nodeViewList.length,
-            tag: 0,
-            weight: 0
-          })
-        }
-      })
+      // let list = this.nodeViewList;
+      console.log("mark start", new Date());
+
+      
+      this.nodeViewList = data.nodeViewList;
     }
+    console.log("dispatchMsg1")
+    
   }
   
   onClose() {

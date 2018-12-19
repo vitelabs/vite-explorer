@@ -39,6 +39,7 @@ export default {
     }
   },
   mounted() {
+    this.echarsInstance = echarts.init(this.$refs.bar);
     this.draw();
   },
   methods: {
@@ -54,7 +55,6 @@ export default {
       return "";
     },
     draw() {
-      this.echarsInstance = echarts.init(this.$refs.bar);
       this.echarsInstance.setOption({
         xAxis: {
           show: this.showAxis,
@@ -78,24 +78,29 @@ export default {
         },
         series: [{
           type: "bar",
-          data: this.list.map(item => {
+          data: this.type === "mini" ? this.list: this.list.map(item => {
             return item.percent * 100;
           }),
+          animation: false,
           barWidth: "50%",
           itemStyle: {
             color: params =>{
-              let itemName = this.list[params.dataIndex].name;
+              let item = this.list[params.dataIndex];
+              if (this.type === "mini") {
+                return this.dispatchBarColor(item / 1000); 
+              }
+              let itemName = item.name;
               let name = itemName && itemName.substring(0, itemName.length - 1) || "";
               return name && this.dispatchBarColor(+name) || "";
             }
           },
           tooltip: {
-            position: "top",
+            position: this.type === "mini" ? "right" : "top",
             formatter: params=> {
               let index = params.dataIndex;
               let item = this.list[index];
               if (this.type === "mini") {
-                return `<div class="card-header">${item.name}</div>`;
+                return `<div class="mini-header">${item}ms</div>`;
               }
               return `<div class="card">
                 <div class="card-header">${item.name}</div>
@@ -106,13 +111,26 @@ export default {
           }
         }]
       });
-    }
+    },
+    // refreshData() {
+    //   if(!this.echarsInstance){
+    //     return;
+    //   }
+    //   var option = this.echarsInstance.getOption();
+    //   option.series[0].data = this.type === "mini" ? this.list: this.list.map(item => {
+    //     return item.percent * 100;
+    //   });   
+    //   this.echarsInstance.setOption(option);   
+    // }
   }
 };
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
+<style rel="stylesheet/scss" lang="scss">
 @import "assets/css/vars.scss";
   .bar-container {
+    .mini-header {
+      font-size: 9px;
+    }
   }
 </style>

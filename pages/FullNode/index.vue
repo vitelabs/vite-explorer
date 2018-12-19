@@ -26,7 +26,7 @@
       <full-node-table
         :pagination="false"
         :tableTitles="nodeTitles"
-        :tableData="nodeData"
+        :tableData="nodeViewList"
         ref="tableData">
       </full-node-table>
     </div>
@@ -54,7 +54,7 @@
     },
     
     mounted() {
-      this.socket = new fullNode(this.nodeViewList);
+      this.socket = new fullNode();
       this.mapList = this.socket.mapList;
     },
     watch: {
@@ -67,9 +67,36 @@
       "socket.mapList": function(val){
         this.mapList = val;
       },
-      // "socket.nodeViewList": function(val) {
-      //   this.nodeViewList = val;
-      // }
+      "socket.nodeViewList": {
+        handler: function(val) {
+          if (!this.nodeViewList){
+            return;
+          }
+          let list = [].concat(this.nodeViewList);
+        
+          val.forEach((newitem) => {
+            let olditemIndex = list.findIndex(oldItem=>{
+          
+              return oldItem.uniqId === newitem.uniqId;
+            });
+            if(olditemIndex > -1) {
+              newitem.weight = list[olditemIndex].weight;
+              newitem.originIndex = list[olditemIndex].originIndex;
+              list[olditemIndex] = newitem;
+            } else {
+              list.push({
+                ...newitem,
+                originIndex: list.length,
+                weight: 0
+              });
+            }
+          });
+          this.nodeViewList = this.nodeData(list).slice(0, 10);
+          console.log("mark end", new Date());
+          // this.nodeViewList = val;
+        },
+        deep: true
+      }
     },
     destroyed() {
       this.socket.close();
@@ -91,6 +118,7 @@
           marginLeft: "-40px"
         },
         nodeViewList: [],
+        broadcastTimeList: [],
         mapList: [],
         generalview: {},
         percents: [],
@@ -127,9 +155,12 @@
             rightTitle: `${this.$t("fullNode.contentTitle.onlinePercent")}：${percent}`
           }
         };
-      },
-      nodeData() {
-        this.nodeViewList && this.nodeViewList.forEach((node) => {
+      }
+    },
+    methods: {
+      nodeData(list) {
+        console.log("tableview");
+        list && list.forEach((node) => {
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           node.radio = node.status ? 
@@ -137,16 +168,12 @@
             : node.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
           node.nodeViewName = `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`;
         });
-        return this.nodeViewList;
-      }
-    },
-    methods: {
+        return list;
+      },
       intervalGetInfo() {
         this.nodeViewList = this.socket.nodeViewList;
         this.interval = mySetInterval(() => {
-          console.log("view", this.nodeViewList[0]);
           this.nodeViewList = this.socket.nodeViewList;
-
         }, 1000);
       }
     }
