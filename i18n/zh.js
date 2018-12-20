@@ -621,7 +621,7 @@ module.exports = {
       nodeOnline: "在线节点",
       pageDelay: "页面延迟",
       broadcast: "块广播",
-      nodePosition: "节点所在位置图",
+      nodePosition: "节点位置",
       onlinePercent: "全部节点平均在线率"
     },
     nodeTitles: [{
@@ -635,7 +635,7 @@ module.exports = {
       width: 120
     }, {
       prop: "nodeSysInfo",
-      name: "节点系统"
+      name: "节点版本"
     }, {
       prop: "nodeDelayTimeView",
       name: "节点延迟",

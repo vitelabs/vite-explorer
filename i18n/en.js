@@ -89,7 +89,7 @@ module.exports = {
     blockList: "Snapshots",
     tokenList: "Tokens",
     SBPList: "SBPs",
-    FullNode: "全节点",
+    FullNode: "Full Nodes",
     mining: {
       name: "Mining",
       childs: {
@@ -616,11 +616,11 @@ module.exports = {
   fullNode: {
     title: "Full Node",
     contentTitle: {
-      block: "最新快照块",
-      nodeOnline: "在线节点",
-      pageDelay: "页面延迟",
-      broadcast: "块广播",
-      nodePosition: "节点所在位置图",
+      block: "LAST SNAPSHOT BLOCK",
+      nodeOnline: "ONLINE NODES",
+      pageDelay: "PAGE LATENCY",
+      broadcast: "BLOCK PROPAGATION",
+      nodePosition: "NODE LOCATION",
       onlinePercent: "全部节点平均在线率"
     },
     nodeTitles: [{
@@ -629,28 +629,28 @@ module.exports = {
       width: 40
     }, {
       prop: "nodeViewName",
-      name: "节点名",
+      name: "NAME",
       popover: true,
       width: 120
     }, {
       prop: "nodeSysInfo",
-      name: "节点系统"
+      name: "VERSION"
     }, {
       prop: "nodeDelayTimeView",
-      name: "节点延迟",
+      name: "NODE LATENCY",
     }, {
       prop: "peersNum",
-      name: "邻居数",
+      name: "PEERS",
     }, {
       prop: "latestBlockHeight",
-      name: "最新块",
+      name: "LAST BLOCK",
     }, {
       prop: "latestBlockTimeView",
-      name: "最新块时间",
+      name: "LAST BLOCK TIME",
       popover: true
     }, {
       prop: "broadcastTimeView",
-      name: "广播时间",
+      name: "PROPAGATION TIME",
       popover: true
     }, {
       prop: "broadcastTimeList",
@@ -658,21 +658,21 @@ module.exports = {
       width: 260
     }, {
       prop: "avgBroadcastTimeView",
-      name: "平均广播时间",
+      name: "AVG PROPAGATION TIME",
     }, {
       prop: "onlinePercentView",
-      name: "在线率",
+      name: "ONLINE RATE",
     }],
     popover: {
-      network: "网络",
-      protocol: "协议",
-      position: "位置",
-      newestTime: "收到最新块的时间",
-      broadcastTime: "收到最新块所需时间",
-      nodeOnline: "现在有{onlineNode}个节点在线，历史最多在线节点数{historyNode}个",
-      percent: "广播比例",
-      sumPercent: "累积比例",
-      nodeName: "节点名称"
+      network: "Network",
+      protocol: "Protocol",
+      position: "Position",
+      newestTime: "Time when receiving last block",
+      broadcastTime: "Time cost by receiving last block",
+      nodeOnline: "{onlineNode}nodes online now, at most {historyNode}nodes online in history",
+      percent: "Percent",
+      sumPercent: "Cumulative Percent",
+      nodeName: "Node Name"
     }
   },
 
