@@ -17,7 +17,7 @@
       <div v-if="info.rightTitle" class="right-title">{{ info.rightTitle }}</div>
     </div>
     <div class="node-content" v-if="info.text">
-      <div class="node-text">{{ info.text }}</div>
+      <div class="node-text" v-html="info.text"></div>
     </div>
     <slot name="nodeContent"></slot>
   </div>

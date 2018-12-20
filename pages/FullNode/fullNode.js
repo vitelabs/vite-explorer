@@ -33,6 +33,7 @@ const defaultNodeList = {
     region_name: "California"
   }
 };
+// import { mySetInterval, myClearInterval } from "~/utils/myInterval.js";
 
 class FullNode_WS {
   constructor(
@@ -42,6 +43,7 @@ class FullNode_WS {
     this.url = url;
     this.config = config;
     this.socket = null;
+    this.interval = null;
     
     this.generalView = { ...defaultGeneralView };  // generalMsg
     this.percents = [{ ...defaultPercent }];     // block broadcast
@@ -51,6 +53,9 @@ class FullNode_WS {
   }
 
   connect() {
+    // if (this.interval) {
+    //   myClearInterval(this.interval);
+    // }
     /* eslint-disable */
     let wsCtor = window["MozWebSocket"] ? MozWebSocket : WebSocket;
     /* eslint-disable */
@@ -76,6 +81,9 @@ class FullNode_WS {
 
   onError(event) {
     console.error("WebSocket error observed:", event);
+    // this.interval = mySetInterval(()=> {
+    //   this.reconnect();
+    // }, 10000)
   }
 
   dispatchMsg(method, data) {
@@ -92,7 +100,6 @@ class FullNode_WS {
   
   onClose() {
     console.log("WebSocket is closed now.");
-    // this.reconnect();
   }
 
   close() {
@@ -102,7 +109,7 @@ class FullNode_WS {
 
   reconnect() {
     console.log("try to reconnect");
-    this.close();
+    // this.close();
     this.connect();
   }
 }

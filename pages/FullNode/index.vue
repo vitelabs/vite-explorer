@@ -126,12 +126,13 @@
     },
     computed: {
       info() {
-        let percent = "90%";
+        let lang = this.$i18n.locale !== "en" ? `/${this.$i18n.locale}` : "";
+        let latestSnapshotBlockHeight = this.generalview.latestSnapshotBlockHeight;
         return {
           block: {
             img: require("~/assets/images/fullNode/newest_block.svg"),
             title: this.$t("fullNode.contentTitle.block"),
-            text: `${this.generalview.latestSnapshotBlockHeight === 0 || this.generalview.latestSnapshotBlockHeight ? this.generalview.latestSnapshotBlockHeight : "--"}`
+            text: latestSnapshotBlockHeight  === 0 || latestSnapshotBlockHeight ?  `<a href="${lang}/block/${this.generalview.snapshotBlockHash}" target="_blank">${latestSnapshotBlockHeight}</a>` : "--"
           },
           nodeOnline: {
             img: require("~/assets/images/fullNode/online.svg"),
@@ -151,7 +152,7 @@
           nodePosition: {
             img: require("~/assets/images/fullNode/node_position.svg"),
             title: this.$t("fullNode.contentTitle.nodePosition"),
-            rightTitle: `${this.$t("fullNode.contentTitle.onlinePercent")}：${percent}`
+            // rightTitle: `${this.$t("fullNode.contentTitle.onlinePercent")}：${percent}`
           }
         };
       }

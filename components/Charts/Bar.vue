@@ -95,7 +95,7 @@ export default {
             }
           },
           tooltip: {
-            position: this.type === "mini" ? "right" : "top",
+            position: this.type === "mini" ? ["80%", "0%"] : "top",
             formatter: params=> {
               let index = params.dataIndex;
               let item = this.list[index];
