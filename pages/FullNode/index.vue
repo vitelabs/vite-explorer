@@ -29,7 +29,6 @@
         :pageSize="10"
         :tableTitles="nodeTitles"
         :tableData="allNodes"
-        :currentChange="pageChange"
         ref="tableData">
       </full-node-table>
     </div>
@@ -44,7 +43,6 @@
   import fullNodeTable from "~/components/fullNode/fullNodeTable.vue";
   import Bar from "~/components/Charts/Bar.vue";
   import WMap from "~/components/Charts/WMap.vue";
-  import { mySetInterval, myClearInterval} from "~/utils/myInterval.js";
 
   export default {
     head() {
@@ -77,43 +75,32 @@
           }
 
           let list = [].concat(this.allNodes);
-        
-          val.forEach((newitem) => {
-            let olditemIndex = list.findIndex(oldItem=>{
           
+          val.forEach((newitem) => {
+            
+            let olditemIndex = list.findIndex(oldItem=>{
               return oldItem.uniqId === newitem.uniqId;
             });
             if(olditemIndex > -1) {
               newitem.weight = list[olditemIndex].weight;
               newitem.originIndex = list[olditemIndex].originIndex;
               list[olditemIndex] = newitem;
-            } else {
+            } else { 
               list.push({
                 ...newitem,
                 originIndex:list.length,
-                weight: 0
+                weight: 0,
               });
             }
           });
           this.total = list.length;
           this.allNodes = list;
-
-          // let start = 10 * (this.pageIndex - 1);
-          // let end = start + 10;
-          // let realEnd = end > this.total ? this.total: end;
-          // this.currentPageList =  this.allNodes.slice(start, realEnd);
-
-
         },
         deep: true
       }
     },
     destroyed() {
       this.socket.close();
-      if (this.interval) {
-        myClearInterval(this.interval);
-      }
-      
     },
     data() {
       return {
@@ -134,8 +121,7 @@
         broadcastTimeList: [],
         mapList: [],
         generalview: {},
-        percents: [],
-        interval: null
+        percents: []
       };
     },
     computed: {
@@ -156,7 +142,7 @@
           pageDelay: {
             img: require("~/assets/images/fullNode/page_delay.svg"),
             title: this.$t("fullNode.contentTitle.pageDelay"),
-            text: this.generalview.sysTime || "--"
+            text: this.generalview.sysTime ? `${new Date() - this.generalview.sysTime}ms` : "--"
           },
           broadcast: {
             img: require("~/assets/images/fullNode/broadcast.svg"),
@@ -171,18 +157,6 @@
       }
     },
     methods: {
-      pageChange(pageIndex) {
-        this.pageIndex = pageIndex;
-        console.log("pagecHANE");
-        console.log(pageIndex);
-      },
-      
-      intervalGetInfo() {
-        this.allNodes = this.socket.allNodes;
-        this.interval = mySetInterval(() => {
-          this.allNodes = this.socket.allNodes;
-        }, 1000);
-      }
     }
   };
 </script>

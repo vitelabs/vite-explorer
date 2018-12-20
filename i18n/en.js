@@ -89,6 +89,7 @@ module.exports = {
     blockList: "Snapshots",
     tokenList: "Tokens",
     SBPList: "SBPs",
+    FullNode: "全节点",
     mining: {
       name: "Mining",
       childs: {
@@ -635,7 +636,7 @@ module.exports = {
       prop: "nodeSysInfo",
       name: "节点系统"
     }, {
-      prop: "nodeDelayTime",
+      prop: "nodeDelayTimeView",
       name: "节点延迟",
     }, {
       prop: "peersNum",
@@ -644,11 +645,11 @@ module.exports = {
       prop: "latestBlockHeight",
       name: "最新块",
     }, {
-      prop: "latestBlockTime",
+      prop: "latestBlockTimeView",
       name: "最新块时间",
       popover: true
     }, {
-      prop: "broadcastTime",
+      prop: "broadcastTimeView",
       name: "广播时间",
       popover: true
     }, {
@@ -656,10 +657,10 @@ module.exports = {
       name: "",
       width: 260
     }, {
-      prop: "avgBroadcastTime",
+      prop: "avgBroadcastTimeView",
       name: "平均广播时间",
     }, {
-      prop: "onlinePercent",
+      prop: "onlinePercentView",
       name: "在线率",
     }],
     popover: {

@@ -23,6 +23,11 @@
                   </nuxt-link>
                 </el-menu-item>
               </el-submenu>
+              <el-menu-item :key="item" :index="item" v-for="item in externalNavs" class="text-hover-transition">
+                <nuxt-link :to="localePath(item)" class="nav-item">
+                  {{$t(`nav.${item}`)}}
+                </nuxt-link>
+              </el-menu-item>
             </el-menu>
           </div>
         </div>
@@ -45,7 +50,7 @@
       </div>
     </div>
     <div class="vertail-menu-content">
-      <menu-content :navs="navs" :visible.sync="open" @is-open="closeMenu" :double-navs="doubleNavs" :links="links"></menu-content>
+      <menu-content :navs="navs" :visible.sync="open" @is-open="closeMenu" :double-navs="doubleNavs" :links="links" :external-navs="externalNavs"></menu-content>
     </div>
     <div class="content-wrapper">
       <nuxt class="content"/>
@@ -133,6 +138,7 @@
     data() {
       return {
         navs: ["index", "transactionList", "blockList", "tokenList"],
+        externalNavs: ["FullNode"],
         doubleNavs: [{
           key: "mining",
           childs: [{
@@ -182,7 +188,7 @@
           this.defaultActive = "index";
         } else {
           let paths = this.$route.path.split("/");
-          if (this.navs.indexOf(paths[paths.length - 1]) > -1) {
+          if (this.navs.indexOf(paths[paths.length - 1]) > -1 || this.externalNavs.indexOf(paths[paths.length - 1]) > -1) {
             this.defaultActive = paths[paths.length - 1];
           } else {
             if (this.$i18n.locale === "en") {
@@ -299,7 +305,7 @@
       top: 0px;
       .navbar-menu {
         .nav-item {
-          padding: 0 20px;
+          padding: 0 13px;
           text-decoration: none;
           display: block;
         }

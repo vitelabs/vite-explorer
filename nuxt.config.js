@@ -4,6 +4,12 @@ const LRU = require("lru-cache");
 
 module.exports = {
   cache: true,
+  vue: {
+    config: {
+      productionTip: true,
+      devtools: true
+    }
+  },
   render: {
     bundleRenderer: {
       cache: LRU({
@@ -15,14 +21,14 @@ module.exports = {
   head: {
     title: "Official Block Explorer of Vite",
     meta: [
-      {charset: "utf-8"},
-      {name: "viewport", content: "width=device-width, initial-scale=1, user-scalable=no"},
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, user-scalable=no" },
     ],
     link: [
-      {rel: "icon", type: "image/x-icon", href: "/icon.png"}
+      { rel: "icon", type: "image/x-icon", href: "/icon.png" }
     ]
   },
-  loading: {color: "#7FB2FE"},
+  loading: { color: "#7FB2FE" },
   plugins: [{ src: "~/plugins/element-ui.js", ssr: true }],
   build: {
     vendor: ["babel-polyfill", "axios", "~/plugins/element-ui.js", "moment"],

@@ -17,12 +17,12 @@
             <el-popover trigger="hover" placement="top" :disabled="!tT.popover">
               <div v-if="tT.prop === 'nodeViewName'">
                 <p>{{ $t("fullNode.popover.nodeName") }}: {{ scope.row.nodeName }}</p>
-                <p>{{ $t("fullNode.popover.position") }}: {{ `${scope.row.ipInfo.country_name}(${scope.row.ipInfo.region_name})` }}</p>
+                <p>{{ $t("fullNode.popover.position") }}: {{ `${scope.row.ipInfo && scope.row.ipInfo.country_name}(${scope.row.ipInfo && scope.row.ipInfo.region_name})` }}</p>
               </div>
-              <div v-if="tT.prop === 'latestBlockTime'">
+              <div v-if="tT.prop === 'latestBlockTimeView'">
                 <span>{{ $t("fullNode.popover.newestTime") }}</span>
               </div>
-              <div v-if="tT.prop === 'broadcastTime'">
+              <div v-if="tT.prop === 'broadcastTimeView'">
                 <span>{{ $t("fullNode.popover.broadcastTime") }}</span>
               </div>
               <span slot="reference">
@@ -57,7 +57,6 @@
 
 <script type="text/babel">
   import Bar from "~/components/Charts/Bar.vue";
-
   export default {
     props: {
       loading: {
@@ -99,7 +98,7 @@
       currentPage: {
         type: Number,
         default: 1
-      }
+      },
     },
     components: {
       Bar
@@ -131,13 +130,22 @@
     },
     methods: {
       nodeViewData(list) {
+
+        let now = Date.now();
+        let lang = this.$i18n.locale !== "en" ? `/${this.$i18n.locale}` : "";
+        
         list && list.forEach((node) => {
-          let lang = "";
-          this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
+          let latestBlockTime = new Date(node.latestBlockTime);
+          let time = latestBlockTime.toLocaleDateString() +" "+latestBlockTime.toTimeString();
+          node.broadcastTimeView = `${node.broadcastTime}ms`,
+          node.avgBroadcastTimeView = `${node.avgBroadcastTime}ms`,
+          node.nodeDelayTimeView = `${now - node.nodeDelayTime}ms`,
+          node.onlinePercentView = `${node.onlinePercent * 100}%`,
+          node.latestBlockTimeView = time,
           node.radio = node.status ? 
             node.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
             : node.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
-          node.nodeViewName = `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`;
+          node.nodeViewName = `<a href="${lang}/account/${node.rewardAddress}" target="_blank">${node.nodeName}</a>`;
         });
         return list;
       },

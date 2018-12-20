@@ -21,6 +21,11 @@
           </div>
         </div>
       </div>
+      <div :key="item" v-for="item in externalNavs" class="menu-item" @click="clickMenu">
+        <nuxt-link :to="localePath(item)" class="nav-item">
+          {{$t(`nav.${item}`)}}
+        </nuxt-link>
+      </div>
       <div class="menu-item vite-link">
         <a href="https://vite.net" target="_blank">{{ $t("nav.vitenet") }}</a>
       </div>
@@ -36,6 +41,10 @@
         default: () => []
       },
       doubleNavs: {
+        type: Array,
+        default: () => []
+      },
+      externalNavs: {
         type: Array,
         default: () => []
       },
