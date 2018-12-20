@@ -24,9 +24,12 @@
         </card>
       </div>
       <full-node-table
-        :pagination="false"
+        :pagination="true"
+        :total="total"
+        :pageSize="10"
         :tableTitles="nodeTitles"
-        :tableData="nodeViewList"
+        :tableData="allNodes"
+        :currentChange="pageChange"
         ref="tableData">
       </full-node-table>
     </div>
@@ -67,12 +70,13 @@
       "socket.mapList": function(val){
         this.mapList = val;
       },
-      "socket.nodeViewList": {
+      "socket.networkList": {
         handler: function(val) {
-          if (!this.nodeViewList){
+          if (!this.allNodes){
             return;
           }
-          let list = [].concat(this.nodeViewList);
+
+          let list = [].concat(this.allNodes);
         
           val.forEach((newitem) => {
             let olditemIndex = list.findIndex(oldItem=>{
@@ -86,14 +90,20 @@
             } else {
               list.push({
                 ...newitem,
-                originIndex: list.length,
+                originIndex:list.length,
                 weight: 0
               });
             }
           });
-          this.nodeViewList = this.nodeData(list).slice(0, 10);
-          console.log("mark end", new Date());
-          // this.nodeViewList = val;
+          this.total = list.length;
+          this.allNodes = list;
+
+          // let start = 10 * (this.pageIndex - 1);
+          // let end = start + 10;
+          // let realEnd = end > this.total ? this.total: end;
+          // this.currentPageList =  this.allNodes.slice(start, realEnd);
+
+
         },
         deep: true
       }
@@ -107,6 +117,7 @@
     },
     data() {
       return {
+        total: 0,
         socket: null,
         title: this.$t("fullNode.title"),
         error: "",
@@ -117,7 +128,9 @@
           marginTop: "-32px",
           marginLeft: "-40px"
         },
-        nodeViewList: [],
+        pageIndex: 1,
+        currentPageList: [],
+        allNodes: [],
         broadcastTimeList: [],
         mapList: [],
         generalview: {},
@@ -158,22 +171,16 @@
       }
     },
     methods: {
-      nodeData(list) {
-        console.log("tableview");
-        list && list.forEach((node) => {
-          let lang = "";
-          this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
-          node.radio = node.status ? 
-            node.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
-            : node.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
-          node.nodeViewName = `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`;
-        });
-        return list;
+      pageChange(pageIndex) {
+        this.pageIndex = pageIndex;
+        console.log("pagecHANE");
+        console.log(pageIndex);
       },
+      
       intervalGetInfo() {
-        this.nodeViewList = this.socket.nodeViewList;
+        this.allNodes = this.socket.allNodes;
         this.interval = mySetInterval(() => {
-          this.nodeViewList = this.socket.nodeViewList;
+          this.allNodes = this.socket.allNodes;
         }, 1000);
       }
     }

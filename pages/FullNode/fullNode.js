@@ -46,7 +46,7 @@ class FullNode_WS {
     this.generalView = { ...defaultGeneralView };  // generalMsg
     this.percents = [{ ...defaultPercent }];     // block broadcast
     this.mapList = [{ ...defaultNodeList }];      // map
-    this.nodeViewList = [];
+    this.networkList = [];
     this.connect();
   }
 
@@ -79,7 +79,6 @@ class FullNode_WS {
   }
 
   dispatchMsg(method, data) {
-    console.log("dispatchMsg")
     if (method === 'generalview') {
       this.generalView = data;
     } else if (method === 'blockbroadcastview') {
@@ -87,14 +86,8 @@ class FullNode_WS {
     } else if(method === 'nodelocationlistview') {
       this.mapList = data.nodeViewList;
     } else if (method === 'nodelistview') {
-      // let list = this.nodeViewList;
-      console.log("mark start", new Date());
-
-      
-      this.nodeViewList = data.nodeViewList;
+      this.networkList = data.nodeViewList;
     }
-    console.log("dispatchMsg1")
-    
   }
   
   onClose() {

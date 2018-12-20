@@ -1,13 +1,10 @@
 <template>
   <div class="page-table-container">
     <div class="table">
-      <!-- <div v-for="(tT, index) in tableData" :key="index">
-        <div>{{tT}}</div>
-      </div> -->
       <el-table 
         v-loading="loading" 
         :stripe="true"
-        :data="tableData" 
+        :data="currentTableData" 
         style="width: 100%" 
         :empty-text="noResult"
         :row-class-name="tableRowClassName">
@@ -117,17 +114,35 @@
           height: "50px",
           marginTop: "0px",
           marginLeft: "-20px"
-        }
+        },
+        currentTableData: []
       };
     },
     watch: {
       currentPage() {
         this.currentInx = this.currentPage;
+      },
+      tableData(val) {
+        let start = 10 * (this.currentInx - 1);
+        let end = start + 10;
+        let realEnd = end > val.length ? val.length : end;
+        this.currentTableData = this.nodeViewData(val.slice(start, realEnd));
       }
     },
     methods: {
-      sort() {
-        this.tableData.sort(function(left, right) {
+      nodeViewData(list) {
+        list && list.forEach((node) => {
+          let lang = "";
+          this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
+          node.radio = node.status ? 
+            node.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
+            : node.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
+          node.nodeViewName = `<a href="${lang}/SBPDetail/${node.nodeName}" target="_blank">${node.nodeName}</a>`;
+        });
+        return list;
+      },
+      sort(val) {
+        val.sort(function(left, right) {
           if (left.weight > right.weight) {
             return -1;
           }
@@ -165,8 +180,14 @@
         row.radio = row.status ? 
           row.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
           : row.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
-        this.tableData[index] = row;
-        this.sort();
+
+        this.tableData[10 * (this.currentInx  - 1) + index] = row;
+        this.sort(this.tableData);
+
+        let start = 10 * (this.currentInx - 1);
+        let end = start + 10;
+        let realEnd = end > this.tableData.length ? this.tableData.length : end;
+        this.currentTableData = this.nodeViewData(this.tableData.slice(start, realEnd));
       }
     }
   };
