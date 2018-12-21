@@ -15,8 +15,8 @@
           <template slot-scope="scope">
             <el-popover trigger="hover" placement="top" :disabled="!tT.popover">
               <div v-if="tT.prop === 'nodeViewName'">
-                <p>{{ $t("fullNode.popover.nodeName") }}: {{ scope.row.nodeName }}</p>
-                <p>{{ $t("fullNode.popover.position") }}: {{ `${scope.row.ipInfo && scope.row.ipInfo.country_name}(${scope.row.ipInfo && scope.row.ipInfo.region_name})` }}</p>
+                <p>{{ $t("fullNode.popover.nodeName") }}:  <span style="font-weight: 500">{{ scope.row.nodeName }}</span></p>
+                <p>{{ $t("fullNode.popover.position") }}:  <span style="font-weight: 500">{{ `${scope.row.ipInfo && scope.row.ipInfo.country_name}(${scope.row.ipInfo && scope.row.ipInfo.region_name})` }}</span></p>
               </div>
               <div v-if="tT.prop === 'latestBlockTimeView'">
                 <span>{{ $t("fullNode.popover.newestTime") }}</span>

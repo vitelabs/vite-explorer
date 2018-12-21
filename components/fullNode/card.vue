@@ -2,22 +2,22 @@
   <div class="full-node-container">
     <div class="head">
       <div class="node-title">
-        <el-popover trigger="hover" placement="top-start" :disabled="!info.popover">
-          <no-ssr>
-            <slot name="popoverContent"></slot>
-          </no-ssr>
-          <div slot="reference">
-            <div class="title-content">
-              <img :src="info.img" class="title-icon"/>
-              {{ info.title }}
-            </div>
-          </div>
-        </el-popover>
+        <div class="title-content">
+          <img :src="info.img" class="title-icon"/>
+          {{ info.title }}
+        </div>
       </div>
       <div v-if="info.rightTitle" class="right-title">{{ info.rightTitle }}</div>
     </div>
     <div class="node-content" v-if="info.text">
-      <div class="node-text" v-html="info.text"></div>
+      <el-popover trigger="hover" placement="top-start" :disabled="!info.popover">
+        <no-ssr>
+          <slot name="popoverContent"></slot>
+        </no-ssr>
+        <span slot="reference">
+          <span class="node-text" v-html="info.text"></span>
+        </span>
+      </el-popover>
     </div>
     <slot name="nodeContent"></slot>
   </div>
