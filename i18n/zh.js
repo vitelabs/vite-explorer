@@ -85,7 +85,7 @@ module.exports = {
     blockList: "快照块列表",
     tokenList: "Token列表",
     SBPList: "SBP列表",
-    FullNode: "全节点",
+    FullNode: "STATS",
     mining: {
       name: "挖矿",
       childs: {

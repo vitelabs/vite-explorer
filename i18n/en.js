@@ -89,7 +89,7 @@ module.exports = {
     blockList: "Snapshots",
     tokenList: "Tokens",
     SBPList: "SBPs",
-    FullNode: "Full Nodes",
+    FullNode: "STATS",
     mining: {
       name: "Mining",
       childs: {
