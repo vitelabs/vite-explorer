@@ -119,7 +119,7 @@
           marginLeft: "-20px"
         },
         currentPageData: [],
-        currentTableData:[],
+        filteredTableData:[],
         
         search: null
       };
@@ -132,14 +132,12 @@
         this.currentInx = this.currentPage;
       },
       tableData(val) {
-        console.log("tableData");
-
         if(!this.search) {
-          this.currentTableData = [].concat(val);
+          this.filteredTableData = [].concat(val);
           return;
         } 
         
-        let list = [].concat(this.currentTableData);
+        let list = [].concat(this.filteredTableData);
 
         val.forEach((newitem) => {
           let olditemIndex = list.findIndex(oldItem=>{
@@ -151,36 +149,14 @@
             list[olditemIndex] = newitem;
           }
         });
-
-        this.currentTableData = list;
-        
-        // let start = 10 * (this.currentInx - 1);
-        // let end = start + 10;
-        // this.total = val.length;
-        // let realEnd = end > val.length ? val.length : end;
-        // if (!this.search) {
-        //   this.currentPageData = this.nodeViewData(val.slice(start, realEnd));
-        // } else {
-        //   this.filterTable(this.search);
-        // }
+        this.filteredTableData = list;
       },
-      currentTableData(val) {
-        console.log("currentTableData");
+      filteredTableData(val) {
         let start = 10 * (this.currentInx - 1);
         let end = start + 10;
         this.total = val.length;
         let realEnd = end > val.length ? val.length : end;
         this.currentPageData = this.sort(this.nodeViewData(val.slice(start, realEnd)));
-
-        // let start = 10 * (this.currentInx - 1);
-        // let end = start + 10;
-        // this.total = val.length;
-        // let realEnd = end > val.length ? val.length : end;
-        // if (!this.search) {
-        //   this.currentPageData = this.nodeViewData(val.slice(start, realEnd));
-        // } else {
-        //   this.filterTable(this.search);
-        // }
       }
     },
     
@@ -191,7 +167,7 @@
         if (!this.search) {
           this.total = this.tableData.length;
           this.currentInx = 1;
-          this.currentTableData  = [].concat(this.tableData);
+          this.filteredTableData  = [].concat(this.tableData);
           return;
         }
         let list = [];
@@ -202,7 +178,7 @@
         }
         this.total = list.length;
         this.currentInx = 1;
-        this.currentTableData  = list;
+        this.filteredTableData  = list;
       },
       dispatchColor(name) {
         if (name === 0) return "#749AF8";
@@ -277,12 +253,6 @@
 
         this.tableData[findIndex] = row;
         this.sort(this.tableData);
-
-        // let start = 10 * (this.currentInx - 1);
-        // let end = start + 10;
-        // let realEnd = end > this.tableData.length ? this.tableData.length : end;
-
-        // this.currentPageData = this.nodeViewData(this.tableData.slice(start, realEnd));
       }
     }
   };
