@@ -21,7 +21,7 @@
           </div>
         </div>
       </div>
-      <div :key="item" v-for="item in externalNavs" class="menu-item" @click="clickMenu">
+      <div :key="item" v-for="item in externalNavs" class="menu-item" @click="clickMenu" v-if="externalNavs.length">
         <nuxt-link :to="localePath(item)" class="nav-item">
           {{$t(`nav.${item}`)}}
         </nuxt-link>

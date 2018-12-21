@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
     <title>选中</title>
     <desc>Created with Sketch.</desc>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="全节点-2-copy-4" transform="translate(-155.000000, -666.000000)">
+        <g id="全节点-2-copy-9" transform="translate(-155.000000, -695.000000)" fill="#C1C3C5" fill-rule="nonzero">
             <g id="列表" transform="translate(139.000000, 589.000000)">
-                <g id="1" transform="translate(16.000000, 75.000000)">
-                    <g id="分组-7" transform="translate(0.000000, 2.000000)">
-                        <circle id="circle" stroke="#C1C3C5" cx="7" cy="7" r="6.5"></circle>
-                        <circle id="circle-copy" fill="#C1C3C5" cx="7" cy="7" r="4"></circle>
+                <g id="1-copy-21" transform="translate(16.000000, 106.000000)">
+                    <g id="分组-7">
+                        <polygon id="星形" points="8 11.25 4.17939586 13.2586105 4.90906632 9.00430523 1.81813264 5.99138954 6.08969793 5.37069477 8 1.5 9.91030207 5.37069477 14.1818674 5.99138954 11.0909337 9.00430523 11.8206041 13.2586105"></polygon>
                     </g>
                 </g>
             </g>

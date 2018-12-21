@@ -55,6 +55,18 @@ export default {
       return "";
     },
     draw() {
+      let yAxis = Object.assign({
+        show: this.showAxis,
+        
+        position: "right",
+        axisLabel : { 
+          formatter : "{value}%" 
+        },
+        splitLine:{ 
+          show:false 
+        }
+      }, this.type === "mini" ? {min: 0,
+        max: 1000} : {});
       this.echarsInstance.setOption({
         xAxis: {
           show: this.showAxis,
@@ -63,23 +75,14 @@ export default {
             return item.name;
           })
         },
-        yAxis:{
-          show: this.showAxis,
-          position: "right",
-          axisLabel : { 
-            formatter : "{value}%" 
-          }, 
-          splitLine:{ 
-            show:false 
-          }
-        },
+        yAxis: yAxis,
         tooltip: {
           trigger: "item"
         },
         series: [{
           type: "bar",
           data: this.type === "mini" ? this.list: this.list.map(item => {
-            return item.percent * 100;
+            return Math.round(item.percent * 100);
           }),
           animation: false,
           barWidth: "50%",
@@ -104,8 +107,8 @@ export default {
               }
               return `<div class="card">
                 <div class="card-header">${item.name}</div>
-                <div class="card-content">${this.$t("fullNode.popover.percent")}：${item.percent * 100}%</div> 
-                <div class="card-footer">${this.$t("fullNode.popover.sumPercent")}：${item.sumPercent * 100}%</div>
+                <div class="card-content">${this.$t("fullNode.popover.percent")}：${Math.round(item.percent * 100)}%</div> 
+                <div class="card-footer">${this.$t("fullNode.popover.sumPercent")}：${Math.round(item.sumPercent * 100)}%</div>
               </div>`;
             }
           }

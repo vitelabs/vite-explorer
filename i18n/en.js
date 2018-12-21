@@ -659,6 +659,7 @@ module.exports = {
     }, {
       prop: "avgBroadcastTimeView",
       name: "AVG PROPAGATION TIME",
+      popover: true
     }, {
       prop: "onlinePercentView",
       name: "ONLINE RATE",
@@ -669,10 +670,14 @@ module.exports = {
       position: "Position",
       newestTime: "Time when receiving last block",
       broadcastTime: "Time cost by receiving last block",
+      avgBroadcastTime: "Average time cost by receiving last 40 blocks",
       nodeOnline: "{onlineNode}nodes online now, at most {historyNode}nodes online in history",
       percent: "Percent",
       sumPercent: "Cumulative Percent",
       nodeName: "Node Name"
+    },
+    filter: {
+      placeholder: "Search node name"
     }
   },
 

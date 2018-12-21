@@ -25,7 +25,7 @@
       </div>
       <full-node-table
         :pagination="true"
-        :total="total"
+       
         :pageSize="10"
         :tableTitles="nodeTitles"
         :tableData="allNodes"
@@ -93,7 +93,7 @@
               });
             }
           });
-          this.total = list.length;
+          // this.total = list.length;
           this.allNodes = list;
         },
         deep: true

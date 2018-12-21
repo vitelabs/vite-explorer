@@ -1,13 +1,19 @@
 <template>
   <div class="filter">
     <div class="name">{{ $t('filter.filterName') }}：</div>
-    <el-input :placeholder="$t('filter.SBP.placeholder')" v-model="input" class="input-with-select" size="small" clearable>
+    <el-input :placeholder="placeholder" v-model="input" class="input-with-select" size="small" clearable>
     </el-input>
   </div>
 </template>
 
 <script>
   export default {
+    props: {
+      placeholder: {
+        type: String,
+        default: ""
+      }
+    },
     data() {
       return {
         input: "",

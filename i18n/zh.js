@@ -660,6 +660,7 @@ module.exports = {
     }, {
       prop: "avgBroadcastTimeView",
       name: "平均广播时间",
+      popover: true
     }, {
       prop: "onlinePercentView",
       name: "在线率",
@@ -670,10 +671,14 @@ module.exports = {
       position: "位置",
       newestTime: "收到最新块的时间",
       broadcastTime: "收到最新块所需时间",
+      avgBroadcastTime: "收到最近40个块所需时间平均",
       nodeOnline: "现在有{onlineNode}个节点在线，历史最多在线节点数{historyNode}个",
       percent: "广播比例",
       sumPercent: "累积比例",
       nodeName: "节点名称"
+    },
+    filter: {
+      placeholder: "搜索节点名"
     }
   },
 

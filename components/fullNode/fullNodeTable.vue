@@ -1,10 +1,11 @@
 <template>
   <div class="page-table-container">
+    <search-input @getInput="filterTable" :placeholder="$t('fullNode.filter.placeholder')"></search-input>
     <div class="table">
       <el-table 
         v-loading="loading" 
         :stripe="true"
-        :data="currentTableData" 
+        :data="currentPageData" 
         style="width: 100%" 
         :empty-text="noResult"
         :row-class-name="tableRowClassName">
@@ -24,6 +25,9 @@
               </div>
               <div v-if="tT.prop === 'broadcastTimeView'">
                 <p>{{ $t("fullNode.popover.broadcastTime") }}</p>
+              </div>
+              <div v-if="tT.prop === 'avgBroadcastTimeView'">
+                <p>{{ $t("fullNode.popover.avgBroadcastTime") }}</p>
               </div>
               <div slot="reference">
                 <div v-if="!tT.name">
@@ -58,6 +62,8 @@
 <script type="text/babel">
   import Bar from "~/components/Charts/Bar.vue";
   import moment from "moment";
+  import searchInput from "~/components/searchInput.vue";
+  
   export default {
     props: {
       loading: {
@@ -84,10 +90,6 @@
         type: Boolean,
         default: true
       },
-      total: {
-        type: Number,
-        default: 0
-      },
       pageSize: {
         type: Number,
         default: 20
@@ -102,10 +104,11 @@
       },
     },
     components: {
-      Bar
+      Bar, searchInput
     },
     data() {
       return {
+        total: 0,
         currentWeight : 100000,
         currentInx: this.currentPage,
         noResult: this.$t("utils.noResult"),
@@ -115,21 +118,92 @@
           marginTop: "0px",
           marginLeft: "-20px"
         },
-        currentTableData: []
+        currentPageData: [],
+        currentTableData:[],
+        
+        search: null
       };
+    },
+    mounted() {
+      this.filterTable();
     },
     watch: {
       currentPage() {
         this.currentInx = this.currentPage;
       },
       tableData(val) {
+        console.log("tableData");
+
+        if(!this.search) {
+          this.currentTableData = [].concat(val);
+          return;
+        } 
+        
+        let list = [].concat(this.currentTableData);
+
+        val.forEach((newitem) => {
+          let olditemIndex = list.findIndex(oldItem=>{
+            return oldItem.uniqId === newitem.uniqId;
+          });
+          if(olditemIndex > -1) {
+            newitem.weight = list[olditemIndex].weight;
+            newitem.originIndex = list[olditemIndex].originIndex;
+            list[olditemIndex] = newitem;
+          }
+        });
+
+        this.currentTableData = list;
+        
+        // let start = 10 * (this.currentInx - 1);
+        // let end = start + 10;
+        // this.total = val.length;
+        // let realEnd = end > val.length ? val.length : end;
+        // if (!this.search) {
+        //   this.currentPageData = this.nodeViewData(val.slice(start, realEnd));
+        // } else {
+        //   this.filterTable(this.search);
+        // }
+      },
+      currentTableData(val) {
+        console.log("currentTableData");
         let start = 10 * (this.currentInx - 1);
         let end = start + 10;
+        this.total = val.length;
         let realEnd = end > val.length ? val.length : end;
-        this.currentTableData = this.nodeViewData(val.slice(start, realEnd));
+        this.currentPageData = this.sort(this.nodeViewData(val.slice(start, realEnd)));
+
+        // let start = 10 * (this.currentInx - 1);
+        // let end = start + 10;
+        // this.total = val.length;
+        // let realEnd = end > val.length ? val.length : end;
+        // if (!this.search) {
+        //   this.currentPageData = this.nodeViewData(val.slice(start, realEnd));
+        // } else {
+        //   this.filterTable(this.search);
+        // }
       }
     },
+    
     methods: {
+      filterTable(str) {
+        let filterInput = str || null;
+        this.search = filterInput || null;
+        if (!this.search) {
+          this.total = this.tableData.length;
+          this.currentInx = 1;
+          this.currentTableData  = [].concat(this.tableData);
+          return;
+        }
+        let list = [];
+        for(let i = 0; i < this.tableData.length; i++) {
+          if(this.tableData[i].nodeName.toLowerCase().indexOf(this.search.toLowerCase()) > -1) {
+            list.push(this.tableData[i]);
+          }
+        }
+        this.total = list.length;
+        this.currentInx = 1;
+        this.currentTableData  = list;
+      },
       dispatchColor(name) {
         if (name === 0) return "#749AF8";
         if (name > 0 && name <= 1) return "#5CB85C";
@@ -139,7 +213,6 @@
         return "";
       },
       nodeViewData(list) {
-        let now = Date.now();
         let lang = this.$i18n.locale !== "en" ? `/${this.$i18n.locale}` : "";
         
         list && list.forEach((node) => {
@@ -147,7 +220,7 @@
           let time = moment(latestBlockTime).format().replace("T", " ");
           node.broadcastTimeView = `<span style="color: ${this.dispatchColor(node.broadcastTime / 1000)}">${node.broadcastTime}ms</span>`,
           node.avgBroadcastTimeView = `<span style="color: ${this.dispatchColor(node.avgBroadcastTime / 1000)}">${node.avgBroadcastTime}ms</span>`,
-          node.nodeDelayTimeView = `${now - node.nodeDelayTime}ms`,
+          node.nodeDelayTimeView = `${node.nodeDelayTime}ms`,
           node.onlinePercentView = `${Math.round(node.onlinePercent * 100)}%`,
           node.latestBlockTimeView = time,
           node.radio = node.status ? 
@@ -175,6 +248,7 @@
           }
           return 0;
         });
+        return val;
       },
       tableRowClassName({row}) {
         if (row.status === -1) {
@@ -184,9 +258,9 @@
       },
       _currentChange(index) {
         this.currentInx = index;
-        this.currentChange(index);
+        // this.currentChange(index);
       },
-      onClickItem(row, index) {
+      onClickItem(row) {
         if(row.weight) {
           row.weight = 0;
         } else{
@@ -196,14 +270,19 @@
         row.radio = row.status ? 
           row.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
           : row.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
+        
+        let findIndex = this.tableData.findIndex(item=>{
+          return item.uniqId === row.uniqId;
+        });
 
-        this.tableData[10 * (this.currentInx  - 1) + index] = row;
+        this.tableData[findIndex] = row;
         this.sort(this.tableData);
 
-        let start = 10 * (this.currentInx - 1);
-        let end = start + 10;
-        let realEnd = end > this.tableData.length ? this.tableData.length : end;
-        this.currentTableData = this.nodeViewData(this.tableData.slice(start, realEnd));
+        // let start = 10 * (this.currentInx - 1);
+        // let end = start + 10;
+        // let realEnd = end > this.tableData.length ? this.tableData.length : end;
+
+        // this.currentPageData = this.nodeViewData(this.tableData.slice(start, realEnd));
       }
     }
   };

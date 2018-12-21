@@ -23,7 +23,7 @@
                   </nuxt-link>
                 </el-menu-item>
               </el-submenu>
-              <el-menu-item :key="item" :index="item" v-for="item in externalNavs" class="text-hover-transition">
+              <el-menu-item :key="item" :index="item" v-for="item in externalNavs" class="text-hover-transition" v-if="externalNavs.length">
                 <nuxt-link :to="localePath(item)" class="nav-item">
                   {{$t(`nav.${item}`)}}
                 </nuxt-link>
@@ -137,8 +137,8 @@
     },
     data() {
       return {
-        navs: ["index", "transactionList", "blockList", "tokenList"],
-        externalNavs: ["FullNode"],
+        navs: ["index", "FullNode", "blockList", "tokenList"],
+        externalNavs: [],
         doubleNavs: [{
           key: "mining",
           childs: [{

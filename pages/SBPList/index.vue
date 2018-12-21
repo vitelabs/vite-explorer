@@ -3,7 +3,7 @@
     <div v-if="!error">
       <div class="table-title" v-html="nodeTableTitle"></div>
       <div class="search-container">
-        <search-input @getInput="filterTable"></search-input>
+        <search-input @getInput="filterTable" :placeholder="$t('filter.SBP.placeholder')"></search-input>
         <div class="producer-cycle">
           {{ $t('filter.SBP.cycle.name') }}
           <span 
