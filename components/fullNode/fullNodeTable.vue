@@ -148,7 +148,7 @@
           node.broadcastTimeView = `<span style="color: ${this.dispatchColor(node.broadcastTime / 1000)}">${node.broadcastTime}ms</span>`,
           node.avgBroadcastTimeView = `<span style="color: ${this.dispatchColor(node.avgBroadcastTime / 1000)}">${node.avgBroadcastTime}ms</span>`,
           node.nodeDelayTimeView = `${now - node.nodeDelayTime}ms`,
-          node.onlinePercentView = `${node.onlinePercent * 100}%`,
+          node.onlinePercentView = `${Math.round(node.onlinePercent * 100)}%`,
           node.latestBlockTimeView = time,
           node.radio = node.status ? 
             node.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
