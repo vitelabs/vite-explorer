@@ -26,6 +26,10 @@ export default {
     type: {
       type: String,
       default: "large"
+    },
+    yMax: {
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -57,7 +61,6 @@ export default {
     draw() {
       let yAxis = Object.assign({
         show: this.showAxis,
-        
         position: "right",
         axisLabel : { 
           formatter : "{value}%" 
@@ -66,7 +69,7 @@ export default {
           show:false 
         }
       }, this.type === "mini" ? {min: 0,
-        max: 1000} : {});
+        max: this.yMax} : {});
       this.echarsInstance.setOption({
         xAxis: {
           show: this.showAxis,
