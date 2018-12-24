@@ -620,7 +620,7 @@ module.exports = {
       block: "最新快照块",
       nodeOnline: "在线节点",
       pageDelay: "页面延迟",
-      broadcast: "块广播",
+      broadcast: "快照块广播延迟",
       nodePosition: "节点位置",
       onlinePercent: "全部节点平均在线率"
     },
@@ -651,7 +651,7 @@ module.exports = {
       popover: true
     }, {
       prop: "broadcastTimeView",
-      name: "广播时间",
+      name: "数据延迟",
       popover: true
     }, {
       prop: "broadcastTimeList",
@@ -659,7 +659,7 @@ module.exports = {
       width: 260
     }, {
       prop: "avgBroadcastTimeView",
-      name: "平均广播时间",
+      name: "平均数据延迟",
       popover: true
     }, {
       prop: "onlinePercentView",

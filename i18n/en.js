@@ -619,7 +619,7 @@ module.exports = {
       block: "LAST SNAPSHOT BLOCK",
       nodeOnline: "ONLINE NODES",
       pageDelay: "PAGE LATENCY",
-      broadcast: "BLOCK PROPAGATION",
+      broadcast: "SNAPSHOT BLOCK PROPAGATION LATENCY",
       nodePosition: "NODE LOCATION",
       onlinePercent: "全部节点平均在线率"
     },
@@ -640,7 +640,7 @@ module.exports = {
       name: "NODE LATENCY",
     }, {
       prop: "peersNum",
-      name: "PEERS",
+      name: "NEIGHBORS",
     }, {
       prop: "latestBlockHeight",
       name: "LAST BLOCK",
@@ -650,7 +650,7 @@ module.exports = {
       popover: true
     }, {
       prop: "broadcastTimeView",
-      name: "PROPAGATION TIME",
+      name: "STATS LATENCY",
       popover: true
     }, {
       prop: "broadcastTimeList",
@@ -658,7 +658,7 @@ module.exports = {
       width: 260
     }, {
       prop: "avgBroadcastTimeView",
-      name: "AVG PROPAGATION TIME",
+      name: "AVG STATS LATENCY",
       popover: true
     }, {
       prop: "onlinePercentView",
