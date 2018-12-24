@@ -70,6 +70,7 @@ export default {
         series: [{
           type: "scatter",
           coordinateSystem: "geo",
+          symbolSize: 5,
           data: this.convertData()
         }]
       },true);
