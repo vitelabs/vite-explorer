@@ -651,7 +651,7 @@ module.exports = {
       popover: true
     }, {
       prop: "broadcastTimeView",
-      name: "数据延迟",
+      name: "广播延迟",
       popover: true
     }, {
       prop: "broadcastTimeList",
@@ -659,7 +659,7 @@ module.exports = {
       width: 260
     }, {
       prop: "avgBroadcastTimeView",
-      name: "平均数据延迟",
+      name: "平均广播延迟",
       popover: true
     }, {
       prop: "onlinePercentView",

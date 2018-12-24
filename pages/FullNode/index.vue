@@ -111,7 +111,7 @@
         nodeTitles: this.$t("fullNode.nodeTitles"),
         barStyle: {
           width: "110%",
-          height: "225px",
+          height: "250px",
           marginTop: "-32px",
           marginLeft: "-40px"
         },
@@ -175,7 +175,7 @@
   }
   .card-multi {
     width: 558px;
-    height: 242px;
+    height: 286px;
   }
 }
 

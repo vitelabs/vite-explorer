@@ -1,7 +1,7 @@
 <template>
   <div class="map-container">
     <div class="content">
-      <div id="map" style="width: 100%; height: 173px;"></div>
+      <div id="map" style="width: 100%; height: 218px;"></div>
     </div>
   </div>
 </template>
@@ -58,7 +58,7 @@ export default {
         geo: {
           roam: true,
           map: "world",
-          layoutCenter: ["50%", "70%"],
+          layoutCenter: ["50%", "53%"],
           layoutSize: 500,
           itemStyle: {
             normal: {

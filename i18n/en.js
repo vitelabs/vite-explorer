@@ -641,6 +641,7 @@ module.exports = {
     }, {
       prop: "peersNum",
       name: "NEIGHBORS",
+      width: 100
     }, {
       prop: "latestBlockHeight",
       name: "LAST BLOCK",
@@ -650,15 +651,17 @@ module.exports = {
       popover: true
     }, {
       prop: "broadcastTimeView",
-      name: "STATS LATENCY",
-      popover: true
+      name: "PROPAGATION LATENCY",
+      popover: true,
+      width: 110
     }, {
       prop: "broadcastTimeList",
       name: "",
       width: 260
     }, {
       prop: "avgBroadcastTimeView",
-      name: "AVG STATS LATENCY",
+      name: "AVG PROPAGATION LATENCY",
+      width: 110,
       popover: true
     }, {
       prop: "onlinePercentView",

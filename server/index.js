@@ -16,7 +16,6 @@ async function start() {
   if (nuxtConfig.dev) {
     await new Builder(nuxt).build();
   }
-
   // middlewares are imported here
   middleware(app, nuxt);
 
