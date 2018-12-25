@@ -1,6 +1,5 @@
 import bodyParser from "koa-bodyparser";
 import routes from "./routes";
-import session from "koa-session";
 
 export default (app, nuxt) => {
   app.use(async (ctx, next) => {
@@ -12,9 +11,6 @@ export default (app, nuxt) => {
 
   app.use(bodyParser());
   
-  app.keys = ["some session"];
-  app.use(session({},app));
-
   app.use(routes(app));
 
   app.use(async (ctx, next) => {
