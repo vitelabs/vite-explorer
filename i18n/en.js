@@ -621,7 +621,7 @@ module.exports = {
       pageDelay: "PAGE LATENCY",
       broadcast: "SNAPSHOT BLOCK BROADCASTING LATENCY",
       nodePosition: "NODE LOCATION",
-      onlinePercent: "Average Online Ratio of All Nodes"
+      onlinePercent: "AVG ONLINE RATE OF ALL NODES"
     },
     nodeTitles: [{
       prop: "radio",
@@ -651,7 +651,7 @@ module.exports = {
       popover: true
     }, {
       prop: "broadcastTimeView",
-      name: "PROPAGATION LATENCY",
+      name: "BROADCASTING LATENCY",
       popover: true,
       width: 110
     }, {
@@ -660,7 +660,7 @@ module.exports = {
       width: 260
     }, {
       prop: "avgBroadcastTimeView",
-      name: "AVG PROPAGATION LATENCY",
+      name: "AVG BROADCASTING LATENCY",
       width: 110,
       popover: true
     }, {
