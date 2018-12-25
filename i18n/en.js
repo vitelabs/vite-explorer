@@ -611,7 +611,7 @@ module.exports = {
     }],
 
   },
-  
+
   // pages/fullNode
   fullNode: {
     title: "Full Node",
@@ -619,9 +619,9 @@ module.exports = {
       block: "LAST SNAPSHOT BLOCK",
       nodeOnline: "ONLINE NODES",
       pageDelay: "PAGE LATENCY",
-      broadcast: "SNAPSHOT BLOCK PROPAGATION LATENCY",
+      broadcast: "SNAPSHOT BLOCK BROADCASTING LATENCY",
       nodePosition: "NODE LOCATION",
-      onlinePercent: "全部节点平均在线率"
+      onlinePercent: "Average Online Ratio of All Nodes"
     },
     nodeTitles: [{
       prop: "radio",
