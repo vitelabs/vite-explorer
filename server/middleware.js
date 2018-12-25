@@ -1,7 +1,7 @@
 import bodyParser from "koa-bodyparser";
 import routes from "./routes";
-const uuidv1 = require("uuid/v1");
-let uuid = uuidv1();
+const uuidv4 = require("uuid/v4");
+let uuid = uuidv4();
 
 export default (app, nuxt) => {
   app.use(async (ctx, next) => {
