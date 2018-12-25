@@ -1,5 +1,5 @@
 module.exports = {
-  lang: "English",
+  lang: "EN",
 
 
   // components/Home
