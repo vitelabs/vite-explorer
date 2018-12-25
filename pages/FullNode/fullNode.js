@@ -33,15 +33,13 @@ const defaultNodeList = {
     region_name: "California"
   }
 };
-// import { mySetInterval, myClearInterval } from "~/utils/myInterval.js";
+
 
 class FullNode_WS {
   constructor(
-    config,
-    url = "wss://stats.vite.net/ws/user/aaaa"
+    url
   ) {
     this.url = url;
-    this.config = config;
     this.socket = null;
     this.interval = null;
     

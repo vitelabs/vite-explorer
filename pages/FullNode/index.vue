@@ -43,6 +43,7 @@
   import fullNodeTable from "~/components/fullNode/fullNodeTable.vue";
   import Bar from "~/components/Charts/Bar.vue";
   import WMap from "~/components/Charts/WMap.vue";
+  import { getCookie } from "~/utils/cookie.js";
 
   export default {
     head() {
@@ -55,7 +56,8 @@
     },
     
     mounted() {
-      this.socket = new fullNode();
+      let uuid = getCookie("uuid");
+      this.socket = new fullNode(`wss://stats.vite.net/ws/user/${uuid}`);
       this.mapList = this.socket.mapList;
     },
     watch: {
