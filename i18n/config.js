@@ -3,7 +3,7 @@ const defaultLocale = "en";
 module.exports = {
   defaultLocale,
   locales: [
-    { code: "en", iso: "en-US", file: "en.js" , name: "English"},
+    { code: "en", iso: "en-US", file: "en.js" , name: "EN"},
     { code: "zh", iso: "zh-ZH", file: "zh.js" , name: "CH"}
   ],
   // detectBrowserLanguage: {
