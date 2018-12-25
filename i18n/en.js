@@ -1,5 +1,5 @@
 module.exports = {
-  lang: "English",
+  lang: "EN",
 
 
   // components/Home
@@ -9,7 +9,7 @@ module.exports = {
     tps: "System TPS",
     price: "Current Price of Vite",
     totalTrans: "Transactions",
-    latestHeight: "Latest Block Height",
+    latestHeight: "Last Block Height",
     nearMonth: "Transactions(30d)",
     update3: "Update per 3 seconds",
     tPerSec: "Realtime transactions per second / Last-hour transactions per second",
@@ -76,7 +76,7 @@ module.exports = {
     v: "Version 1.3.0",
     current: "Current Version",
     content1: "Vite's block explorer is a website for searching comprehensive information about Vite. Now, it supports searching by transactions, snapshot blocks, tokens, SBPs, accounts and presenting related information such as voting status and node details; it also provides statistics information, transactions filter and sorting.",
-    content2: "STATS page is newly added in Version 1.3.0, which displays condition of Vite net and nodes.",
+    content2: "Stats page is newly added in Version 1.3.0, which displays condition of Vite net and nodes.",
     govite: {
       current: "go-vite Version",
       v: "1.0.0"
@@ -89,7 +89,7 @@ module.exports = {
     blockList: "Snapshots",
     tokenList: "Tokens",
     SBPList: "SBPs",
-    FullNode: "STATS",
+    FullNode: "Stats",
     mining: {
       name: "Mining",
       childs: {
@@ -137,7 +137,7 @@ module.exports = {
   transList: {
     title: "Total transactions：",
     label: "Transactions",
-    time: "Latest Updated at:"
+    time: "Last Updated at:"
   },
   transTitles: [{
     prop: "hash",
@@ -520,7 +520,7 @@ module.exports = {
     type: "Transaction Type",
     status: "Transaction Status",
     confirmTimes: "Confirmations",
-    snapshotBlockHash: "Firstly Snapshotted by",
+    snapshotBlockHash: "Firstly Snapshotted By",
     timestamp: "Age",
     from: "From",
     to: "To",
@@ -619,7 +619,7 @@ module.exports = {
       block: "LAST SNAPSHOT BLOCK",
       nodeOnline: "ONLINE NODES",
       pageDelay: "PAGE LATENCY",
-      broadcast: "SNAPSHOT BLOCK BROADCASTING LATENCY",
+      broadcast: "SNAPSHOT BLOCK PROPAGATION LATENCY",
       nodePosition: "NODE LOCATION",
       onlinePercent: "AVG ONLINE RATE OF ALL NODES"
     },
@@ -651,7 +651,7 @@ module.exports = {
       popover: true
     }, {
       prop: "broadcastTimeView",
-      name: "BROADCASTING LATENCY",
+      name: "PROPAGATION LATENCY",
       popover: true,
       width: 110
     }, {
@@ -660,7 +660,7 @@ module.exports = {
       width: 260
     }, {
       prop: "avgBroadcastTimeView",
-      name: "AVG BROADCASTING LATENCY",
+      name: "AVG PROPAGATION LATENCY",
       width: 110,
       popover: true
     }, {
