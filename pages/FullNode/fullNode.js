@@ -71,7 +71,6 @@ class FullNode_WS {
   }
 
   checkConnect() {
-    console.log("checkConnect");
     if (Date.now() - this.lastMsgTime > this.overtime) {
       console.log("heartbeat");
       this.reconnect();
