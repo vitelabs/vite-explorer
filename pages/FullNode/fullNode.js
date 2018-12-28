@@ -34,26 +34,32 @@ const defaultNodeList = {
   }
 };
 
-
+import { mySetInterval, myClearInterval } from "~/utils/myInterval.js";
 class FullNode_WS {
   constructor(
-    url
+    url,
+    overtime = 1000
   ) {
     this.url = url;
     this.socket = null;
     this.interval = null;
+    this.overtime = overtime;
+    this.lastMsgTime = Date.now();
     
     this.generalView = { ...defaultGeneralView };  // generalMsg
     this.percents = [{ ...defaultPercent }];     // block broadcast
     this.mapList = [{ ...defaultNodeList }];      // map
     this.networkList = [];
     this.connect();
+    this.interval = mySetInterval(()=> {
+      this.checkConnect();
+    }, 5000);
   }
 
   connect() {
-    // if (this.interval) {
-    //   myClearInterval(this.interval);
-    // }
+    if (this.interval) {
+      myClearInterval(this.interval);
+    }
     /* eslint-disable */
     let wsCtor = window["MozWebSocket"] ? MozWebSocket : WebSocket;
     /* eslint-disable */
@@ -64,11 +70,20 @@ class FullNode_WS {
     this.socket.onclose = this.onClose.bind(this);
   }
 
+  checkConnect() {
+    console.log("checkConnect");
+    if (Date.now() - this.lastMsgTime > this.overtime) {
+      console.log("heartbeat");
+      this.reconnect();
+    }
+  }
+
   onOpen() {
     console.log("WebSocket Connection Open.");
   }
   
   onUpdate(msg) {
+    this.lastMsgTime = Date.now();
     let command = JSON.parse(msg.data);
     this.dispatchMsg(command.method, command.data);
   }
@@ -79,6 +94,7 @@ class FullNode_WS {
 
   onError(event) {
     console.error("WebSocket error observed:", event);
+    // this.reconnect();
     // this.interval = mySetInterval(()=> {
     //   this.reconnect();
     // }, 10000)
@@ -107,7 +123,10 @@ class FullNode_WS {
 
   reconnect() {
     console.log("try to reconnect");
-    // this.close();
+    if (this.interval) {
+      myClearInterval(this.interval);
+    }
+    this.close();
     this.connect();
   }
 }
