@@ -38,7 +38,7 @@ import { mySetInterval, myClearInterval } from "~/utils/myInterval.js";
 class FullNode_WS {
   constructor(
     url,
-    overtime = 1000
+    overtime = 60000
   ) {
     this.url = url;
     this.socket = null;
