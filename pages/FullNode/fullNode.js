@@ -38,7 +38,7 @@ import { mySetInterval, myClearInterval } from "~/utils/myInterval.js";
 class FullNode_WS {
   constructor(
     url,
-    overtime = 1000
+    overtime = 60000
   ) {
     this.url = url;
     this.socket = null;
@@ -71,7 +71,6 @@ class FullNode_WS {
   }
 
   checkConnect() {
-    console.log("checkConnect");
     if (Date.now() - this.lastMsgTime > this.overtime) {
       console.log("heartbeat");
       this.reconnect();
