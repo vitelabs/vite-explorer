@@ -116,6 +116,9 @@ class FullNode_WS {
   }
 
   close() {
+    if (this.interval) {
+      myClearInterval(this.interval);
+    }
     this.socket.close();
     console.log("WebSocket Connection Closed.");
   }
