@@ -188,11 +188,10 @@ async function getTransactionList(ctx) {
 export default () => {
   router.get("/api/stats/pageDelay", async (ctx) => {
     let time = await get(statsApi + "/getDelayTime");
-    console.log("time", time);
     ctx.body = {
       code: 0,
       msg: "ok",
-      data: time
+      data: time.data
     };
   });
 
