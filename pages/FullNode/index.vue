@@ -44,6 +44,8 @@
   import Bar from "~/components/Charts/Bar.vue";
   import WMap from "~/components/Charts/WMap.vue";
   import { getCookie } from "~/utils/cookie.js";
+  import stats from "~/services/stats.js";
+  import { mySetInterval, myClearInterval } from "~/utils/myInterval.js";
 
   export default {
     head() {
@@ -56,6 +58,7 @@
     },
     
     mounted() {
+      this.getDelayTimeInterval();
       let uuid = getCookie("uuid");
       this.socket = new fullNode(`wss://stats.vite.net/ws/user/${uuid}`);
       this.mapList = this.socket.mapList;
@@ -95,7 +98,6 @@
               });
             }
           });
-          // this.total = list.length;
           this.allNodes = list;
         },
         deep: true
@@ -103,6 +105,9 @@
     },
     destroyed() {
       this.socket.close();
+      if (this.interval) {
+        myClearInterval(this.interval);
+      }
     },
     data() {
       return {
@@ -123,7 +128,8 @@
         broadcastTimeList: [],
         mapList: [],
         generalview: {},
-        percents: []
+        percents: [],
+        interval: null
       };
     },
     computed: {
@@ -145,7 +151,7 @@
           pageDelay: {
             img: require("~/assets/images/fullNode/page_delay.svg"),
             title: this.$t("fullNode.contentTitle.pageDelay"),
-            text: this.generalview.sysTime ? `${new Date() - this.generalview.sysTime}ms` : "--"
+            text: this.sysTime ? `${this.sysTime}ms` : "--"
           },
           broadcast: {
             img: require("~/assets/images/fullNode/broadcast.svg"),
@@ -160,6 +166,19 @@
       }
     },
     methods: {
+      getDelayTimeInterval() {
+        this.interval = mySetInterval(() => {
+          this.getDelayTime();
+        }, 1000);
+      },
+      getDelayTime() {
+        let frontTime = Date.now();
+        stats.getPageDelayTime().then(data=> {
+          this.sysTime = (data.time - frontTime) / 2;
+        }).catch(err=> {
+          console.log(err);
+        });
+      }
     }
   };
 </script>

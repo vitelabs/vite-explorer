@@ -10,7 +10,7 @@ process.env["NODE_CONFIG_DIR"] = path.resolve(__dirname , "./config");
 console.log("NODE_CONFIG_DIR", process.env["NODE_CONFIG_DIR"]);
 const config = require("config");
 
-let { explorerApi, sbpDetailApi } = config;
+let { explorerApi, sbpDetailApi, statsApi } = config;
 
 const defaultTxData = {
   code: 0,
@@ -186,6 +186,16 @@ async function getTransactionList(ctx) {
 
 
 export default () => {
+  router.get("/api/stats/pageDelay", async (ctx) => {
+    let time = await get(statsApi + "/getDelayTime");
+    console.log("time", time);
+    ctx.body = {
+      code: 0,
+      msg: "ok",
+      data: time
+    };
+  });
+
   router.get("/api/walletapp/version", async (ctx) => {
     let data = fs.readFileSync("/var/www/walletapp/versions/version.json", "utf8");
     ctx.body = {

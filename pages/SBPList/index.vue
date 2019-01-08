@@ -1,7 +1,12 @@
 <template>
   <div class="node-list-container">
     <div v-if="!error">
-      <div class="table-title" v-html="nodeTableTitle"></div>
+      <div class="page-title">
+        <div class="table-title" v-html="nodeTableTitle"></div>
+        <div class="go-vite">
+          <span class="dot"></span><a href="https://github.com/vitelabs/go-vite" target="_blank">{{ $t('logo.govite.current') }} {{ $t('logo.govite.v') }}</a>
+        </div>
+      </div>
       <div class="search-container">
         <search-input @getInput="filterTable" :placeholder="$t('filter.SBP.placeholder')"></search-input>
         <div class="producer-cycle">
@@ -177,6 +182,23 @@
  @import "~assets/css/vars.scss";
 
 .node-list-container {
+  .page-title {
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    .go-vite {
+      margin-top: 10px; 
+      font-size:13px;
+      .dot {
+        display: inline-block;
+        width: 4px;
+        height: 4px;
+        border-radius: 4px;
+        margin-right: 7px; 
+        background-color: $common-color;
+      }
+    }
+  }
   .table-label {
     text-align:center;
     font-size: 12px;
