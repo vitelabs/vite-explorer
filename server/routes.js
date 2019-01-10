@@ -268,6 +268,18 @@ export default () => {
     }
   });
 
+  router.get("/api/general/notice", async(ctx) => {
+    try {
+      let result = await get(explorerApi + "/notice/list", ctx.query);
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
+
   router.get("/api/general/detail", async(ctx) => {
     try {
       let generalBody= await get(explorerApi + "/general/detail", ctx.query);

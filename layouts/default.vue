@@ -52,6 +52,17 @@
     <div class="vertail-menu-content">
       <menu-content :navs="navs" :visible.sync="open" @is-open="closeMenu" :double-navs="doubleNavs" :links="links" :external-navs="externalNavs"></menu-content>
     </div>
+    <div class="marquee" v-if="noticelist.length">
+      <div class="marquee-content">
+        <img src="~assets/images/marquee.svg"/>
+        <marquee>
+          <span class="quee" v-for="(notice, index) in noticelist" :key="index">
+            <a v-if="notice.url" target="_black" :href="notice.url" class="quee-link">{{notice.message}}</a>
+            <span v-else>{{notice.message}}</span>
+          </span>
+        </marquee>
+      </div>
+    </div>
     <div class="content-wrapper">
       <nuxt class="content"/>
     </div>
@@ -65,6 +76,7 @@
   import search from "~/components/search.vue";
   import LangSelect from "~/components/LangSelect.vue";
   import menuContent from "~/components/menuContent.vue";
+  import general from "~/services/general.js";
   import moment from "moment";
 
   moment.updateLocale("en", {
@@ -129,14 +141,19 @@
         }
       }
       this.keepNavStatus();
+      this.getNotice();
     },
     watch: {
       "$route.path": function () {
         this.keepNavStatus();
+      },
+      "$i18n.locale": function () {
+        this.getNotice();
       }
     },
     data() {
       return {
+        noticelist: [],
         navs: ["index", "FullNode", "blockList", "tokenList"],
         externalNavs: [],
         doubleNavs: [{
@@ -169,6 +186,15 @@
       };
     },
     methods: {
+      getNotice() {
+        general.getNotice({
+          language: this.$i18n.locale
+        }).then(data=> {
+          this.noticelist = data.noticelist || [];
+        }).catch(err=> {
+          console.log(err);
+        });
+      },
       openMenu() {
         this.open = !this.open;
       },
@@ -270,6 +296,39 @@
     @media only screen and (min-width: 320px) and (max-width: 767px) {
       .content {
         width: 290px;
+      }
+    }
+    
+  }
+
+  .marquee {
+    background-color: rgba(236,242,255,1);
+    height:40px;
+    line-height: 40px;
+    .marquee-content {
+      display: flex;
+      display: -webkit-flex;
+      width: 1160px;
+      margin: 0 auto;
+    }
+    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+      .marquee-content {
+        width: 728px;
+      }
+    }
+    @media only screen and (min-width: 320px) and (max-width: 767px) {
+      .marquee-content {
+        width: 290px;
+      }
+    }
+    .quee {
+      font-weight:400;
+      font-size:12px;
+      color:rgba(94,104,117,1);
+      display: inline-block;
+      margin-right: 30px;
+      .quee-link {
+        color: $common-color;
       }
     }
   }

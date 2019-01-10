@@ -8,5 +8,10 @@ export default {
   },
   getGeneralMarket() {
     return get(`${PREFIX}/market`);
+  },
+  getNotice({ language }) {
+    return get(`${PREFIX}/notice`, {
+      language
+    });
   }
 };
