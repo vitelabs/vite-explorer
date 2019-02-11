@@ -141,11 +141,23 @@ module.exports = {
     name: "交易Hash",
     width: "130"
   }, {
+    prop: "amount",
+    name: "数量",
+    width: "130"
+  }, {
+    prop: "from",
+    name: "发出方",
+    width: "160"
+  }, {
+    prop: "to",
+    name: "接收方",
+    width: "160"
+  }, {
     prop: "type",
   }, {
     prop: "blockType",
     name: "交易类型",
-    width: "120"
+    width: 72
   }, {
     prop: "status",
     name: "状态",
@@ -157,23 +169,11 @@ module.exports = {
   }, {
     prop: "timestamp",
     name: "时间戳",
-    width: "100"
+    width: 80
   }, {
     prop: "confirmTimes",
     name: "确认数",
-    width: "100"
-  }, {
-    prop: "from",
-    name: "发出方",
-    width: "160"
-  }, {
-    prop: "to",
-    name: "接收方",
-    width: "160"
-  }, {
-    prop: "amount",
-    name: "数量",
-    width: "130"
+    width: 70
   }],
   addedTitle: [{
     prop: "tokenName",

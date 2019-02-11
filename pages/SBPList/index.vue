@@ -3,9 +3,9 @@
     <div v-if="!error">
       <div class="page-title">
         <div class="table-title" v-html="nodeTableTitle"></div>
-        <div class="go-vite">
+        <!-- <div class="go-vite">
           <span class="dot"></span><a href="https://github.com/vitelabs/go-vite" target="_blank">{{ $t('logo.govite.current') }} {{ $t('logo.govite.v') }}</a>
-        </div>
+        </div> -->
       </div>
       <div class="search-container">
         <search-input @getInput="filterTable" :placeholder="$t('filter.SBP.placeholder')"></search-input>

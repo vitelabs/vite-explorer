@@ -144,28 +144,9 @@ module.exports = {
     name: "Hash",
     width: "130"
   }, {
-    prop: "type",
-    width: "81"
-  }, {
-    prop: "blockType",
-    name: "Type",
-    width: 192
-  }, {
-    prop: "status",
-    name: "Status",
-    width: "85"
-  }, {
-    prop: "snapshotTimestamp",
-    name: "Snapshotted by",
+    prop: "amount",
+    name: "Quantity",
     width: "130"
-  }, {
-    prop: "timestamp",
-    name: "Age",
-    width: "120"
-  }, {
-    prop: "confirmTimes",
-    name: "Confirmations",
-    width: "116"
   }, {
     prop: "from",
     name: "From",
@@ -175,9 +156,28 @@ module.exports = {
     name: "To",
     width: "160"
   }, {
-    prop: "amount",
-    name: "Quantity",
+    prop: "type",
+    width: "81"
+  }, {
+    prop: "blockType",
+    name: "Type",
+    width: 72
+  }, {
+    prop: "status",
+    name: "Status",
+    // width: "85"
+  }, {
+    prop: "snapshotTimestamp",
+    name: "Snapshotted by",
     width: "130"
+  }, {
+    prop: "timestamp",
+    name: "Age",
+    width: 80
+  }, {
+    prop: "confirmTimes",
+    name: "Confirmations",
+    width: 116
   }],
   addedTitle: [{
     prop: "tokenName",

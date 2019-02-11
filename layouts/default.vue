@@ -57,8 +57,8 @@
         <img src="~assets/images/marquee.svg"/>
         <marquee>
           <span class="quee" v-for="(notice, index) in noticelist" :key="index">
-            <a v-if="notice.url" target="_black" :href="notice.url" class="quee-link">{{notice.message}}</a>
-            <span v-else>{{notice.message}}</span>
+            <a v-if="notice.url" target="_black" :href="notice.url" class="quee-link" :style="`color: ${notice.color}`">{{notice.message}}</a>
+            <span v-else :style="`color: ${notice.color}`">{{notice.message}}</span>
           </span>
         </marquee>
       </div>
