@@ -121,7 +121,7 @@
       transactionsTitles() {
         let titles = this.$t("transTitles");
         if(this.tokenTitle){
-          titles.splice(1, 0, this.$t("addedTitle")[0]);
+          titles = titles.slice(0, 1).concat(this.$t("addedTitle")).concat(titles.slice(1));
         }
         if (this.blockHash) {
           titles.splice(4, 1);
