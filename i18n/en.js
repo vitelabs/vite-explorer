@@ -135,7 +135,7 @@ module.exports = {
 
   // components/transList.vue
   transList: {
-    title: "Total transactions：",
+    title: "Total Transactions：",
     label: "Transactions",
     time: "Last Updated at:"
   },
@@ -168,7 +168,7 @@ module.exports = {
     // width: "85"
   }, {
     prop: "snapshotTimestamp",
-    name: "Snapshotted by",
+    name: "Snapshotted By",
     width: "130"
   }, {
     prop: "timestamp",
@@ -452,10 +452,10 @@ module.exports = {
     name: "Price",
   }, {
     prop: "upDown",
-    name: "%Change",
+    name: "% Change",
   }, {
     prop: "transPrice",
-    name: "Volume(24h)",
+    name: "Volume (24h)",
   }, {
     prop: "famc",
     name: "Market Cap",
