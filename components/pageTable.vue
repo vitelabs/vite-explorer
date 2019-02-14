@@ -195,6 +195,7 @@
     padding: 0;
     height: 23px;
     line-height: 30px;
+    font-size: 12px;
   }
   .el-dropdown .icon {
     display: inline-block;
