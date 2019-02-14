@@ -165,7 +165,7 @@ module.exports = {
   }, {
     prop: "status",
     name: "Status",
-    // width: "85"
+    width: "85"
   }, {
     prop: "snapshotTimestamp",
     name: "Snapshotted By",
