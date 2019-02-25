@@ -52,7 +52,6 @@
         let tokenName = this.transactionDetail.tokenSymbol;
         moment.locale(this.$i18n.locale === "zh" ? "zh-cn" : this.$i18n.locale);
         let timestamp = moment(this.transactionDetail.timestamp * 1000).fromNow();
-
         let commonObj = {
           type: this.transactionDetail.fromHash ? this.$t("transaction.receive") : this.$t("transaction.send"),
           status: ["unkown", "open", "closed"][this.transactionDetail.status],
@@ -81,7 +80,7 @@
       },
       list() {
         const transactionDetailMap = this.$t("transactionDetailMap");
-
+        let time = "（" + moment(this.transactionDetail.timestamp * 1000).format("YYYY-MM-DD HH:mm:ss") + "）";
         let list = [];
         let lang;
         this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
@@ -93,6 +92,9 @@
           switch(key) {
           case "snapshotBlockHash":
             item.link = `${lang}/block/${this.showTransactionDetail.snapshotBlockHash}`;
+            break;
+          case "timestamp":
+            item.describe = this.showTransactionDetail[key] + time;
             break;
           case "from":
           case "to":

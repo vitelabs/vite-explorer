@@ -65,7 +65,7 @@
             transactionCount: block.transactionCount,
             accountNum: block.accountNum,
             producer: `<a href="${lang}/account/${block.producer}" target="_blank" title="${block.producer}">${block.shortProducer}</a>`,
-            age: timestamp
+            age: timestamp + "（" + moment(block.timestamp * 1000).format("YYYY-MM-DD HH:mm:ss") + "）"
           });
         });
         return list;
