@@ -275,7 +275,7 @@ module.exports = {
     downloadDetail: "Download Voting Details",
     verify: "The Start cycle you input is earlier than the registration cycle, please try again",
     registerCycle: "Registration Cycle",
-    cycleTime: "Cycle time comparison chart",
+    cycleTime: "Cycle Time Comparison Table",
     alertMsg: "A cycle cannot over 30 days",
     cycleTitles: [{
       prop: "cycle",
