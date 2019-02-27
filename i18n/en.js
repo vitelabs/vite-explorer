@@ -122,7 +122,7 @@ module.exports = {
     to: "To",
     sure: "Confirm",
     SBP: {
-      placeholder: "Search node name or address",
+      placeholder: "Search by node name or address",
       cycle: {
         name: "View Block Creation Status",
         one: "Last 1 Cycle",
@@ -680,7 +680,7 @@ module.exports = {
       nodeName: "Node Name"
     },
     filter: {
-      placeholder: "Search node name"
+      placeholder: "Filter by node name"
     }
   },
 
