@@ -122,7 +122,7 @@ module.exports = {
     to: "To",
     sure: "Confirm",
     SBP: {
-      placeholder: "Search node name or address",
+      placeholder: "Search by node name or address",
       cycle: {
         name: "View Block Creation Status",
         one: "Last 1 Cycle",
@@ -275,7 +275,7 @@ module.exports = {
     downloadDetail: "Download Voting Details",
     verify: "The Start cycle you input is earlier than the registration cycle, please try again",
     registerCycle: "Registration Cycle",
-    cycleTime: "Cycle time comparison chart",
+    cycleTime: "Cycle Time Comparison Table",
     alertMsg: "A cycle cannot over 30 days",
     cycleTitles: [{
       prop: "cycle",
@@ -680,7 +680,7 @@ module.exports = {
       nodeName: "Node Name"
     },
     filter: {
-      placeholder: "Search node name"
+      placeholder: "Filter by node name"
     }
   },
 
