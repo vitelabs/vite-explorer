@@ -21,7 +21,9 @@
             <span>{{ $t('transactionList.hash') }}：</span>
             <nuxt-link :to="`${locales}/transaction/${item.hash}`" target="_blank" class="hash" :title="`${item.hash}`">{{ item.shortHash }}</nuxt-link>
           </div>
-          <div>{{ item.amount }} {{ item.tokenSymbol }}</div>
+          <div v-if="item.amount === '0'">{{ item.amount }} {{ item.tokenSymbol }}</div>
+          <div v-if="item.fromHash && item.amount !== '0'" style="color: #5cb85c;">{{ item.amount }} {{ item.tokenSymbol }}</div>
+          <div v-if="!item.fromHash && item.amount !== '0'" style="color: #e67e22;">-{{ item.amount }} {{ item.tokenSymbol }}</div>
         </div>  
         <div class="transaction-item-down">
           <div class="down">
