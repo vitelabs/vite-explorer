@@ -12,7 +12,7 @@ module.exports = {
     latestHeight: "Last Block Height",
     nearMonth: "Transactions(30d)",
     update3: "Update per 3 seconds",
-    tPerSec: "Realtime transactions per second / Last-hour transactions per second",
+    tPerSec: "Realtime/ Average of Last-hour/ Max TPS",
     blockTime: "Average time cost of latest 5000 snapshot blocks",
 
   },

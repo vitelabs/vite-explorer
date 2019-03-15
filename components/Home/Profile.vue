@@ -212,10 +212,10 @@
           span {
             display: inline-block;
             margin-top: 25px;
-            font-size: 44px;
+            font-size: 22px;
             line-height: 19px;
             &.noData {
-              font-size: 34px;
+              font-size: 22px;
             }
           }
         }
@@ -228,10 +228,10 @@
           box-sizing: border-box;
           padding: 15px 16px 9px 15px;
           span {
-            font-size: 48px;
+            font-size: 22px;
             letter-spacing: 0;
             &.noData {
-              font-size: 40px;
+              font-size: 22px;
             }
           }
         }
@@ -281,10 +281,10 @@
           span {
             display: inline-block;
             margin-top: 25px;
-            font-size: 32px;
+            font-size: 22px;
             line-height: 30px;
             &.noData {
-              font-size: 28px;
+              font-size: 22px;
             }
           }
         }
@@ -301,14 +301,14 @@
             letter-spacing: 0;
             &.height-value {
               display: inline-block;
-              margin-top: 20px;
-              font-size: 32px;
+              margin-top: 8px;
+              font-size: 22px;
             }
             &.avg-time {
               display: block;
             }
             &.noData {
-              font-size: 32px;
+              font-size: 22px;
             }
           }
         }
