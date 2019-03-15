@@ -26,7 +26,7 @@
         </div>
         <div class="height">
           <div class="title">{{ $t('profile.latestHeight') }}</div>
-          <div v-if="generalDetail.chainHeight">
+          <div v-if="generalDetail.chainHeight" style="margin-top: 18px;">
             <el-tooltip class="item" effect="dark" :content="$t('profile.blockTime') " placement="right-end">
               <div>
                 <span class="height-value" :class="chainHeightAnimate ? 'animated fadeIn': ''">{{ generalDetail.chainHeight }}</span>
@@ -133,7 +133,7 @@
         span {
           display: inline-block;
           margin-top: 25px;
-          font-size: 48px;
+          font-size: 26px;
           line-height: 23px;
           &.noData {
             font-size: 34px;
@@ -153,7 +153,7 @@
           letter-spacing: 0;
           font-size: 12px;
           &.height-value {
-            font-size: 46px;
+            font-size: 26px;
           }
           &.noData {
             font-size: 40px;
