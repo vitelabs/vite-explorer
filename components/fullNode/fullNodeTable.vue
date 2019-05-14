@@ -50,11 +50,17 @@
     </div>
 
     <div v-if="pagination" v-show="total" class="pagination">
-      <el-pagination layout="prev, pager, next"
+      <!-- <el-pagination 
+        layout="prev, pager, next"
         :background="true" @current-change="_currentChange"
         :page-size="pageSize" :current-page="currentInx"
         :total="total">
-      </el-pagination>
+      </el-pagination> -->
+      <pagination 
+        :currentPage="currentInx"
+        :totalPage="Math.ceil(total/pageSize)" 
+        :toPage="_currentChange">
+      </pagination>
     </div>
   </div>
 </template>
@@ -63,6 +69,7 @@
   import Bar from "~/components/Charts/Bar.vue";
   import moment from "moment";
   import searchInput from "~/components/searchInput.vue";
+  import pagination from "~/components/pagination";
   
   export default {
     props: {
@@ -104,7 +111,7 @@
       },
     },
     components: {
-      Bar, searchInput
+      Bar, searchInput, pagination
     },
     data() {
       return {

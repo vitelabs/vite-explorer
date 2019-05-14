@@ -22,19 +22,28 @@
     </div>
 
     <div v-if="pagination" v-show="total" class="pagination">
-      <el-pagination layout="prev, pager, next"
+      <!-- <el-pagination layout="prev, pager, next"
         :background="true" @current-change="_currentChange"
         :page-size="pageSize" :current-page="currentInx"
         :total="total">
-      </el-pagination>
+      </el-pagination> -->
+      <pagination 
+        :currentPage="currentInx"
+        :totalPage="Math.ceil(total/pageSize)" 
+        :toPage="_currentChange">
+      </pagination>
     </div>
   </div>
 </template>
 
 <script type="text/babel">
+  import pagination from "~/components/pagination";
 
   export default {
     name: "pageTable",
+    components: {
+      pagination
+    },
     props: {
       loading: {
         type: Boolean,
