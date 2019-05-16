@@ -95,7 +95,7 @@ export default {
       let startCycle = Math.ceil(this.dateToCycle(startDate));
       let endCycle = Math.ceil(this.dateToCycle(endDate));
       if(process.browser) {
-        location.href = `http://150.109.60.74:8080/vote/node/excel?nodeName=${this.nodeName}&fromCycle=${startCycle}&toCycle=${endCycle}`;
+        location.href = `http://119.28.225.124:8080/vote/node/excel?nodeName=${this.nodeName}&fromCycle=${startCycle}&toCycle=${endCycle}`;
       }
     },
     showCycleTime() {
