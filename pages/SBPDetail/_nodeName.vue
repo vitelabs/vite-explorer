@@ -135,7 +135,7 @@
           case "totalBlockAward":
           case "totalVoteAward":
           case "totalAward":
-          case "settledAward":
+          case "unclaimedAward":
             item.describe = this.superNodeDetail[key] ? handleBigNum((+this.superNodeDetail[key]).toFixed(4)) + " VITE" : null;
             break;
           default: break;

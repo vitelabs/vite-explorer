@@ -263,7 +263,7 @@ module.exports = {
       totalBlockAward: "出块奖励",
       totalVoteAward: "按票奖励",
       totalAward: "总奖励",
-      settledAward: "已发奖励",
+      unclaimedAward: "待提取奖励",
     },
     download: "下载",
     startDate: "开始日期",
