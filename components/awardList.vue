@@ -61,8 +61,8 @@
         if (cycle === 0) {
           return `${T} -- ${T}`;
         }
-        let date = moment((cycle * 1152 * 75 + 1557892800 - 60 * 60 * 24) * 1000).format();
-        let endDate = moment((cycle * 1152 * 75 + 1557892799 ) * 1000).format();
+        let date = moment((cycle * 1152 * 75 + 1557892800 ) * 1000).format();
+        let endDate = moment((cycle * 1152 * 75 + 1557892799 + 60 * 60 * 24) * 1000).format();
         return  `${date} -- ${endDate}`;
       },
     }
