@@ -51,8 +51,8 @@
         if (cycle === 0) {
           return "2019-05-15 12:00:00 -- 2019-05-15 12:00:00";
         }
-        let date = moment((cycle * 1152 * 75 + 1557892800 - 60 * 60 * 24) * 1000).format("YYYY-MM-DD");
-        let endDate = moment((cycle * 1152 * 75 + 1557892800 ) * 1000).format("YYYY-MM-DD");
+        let date = moment((cycle * 1152 * 75 + 1558411200 - 60 * 60 * 24) * 1000).format("YYYY-MM-DD");
+        let endDate = moment((cycle * 1152 * 75 + 1558411200 ) * 1000).format("YYYY-MM-DD");
         return  date + " 12:00:00" + " -- " + endDate +" 11:59:59";
       },
     }

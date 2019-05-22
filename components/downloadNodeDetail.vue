@@ -87,7 +87,7 @@ export default {
       });
     },
     dateToCycle(date) {
-      return (date/1000 -  1557892800)/75/1152;
+      return (date/1000 -  1558411200)/75/1152;
     },
     sureFilter() {
       let endDate = moment(this.dateRange[1])._d.getTime();
