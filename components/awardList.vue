@@ -57,10 +57,10 @@
         return num ? handleBigNum((+num).toFixed(4)) + " VITE" : null;
       },
       cycleToDate(cycle) {
-        let T = moment((cycle * 1152 * 75 + 1558411200 ) * 1000).format();
-        if (cycle === 0) {
-          return `${T} -- ${T}`;
-        }
+        // let T = moment((cycle * 1152 * 75 + 1558411200 ) * 1000).format();
+        // if (cycle === 0) {
+        //   return `${T} -- ${T}`;
+        // }
         let date = moment((cycle * 1152 * 75 + 1558411200 ) * 1000).format();
         let endDate = moment((cycle * 1152 * 75 + 1558411119 + 60 * 60 * 24) * 1000).format();
         return  `${date} -- ${endDate}`;
