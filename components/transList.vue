@@ -124,7 +124,7 @@
           titles = titles.slice(0, 1).concat(this.$t("addedTitle")).concat(titles.slice(1));
         }
         if (this.blockHash) {
-          titles.splice(5, 1);
+          titles.splice(6, 1);
         }
         return titles;
       },
