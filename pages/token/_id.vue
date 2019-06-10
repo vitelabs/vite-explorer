@@ -55,6 +55,7 @@
 
   import token from "~/services/token.js";
   import general from "~/services/general.js";
+  import { handleBigNum } from "../../utils/util.js";
 
 
   export default {
@@ -111,7 +112,7 @@
         return {
           symbol: this.tokenDetail.symbol,
           accountNum: `${this.tokenDetail.accountNum}`,
-          totalSupply: this.tokenDetail.totalSupply,
+          totalSupply: handleBigNum(this.tokenDetail.totalSupply, this.tokenDetail.decimals),
           transactionNumber: this.totalNumber,
           owner: this.tokenDetail.owner,
           decimals: this.tokenDetail.decimals || "0",
