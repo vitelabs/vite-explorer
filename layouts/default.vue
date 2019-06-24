@@ -161,10 +161,10 @@
           childs: [{
             key: "inner",
             name: "SBPList"
-          }, {
-            key: "outer",
-            name: "voteReward"
-          }, {
+          }, 
+            // key: "outer",
+            // name: "voteReward"
+          {
             key: "outer",
             name: "registerSBP"
           }]
