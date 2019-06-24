@@ -17,13 +17,18 @@
             <div class="tab-content" 
                  :class="{'is-active': tabParams === 'onroad'}" 
                  @click="clickTab('onroad')">
-                 {{$t('onroad.label')}}
+                 {{ $t('onroad.label') }}
             </div>
             <div class="tab-content" 
                  :class="{'is-active': tabParams === 'block'}" 
                  @click="clickTab('block')"
                  v-if="this.isSBP">
-                 {{$t('SBP.label')}}
+                 {{ $t('SBP.label') }}
+            </div>
+            <div class="tab-content" 
+                 :class="{'is-active': tabParams === 'contract'}" 
+                 @click="clickTab('contract')">
+                 {{ $t('contract.label') }}
             </div>
           </div>
         </template>

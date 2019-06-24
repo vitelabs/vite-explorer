@@ -369,6 +369,9 @@ module.exports = {
     label: "Unreceived Transactions",
     tips: "Last 50 Unreceived Transactions"
   },
+  contract: {
+    label: "合约"
+  },
 
   // pages/block
   block: {

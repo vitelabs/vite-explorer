@@ -365,6 +365,9 @@ module.exports = {
     label: "在途交易列表",
     tips: "最近50笔在途交易金额"
   },
+  contract: {
+    label: "合约"
+  },
 
   // pages/block
   block: {

@@ -20,6 +20,9 @@
         <transaction-list :list="transactionList" :pre-list="preTransactionList"></transaction-list>
       </div>
     </div>
+    <div class="editor-test">
+      <code-editor></code-editor>
+    </div>
     <div>
       <dag :list="dagTransactionList"></dag>
     </div>
@@ -32,6 +35,7 @@
   import TransactionList from "~/components/Home/TransactionList.vue";
   import LineChart from "~/components/Home/LineChart.vue";
   import Dag from "~/components/Dag/dag.vue";
+  import CodeEditor from "~/components/CodeEditor/index.vue";
   // const LineChart = () => require("~/components/Home/LineChart.vue");
 
   import block from "~/services/block.js";
@@ -47,7 +51,8 @@
       LineChart,
       SnapshotList,
       TransactionList,
-      Dag
+      Dag,
+      CodeEditor
     },
     async asyncData() {
       let generalDetail = {};
