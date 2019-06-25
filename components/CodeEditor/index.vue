@@ -5,16 +5,15 @@
 </template>
 <script>
 import ace from "ace-builds";
-import "ace-builds/webpack-resolver"; 
-import "ace-builds/src-noconflict/theme-monokai";
-import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/theme-dawn";
+import "ace-builds/src-noconflict/mode-csharp";
 
 export default {
   data() {
     return {
       aceEditor: null,
-      themePath: "ace/theme/monokai",
-      modePath: "ace/mode/javascript"
+      themePath: "ace/theme/dawn",
+      modePath: "ace/mode/csharp"
     };
   },
   mounted() {

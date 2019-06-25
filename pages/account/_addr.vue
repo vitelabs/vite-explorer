@@ -50,6 +50,9 @@
         :isSBP="this.isSBP"
         :producer-address="this.accountDetail.accountAddress">
       </block-list>
+      <div class="editor-wrapper" v-if="tabParams === 'contract'">
+        <code-editor></code-editor>
+      </div>
     </div>
     <error v-else :error="error"></error>
   </div>
@@ -253,4 +256,7 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+.editor-wrapper {
+  margin-top: 30px;
+}
 </style>
