@@ -1,33 +1,44 @@
 <template>
-  <div class="ace-container">
-    <div class="ace-editor" ref="ace"></div>
+  <div class="code-container">
+    <div class="tab-wrapper">
+      <div class="tab-content" 
+        :class="{'is-active': tabParams === 'read'}" 
+        @click="clickTab('read')">
+        代码
+      </div>
+      <div class="tab-content" 
+        :class="{'is-active': tabParams === 'write'}" 
+        @click="clickTab('write')">
+        上传代码
+      </div>
+    </div>
+    <div class="read-code" v-if="tabParams === 'read'">
+      <ace-card></ace-card>
+      <common-card></common-card>
+    </div>
+    <div class="write-code" v-if="tabParams === 'write'">
+      ???
+    </div>
   </div>
 </template>
 <script>
-import ace from "ace-builds";
-import "ace-builds/src-noconflict/theme-dawn";
-import "ace-builds/src-noconflict/mode-csharp";
+import commonCard from "./commonCard.vue";
 
 export default {
+  components: {
+    commonCard
+  },
   data() {
     return {
-      aceEditor: null,
-      themePath: "ace/theme/dawn",
-      modePath: "ace/mode/csharp"
+      tabParams: "read"
     };
   },
   mounted() {
-    this.aceEditor = ace.edit(this.$refs.ace, {
-      maxLines: 20,
-      minLines: 10,
-      fontSize: 14,
-      theme: this.themePath,
-      mode: this.modePath,
-      tabSize: 4});
-    
   },
   methods: {
-
+    clickTab(str) {
+      this.tabParams = str;
+    },
   }
 };
 </script>
@@ -35,9 +46,7 @@ export default {
 <style lang="scss" rel="stylesheet/scss" scoped>
 @import "assets/css/vars.scss";
 
-.ace-container {
-  position: relative;
-}
+
 </style>
 
 

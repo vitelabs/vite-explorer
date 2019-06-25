@@ -97,3 +97,25 @@ a {
 .button:focus:not(:active), .button.is-focused:not(:active) {
   box-shadow: 0 0 0 0.125em rgba(54,130,222, 0.25);
 }
+
+// pre
+pre {
+  resize: both;
+  overflow: auto;
+  padding: .75rem;
+  border: 1px solid #e7eaf3;
+  background-color: #f8f9fa;
+  border-radius: .25rem;
+  margin-bottom: .5rem;
+  display: block;
+  font-size: 87.5%;
+  color: #1e2022;
+  margin-top: 0;
+}
+
+.wordwrap {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}

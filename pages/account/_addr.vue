@@ -67,6 +67,7 @@
   import node from "~/services/superNode.js";
   import { handleBigNum } from "../../utils/util.js";
   import filterAddress from "~/components/filterAddress.vue";
+  import codeEditor from "~/components/codeEditor/index.vue";
 
   export default {
     head() {
@@ -75,7 +76,7 @@
       };
     },
     components: {
-      detailLayout, filterAddress, error, transList, blockList
+      detailLayout, filterAddress, error, transList, blockList, codeEditor
     },
     validate({ params }) {
       return params.addr;
