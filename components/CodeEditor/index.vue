@@ -4,7 +4,6 @@
   </div>
 </template>
 <script>
-
 import ace from "ace-builds";
 import "ace-builds/webpack-resolver"; 
 import "ace-builds/src-noconflict/theme-monokai";
