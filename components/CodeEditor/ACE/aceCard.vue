@@ -10,6 +10,12 @@ import "ace-builds/src-noconflict/theme-dawn";
 import "ace-builds/src-noconflict/mode-csharp";
 
 export default {
+  props: {
+    readOnly: {
+      type: Boolean,
+      default: false
+    }
+  },
   data() {
     return {
       aceEditor: null,
@@ -25,7 +31,8 @@ export default {
       theme: this.themePath,
       mode: this.modePath,
       tabSize: 4,
-      wrap: "free"});
+      wrap: "free",
+      readOnly: this.readOnly});
   },
   methods: {
 
