@@ -10,7 +10,7 @@
       <div class="card-content">
         <common-card :name="'合约 ABI'" :has-control="true"></common-card>
         <common-card :name="'十六进制合约代码'" :has-control="true"></common-card>
-        <ace-card :name="'合约代码'" :has-control="true"></ace-card>
+        <ace-card :name="'合约代码'" :has-control="true" :read-only="true"></ace-card>
       </div>
     </div>
   </div>

@@ -1,7 +1,26 @@
 <template>
   <div class="ace-container">
     <code-title :left-name="name" :has-control="hasControl"></code-title>
-    <pre class="code-editor" ref="ace"></pre>
+    <pre class="code-editor" ref="ace">
+      /**
+ *Submitted for verification at Etherscan.io on 2018-12-12
+*/
+
+pragma solidity ^0.4.23;
+
+contract Bitmonds {
+    struct BitmondsOwner {
+        string bitmond;
+        string owner;
+    }
+
+    BitmondsOwner[] internal registry;
+
+    function take(string Bitmond, string Owner) public {
+        registry.push(BitmondsOwner(Bitmond, Owner));
+    }
+
+    </pre>
   </div>
 </template>
 <script>
