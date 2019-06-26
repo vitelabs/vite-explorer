@@ -258,6 +258,5 @@
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 .editor-wrapper {
-  margin-top: 30px;
 }
 </style>

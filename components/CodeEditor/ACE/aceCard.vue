@@ -1,5 +1,6 @@
 <template>
   <div class="ace-container">
+    <code-title :left-name="name" :has-control="hasControl"></code-title>
     <pre class="code-editor" ref="ace"></pre>
   </div>
 </template>
@@ -8,9 +9,21 @@ import ace from "ace-builds";
 // import "ace-builds/webpack-resolver"; 
 import "ace-builds/src-noconflict/theme-dawn";
 import "ace-builds/src-noconflict/mode-csharp";
+import codeTitle from "~/components/codeTitle.vue";
 
 export default {
+  components: {
+    codeTitle
+  },
   props: {
+    name: {
+      type: String,
+      default: ""
+    },
+    hasControl: {
+      type: Boolean,
+      default: false
+    },
     readOnly: {
       type: Boolean,
       default: false
@@ -44,7 +57,8 @@ export default {
 @import "assets/css/vars.scss";
 
 .code-editor {
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 16px;
   position: relative;
   height: 300px;
 }

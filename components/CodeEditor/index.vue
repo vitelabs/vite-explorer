@@ -1,32 +1,23 @@
 <template>
   <div class="code-container">
-    <div class="tab-wrapper">
-      <div class="tab-content" 
-        :class="{'is-active': tabParams === 'read'}" 
-        @click="clickTab('read')">
-        代码
-      </div>
-      <div class="tab-content" 
-        :class="{'is-active': tabParams === 'write'}" 
-        @click="clickTab('write')">
-        上传代码
-      </div>
-    </div>
+    <!-- 查看合约 -->
     <div class="read-code" v-if="tabParams === 'read'">
-      <ace-card></ace-card>
-      <common-card></common-card>
+      <read-contract></read-contract>
     </div>
+    <!-- 上传合约 -->
     <div class="write-code" v-if="tabParams === 'write'">
-      ???
+      <write-contract></write-contract>
     </div>
   </div>
 </template>
 <script>
-import commonCard from "./commonCard.vue";
+import readContract from "./readContract.vue";
+import writeContract from "./writeContract.vue";
 
 export default {
   components: {
-    commonCard
+    readContract,
+    writeContract
   },
   data() {
     return {
@@ -36,16 +27,12 @@ export default {
   mounted() {
   },
   methods: {
-    clickTab(str) {
-      this.tabParams = str;
-    },
   }
 };
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 @import "assets/css/vars.scss";
-
 
 </style>
 

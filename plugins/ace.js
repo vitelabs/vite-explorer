@@ -1,7 +1,7 @@
 
 import Vue from "vue";
 import ace from "ace-builds";
-import aceCard from "../components/CodeEditor/ACE/install";
+import aceCard from "../components/CodeEditor/ace/install";
 
 
 Vue.use(ace);
