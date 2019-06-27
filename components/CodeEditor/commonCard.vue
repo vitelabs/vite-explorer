@@ -1,7 +1,9 @@
 <template>
   <div class="common-code-container">
-    <code-title :left-name="name" :has-control="hasControl"></code-title>
-    <pre class="wordwrap content">
+    <code-title :left-name="name" :has-control="hasControl" @copy="isCopyed"></code-title>
+    <div class="wrapper">
+      <copyOK class="copy-wrapper" :copySuccess="copySuccess"></copyOK>
+      <pre class="wordwrap content">
 DUP4
 MSTORE
 SWAP8
@@ -48,37 +50,18 @@ JUMPDEST
 PUSH1 0x40
 DUP1
 MLOAD
-DUP1
-DUP3
-ADD
-SWAP1
-SWAP2
-MSTORE
-DUP3
-DUP2
-MSTORE
-PUSH1 0x20
-DUP1
-DUP3
-ADD
-DUP4
-SWAP1
-MSTORE
-PUSH1 0x00
-DUP1
-SLOAD
-PUSH1 0x01
-DUP2
-SWAP3
-    </pre>
+      </pre>
+    </div>
   </div>
 </template>
 <script>
 import codeTitle from "~/components/codeTitle.vue";
+import copyOK from "~/components/copyOK";
 
 export default {
   components: {
-    codeTitle
+    codeTitle,
+    copyOK
   },
   props: {
     name: {
@@ -92,20 +75,23 @@ export default {
   },
   data() {
     return {
+      copySuccess: false
     };
   },
   mounted() {
   },
   methods: {
-
+    isCopyed(val) {
+      this.copySuccess = val;
+    }
   }
 };
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
 @import "assets/css/vars.scss";
-.common-code-container {
-  
+.wrapper {
+  position: relative;
 }
 
 .content {

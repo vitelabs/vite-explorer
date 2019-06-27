@@ -1,8 +1,10 @@
 <template>
   <div class="ace-container">
-    <code-title :left-name="name" :has-control="hasControl"></code-title>
-    <pre class="code-editor" ref="ace">
-      /**
+    <code-title :left-name="name" :has-control="hasControl" @copy="isCopyed"></code-title>
+    <div class="wrapper">
+      <copyOK class="copy-wrapper" :copySuccess="copySuccess"></copyOK>
+      <pre class="code-editor" ref="ace">
+/**
  *Submitted for verification at Etherscan.io on 2018-12-12
 */
 
@@ -20,11 +22,14 @@ contract Bitmonds {
         registry.push(BitmondsOwner(Bitmond, Owner));
     }
 
-    </pre>
+      </pre>
+    </div>
+    
   </div>
 </template>
 <script>
 import ace from "ace-builds";
+import copyOK from "~/components/copyOK";
 // import "ace-builds/webpack-resolver"; 
 import "ace-builds/src-noconflict/theme-dawn";
 import "ace-builds/src-noconflict/mode-csharp";
@@ -32,7 +37,8 @@ import codeTitle from "~/components/codeTitle.vue";
 
 export default {
   components: {
-    codeTitle
+    codeTitle,
+    copyOK
   },
   props: {
     name: {
@@ -52,7 +58,8 @@ export default {
     return {
       aceEditor: null,
       themePath: "ace/theme/dawn",
-      modePath: "ace/mode/csharp"
+      modePath: "ace/mode/csharp",
+      copySuccess: false
     };
   },
   mounted() {
@@ -67,7 +74,9 @@ export default {
       readOnly: this.readOnly});
   },
   methods: {
-
+    isCopyed(val) {
+      this.copySuccess = val;
+    }
   }
 };
 </script>
@@ -80,6 +89,9 @@ export default {
   margin-bottom: 16px;
   position: relative;
   height: 300px;
+}
+.wrapper {
+  position: relative;
 }
 </style>
 
