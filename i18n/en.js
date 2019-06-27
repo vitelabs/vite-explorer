@@ -383,7 +383,12 @@ module.exports = {
     gid: "Gid",
     confirmTime: "Confirm Time",
     quotaRatio: "Quota Ratio",
-    version: "编译器版本"
+    version: "编译器版本",
+
+    params: "合约参数",
+    sourceCode: "源代码",
+    
+    confirm: "确定"
   },
 
   // pages/block
