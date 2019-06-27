@@ -7,7 +7,7 @@
       :copy-content="text"></code-title>
     <div class="wrapper">
       <copyOK class="copy-wrapper" :copySuccess="copySuccess"></copyOK>
-      <pre class="code-editor" ref="ace">{{ text }}</pre>
+      <pre class="code-editor" ref="ace"></pre>
     </div>
   </div>
 </template>
@@ -42,8 +42,14 @@ export default {
       default: ""
     }
   },
+  watch: {
+    text(val) {
+      console.log(val);
+    }
+  },
   data() {
     return {
+      // text: "",
       aceEditor: null,
       themePath: "ace/theme/dawn",
       modePath: "ace/mode/csharp",
@@ -64,6 +70,10 @@ export default {
   methods: {
     isCopyed(val) {
       this.copySuccess = val;
+    },
+    getSourceCode() {
+      let text = this.aceEditor.getValue();
+      return text;
     }
   }
 };

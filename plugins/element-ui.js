@@ -18,6 +18,8 @@ import {
   Select,
   Option,
   Input,
+  Form,
+  FormItem,
   Message,
   MessageBox,
   DatePicker,
@@ -47,6 +49,8 @@ Vue.use(Button);
 Vue.use(Select);
 Vue.use(Option);
 Vue.use(Input);
+Vue.use(Form);
+Vue.use(FormItem);
 
 Vue.prototype.$loading = Loading.service;
 Vue.prototype.$message = Message;

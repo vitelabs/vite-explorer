@@ -5,26 +5,29 @@
       <div class="code-verify-text">{{ $t('contract.unverified') }}</div>
     </div>
     <div class="contract-card">
-      <common-input
-        ref="nameInput"
-        :name="$t('contract.name')">
-      </common-input>
-      <common-input
-        ref="commonInput"
-        :name="$t('contract.params')"
-        :is-multiple="true">
-      </common-input>
-      <common-input
-        ref="versionInput"
-        :name="$t('contract.version')">
-      </common-input>
-      <ace-card
-        :name="$t('contract.sourceCode')"
-        :text="contractCode">
-      </ace-card>
-      <div class="submit">
-        <el-button type="primary" size="small" @click="submit" style="width: 220px;">确定</el-button>
-      </div>
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" label-position="top">
+        <el-form-item :label="$t('contract.name')" prop="contractName" class="common-label">
+          <el-input v-model="ruleForm.contractName" size="small"></el-input>
+        </el-form-item>
+        <common-input
+          ref="commonInput"
+          :name="$t('contract.params')"
+          :is-multiple="true">
+        </common-input>
+        <el-form-item :label="$t('contract.version')" prop="version" class="common-label">
+          <el-input v-model="ruleForm.version" size="small"></el-input>
+        </el-form-item>
+        <el-form-item prop="sourceCode">
+          <ace-card
+          :name="$t('contract.sourceCode')"
+          :text="ruleForm.sourceCode"
+          ref="sourceCode">
+          </ace-card>
+        </el-form-item>
+        <el-form-item class="submit">
+          <el-button type="primary" size="small" @click="submit" style="width: 220px;">确定</el-button>
+        </el-form-item>
+      </el-form>
     </div>
   </div>
 </template>
@@ -37,7 +40,22 @@ export default {
   },
   data() {
     return {
-      contractCode: ""
+      ruleForm: {
+        contractName: "",
+        version: "",
+        sourceCode: "啊哈哈哈哈"
+      },
+      rules: {
+        contractName: [
+          { required: true, message: "不能为空", trigger: "blur" },
+        ],
+        version: [
+          { required: true, message: "不能为空", trigger: "blur" }
+        ],
+        sourceCode: [
+          { required: true, message: "不能为空", trigger: "blur" }
+        ]
+      }
     };
   },
   mounted() {
@@ -46,12 +64,13 @@ export default {
     
     getInputs() {
       let inputParams = this.$refs.commonInput.getInputs();
-      let contractName = this.$refs.nameInput.getInputs();
-      let version = this.$refs.versionInput.getInputs();
+      let contractName = this.ruleForm.contractName;
+      let version = this.ruleForm.version;
+      let sourceCode = this.$refs.sourceCode.getSourceCode();
       console.log(inputParams);
-      console.log(contractName.toString());
-      console.log(version.toString());
-      
+      console.log(contractName);
+      console.log(version);
+      console.log(sourceCode);
     },
     submit() {
       this.getInputs();
@@ -60,8 +79,26 @@ export default {
 };
 </script>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
+<style lang="scss" rel="stylesheet/scss">
 @import "assets/css/vars.scss";
+.el-form--label-top .el-form-item__label {
+  padding: 0;
+  line-height: 28px;
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(94,104,117,1);
+}
+.el-form-item__error {
+  position: relative;
+}
+.common-label {
+  font-family:PingFangSC-Semibold;
+  font-weight:600;
+  color:rgba(94,104,117,1);
+  line-height:20px;
+  font-size: 14px;
+  margin-bottom: 9px;
+}
 .el-button--primary {
   background-color: $common-color;
   border-color: $common-color;

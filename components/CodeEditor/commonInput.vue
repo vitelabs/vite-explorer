@@ -8,9 +8,10 @@
       <el-input 
         size="small" 
         class="input-text" 
-        v-model="inputs[index]" 
+        v-model.trim="inputs[index]" 
         v-for="(item, index) in inputs" 
-        :key="index">
+        :key="index"
+        :disabled="disabled">
       </el-input>
     </div>
   </div>
@@ -28,6 +29,10 @@ export default {
       default: ""
     },
     isMultiple: {
+      type: Boolean,
+      default: false
+    },
+    disabled: {
       type: Boolean,
       default: false
     }
