@@ -6,6 +6,7 @@
     </div>
     <div class="contract-card">
       <common-input
+        ref="nameInput"
         :name="$t('contract.name')">
       </common-input>
       <common-input
@@ -14,6 +15,7 @@
         :is-multiple="true">
       </common-input>
       <common-input
+        ref="versionInput"
         :name="$t('contract.version')">
       </common-input>
       <ace-card
@@ -43,8 +45,13 @@ export default {
   methods: {
     
     getInputs() {
-      let inputs = this.$refs.commonInput.getInputs();
-      console.log(inputs);
+      let inputParams = this.$refs.commonInput.getInputs();
+      let contractName = this.$refs.nameInput.getInputs();
+      let version = this.$refs.versionInput.getInputs();
+      console.log(inputParams);
+      console.log(contractName.toString());
+      console.log(version.toString());
+      
     },
     submit() {
       this.getInputs();

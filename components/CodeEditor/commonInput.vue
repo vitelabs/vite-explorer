@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      inputs: [""]
+      inputs: [""],
     };
   },
   mounted() {
