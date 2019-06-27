@@ -20,12 +20,11 @@
         <el-form-item prop="sourceCode">
           <ace-card
           :name="$t('contract.sourceCode')"
-          :text="ruleForm.sourceCode"
           ref="sourceCode">
           </ace-card>
         </el-form-item>
         <el-form-item class="submit">
-          <el-button type="primary" size="small" @click="submit" style="width: 220px;">确定</el-button>
+          <el-button type="primary" size="small" @click="submit('ruleForm')" style="width: 220px;">确定</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -42,17 +41,13 @@ export default {
     return {
       ruleForm: {
         contractName: "",
-        version: "",
-        sourceCode: "啊哈哈哈哈"
+        version: ""
       },
       rules: {
         contractName: [
           { required: true, message: "不能为空", trigger: "blur" },
         ],
         version: [
-          { required: true, message: "不能为空", trigger: "blur" }
-        ],
-        sourceCode: [
           { required: true, message: "不能为空", trigger: "blur" }
         ]
       }
@@ -72,8 +67,16 @@ export default {
       console.log(version);
       console.log(sourceCode);
     },
-    submit() {
-      this.getInputs();
+    submit(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.getInputs();
+          alert("submit!");
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     }
   }
 };
