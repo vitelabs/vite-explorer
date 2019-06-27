@@ -2,7 +2,7 @@
   <div class="write-code">
     <div class="code-verify">
       <img src="~/assets/images/code/unverified.svg"/>
-      <div class="code-verify-text">合约代码未验证</div>
+      <div class="code-verify-text">{{ $t('contract.unverified') }}</div>
     </div>
     <div class="contract-card">
       <ace-card></ace-card>

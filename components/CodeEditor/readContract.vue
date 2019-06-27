@@ -2,15 +2,15 @@
   <div class="read-code">
     <div class="code-verify">
       <img src="~/assets/images/code/verified.svg"/>
-      <div class="code-verify-text">合约代码已验证</div>
+      <div class="code-verify-text">{{ $t('contract.verified') }}</div>
     </div>
     
     <div class="contract-card">
       <key-info :data-list="dataList"></key-info>
       <div class="card-content">
-        <common-card :name="'合约 ABI'" :has-control="true"></common-card>
-        <common-card :name="'十六进制合约代码'" :has-control="true"></common-card>
-        <ace-card :name="'合约代码'" :has-control="true" :read-only="true"></ace-card>
+        <common-card :name="$t('contract.abi')" :has-control="true"></common-card>
+        <common-card :name="$t('contract.hexCode')" :has-control="true"></common-card>
+        <ace-card :name="$t('contract.contractCode')" :has-control="true" :read-only="true"></ace-card>
       </div>
     </div>
   </div>

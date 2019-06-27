@@ -370,7 +370,13 @@ module.exports = {
     tips: "Last 50 Unreceived Transactions"
   },
   contract: {
-    label: "合约"
+    label: "合约",
+    copy: "复制成功",
+    abi: "合约 ABI",
+    hexCode: "十六进制合约代码",
+    contractCode: "合约代码",
+    verified: "合约代码已验证",
+    unverified: "合约代码未验证"
   },
 
   // pages/block

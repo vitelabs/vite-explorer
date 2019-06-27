@@ -1,5 +1,5 @@
 <template>
-    <span class="copy-success" :class="{'show': copySuccess||CopySuccess}">复制成功</span>
+    <span class="copy-success" :class="{'show': copySuccess||CopySuccess}">{{ $t('contract.copy') }}</span>
 </template>
 
 <script>

@@ -3,9 +3,7 @@
     <div class="left">{{ leftName }}</div>
     <div class="right" v-if="hasControl">
       <div class="copy-container">
-        <!-- <el-tooltip class="item" effect="dark" content="Top Left 提示文字" placement="top-start"> -->
-          <img @click="copy" class="copy ml" src="~/assets/images/code/copy.svg"/>
-        <!-- </el-tooltip> -->
+        <img @click="copy" class="copy ml" src="~/assets/images/code/copy.svg"/>
       </div>
       <div class="fullview ml"><img src="~/assets/images/code/large.svg"/></div>
     </div>
@@ -36,7 +34,6 @@ export default {
   },
   data() {
     return {
-      // copySuccess: false
     };
   },
   mounted() {
@@ -45,10 +42,8 @@ export default {
     copy() {
       copy(this.copyContent);
       this.$emit("copy", true);
-      // this.copySuccess = true;
       setTimeout(() => {
         this.$emit("copy", false);
-        // this.copySuccess = false;
       }, 2000);
     },
   }
