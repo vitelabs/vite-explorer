@@ -136,6 +136,7 @@ export default {
   display: -webkit-flex;
   justify-content: center;
   margin-top: 5px;
+  margin-bottom: 0;
 }
 
 </style>
