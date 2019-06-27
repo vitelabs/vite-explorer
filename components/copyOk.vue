@@ -42,7 +42,7 @@ export default {
     color: #fff;
     opacity: 0;
     height: 0;
-    width: 0;
+    width: auto;
     font-family: $font-family-main;
 
     &.show {
