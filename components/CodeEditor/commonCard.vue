@@ -1,56 +1,14 @@
 <template>
   <div class="common-code-container">
-    <code-title :left-name="name" :has-control="hasControl" @copy="isCopyed"></code-title>
+    <code-title 
+      :left-name="name" 
+      :has-control="hasControl" 
+      @copy="isCopyed"
+      :copy-content="text">
+    </code-title>
     <div class="wrapper">
       <copyOK class="copy-wrapper" :copySuccess="copySuccess"></copyOK>
-      <pre class="wordwrap content">
-DUP4
-MSTORE
-SWAP8
-SWAP11
-SWAP10
-SWAP9
-DUP2
-ADD
-SWAP8
-SWAP2
-SWAP7
-POP
-SWAP2
-DUP3
-ADD
-SWAP5
-POP
-SWAP3
-POP
-DUP3
-SWAP2
-NOT
-AND
-DUP2
-MSTORE
-PUSH1 0x20
-ADD
-SWAP2
-POP
-JUMPDEST
-POP
-SWAP3
-POP
-POP
-POP
-PUSH1 0x40
-MLOAD
-DUP1
-SWAP2
-SUB
-SWAP1
-RETURN
-JUMPDEST
-PUSH1 0x40
-DUP1
-MLOAD
-      </pre>
+      <pre class="wordwrap content">{{ text }}</pre>
     </div>
   </div>
 </template>
@@ -72,6 +30,10 @@ export default {
       type: Boolean,
       default: false
     },
+    text: {
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {

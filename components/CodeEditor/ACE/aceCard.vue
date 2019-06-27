@@ -1,30 +1,14 @@
 <template>
   <div class="ace-container">
-    <code-title :left-name="name" :has-control="hasControl" @copy="isCopyed"></code-title>
+    <code-title 
+      :left-name="name" 
+      :has-control="hasControl" 
+      @copy="isCopyed"
+      :copy-content="text"></code-title>
     <div class="wrapper">
       <copyOK class="copy-wrapper" :copySuccess="copySuccess"></copyOK>
-      <pre class="code-editor" ref="ace">
-/**
- *Submitted for verification at Etherscan.io on 2018-12-12
-*/
-
-pragma solidity ^0.4.23;
-
-contract Bitmonds {
-    struct BitmondsOwner {
-        string bitmond;
-        string owner;
-    }
-
-    BitmondsOwner[] internal registry;
-
-    function take(string Bitmond, string Owner) public {
-        registry.push(BitmondsOwner(Bitmond, Owner));
-    }
-
-      </pre>
+      <pre class="code-editor" ref="ace">{{ text }}</pre>
     </div>
-    
   </div>
 </template>
 <script>
@@ -52,6 +36,10 @@ export default {
     readOnly: {
       type: Boolean,
       default: false
+    },
+    text: {
+      type: String,
+      default: ""
     }
   },
   data() {

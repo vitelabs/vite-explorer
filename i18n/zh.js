@@ -372,7 +372,14 @@ module.exports = {
     hexCode: "十六进制合约代码",
     contractCode: "合约代码",
     verified: "合约代码已验证",
-    unverified: "合约代码未验证"
+    unverified: "合约代码未验证",
+
+    name: "合约名称",
+    seedcount: "Seed Count",
+    gid: "Gid",
+    confirmTime: "Confirm Time",
+    quotaRatio: "Quota Ratio",
+    version: "编译器版本"
   },
 
   // pages/block

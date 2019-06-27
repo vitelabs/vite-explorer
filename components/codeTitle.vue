@@ -25,8 +25,8 @@ export default {
       default: ""
     },
     copyContent: {
-      type: Object,
-      default: () => {}
+      type: String,
+      default: ""
     }
   },
   components: {
