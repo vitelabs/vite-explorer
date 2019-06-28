@@ -2,7 +2,7 @@
   <div class="code-container">
     <!-- 查看合约 -->
     <div class="read-code" v-if="tabParams === 'read'">
-      <read-contract></read-contract>
+      <read-contract :contract-address="contractAddress"></read-contract>
     </div>
     <!-- 上传合约 -->
     <div class="write-code" v-if="tabParams === 'write'">
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      tabParams: "write"
+      tabParams: "read"
     };
   },
   mounted() {

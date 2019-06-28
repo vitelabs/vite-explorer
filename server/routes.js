@@ -262,6 +262,18 @@ export default () => {
     }
   });
 
+  router.get("/api/contract/detail", async (ctx) => {
+    try {
+      let result = await get(explorerApi + "/contract/detail", ctx.query);
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
+
 
   router.get("/api/general/market", async(ctx) => {
     try {
