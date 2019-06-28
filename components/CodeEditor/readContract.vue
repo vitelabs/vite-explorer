@@ -49,10 +49,9 @@ export default {
   },
   data() {
     return {
-      contractData: {},
-      abiText: "DUP4\nMSTORE\nSWAP8\nSWAP11\nPUSH1 0x20",
-      hexCodeText: "DUP111\nMSTORE111\nSWAP8111\nSWAP1111\nPUSH1 0x20111",
-      contractCode: "/**\n*Submitted for verification at Etherscan.io on 2018-12-12\n*/\npragma solidity ^0.4.23;\ncontract Bitmonds {\nstruct BitmondsOwner {\nstring bitmond;\n"
+      contractData: {
+        sourceCode: null
+      }
     };
   },
   computed: {

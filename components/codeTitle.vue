@@ -5,7 +5,9 @@
       <div class="copy-container">
         <img @click="copy" class="copy ml" src="~/assets/images/code/copy.svg"/>
       </div>
-      <div class="fullview ml"><img src="~/assets/images/code/large.svg"/></div>
+      <div class="fullview ml">
+        <img @click="clickFullscreen" src="~/assets/images/code/large.svg"/>
+      </div>
     </div>
     
   </div>
@@ -34,6 +36,7 @@ export default {
   },
   data() {
     return {
+      largeBoolean: false
     };
   },
   mounted() {
@@ -46,6 +49,10 @@ export default {
         this.$emit("copy", false);
       }, 2000);
     },
+    clickFullscreen() {
+      this.largeBoolean = !this.largeBoolean;
+      this.$emit("showAll", this.largeBoolean);
+    }
   }
 };
 </script>

@@ -4,11 +4,12 @@
       :left-name="name" 
       :has-control="hasControl" 
       @copy="isCopyed"
-      :copy-content="text">
+      :copy-content="text"
+      @showAll="isShowed">
     </code-title>
     <div class="wrapper">
       <copyOK class="copy-wrapper" :copySuccess="copySuccess"></copyOK>
-      <pre class="wordwrap content">{{ text }}</pre>
+      <pre class="wordwrap content" :class="{'large': islarged}">{{ text }}</pre>
     </div>
   </div>
 </template>
@@ -37,7 +38,8 @@ export default {
   },
   data() {
     return {
-      copySuccess: false
+      copySuccess: false,
+      islarged: false
     };
   },
   mounted() {
@@ -45,6 +47,9 @@ export default {
   methods: {
     isCopyed(val) {
       this.copySuccess = val;
+    },
+    isShowed(val) {
+      this.islarged = val;
     }
   }
 };
@@ -58,9 +63,12 @@ export default {
 
 .content {
   height: 200px;
-  max-height: 400px;
   margin-top: 10px;
   margin-bottom: 16px;
+}
+.large {
+  height: auto;
+  min-height: 200px;
 }
 </style>
 

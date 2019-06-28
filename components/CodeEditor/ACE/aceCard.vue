@@ -4,7 +4,9 @@
       :left-name="name" 
       :has-control="hasControl" 
       @copy="isCopyed"
-      :copy-content="text"></code-title>
+      :copy-content="text"
+      @showAll="isShowed">
+    </code-title>
     <div class="wrapper">
       <copyOK class="copy-wrapper" :copySuccess="copySuccess"></copyOK>
       <pre class="code-editor" ref="ace"></pre>
@@ -47,12 +49,13 @@ export default {
       aceEditor: null,
       themePath: "ace/theme/dawn",
       modePath: "ace/mode/csharp",
-      copySuccess: false
+      copySuccess: false,
+      maxLines: 25
     };
   },
   mounted() {
     this.aceEditor = ace.edit(this.$refs.ace, {
-      maxLines: 20,
+      maxLines: this.maxLines,
       minLines: 10,
       fontSize: 12,
       theme: this.themePath,
@@ -60,12 +63,26 @@ export default {
       tabSize: 4,
       wrap: "free",
       readOnly: this.readOnly});
-    // set code
-    this.aceEditor.setValue(this.text);
+  },
+  watch: {
+    text(val) {
+      this.aceEditor.setValue(val);
+    }
   },
   methods: {
     isCopyed(val) {
       this.copySuccess = val;
+    },
+    isShowed(val) {
+      if (val) {
+        this.aceEditor.setOptions({
+          maxLines: this.aceEditor.session.getLength()
+        });
+      } else {
+        this.aceEditor.setOptions({
+          maxLines: 25
+        });
+      }
     },
     getSourceCode() {
       let text = this.aceEditor.getValue();
@@ -82,7 +99,13 @@ export default {
   margin-top: 10px;
   margin-bottom: 16px;
   position: relative;
-  height: 300px;
+}
+.ace-content {
+  height: 400px!important;
+}
+.large {
+  height: auto;
+  min-height: 400px;
 }
 .wrapper {
   position: relative;
