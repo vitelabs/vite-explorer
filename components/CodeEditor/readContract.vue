@@ -11,18 +11,18 @@
         <common-card 
           :name="$t('contract.abi')" 
           :has-control="true" 
-          :text="abiText">
+          :text="contractData.abi">
         </common-card>
         <common-card 
           :name="$t('contract.hexCode')" 
           :has-control="true"
-          :text="hexCodeText">
+          :text="contractData.hexCode">
         </common-card>
         <ace-card 
           :name="$t('contract.contractCode')" 
           :has-control="true" 
           :read-only="true"
-          :text="contractCode">
+          :text="contractData.sourceCode">
         </ace-card>
       </div>
     </div>
@@ -49,6 +49,7 @@ export default {
   },
   data() {
     return {
+      contractData: {},
       abiText: "DUP4\nMSTORE\nSWAP8\nSWAP11\nPUSH1 0x20",
       hexCodeText: "DUP111\nMSTORE111\nSWAP8111\nSWAP1111\nPUSH1 0x20111",
       contractCode: "/**\n*Submitted for verification at Etherscan.io on 2018-12-12\n*/\npragma solidity ^0.4.23;\ncontract Bitmonds {\nstruct BitmondsOwner {\nstring bitmond;\n"
@@ -58,22 +59,22 @@ export default {
     dataList() {
       return [{
         name: this.$t("contract.name"),
-        value: "0x5856977880460633c6"
+        value: this.contractData.contractName
       }, {
         name: this.$t("contract.seedcount"),
-        value: "0x5856977880460633c6"
+        value: this.contractData.seedCount
       }, {
         name: this.$t("contract.gid"),
-        value: "0x5856977880460633c6"
+        value: this.contractData.gid
       }, {
         name: this.$t("contract.confirmTime"),
-        value: "0x5856977880460633c6"
+        value: this.contractData.confirmTime
       }, {
         name: this.$t("contract.quotaRatio"),
-        value: "0x5856977880460633c6"
+        value: this.contractData.quotaRatio
       }, {
         name: this.$t("contract.version"),
-        value: "0x5856977880460633c6"
+        value: this.contractData.evmVersion
       }];
     }
   },
@@ -85,6 +86,7 @@ export default {
         accountAddress: this.contractAddress
       }).then(data=> {
         console.log(data);
+        this.contractData = data;
       }).catch(err=> {
         console.warn(err);
       });
