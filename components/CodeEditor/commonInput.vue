@@ -49,7 +49,10 @@ export default {
       this.inputs.push("");
     },
     getInputs() {
-      return this.inputs;
+      let inputs = this.inputs.filter(item=> {
+        return !!item;
+      });
+      return inputs;
     }
   }
 };
