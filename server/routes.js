@@ -249,6 +249,20 @@ export default () => {
     }
   });
 
+  router.post("/api/contract/upload", async (ctx) => {
+    try {
+      console.log(ctx.path + ":" + JSON.stringify(ctx.request.body));
+      let result = await post(explorerApi + "/contract/upload", ctx.request.body);
+      ctx.body = result.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err.code);
+    }
+  });
+
+
   router.get("/api/general/market", async(ctx) => {
     try {
       let result = await get("https://api.coinmarketcap.com/v2/ticker/2937/");

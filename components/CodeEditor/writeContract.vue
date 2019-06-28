@@ -32,6 +32,7 @@
 </template>
 <script>
 import commonInput from "./commonInput.vue";
+import contract from "~/services/contract.js";
 
 export default {
   components: {
@@ -66,12 +67,23 @@ export default {
       console.log(inputParams);
       console.log(version);
       console.log(sourceCode);
+      return {
+        contractName,
+        inputParams,
+        version,
+        sourceCode
+      };
     },
     submit(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.getInputs();
-          alert("submit!");
+          let inputs = this.getInputs();
+          contract.uploadContract({
+            ...inputs
+          }).then(data=> {
+            console.log("上传成功");
+            console.log(data);
+          });
         } else {
           console.log("error submit!!");
           return false;
