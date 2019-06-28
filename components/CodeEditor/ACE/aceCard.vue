@@ -42,14 +42,8 @@ export default {
       default: ""
     }
   },
-  watch: {
-    text(val) {
-      console.log(val);
-    }
-  },
   data() {
     return {
-      // text: "",
       aceEditor: null,
       themePath: "ace/theme/dawn",
       modePath: "ace/mode/csharp",
@@ -66,6 +60,8 @@ export default {
       tabSize: 4,
       wrap: "free",
       readOnly: this.readOnly});
+    // set code
+    this.aceEditor.setValue(this.text);
   },
   methods: {
     isCopyed(val) {

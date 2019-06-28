@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return {
-      tabParams: "write"
+      tabParams: "read"
     };
   },
   mounted() {

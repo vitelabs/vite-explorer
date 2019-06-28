@@ -62,8 +62,8 @@ export default {
       let contractName = this.ruleForm.contractName;
       let version = this.ruleForm.version;
       let sourceCode = this.$refs.sourceCode.getSourceCode();
-      console.log(inputParams);
       console.log(contractName);
+      console.log(inputParams);
       console.log(version);
       console.log(sourceCode);
     },
