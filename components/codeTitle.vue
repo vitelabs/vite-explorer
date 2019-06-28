@@ -6,7 +6,7 @@
         <img @click="copy" class="copy ml" src="~/assets/images/code/copy.svg"/>
       </div>
       <div class="fullview ml">
-        <img @click="clickFullscreen" src="~/assets/images/code/large.svg"/>
+        <img @click="clickFullscreen" :src="largeBoolean ? require('~/assets/images/code/small.svg') : require('~/assets/images/code/large.svg')"/>
       </div>
     </div>
     
