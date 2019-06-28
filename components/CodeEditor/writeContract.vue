@@ -35,6 +35,12 @@ import commonInput from "./commonInput.vue";
 import contract from "~/services/contract.js";
 
 export default {
+  props: {
+    contractAddress: {
+      type: String,
+      default: ""
+    }
+  },
   components: {
     commonInput
   },
@@ -57,17 +63,13 @@ export default {
   mounted() {
   },
   methods: {
-    
     getInputs() {
       let inputParams = this.$refs.commonInput.getInputs();
       let contractName = this.ruleForm.contractName;
       let version = this.ruleForm.version;
       let sourceCode = this.$refs.sourceCode.getSourceCode();
-      console.log(contractName);
-      console.log(inputParams);
-      console.log(version);
-      console.log(sourceCode);
       return {
+        contractAddress: this.contractAddress,
         contractName,
         inputParams,
         version,

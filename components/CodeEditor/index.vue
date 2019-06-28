@@ -6,7 +6,7 @@
     </div>
     <!-- 上传合约 -->
     <div class="write-code" v-if="tabParams === 'write'">
-      <write-contract></write-contract>
+      <write-contract :contract-address="contractAddress"></write-contract>
     </div>
   </div>
 </template>
@@ -18,6 +18,12 @@ export default {
   components: {
     readContract,
     writeContract
+  },
+  props: {
+    contractAddress: {
+      type: String,
+      default: ""
+    }
   },
   data() {
     return {

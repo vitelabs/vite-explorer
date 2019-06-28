@@ -51,7 +51,9 @@
         :producer-address="this.accountDetail.accountAddress">
       </block-list>
       <div class="editor-wrapper" v-if="tabParams === 'contract'">
-        <code-editor></code-editor>
+        <code-editor 
+          :contract-address="accountDetail.accountAddress">
+        </code-editor>
       </div>
     </div>
     <error v-else :error="error"></error>
