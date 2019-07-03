@@ -157,7 +157,7 @@ module.exports = {
   }, {
     prop: "blockType",
     name: "交易类型",
-    width: 72
+    width: 90
   }, {
     prop: "status",
     name: "状态",
@@ -384,7 +384,9 @@ module.exports = {
     params: "合约参数",
     sourceCode: "源代码",
     
-    confirm: "确定"
+    confirm: "确定",
+    
+    noEmpty: "不能为空"
   },
 
   // pages/block

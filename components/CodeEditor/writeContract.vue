@@ -52,10 +52,10 @@ export default {
       },
       rules: {
         contractName: [
-          { required: true, message: "不能为空", trigger: "blur" },
+          { required: true, message: this.$t("contract.noEmpty"), trigger: "blur" },
         ],
         version: [
-          { required: true, message: "不能为空", trigger: "blur" }
+          { required: true, message: this.$t("contract.noEmpty"), trigger: "blur" }
         ]
       }
     };
