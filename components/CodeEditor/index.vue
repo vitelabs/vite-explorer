@@ -9,7 +9,7 @@
     </div>
     <!-- 上传合约 -->
     <div class="write-code" v-if="tabParams === 'write'">
-      <write-contract :contract-address="contractAddress"></write-contract>
+      <write-contract :contract-address="contractAddress" @upload="uploadContract"></write-contract>
     </div>
   </div>
 </template>
@@ -45,7 +45,6 @@ export default {
       contract.getContractDetail({
         accountAddress: this.contractAddress
       }).then(data=> {
-        console.log(data);
         if (!data) {
           this.tabParams = "write";
         } else {
@@ -54,6 +53,17 @@ export default {
         }
       }).catch(err=> {
         console.warn(err);
+      });
+    },
+    uploadContract(inputs) {
+      contract.uploadContract({
+        ...inputs
+      }).then(data=> {
+        this.$message.info(this.$t("contract.verify.uploadSuccess"));
+        this.fetchContractInfo();
+        console.log(data);
+      }).catch(err=> {
+        this.$message.error(err.msg || this.$t("contract.verify.fail"));
       });
     }
   }

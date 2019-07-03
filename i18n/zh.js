@@ -385,11 +385,15 @@ module.exports = {
     sourceCode: "源代码",
     
     confirm: "确定",
-    
-    noEmpty: "不能为空",
 
     commonContract: "普通合约",
-    builtInContract: "内置合约"
+    builtInContract: "内置合约",
+
+    verify: {
+      noEmpty: "不能为空",
+      uploadSuccess: "上传成功",
+      fail: "合约代码验证失败"
+    }
   },
 
   // pages/block

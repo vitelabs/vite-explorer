@@ -32,7 +32,6 @@
 </template>
 <script>
 import commonInput from "./commonInput.vue";
-import contract from "~/services/contract.js";
 
 export default {
   props: {
@@ -52,10 +51,10 @@ export default {
       },
       rules: {
         contractName: [
-          { required: true, message: this.$t("contract.noEmpty"), trigger: "blur" },
+          { required: true, message: this.$t("contract.verify.noEmpty"), trigger: "blur" },
         ],
         version: [
-          { required: true, message: this.$t("contract.noEmpty"), trigger: "blur" }
+          { required: true, message: this.$t("contract.verify.noEmpty"), trigger: "blur" }
         ]
       }
     };
@@ -80,12 +79,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           let inputs = this.getInputs();
-          contract.uploadContract({
-            ...inputs
-          }).then(data=> {
-            console.log("上传成功");
-            console.log(data);
-          });
+          this.$emit("upload", inputs);
         } else {
           console.log("error submit!!");
           return false;

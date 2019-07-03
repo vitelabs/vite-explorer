@@ -31,7 +31,6 @@
 <script>
 import commonCard from "./commonCard.vue";
 import keyInfo from "./keyInfo.vue";
-// import contract from "~/services/contract.js";
 
 export default {
   props: {
@@ -78,16 +77,6 @@ export default {
   mounted() {
   },
   methods: {
-    // fetchContractInfo() {
-    //   contract.getContractDetail({
-    //     accountAddress: this.contractAddress
-    //   }).then(data=> {
-    //     console.log(data);
-    //     this.contractData = data;
-    //   }).catch(err=> {
-    //     console.warn(err);
-    //   });
-    // }
   }
 };
 </script>
