@@ -370,33 +370,33 @@ module.exports = {
     tips: "Last 50 Unreceived Transactions"
   },
   contract: {
-    label: "合约",
-    copy: "复制成功",
-    abi: "合约 ABI",
-    hexCode: "十六进制合约代码",
-    contractCode: "合约代码",
-    verified: "合约代码已验证",
-    unverified: "合约代码未验证",
+    label: "Contract",
+    copy: "Successfully Copied",
+    abi: "Contract ABI",
+    hexCode: "Hex Contract Code",
+    contractCode: "Contract Source Code",
+    verified: "Contract Source Code Verified",
+    unverified: "Contract Source Code Unverified",
 
-    name: "合约名称",
+    name: "Contract Name",
     seedcount: "Seed Count",
     gid: "Gid",
     confirmTime: "Confirm Time",
     quotaRatio: "Quota Ratio",
-    version: "编译器版本",
+    version: "Compiler Version",
 
-    params: "合约参数",
-    sourceCode: "源代码",
+    params: "Contract Parameters",
+    sourceCode: "Source Code",
     
-    confirm: "确定",
+    confirm: "Confirm",
 
-    commonContract: "普通合约",
-    builtInContract: "内置合约",
+    commonContract: "Common Contract",
+    builtInContract: "Built-in Contract",
 
     verify: {
-      noEmpty: "不能为空",
-      uploadSuccess: "上传成功",
-      fail: "合约代码验证失败"
+      noEmpty: "Contract source code is required",
+      uploadSuccess: "Upload Success",
+      fail: "Contract Source Code Verification Failed"
     }
   },
 
