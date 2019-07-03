@@ -249,7 +249,7 @@ module.exports = {
   error: {
     reload: "Click to reload",
     home: "Back to Home",
-    exception: "Error Exception Occurs",
+    exception: "Sorry! We encountered an unexpected error",
   },
 
   // pages/SBPDetail
