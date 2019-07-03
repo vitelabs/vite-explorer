@@ -73,10 +73,10 @@ module.exports = {
 
   // Version attached description
   logo: {
-    v: "Version 2.0.0",
+    v: "Version ",
     current: "Current Version",
     content1: "Vite's block explorer is a website for searching comprehensive information about Vite. Now, it supports searching by transactions, snapshot blocks, tokens, SBPs, accounts and presenting related information such as voting status and node details; it also provides statistics information, transactions filter and sorting.",
-    content2: "Stats page is newly added in Version 2.0.0, which displays condition of Vite net and nodes.",
+    content2: "Stats page is newly added in Version {version}, which displays condition of Vite net and nodes.",
     govite: {
       current: "go-vite Version",
       v: "2.0.0"

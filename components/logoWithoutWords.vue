@@ -3,16 +3,18 @@
         placement="bottom"
         trigger="hover">
         <div class="demo-content">
-            <div class="version">{{ $t('logo.v') }}</div>
+            <div class="version">{{ $t('logo.v') + version }}</div>
             <div class="top-content">{{ $t('logo.content1') }}</div>
-            <div>{{ $t('logo.content2') }}</div>
+            <i18n path="logo.content2" tag="div" class="title">
+                <span place="version">{{ version }}</span>
+            </i18n>
             <div class="current-version">
               <span>{{ $t('logo.current') }}</span>
-              <span>{{ $t('logo.v') }}</span>
+              <span>{{ $t('logo.v') + version }}</span>
             </div>
             <div class="go-vite">
               <span><a href="https://github.com/vitelabs/go-vite" target="_blank">{{ $t('logo.govite.current') }}</a></span>
-              <span>{{ $t('logo.govite.v') }}</span>
+              <span>{{ version }}</span>
             </div>
         </div>
         <nuxt-link :to="localePath('index')" slot="reference">
@@ -38,6 +40,32 @@
         </nuxt-link>
     </el-popover>
 </template>
+<script>
+import general from "~/services/general.js";
+
+export default {
+  data() {
+    return {
+      version: ""
+    };
+  },
+  created() {
+    this.getGeneralDetail();
+  },
+  methods: {
+    getGeneralDetail() {
+      general.getGeneralDetail()
+        .then(data=> {
+          this.version = data.version;
+        }).catch(err=> {
+          console.log(err);
+        });
+    }
+        
+  }
+};
+</script>
+
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";

@@ -69,10 +69,10 @@ module.exports = {
 
   // Version attached description
   logo: {
-    v: "版本2.0.0",
+    v: "版本 ",
     current: "当前版本",
     content1: "Vite区块浏览器是查询Vite综合信息的网站，目前支持交易、快照块、代币、SBP、账户的查询，投票情况、节点详情及相关信息展示;支持统计信息展示，交易的筛选、排序等功能。",
-    content2: "2.0.0新增STATS页面，支持查看Vite网络、节点状况。",
+    content2: "{version}新增STATS页面，支持查看Vite网络、节点状况。",
     govite: {
       current: "go-vite 版本",
       v: "2.0.0"
