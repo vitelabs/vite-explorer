@@ -390,7 +390,10 @@ module.exports = {
     
     confirm: "确定",
 
-    noEmpty: "不能为空"
+    noEmpty: "不能为空",
+
+    commonContract: "普通合约",
+    builtInContract: "内置合约"
   },
 
   // pages/block

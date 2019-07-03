@@ -27,7 +27,8 @@
             </div>
             <div class="tab-content" 
                  :class="{'is-active': tabParams === 'contract'}" 
-                 @click="clickTab('contract')">
+                 @click="clickTab('contract')"
+                 v-if="accountDetail.type === 1">
                  {{ $t('contract.label') }}
             </div>
           </div>
@@ -88,6 +89,9 @@
         let accountDetail = await account.getDetail({
           accountAddress: ctx.params.addr
         });
+        // contract test 
+        accountDetail.type = 1;
+
         let tokenList = accountDetail.tokenList ? [{token: {symbol: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {symbol: "ALL", id: null}}];
 
         let superNodeDetail = await node.getDetail({
@@ -145,6 +149,7 @@
         return [{
           key: "address",
           sbpType: this.superNodeDetail.sbpType,
+          type: this.accountDetail.type,
           iconList: this.iconListMap(this.superNodeDetail.sbpType),
           name: this.$t("account.accHash"),
           describe: this.accountDetail.accountAddress

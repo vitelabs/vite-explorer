@@ -7,9 +7,10 @@
       <span class="name">{{item.name}}<span v-if="item.name">：</span></span>
       <a v-if="item.link && !item.list" class="describe-link" :href="item.link" target="_blank">{{item.describe || '--'}}</a>
       <span class="value" v-if="!item.link && !item.list">
-        <div v-if="item.key === 'address' && item.sbpType" class="address">
+        <div v-if="item.key === 'address'" class="address">
+          <div v-if="item.type === 1" class="contract-tag">{{ $t('contract.commonContract') }}</div>
           {{ item.describe || '--' }}
-          <span v-for="(icon, index) in item.iconList" :key="index">
+          <span v-for="(icon, index) in item.iconList" v-if="item.sbpType" :key="index">
             <a :href="icon.link" target="_blank">
               <el-tooltip class="item" effect="dark" :content="$t(`accountAddrMap.${icon.key}`)" placement="top">
                   <img :src="icon.icon"/>
@@ -104,6 +105,20 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
 
 @import "assets/css/vars.scss";
+  .contract-tag {
+    height:18px;
+    background:rgba(242,255,250,1);
+    border-radius:2px;
+    border:1px solid rgba(0,217,42,1);
+    font-size:12px;
+    font-family:PingFangSC-Semibold;
+    font-weight:600;
+    color:rgba(0,217,42,1);
+    line-height:16px;
+    padding: 1px 4px;
+    box-sizing: border-box;
+    margin-right: 6px;
+  }
   
   .common-detail {
     width: 100%;
