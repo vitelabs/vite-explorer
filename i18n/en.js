@@ -347,7 +347,7 @@ module.exports = {
     tNum: "Transactions",
     allToken: "Total Value",
     filterInput: "Filtered By",
-    quota: "TPS Quota",
+    quota: "Quota",
     blockPercent: "Percentage",
     blockAward: "Rewards",
     balanceOnroad: "Unreceived"

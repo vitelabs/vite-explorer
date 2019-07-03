@@ -31,27 +31,25 @@
 <script>
 import commonCard from "./commonCard.vue";
 import keyInfo from "./keyInfo.vue";
-import contract from "~/services/contract.js";
+// import contract from "~/services/contract.js";
 
 export default {
   props: {
     contractAddress: {
       type: String,
       default: ""
+    },
+    contractData: {
+      type: Object,
+      default: () => {}
     }
   },
   components: {
     commonCard,
     keyInfo
   },
-  created() {
-    this.fetchContractInfo();
-  },
   data() {
     return {
-      contractData: {
-        sourceCode: null
-      }
     };
   },
   computed: {
@@ -80,16 +78,16 @@ export default {
   mounted() {
   },
   methods: {
-    fetchContractInfo() {
-      contract.getContractDetail({
-        accountAddress: this.contractAddress
-      }).then(data=> {
-        console.log(data);
-        this.contractData = data;
-      }).catch(err=> {
-        console.warn(err);
-      });
-    }
+    // fetchContractInfo() {
+    //   contract.getContractDetail({
+    //     accountAddress: this.contractAddress
+    //   }).then(data=> {
+    //     console.log(data);
+    //     this.contractData = data;
+    //   }).catch(err=> {
+    //     console.warn(err);
+    //   });
+    // }
   }
 };
 </script>

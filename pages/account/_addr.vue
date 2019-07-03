@@ -171,6 +171,9 @@
           }, {
             name: this.$t("account.bAmount"),
             describe: "--"
+          }, {
+            name: this.$t("account.quato"),
+            describe: "--"
           }];
         }
         let SBP = this.isSBP  ? [
@@ -185,13 +188,12 @@
         // }
         ] : [];
         return SBP.concat([
-        // {
-        //   name: this.$t("account.quota"),
-        //   describe: this.superNodeDetail.quota
-        // },
           {
             name: this.$t("account.tNum"),
             describe: this.totalNumber
+          }, {
+            name: this.$t("account.quota"),
+            describe: this.accountDetail.quota // contarct test
           }]).concat(tokenDetail.token && tokenDetail.token.id ? [{
           name: this.$t("account.bAmount"),
           describe: handleBigNum(tokenDetail.balance, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"

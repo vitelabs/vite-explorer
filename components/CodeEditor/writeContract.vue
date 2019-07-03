@@ -4,7 +4,7 @@
       <img src="~/assets/images/code/unverified.svg"/>
       <div class="code-verify-text">{{ $t('contract.unverified') }}</div>
     </div>
-    <div class="contract-card">
+    <div class="write-contract-card">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" label-position="top">
         <el-form-item :label="$t('contract.name')" prop="contractName" class="common-label">
           <el-input v-model="ruleForm.contractName" size="small"></el-input>
@@ -138,7 +138,7 @@ export default {
   }
 }
 
-.contract-card {
+.write-contract-card {
   background:rgba(255,255,255,1);
   box-shadow:0px 6px 36px 0px rgba(0,62,100,0.04);
   border-radius:4px;

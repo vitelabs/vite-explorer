@@ -19,6 +19,7 @@ import copyOK from "~/components/copyOK";
 // import "ace-builds/webpack-resolver"; 
 import "ace-builds/src-noconflict/theme-dawn";
 import "ace-builds/src-noconflict/mode-csharp";
+import beautify from "ace-builds/src-noconflict/ext-beautify";
 import codeTitle from "~/components/codeTitle.vue";
 
 export default {
@@ -60,12 +61,15 @@ export default {
       fontSize: 12,
       theme: this.themePath,
       mode: this.modePath,
+      ext: this.extPath,
       tabSize: 4,
       wrap: "free",
       readOnly: this.readOnly});
+    this.aceEditor.setValue(this.text);
   },
   watch: {
     text(val) {
+      val && beautify.beautify(this.aceEditor.session);
       this.aceEditor.setValue(val);
     }
   },
@@ -86,6 +90,7 @@ export default {
     },
     getSourceCode() {
       let text = this.aceEditor.getValue();
+      beautify.beautify(this.aceEditor.session);
       return text;
     }
   }
