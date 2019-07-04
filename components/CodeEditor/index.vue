@@ -17,6 +17,7 @@
 import readContract from "./readContract.vue";
 import writeContract from "./writeContract.vue";
 import contract from "~/services/contract.js";
+import { strToHex, hexToStr } from "~/utils/encode.js";
 
 export default {
   components: {
@@ -50,12 +51,14 @@ export default {
         } else {
           this.tabParams = "read";
           this.contractData = data;
+          this.contractData.sourceCode = hexToStr(data.sourceCode);
         }
       }).catch(err=> {
         console.warn(err);
       });
     },
     uploadContract(inputs) {
+      inputs.sourceCode = strToHex(inputs.sourceCode);
       contract.uploadContract({
         ...inputs
       }).then(data=> {
