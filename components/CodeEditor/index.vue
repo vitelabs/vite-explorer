@@ -45,8 +45,8 @@ export default {
     fetchContractInfo() {
       contract.getContractDetail({
         accountAddress: this.contractAddress
-      }).then(data=> {
-        if (!data) {
+      }).then((data)=> {
+        if (!Object.keys(data).length) {
           this.tabParams = "write";
         } else {
           this.tabParams = "read";

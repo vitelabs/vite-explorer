@@ -65,12 +65,12 @@ export default {
       tabSize: 4,
       wrap: "free",
       readOnly: this.readOnly});
-    this.aceEditor.setValue(this.text);
+    this.aceEditor.setValue(this.text, -1);
   },
   watch: {
     text(val) {
       val && beautify.beautify(this.aceEditor.session);
-      this.aceEditor.setValue(val);
+      this.aceEditor.setValue(val, -1);
     }
   },
   methods: {
