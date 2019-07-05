@@ -389,7 +389,7 @@ module.exports = {
     params: "Contract Parameters",
     sourceCode: "Source Code",
     
-    confirm: "Confirm",
+    confirm: "Submit",
 
     commonContract: "Common Contract",
     builtInContract: "Built-in Contract",

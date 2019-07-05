@@ -24,7 +24,7 @@
           </ace-card>
         </el-form-item>
         <el-form-item class="submit">
-          <el-button type="primary" size="small" @click="submit('ruleForm')" style="width: 220px;">确定</el-button>
+          <el-button type="primary" size="small" @click="submit('ruleForm')" style="width: 220px;">{{ $t("contract.confirm") }}</el-button>
         </el-form-item>
       </el-form>
     </div>
