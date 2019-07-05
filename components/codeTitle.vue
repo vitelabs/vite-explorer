@@ -14,8 +14,6 @@
 </template>
 <script>
 import copy from "~/utils/copy";
-import copyOK from "~/components/copyOK";
-
 export default {
   props: {
     hasControl: {
@@ -32,7 +30,6 @@ export default {
     }
   },
   components: {
-    copyOK
   },
   data() {
     return {

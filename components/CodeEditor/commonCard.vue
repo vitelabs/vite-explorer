@@ -8,19 +8,19 @@
       @showAll="isShowed">
     </code-title>
     <div class="wrapper">
-      <copyOK class="copy-wrapper" :copySuccess="copySuccess"></copyOK>
+      <copy-ok class="copy-wrapper" :copySuccess="copySuccess"></copy-ok>
       <pre class="wordwrap content" :class="{'large': islarged}">{{ text }}</pre>
     </div>
   </div>
 </template>
 <script>
 import codeTitle from "~/components/codeTitle.vue";
-import copyOK from "~/components/copyOK";
+import copyOk from "~/components/copyOk";
 
 export default {
   components: {
     codeTitle,
-    copyOK
+    copyOk
   },
   props: {
     name: {

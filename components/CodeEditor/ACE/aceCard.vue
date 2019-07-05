@@ -8,14 +8,14 @@
       @showAll="isShowed">
     </code-title>
     <div class="wrapper">
-      <copyOK class="copy-wrapper" :copySuccess="copySuccess"></copyOK>
+      <copy-ok class="copy-wrapper" :copySuccess="copySuccess"></copy-ok>
       <pre class="code-editor" ref="ace"></pre>
     </div>
   </div>
 </template>
 <script>
 import ace from "ace-builds";
-import copyOK from "~/components/copyOK";
+import copyOk from "~/components/copyOk";
 // import "ace-builds/webpack-resolver"; 
 import "ace-builds/src-noconflict/theme-dawn";
 import "ace-builds/src-noconflict/mode-csharp";
@@ -25,7 +25,7 @@ import codeTitle from "~/components/codeTitle.vue";
 export default {
   components: {
     codeTitle,
-    copyOK
+    copyOk
   },
   props: {
     name: {
