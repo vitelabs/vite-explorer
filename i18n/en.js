@@ -395,7 +395,7 @@ module.exports = {
     builtInContract: "Built-in Contract",
 
     verify: {
-      noEmpty: "Contract source code is required",
+      noEmpty: "Required",
       uploadSuccess: "Upload Success",
       fail: "Contract Source Code Verification Failed"
     }
