@@ -70,7 +70,7 @@
   import node from "~/services/superNode.js";
   import { handleBigNum } from "../../utils/util.js";
   import filterAddress from "~/components/filterAddress.vue";
-  import codeEditor from "~/components/codeEditor/index.vue";
+  import codeEditor from "~/components/CodeEditor/index.vue";
 
   export default {
     head() {
