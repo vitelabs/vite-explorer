@@ -344,6 +344,7 @@ module.exports = {
     allToken: "所有代币估值",
     filterInput: "筛选",
     quota: "配额",
+    owner: "合约拥有者",
     blockPercent: "出块率",
     blockAward: "出块奖励",
     balanceOnroad: "在途金额"

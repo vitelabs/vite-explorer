@@ -47,9 +47,9 @@
     .name {
       font-size: 14px;
       display: inline-block;
-      width: 200px;
+      width: 115px;
       color: #3F3F3F;
-      line-height: 32px;
+      line-height: 20px;
     }
     .input-with-select {
       width: 280px;

@@ -71,6 +71,8 @@
   import { handleBigNum } from "../../utils/util.js";
   import filterAddress from "~/components/filterAddress.vue";
   import codeEditor from "~/components/CodeEditor/index.vue";
+  import contract from "~/services/contract.js";
+  
 
   export default {
     head() {
@@ -89,8 +91,6 @@
         let accountDetail = await account.getDetail({
           accountAddress: ctx.params.addr
         });
-        // contract test 
-        // accountDetail.type = 1;
 
         let tokenList = accountDetail.tokenList ? [{token: {symbol: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {symbol: "ALL", id: null}}];
 
@@ -125,11 +125,13 @@
         activeTokenIndex: 0,
         filterAccObj: null,
         totalNumber: 0,
-        tabParams: "tx"
+        tabParams: "tx",
+        ownerAddress: null
       };
     },
     created() {
       this.accountDetail.accountAddress = this.paths[this.paths.length - 1];
+      this.fetchContractInfo();
     },
     computed: {
       subTitle() {
@@ -171,40 +173,43 @@
           }, {
             name: this.$t("account.bAmount"),
             describe: "--"
-          }, {
-            name: this.$t("account.quato"),
-            describe: "--"
           }];
         }
-        let SBP = this.isSBP  ? [
-        // {
-        //   name: this.$t("account.blockPercent"),
-        //   describe: this.superNodeDetail.totalSNBPercent
-        // }, 
-        // {
-        //   name: this.$t("account.blockAward"),
-        //   describe: this.superNodeDetail.totalSNBAward,
-        //   innerLink: true
-        // }
+        let isContract = this.ownerAddress ? [
+          {
+            name: this.$t("account.owner"),
+            describe: this.ownerAddress
+          }
         ] : [];
-        return SBP.concat([
+        return [
           {
             name: this.$t("account.tNum"),
             describe: this.totalNumber
           }, {
             name: this.$t("account.quota"),
-            describe: this.accountDetail.quota // contarct test
-          }]).concat(tokenDetail.token && tokenDetail.token.id ? [{
+            describe: this.accountDetail.utps ? this.accountDetail.utps + " UTPS" : "0 UTPS"
+          }].concat(isContract).concat(tokenDetail.token && tokenDetail.token.id ? [{
           name: this.$t("account.bAmount"),
           describe: handleBigNum(tokenDetail.balance, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"
         }, {
           name: this.$t("account.balanceOnroad"),
           describe: tokenDetail.balanceOnroad,
           innerLink: "onroad"
-        }] : []);
+        }]: []);
       }
     },
     methods: {
+      fetchContractInfo() {
+        contract.getContractDetail({
+          accountAddress: this.accountDetail.accountAddress
+        }).then((data)=> {
+          if (Object.keys(data).length) {
+            this.ownerAddress = data.ownerAddress;
+          }
+        }).catch(err=> {
+          console.warn(err);
+        });
+      },
       changeTab(tabName) {
         this.tabParams = tabName;
       },

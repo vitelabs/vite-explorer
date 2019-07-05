@@ -161,7 +161,7 @@
       display: inline-block;
       vertical-align: top;
       box-sizing: border-box;
-      width: 200px;
+      width: 115px;
     }
     .name {
       color: #3F3F3F;
@@ -232,7 +232,7 @@
     color: #8D9BAE;
     .name {
       display: inline-block;
-      width: 200px;
+      width: 115px;
       color: #3F3F3F;
     }
     .describe-link {

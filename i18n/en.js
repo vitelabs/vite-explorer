@@ -350,6 +350,7 @@ module.exports = {
     quota: "Quota",
     blockPercent: "Percentage",
     blockAward: "Rewards",
+    owner: "Owner",
     balanceOnroad: "Unreceived"
   },
   accountAddrMap: {
