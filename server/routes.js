@@ -318,7 +318,7 @@ export default () => {
           avgTime: generalDetail.data.avgTime || "0",
           txTotalTAmount: formatTx(generalDetail.data.txTotalTAmount) || "0",
           txMonAmount: formatTx(generalDetail.data.txMonAmount) || "0",
-          version: generalDetail.data.version || "2.0.0"
+          version: generalDetail.data.gviteVersion || "2.0.0"
         }
       };
     } catch(err) {

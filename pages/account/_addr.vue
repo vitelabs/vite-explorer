@@ -90,7 +90,7 @@
           accountAddress: ctx.params.addr
         });
         // contract test 
-        accountDetail.type = 1;
+        // accountDetail.type = 1;
 
         let tokenList = accountDetail.tokenList ? [{token: {symbol: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {symbol: "ALL", id: null}}];
 
