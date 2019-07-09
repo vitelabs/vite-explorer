@@ -27,6 +27,11 @@
 </template>
 
 <script>
+  // import {
+  //   Component,
+  //   Vue
+  // } from "nuxt-property-decorator";
+ 
   import Profile from "~/components/Home/Profile.vue";
   import SnapshotList from "~/components/Home/SnapshotList.vue";
   import TransactionList from "~/components/Home/TransactionList.vue";
@@ -40,6 +45,16 @@
   
 
   import { mySetInterval, myClearInterval} from "~/utils/myInterval.js";
+
+  // @Component({
+  //   components: {
+  //     Profile,
+  //     LineChart,
+  //     SnapshotList,
+  //     TransactionList,
+  //     Dag
+  //   }
+  // })
 
   export default {
     components: {
