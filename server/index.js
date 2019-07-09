@@ -8,7 +8,7 @@ async function start() {
   const host = process.env.HOST || "0.0.0.0";
   const port = process.env.PORT || config.port;
 
-  let nuxtConfig = require("../nuxt.config.js");
+  let nuxtConfig = require("../nuxt.config.ts");
   nuxtConfig.dev = (app.env === "development");
   const nuxt = new Nuxt(nuxtConfig);
 
