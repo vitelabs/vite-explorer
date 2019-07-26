@@ -92,7 +92,7 @@
           accountAddress: ctx.params.addr
         });
 
-        let tokenList = accountDetail.tokenList ? [{token: {symbol: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {symbol: "ALL", id: null}}];
+        let tokenList = accountDetail.tokenList ? [{token: {indexName: "ALL", id: null}}].concat(accountDetail.tokenList) : [{token: {indexName: "ALL", id: null}}];
 
         let superNodeDetail = await node.getDetail({
           producerAddress: ctx.params.addr
@@ -144,7 +144,7 @@
         let tokenNameList = [];
         this.tokenList && this.tokenList.forEach((tokenDetail) => {
           if (tokenDetail.token) {
-            let name = tokenDetail.token.symbol;
+            let name = tokenDetail.token.indexName;
             tokenNameList.push(name);
           }
         });

@@ -194,8 +194,7 @@
         }
         display: inline-block;
         box-sizing: border-box;
-        width: 42px;
-        height: 22px;
+        padding: 0 10px;
         text-align: center;
         line-height: 22px;
         background: white;

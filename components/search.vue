@@ -192,6 +192,7 @@
   .img-wrapper {
     position: absolute;
     left: 264px;
+    top: 3px;
     &:hover {
       cursor: pointer;
     }

@@ -95,7 +95,7 @@
           }
           list.push(Object.assign({
             icon: `<img src="${token.icon || ""}" width="25" height="25"/>`,
-            token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.symbol})</a><div style="white-space:normal;">${token.introduction || ""}</div>`,
+            token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.indexName})</a><div style="white-space:normal;">${token.introduction || ""}</div>`,
           }, externalTokenInfo));
         });
         return list;

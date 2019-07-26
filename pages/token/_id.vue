@@ -106,7 +106,7 @@
         return this.tokenDetail.name;
       },
       tokenSymbolName() {
-        return this.tokenDetail.symbol;
+        return this.tokenDetail.indexName;
       },
       showTokenDetail() {
         return {
