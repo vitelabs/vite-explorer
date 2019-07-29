@@ -20,7 +20,7 @@
   import search from "~/services/search.js";
   import general from "~/services/general.js";
 
-  const pageSize = 20;
+  const pageSize = 100;
 
   export default {
     head() {
