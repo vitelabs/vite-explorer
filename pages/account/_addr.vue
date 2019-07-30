@@ -187,7 +187,7 @@
             describe: this.totalNumber
           }, {
             name: this.$t("account.quota"),
-            describe: this.accountDetail.utps ? this.accountDetail.utps + " UTPS" : "0 UTPS"
+            describe: this.accountDetail.utps ? this.accountDetail.utps + " UT" : "0 UT"
           }].concat(isContract).concat(tokenDetail.token && tokenDetail.token.id ? [{
           name: this.$t("account.bAmount"),
           describe: handleBigNum(tokenDetail.balance, tokenDetail.token && tokenDetail.token.decimals || 0, true) || "--"
