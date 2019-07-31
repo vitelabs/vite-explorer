@@ -1,12 +1,13 @@
 <template>
   <div class="token-list-container">
     <div v-if="!error">
-      <page-table class="token-table" :pagination="false" :showOrder="true"
+      <page-table class="token-table" :pagination="true" :showOrder="true"
         :loading="loading"
         :title="tokenTableTitle"
         :tableTitles="tokenTitles"
         :tableData="tokenData"
-        :total="totalNumber">
+        :total="totalNumber"
+        :currentChange="pageChange">
       </page-table>
     </div>
     <error v-else :error="error"></error>
@@ -20,7 +21,7 @@
   import search from "~/services/search.js";
   import general from "~/services/general.js";
 
-  const pageSize = 100;
+  const pageSize = 20;
 
   export default {
     head() {
@@ -99,6 +100,16 @@
           }, externalTokenInfo));
         });
         return list;
+      }
+    },
+    methods: {
+      async pageChange(currentInx = 1) {
+        let { tokenList, totalNumber} = await token.getList({
+          pageIndex: currentInx, 
+          pageSize
+        });
+        this.tokenList = tokenList;
+        this.totalNumber = +totalNumber;
       }
     }
   };
