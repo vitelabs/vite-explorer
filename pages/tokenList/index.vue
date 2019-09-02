@@ -78,7 +78,7 @@
     },
     computed: {
       tokenTableTitle() {
-        return this.$t("tokenList.total")+`${this.tokenList && this.tokenList.length || 0}`;
+        return this.$t("tokenList.total")+`${this.totalNumber || 0}`;
       },
       tokenData() {
         let list = [];
