@@ -173,7 +173,7 @@
           mining: {
             SBPList: "/SBPList",
             voteReward: "https://reward.vite.net/#/",
-            registerSBP: "https://wallet.vite.net/SBP"
+            registerSBP: "https://x.vite.net/walletSBP"
           }
         },
         defaultActive: "index",
