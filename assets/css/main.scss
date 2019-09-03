@@ -119,3 +119,8 @@ pre {
   white-space: -o-pre-wrap;
   word-wrap: break-word;
 }
+
+.is-flex {
+  display: flex;
+  display: -webkit-flex;
+}

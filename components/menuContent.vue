@@ -27,7 +27,7 @@
         </nuxt-link>
       </div>
       <div class="menu-item vite-link">
-        <a href="https://vite.net" target="_blank">{{ $t("nav.vitenet") }}</a>
+        <a href="https://vite.org" target="_blank">{{ $t("nav.vitenet") }}</a>
       </div>
     </div>
   </div>

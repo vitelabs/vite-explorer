@@ -64,7 +64,8 @@ module.exports = {
 
   // Basic components part: components/
   footer: {
-    official: "官网"
+    official: "官网",
+    vitex: "交易所"
   },
 
   // Version attached description
@@ -94,7 +95,7 @@ module.exports = {
         registerSBP: "注册SBP"
       }
     },
-    vitenet: "使用Vite其他产品"
+    vitenet: "Vite 官网"
   },
   pageTable: {
     pre: "上一页",

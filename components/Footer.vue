@@ -1,8 +1,9 @@
 <template>
   <footer class="footer">
     <div class="footer-content">
-      <div class="offical-website">
+      <div class="offical-website is-flex">
         <div class="website-link"><a href="https://www.vite.org/" target="_blank">Vite {{ $t('footer.official') }}</a></div>
+        <div class="website-link ml"><a href="https://x.vite.net/" target="_blank">ViteX {{ $t('footer.vitex') }}</a></div>
       </div>
       <div class="outer-link">
         <a class="img-wrapper" href="https://github.com/vitelabs" target="_blank">
@@ -58,7 +59,7 @@
     width: 100%;
     background: #fff;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
     color: #3F3F3F;
     .footer-content {
       width: 1160px;
@@ -74,6 +75,9 @@
         color: #8D9BAE;
         letter-spacing: 0;
       }
+    }
+    .ml {
+      margin-left: 30px;
     }
     
     img {
@@ -110,6 +114,11 @@
         position: absolute;
         left: 15px;
         bottom: 18.5px;
+        flex-direction: column;
+      }
+      .ml {
+        margin-left: 0;
+        text-align: left;
       }
       .outer-link {
         width: 100%;

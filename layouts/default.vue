@@ -39,7 +39,7 @@
             </div>
           </div>
           <lang-select class="lang-select"></lang-select>
-          <div class="vite-net"><a href="https://vite.net" target="_blank">{{ $t("nav.vitenet") }}</a></div>
+          <div class="vite-net"><a href="https://vite.org" target="_blank">{{ $t("nav.vitenet") }}</a></div>
           <search class="search" :visible="searchOpen" @search-open="closeSearch"></search>
           <div :class="phoneSearchClass" @click="openSearch">
             <div class="p-search">
