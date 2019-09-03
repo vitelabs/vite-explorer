@@ -389,7 +389,7 @@ module.exports = {
     
     confirm: "确定",
 
-    commonContract: "普通合约",
+    commonContract: "合约",
     builtInContract: "内置合约",
 
     verify: {

@@ -393,7 +393,7 @@ module.exports = {
     
     confirm: "Submit",
 
-    commonContract: "Common Contract",
+    commonContract: "Contract",
     builtInContract: "Built-in Contract",
 
     verify: {

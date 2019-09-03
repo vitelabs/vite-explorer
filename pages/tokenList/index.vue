@@ -90,7 +90,11 @@
           if (token.symbol === "VITE") {
             externalTokenInfo = {
               price: `$${this.generalDetail.cirPrice}`,
-              upDown: percent == 0 ? `<span>${percent}%</span>` : percent > 0 ? `<span style="color: #00D764; font-weight:600;">+ ${percent}%</span>` : `<span style="color: #E5494D; font-weight:600;">- ${percent}%</span>`,
+              upDown: percent == 0 
+                ? `<span>${percent}%</span>` 
+                : percent > 0 
+                  ? `<span style="color: #00D764; font-weight:600;">+ ${percent}% <img src="${require("~/assets/images/up.svg")}"/></span>` 
+                  : `<span style="color: #E5494D; font-weight:600;">- ${percent}% <img src="${require("~/assets/images/down.svg")}"/>/></span>`,
               transPrice: `$${this.generalDetail.volume_24h}`,
               famc: `$${this.generalDetail.ffmCap}`
             };
