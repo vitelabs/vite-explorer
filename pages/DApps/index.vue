@@ -58,12 +58,24 @@
       };
     },
     computed: {
+      lang() {
+        return this.$i18n.locale !== "en" ? `/${this.$i18n.locale}` : "";
+      },
       dappTableTitle() {
         return this.$t("Dapps.total")+`${this.totalNumber || 0}`;
       },
       dappData() {
         let list = [];
-        list = this.DappList;
+
+        this.DappList && this.DappList.forEach(dapp => {
+          list.push({
+            ...dapp,
+            address: `<a href="${this.lang}/account/${dapp.address}" target="_blank" title="${dapp.address}">${dapp.shortAddress}</a>`,
+            codeStatus: dapp.codeStatus ? 
+            `<div class="is-flex"><div class="img-wrapper"><img src="${require("~/assets/images/code/verified.svg")}" class="veri-img"/></div>已审计</div>` 
+            : `<div class="is-flex"><div class="img-wrapper"><img src="${require("~/assets/images/code/unverified.svg")}" class="veri-img"/></div>未审计</div>` ,
+          });
+        });
         return list;
       }
     },
@@ -80,8 +92,19 @@
   };
 </script>
 
-<style lang="scss" rel="stylesheet/scss" scoped>
-.introduction {
-   word-wrap: break-word; 
+<style lang="scss" rel="stylesheet/scss">
+.dapp-list-container {
+  .img-wrapper {
+    display: flex;
+    display: -webkit-flex;
+    align-items: center;
+    .veri-img {
+      width: 16px;
+      height: 16px;
+      margin-right: 4px;
+    }
+  }
+  
 }
+
 </style>

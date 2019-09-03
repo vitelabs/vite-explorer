@@ -656,7 +656,7 @@ module.exports = {
   }, {
     prop: "desc",
     name: "描述",
-    width: 450
+    width: 300
   }, {
     prop: "address",
     name: "地址",

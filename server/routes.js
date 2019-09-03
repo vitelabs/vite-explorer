@@ -376,20 +376,31 @@ export default () => {
     try {
       console.log("/dapp/list:"+ JSON.stringify(ctx.request.body));
       // let result = await post(explorerApi + "/dapp/list", ctx.request.body);
-      ctx.body = {
+      let data = {
         code: 0,
         data: {
           totalNumber: 21,
           DappList: [{
             name: 'aaa',
             desc: 'assssssssss',
-            address: 'vite_aaaaa',
+            address: 'vite_ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a',
             txNumber: 23,
             codeStatus: true,
             date: '2019-10-1'
+          }, {
+            name: 'bbbb',
+            desc: 'ashdias',
+            address: 'vite_ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a',
+            txNumber: 24,
+            codeStatus: false,
+            date: '2019-10-1'
           }]
         }
-      } || {
+      };
+      data.data.DappList.forEach(item=> {
+        item.shortAddress = toShort(item.address);
+      });
+      ctx.body = data || {
         code: 5000,
         msg: "Server Error"
       };
