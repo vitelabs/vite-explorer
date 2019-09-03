@@ -86,6 +86,7 @@ module.exports = {
     blockList: "快照块列表",
     tokenList: "Token列表",
     SBPList: "SBP列表",
+    DApps: "DApps",
     FullNode: "STATS",
     mining: {
       name: "挖矿",
@@ -644,6 +645,32 @@ module.exports = {
     }],
 
   },
+
+  // pages/DApps
+  Dapps: {
+    total: "DApps:",
+    title: "DApps"
+  },
+  DappTitles: [{
+    prop: "name",
+    name: "名称"
+  }, {
+    prop: "desc",
+    name: "描述",
+    width: 450
+  }, {
+    prop: "address",
+    name: "地址",
+  }, {
+    prop: "txNumber",
+    name: "交易次数",
+  }, {
+    prop: "codeStatus",
+    name: "代码审计状态",
+  }, {
+    prop: "date",
+    name: "创建日期"
+  }],
 
   // pages/fullNode
   fullNode: {

@@ -112,7 +112,7 @@
     margin: auto;
     padding-left: 20px;
     .vite-link {
-      font-size: 14px;
+      font-size: 12px;
     }
     .menu-item {
       box-sizing: border-box;
@@ -122,7 +122,7 @@
       .nav-item {
         display: inline-block;
         width: 100%;
-        font-size: 14px;
+        font-size: 12px;
         color: #3F3F3F;
         cursor: pointer;
       }

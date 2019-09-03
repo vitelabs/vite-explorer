@@ -154,7 +154,7 @@
     data() {
       return {
         noticelist: [],
-        navs: ["index", "FullNode", "blockList", "tokenList"],
+        navs: ["index", "FullNode", "blockList", "tokenList", "DApps"],
         externalNavs: [],
         doubleNavs: [{
           key: "mining",
@@ -258,7 +258,7 @@
     .vite-net {
       float: right;
       padding: 0 20px;
-      font-size: 14px;
+      font-size: 12px;
       border-right: 1px solid #E5EDF3;
       a {
         color: $common-color;
@@ -370,6 +370,7 @@
         }
         .el-menu-item {
           padding: 0px;
+          font-size: 12px;
         }
         .el-menu-item:hover {
           background-color: #ffffff !important;

@@ -372,6 +372,33 @@ export default () => {
     }
   });
 
+  router.post("/api/dapp/list", async (ctx) => {
+    try {
+      console.log("/dapp/list:"+ JSON.stringify(ctx.request.body));
+      // let result = await post(explorerApi + "/dapp/list", ctx.request.body);
+      ctx.body = {
+        code: 0,
+        data: {
+          totalNumber: 21,
+          DappList: [{
+            name: 'aaa',
+            desc: 'assssssssss',
+            address: 'vite_aaaaa',
+            txNumber: 23,
+            codeStatus: true,
+            date: '2019-10-1'
+          }]
+        }
+      } || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log(err);
+      // console.log(err.code);
+    }
+  });
+
   router.post("/api/node/list", async (ctx) => {
     try {
       console.log("/supernode/list:"+ JSON.stringify(ctx.request.body));

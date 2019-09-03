@@ -168,7 +168,7 @@
   position: relative;
   .search-input {
     width: 300px;
-    height: 64px;
+    height: 62px;
     box-sizing: border-box;
     overflow: hidden; 
     text-overflow: ellipsis;
@@ -180,8 +180,8 @@
     border-bottom: 0; 
     padding: 0 50px 0;
     margin: 0;
-    font-size: 14px;
-    padding-left: 23px; 
+    font-size: 12px;
+    padding-left: 20px; 
     &:focus {
       border-left: 1px solid $common-color;
       border-right: 1px solid $common-color;

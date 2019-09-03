@@ -86,16 +86,17 @@
           let lang = "";
           this.$i18n.locale !== "en" ? lang = `/${this.$i18n.locale}` : lang = "";
           let externalTokenInfo = {};
+          let percent = this.generalDetail.percent_change_24h;
           if (token.symbol === "VITE") {
             externalTokenInfo = {
               price: `$${this.generalDetail.cirPrice}`,
-              upDown: `${this.generalDetail.percent_change_24h}%`,
+              upDown: percent == 0 ? `<span>${percent}%</span>` : percent > 0 ? `<span style="color: #00D764; font-weight:600;">+ ${percent}%</span>` : `<span style="color: #E5494D; font-weight:600;">- ${percent}%</span>`,
               transPrice: `$${this.generalDetail.volume_24h}`,
               famc: `$${this.generalDetail.ffmCap}`
             };
           }
           list.push(Object.assign({
-            icon: `<img src="${token.icon || ""}" width="25" height="25"/>`,
+            icon: `<img src="${token.icon || ''}" style="width:48px; height:48px; border-radius:24px; border:1px solid rgba(229,237,243,1);"/>`,
             token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.indexName})</a><div style="white-space:normal;">${token.introduction || ""}</div>`,
           }, externalTokenInfo));
         });

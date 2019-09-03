@@ -31,7 +31,7 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss">
   .el-dropdown-link {
-    font-size: 14px;
+    font-size: 12px;
     letter-spacing: 0;
     padding: 22px 20px;
   }

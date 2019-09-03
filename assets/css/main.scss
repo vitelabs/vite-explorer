@@ -28,6 +28,7 @@ a {
   background-color: white!important;
 }
 .el-menu--horizontal>.el-submenu .el-submenu__title{
+  font-size: 12px;
   border-bottom: none!important;
   height: 64px!important;
   line-height: 64px!important;
@@ -36,6 +37,7 @@ a {
   }
 }
 .el-menu--horizontal .el-menu .el-menu-item, .el-menu--horizontal .el-menu .el-submenu__title{
+  font-size: 12px;
   &:hover {
     background: none!important;
   }
