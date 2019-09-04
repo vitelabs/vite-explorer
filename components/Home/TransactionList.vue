@@ -28,11 +28,15 @@
         <div class="transaction-item-down">
           <div class="down">
             <div class="label">{{ $t('transactionList.from') }}：</div>
-            <nuxt-link :to="`${locales}/account/${item.from}`" target="_blank" class="label-width" :title="`${item.from}`"> {{ item.shortFrom }}</nuxt-link>
+            <div class="label-width"><nuxt-link :to="`${locales}/account/${item.from}`" target="_blank"  class="min-width" :title="`${item.from}`"> {{ item.shortFrom }}</nuxt-link>
+              <span class="contract-tag">{{ $t('contract.commonContract') }}</span>
+            </div>
           </div>
           <div class="down">
             <div class="label">{{ $t('transactionList.to') }}：</div>
-            <nuxt-link :to="`${locales}/account/${item.to}`" target="_blank" class="label-width" :title="`${item.to}`"> {{ item.shortTo }}</nuxt-link>
+            <div class="label-width"><nuxt-link :to="`${locales}/account/${item.to}`" target="_blank"  class="min-width" :title="`${item.to}`"> {{ item.shortTo }}</nuxt-link>
+              <span class="contract-tag">{{ $t('contract.commonContract') }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -185,6 +189,10 @@
         line-height: 16px;
         text-overflow:ellipsis;
         white-space: nowrap;
+        .min-width {
+          display: inline-block;
+          min-width: 120px;
+        }
       }
     }
   }

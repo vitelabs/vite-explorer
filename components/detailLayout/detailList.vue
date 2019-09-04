@@ -105,20 +105,6 @@
 <style rel="stylesheet/scss" lang="scss" scoped>
 
 @import "assets/css/vars.scss";
-  .contract-tag {
-    height:18px;
-    background:rgba(242,255,250,1);
-    border-radius:2px;
-    border:1px solid rgba(0,217,42,1);
-    font-size:11px;
-    font-family:PingFangSC-Semibold;
-    font-weight:600;
-    color:rgba(0,217,42,1);
-    line-height:16px;
-    padding: 1px 4px;
-    box-sizing: border-box;
-    margin-left: 4px;
-  }
   
   .common-detail {
     width: 100%;
