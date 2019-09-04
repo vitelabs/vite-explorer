@@ -145,21 +145,21 @@ module.exports = {
   }, {
     prop: "amount",
     name: "数量",
-    width: "130"
+    width: "80"
   }, {
     prop: "from",
     name: "发出方",
-    width: "160"
+    width: "200"
   }, {
     prop: "to",
     name: "接收方",
-    width: "160"
-  }, {
-    prop: "type",
+    width: "200"
   }, {
     prop: "blockType",
     name: "交易类型",
-    width: 90
+    width: 70
+  }, {
+    prop: "type",
   }, {
     prop: "status",
     name: "状态",

@@ -29,13 +29,13 @@
           <div class="down">
             <div class="label">{{ $t('transactionList.from') }}：</div>
             <div class="label-width"><nuxt-link :to="`${locales}/account/${item.from}`" target="_blank"  class="min-width" :title="`${item.from}`"> {{ item.shortFrom }}</nuxt-link>
-              <span class="contract-tag">{{ $t('contract.commonContract') }}</span>
+              <span class="contract-tag" v-if="item.fromAddressType === 1">{{ $t('contract.commonContract') }}</span>
             </div>
           </div>
           <div class="down">
             <div class="label">{{ $t('transactionList.to') }}：</div>
             <div class="label-width"><nuxt-link :to="`${locales}/account/${item.to}`" target="_blank"  class="min-width" :title="`${item.to}`"> {{ item.shortTo }}</nuxt-link>
-              <span class="contract-tag">{{ $t('contract.commonContract') }}</span>
+              <span class="contract-tag" v-if="item.toAddressType === 1">{{ $t('contract.commonContract') }}</span>
             </div>
           </div>
         </div>

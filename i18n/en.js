@@ -148,22 +148,22 @@ module.exports = {
   }, {
     prop: "amount",
     name: "Quantity",
-    width: "130"
+    width: "80"
   }, {
     prop: "from",
     name: "From",
-    width: "160"
+    width: "216"
   }, {
     prop: "to",
     name: "To",
-    width: "160"
-  }, {
-    prop: "type",
-    width: "81"
+    width: "216"
   }, {
     prop: "blockType",
     name: "Type",
     width: 72
+  }, {
+    prop: "type",
+    width: "81"
   }, {
     prop: "status",
     name: "Status",
