@@ -148,7 +148,7 @@ module.exports = {
   }, {
     prop: "amount",
     name: "Quantity",
-    width: "80"
+    width: "100"
   }, {
     prop: "from",
     name: "From",

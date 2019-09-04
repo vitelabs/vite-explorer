@@ -157,7 +157,7 @@ module.exports = {
   }, {
     prop: "blockType",
     name: "交易类型",
-    width: 70
+    width: 90
   }, {
     prop: "type",
   }, {
