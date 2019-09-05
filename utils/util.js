@@ -58,3 +58,9 @@ export function formatTx(num) {
   }
   return num;
 }
+
+let timeout = null
+export function debounce(fn, wait) {
+  if (timeout !== null) clearTimeout(timeout)
+  timeout = setTimeout(fn, wait);
+}

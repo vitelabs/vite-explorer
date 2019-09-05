@@ -8,5 +8,8 @@ export default {
   },
   judgeTokenName({ str }) {
     return get(`${PREFIX}/tokenNameOrSymbol`, { str });
+  },
+  getSimilar({wd, searchType = 0}) {
+    return get(`${PREFIX}/similarList`, { wd, searchType });
   }
 };

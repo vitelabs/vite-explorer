@@ -6,8 +6,8 @@
       </span>
     </div>
     <div class="search-container">
-      <input class="search-input" :placeholder="$t('search.placeholder')" v-model="searchStr" @keyup.enter="search" />
-      <span class="img-wrapper" @click="search">
+      <input class="search-input" :placeholder="$t('search.placeholder')"  @keyup.enter="similarSearch" @input.prevent="debounceInput($event)"/>
+      <span class="img-wrapper" @click="similarSearch">
         <img src="~assets/images/search.svg"/>
       </span>
     </div>
@@ -19,7 +19,19 @@
   import search from "~/services/search";
   import account from "~/services/account";
   import token from "~/services/token";
+  import { debounce } from "~/utils/util.js";
+import { clearTimeout, setTimeout } from 'timers';
   
+  // search type
+
+  // 0 ALL
+  // 1 ACCOUNT_ADDRESS   
+  // 2 TX_HASH 
+  // 3 SNAPSHOT_HASH
+  // 4 TOKEN_ID 
+  // 5 TOKEN_NAME
+  // 6 TOKEN_SYMBOL
+  // 7 SUPERNODE_NAME  
 
   export default {
     props: {
@@ -31,7 +43,9 @@
     data() {
       return {
         open: this.visible,
-        searchStr: ""
+        searchStr: "",
+        valueTimeout: null,
+        resultList: []
       };
     },
     watch: {
@@ -49,10 +63,58 @@
           "invisible": !this.open
         };
       },
+      langStrPath() {
+        return this.$i18n.locale === "zh" ? `/${this.$i18n.locale}` : '';
+      }
     },
     methods: {
+      debounceInput(e) {
+        this.clear();
+        this.valueTimeout = setTimeout(async () => {
+          let str = e.target.value.trim();
+          if (!str) {
+            this.$message(this.$t("utils.noEmpty"));
+            return;
+          }
+          this.searchStr = str;
+          await this.getSimilarList();
+        }, 500);
+      },
+      async getSimilarList() {
+        this.resultList = await search.getSimilar({
+          wd: this.searchStr
+        });
+      },
+      clear() {
+        this.valueTimeout && clearTimeout(this.valueTimeout);
+        this.valueTimeout = null;
+      },
       close() {
         this.$emit("search-open", false);
+      },
+      async similarSearch() {
+        await this.getSimilarList();
+        console.log('data', this.resultList);
+        this.jumpSwitch(this.resultList[0].searchTypeInt, this.resultList[0].fullWord)
+      },
+      jumpSwitch(type, params) {
+        switch(type) {
+          case 1: this.jumpTo('account', params); break;
+          case 2: this.jumpTo('transaction', params); break;
+          case 3: this.jumpTo('block', params); break;
+          case 4: this.jumpTo('token', params); break;
+          case 5: this.showDroplist(); break;
+          case 6: this.showDroplist(); break;
+          case 7: this.showDroplist(); break;
+          default: this.jumpTo('searchError'); break;
+        }
+      },
+      showDroplist() {
+        console.log('showDroplist');
+      },
+      jumpTo(pageStr, params) {
+        let path = params ? `${this.langStrPath}/${pageStr}/${params}` : `${this.langStrPath}/${pageStr}`
+        this.$router.push({ path });
       },
       search() {
         let str = this.searchStr.trim();

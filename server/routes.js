@@ -643,5 +643,17 @@ export default () => {
     }
   });
 
+  router.get("/api/search/similarList", async (ctx) => {
+    try {
+      let similarResult = await get(explorerApi + "/search/similar", ctx.query);
+      return ctx.body = similarResult.data || {
+        code: 5000,
+        msg: "Server Error"
+      };
+    } catch(err) {
+      console.log("err", err);
+    }
+  });
+
   return router.middleware();
 };
