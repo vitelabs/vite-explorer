@@ -6,10 +6,13 @@
       </span>
     </div>
     <div class="search-container">
-      <input class="search-input" :placeholder="$t('search.placeholder')"  @keyup.enter="similarSearch" @input.prevent="debounceInput($event)"/>
-      <span class="img-wrapper" @click="similarSearch">
+      <input class="search-input" :placeholder="$t('search.placeholder')"  @keyup.enter="ensureSearch" @input="debounceInput($event)"/>
+      <span class="img-wrapper" @click="ensureSearch">
         <img src="~assets/images/search.svg"/>
       </span>
+    </div>
+    <div class="drop-list">
+
     </div>
   </div>
   
@@ -73,6 +76,7 @@ import { clearTimeout, setTimeout } from 'timers';
         this.valueTimeout = setTimeout(async () => {
           let str = e.target.value.trim();
           if (!str) {
+            this.searchStr = str;
             this.$message(this.$t("utils.noEmpty"));
             return;
           }
@@ -92,10 +96,22 @@ import { clearTimeout, setTimeout } from 'timers';
       close() {
         this.$emit("search-open", false);
       },
-      async similarSearch() {
+      async ensureSearch() {
+        if (!this.searchStr) {
+          this.$message(this.$t("utils.noEmpty"));
+          return;
+        }
         await this.getSimilarList();
-        console.log('data', this.resultList);
-        this.jumpSwitch(this.resultList[0].searchTypeInt, this.resultList[0].fullWord)
+        if (this.resultList && this.resultList.length === 1 ) {
+          let searchTypeInt = this.resultList[0].searchTypeInt;
+          let fullWord = this.resultList[0].fullWord;
+          let wd = this.resultList[0].wd;
+          if (wd === fullWord) {
+            this.jumpSwitch(searchTypeInt, fullWord)
+          }
+        } else {
+          this.jumpTo('searchError');
+        }
       },
       jumpSwitch(type, params) {
         switch(type) {
@@ -103,10 +119,7 @@ import { clearTimeout, setTimeout } from 'timers';
           case 2: this.jumpTo('transaction', params); break;
           case 3: this.jumpTo('block', params); break;
           case 4: this.jumpTo('token', params); break;
-          case 5: this.showDroplist(); break;
-          case 6: this.showDroplist(); break;
-          case 7: this.showDroplist(); break;
-          default: this.jumpTo('searchError'); break;
+          case 7: this.jumpTo('SBPDetail', params); break;
         }
       },
       showDroplist() {
