@@ -118,7 +118,9 @@ import { clearTimeout, setTimeout } from 'timers';
           case 1: this.jumpTo('account', params); break;
           case 2: this.jumpTo('transaction', params); break;
           case 3: this.jumpTo('block', params); break;
-          case 4: this.jumpTo('token', params); break;
+          case 4: 
+          case 5: 
+          case 6: this.jumpTo('token', params); 
           case 7: this.jumpTo('SBPDetail', params); break;
         }
       },
