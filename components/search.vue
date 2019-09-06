@@ -6,13 +6,38 @@
       </span>
     </div>
     <div class="search-container">
-      <input class="search-input" :placeholder="$t('search.placeholder')"  @keyup.enter="ensureSearch" @input="debounceInput($event)"/>
+      <input class="search-input" :placeholder="$t('search.placeholder')"  @keyup.enter="ensureSearch" v-model="searchStr"/>
       <span class="img-wrapper" @click="ensureSearch">
         <img src="~assets/images/search.svg"/>
       </span>
     </div>
-    <div class="drop-list">
-
+    <div class="drop-list-content" v-if="tokenList.concat(superNodeList) && tokenList.concat(superNodeList).length">
+      <div v-if="tokenList.length">
+        <div class="drop-list-title">Tokens</div>
+        <div v-for="(item, index) in tokenList" :key="index">
+          <nuxt-link :to="`${langStrPath}/token/${item.fullWord}`">
+            <div class="is-flex item-wrapper">
+              <div class="icon-wrapper">{{ item.icon }}</div>
+              <div class="" @click="clearDropList">
+                <div>{{ item.displayName }}</div>
+                <div class="item-fullword">{{ item.fullWord }}</div>
+              </div>
+            </div>
+          </nuxt-link>
+        </div>
+      </div>
+      <div v-if="superNodeList.length">
+        <div class="drop-list-title">SBPs</div>
+        <div v-for="(item, index) in superNodeList" :key="index">
+          <nuxt-link :to="`${langStrPath}/SBPDetail/${item.fullWord}`">
+            <div class="item-wrapper">
+              <div>{{ item.displayName }}</div>
+              <div class="item-fullword">{{ item.fullWord }}</div>
+            </div>
+          </nuxt-link>
+        </div>
+      </div>
+      
     </div>
   </div>
   
@@ -48,12 +73,17 @@ import { clearTimeout, setTimeout } from 'timers';
         open: this.visible,
         searchStr: "",
         valueTimeout: null,
-        resultList: []
+        resultList: [],
+        tokenList: [],
+        superNodeList: []
       };
     },
     watch: {
       visible(val) {
         this.open = val;
+      },
+      searchStr(val) {
+        this.debounceInput(val);
       }
     },
     created() {
@@ -71,10 +101,11 @@ import { clearTimeout, setTimeout } from 'timers';
       }
     },
     methods: {
-      debounceInput(e) {
+      debounceInput(val) {
         this.clear();
+        this.clearDropList();
         this.valueTimeout = setTimeout(async () => {
-          let str = e.target.value.trim();
+          let str = val.trim();
           if (!str) {
             this.searchStr = str;
             this.$message(this.$t("utils.noEmpty"));
@@ -82,6 +113,7 @@ import { clearTimeout, setTimeout } from 'timers';
           }
           this.searchStr = str;
           await this.getSimilarList();
+          this.showDroplist();
         }, 500);
       },
       async getSimilarList() {
@@ -96,6 +128,10 @@ import { clearTimeout, setTimeout } from 'timers';
       close() {
         this.$emit("search-open", false);
       },
+      clearDropList() {
+        this.tokenList = [];
+        this.superNodeList = [];
+      },
       async ensureSearch() {
         if (!this.searchStr) {
           this.$message(this.$t("utils.noEmpty"));
@@ -108,6 +144,8 @@ import { clearTimeout, setTimeout } from 'timers';
           let wd = this.resultList[0].wd;
           if (wd === fullWord) {
             this.jumpSwitch(searchTypeInt, fullWord)
+          } else {
+            this.showDroplist();
           }
         } else {
           this.jumpTo('searchError');
@@ -125,7 +163,21 @@ import { clearTimeout, setTimeout } from 'timers';
         }
       },
       showDroplist() {
-        console.log('showDroplist');
+        this.clearDropList();
+        if (this.resultList && this.resultList.length) {
+          for(let i = 0; i < this.resultList.length; i++) {
+            if (this.resultList.length === 1 && i.wd === i.fullWord) {
+              return;
+            }
+            if ([5, 6].indexOf(this.resultList[i].searchTypeInt) > -1) {
+              this.tokenList.push(this.resultList[i]);
+            }
+            if (this.resultList[i].searchTypeInt === 7) {
+              this.superNodeList.push(this.resultList[i]);
+            }
+          }
+        } 
+        
       },
       jumpTo(pageStr, params) {
         let path = params ? `${this.langStrPath}/${pageStr}/${params}` : `${this.langStrPath}/${pageStr}`
@@ -237,6 +289,50 @@ import { clearTimeout, setTimeout } from 'timers';
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
+.drop-list-content {
+  position: relative;
+  z-index: 99999;
+  background-color: white;
+  max-height: 218px;
+  overflow-y: scroll;
+  box-shadow:0px 6px 36px 0px rgba(0,62,100,0.04);
+  border-radius:0px 0px 4px 4px;
+  border:1px solid rgba(229,237,243,1);
+  font-size: 12px;
+  color:rgba(94,104,117,1);
+  a {
+      color:rgba(94,104,117,1);
+  }
+  .drop-list-title {
+    background:rgba(24,91,221,0.03);
+    height: 20px;
+    line-height: 20px;
+    padding: 0 12px;
+    font-weight:600;
+  }
+  .icon-wrapper {
+    width: 15px;
+    margin-right: 4px;
+    height:15px;
+    border-radius:24px;
+    border:1px solid rgba(229,237,243,1);
+  }
+  .item-wrapper {
+    box-sizing: border-box;
+    line-height: 16px;
+    padding: 6px 12px;
+    &:hover {
+      background:rgba(245,247,250,1);
+      cursor: pointer;
+    }
+    
+    .item-fullword {
+      color: #8D9BAE;
+      font-size: 11px;
+    }
+    
+  }
+}
 .phone-close {
   display: none;
 }
