@@ -241,7 +241,7 @@
       },
       _currentChange(index) {
         this.currentInx = index;
-        // this.currentChange(index);
+        this.currentChange(index);
       },
       onClickItem(row) {
         if(row.weight) {

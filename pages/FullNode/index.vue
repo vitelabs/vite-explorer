@@ -25,7 +25,7 @@
       </div>
       <full-node-table
         :pagination="true"
-       
+        :current-change="pageChange"
         :pageSize="10"
         :tableTitles="nodeTitles"
         :tableData="allNodes"
@@ -166,6 +166,9 @@
       }
     },
     methods: {
+      pageChange(pageIndex) {
+        console.log('pageIndex', pageIndex);
+      },
       getDelayTimeInterval() {
         this.interval = mySetInterval(() => {
           this.getDelayTime();
@@ -177,6 +180,7 @@
           this.sysTime = (data.time - frontTime) / 2;
         }).catch(err=> {
           console.log(err);
+          this.interval && myClearInterval(this.interval);
         });
       }
     }
