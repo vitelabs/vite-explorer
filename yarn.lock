@@ -144,6 +144,10 @@
     mustache "^2.3.0"
     stack-trace "0.0.10"
 
+"@vite/vitejs-utils@^2.2.10":
+  version "2.2.10"
+  resolved "https://registry.npm.taobao.org/@vite/vitejs-utils/download/@vite/vitejs-utils-2.2.10.tgz#e1586ea30eee8deb86a7a94f32250a90eb4dacff"
+
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"

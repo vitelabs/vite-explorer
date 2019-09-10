@@ -38,12 +38,13 @@
 
 <script>
   import error from "~/components/error";
-  import fullNode from "./fullNode.js";
+  // import fullNode from "./fullNode.js";
   import card from "~/components/fullNode/card.vue";
   import fullNodeTable from "~/components/fullNode/fullNodeTable.vue";
   import Bar from "~/components/Charts/Bar.vue";
   import WMap from "~/components/Charts/WMap.vue";
   import { getCookie } from "~/utils/cookie.js";
+  import WsClient from "~/utils/network/ws.js";
   import stats from "~/services/stats.js";
   import { mySetInterval, myClearInterval } from "~/utils/myInterval.js";
 
@@ -60,7 +61,21 @@
     mounted() {
       this.getDelayTimeInterval();
       let uuid = getCookie("uuid");
-      this.socket = new fullNode(`wss://stats.vite.net/ws/user/${uuid}`);
+      this.socket =  new WsClient(`wss://stats.vite.net/ws/user/${uuid}`, (data)=> {
+        console.log('data', data);
+        let method = data.method;
+        let data = data.data;
+
+        if (method === 'generalview') {
+          this.generalView = data;
+        } else if (method === 'blockbroadcastview') {
+          this.percents = data.percents;
+        } else if(method === 'nodelocationlistview') {
+          this.mapList = data.nodeViewList;
+        } else if (method === 'nodelistview') {
+          this.networkList = data.nodeViewList;
+        }
+      });
       this.mapList = this.socket.mapList;
     },
     watch: {

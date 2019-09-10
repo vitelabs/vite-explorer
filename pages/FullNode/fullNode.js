@@ -53,7 +53,7 @@ class FullNode_WS {
     this.connect();
     this.interval = mySetInterval(()=> {
       this.checkConnect();
-    }, 5000);
+    }, 60000);
   }
 
   connect() {

@@ -50,12 +50,6 @@
     </div>
 
     <div v-if="pagination" v-show="total" class="pagination">
-      <!-- <el-pagination 
-        layout="prev, pager, next"
-        :background="true" @current-change="_currentChange"
-        :page-size="pageSize" :current-page="currentInx"
-        :total="total">
-      </el-pagination> -->
       <pagination 
         :currentPage="currentInx"
         :totalPage="Math.ceil(total/pageSize)" 

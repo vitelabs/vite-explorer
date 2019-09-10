@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "@nuxtjs/pwa": "^2.0.8",
+    "@vite/vitejs-utils": "^2.2.10",
     "ace-builds": "^1.4.5",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",

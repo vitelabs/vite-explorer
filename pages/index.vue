@@ -33,7 +33,6 @@
   import LineChart from "~/components/Home/LineChart.vue";
   import Dag from "~/components/Dag/dag.vue";
   // const LineChart = () => require("~/components/Home/LineChart.vue");
-
   import block from "~/services/block.js";
   import transaction from "~/services/transaction.js";
   import general from "~/services/general.js";
