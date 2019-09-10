@@ -62,17 +62,17 @@
       this.getDelayTimeInterval();
       let uuid = getCookie("uuid");
       this.socket =  new WsClient(`wss://stats.vite.net/ws/user/${uuid}`, (data)=> {
-        console.log('data', data);
+        console.log("data", data);
         let method = data.method;
         let data = data.data;
 
-        if (method === 'generalview') {
+        if (method === "generalview") {
           this.generalView = data;
-        } else if (method === 'blockbroadcastview') {
+        } else if (method === "blockbroadcastview") {
           this.percents = data.percents;
-        } else if(method === 'nodelocationlistview') {
+        } else if(method === "nodelocationlistview") {
           this.mapList = data.nodeViewList;
-        } else if (method === 'nodelistview') {
+        } else if (method === "nodelistview") {
           this.networkList = data.nodeViewList;
         }
       });
@@ -182,7 +182,7 @@
     },
     methods: {
       pageChange(pageIndex) {
-        console.log('pageIndex', pageIndex);
+        console.log("pageIndex", pageIndex);
       },
       getDelayTimeInterval() {
         this.interval = mySetInterval(() => {

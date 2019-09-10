@@ -48,7 +48,7 @@
   import account from "~/services/account";
   import token from "~/services/token";
   import { debounce } from "~/utils/util.js";
-import { clearTimeout, setTimeout } from 'timers';
+import { clearTimeout, setTimeout } from "timers";
   
   // search type
 
@@ -97,7 +97,7 @@ import { clearTimeout, setTimeout } from 'timers';
         };
       },
       langStrPath() {
-        return this.$i18n.locale === "zh" ? `/${this.$i18n.locale}` : '';
+        return this.$i18n.locale === "zh" ? `/${this.$i18n.locale}` : "";
       }
     },
     methods: {
@@ -143,23 +143,23 @@ import { clearTimeout, setTimeout } from 'timers';
           let fullWord = this.resultList[0].fullWord;
           let wd = this.resultList[0].wd;
           if (wd === fullWord) {
-            this.jumpSwitch(searchTypeInt, fullWord)
+            this.jumpSwitch(searchTypeInt, fullWord);
           } else {
             this.showDroplist();
           }
         } else {
-          this.jumpTo('searchError');
+          this.jumpTo("searchError");
         }
       },
       jumpSwitch(type, params) {
         switch(type) {
-          case 1: this.jumpTo('account', params); break;
-          case 2: this.jumpTo('transaction', params); break;
-          case 3: this.jumpTo('block', params); break;
-          case 4: 
-          case 5: 
-          case 6: this.jumpTo('token', params); 
-          case 7: this.jumpTo('SBPDetail', params); break;
+        case 1: this.jumpTo("account", params); break;
+        case 2: this.jumpTo("transaction", params); break;
+        case 3: this.jumpTo("block", params); break;
+        case 4: 
+        case 5: 
+        case 6: this.jumpTo("token", params); 
+        case 7: this.jumpTo("SBPDetail", params); break;
         }
       },
       showDroplist() {
@@ -180,7 +180,7 @@ import { clearTimeout, setTimeout } from 'timers';
         
       },
       jumpTo(pageStr, params) {
-        let path = params ? `${this.langStrPath}/${pageStr}/${params}` : `${this.langStrPath}/${pageStr}`
+        let path = params ? `${this.langStrPath}/${pageStr}/${params}` : `${this.langStrPath}/${pageStr}`;
         this.$router.push({ path });
       },
       search() {

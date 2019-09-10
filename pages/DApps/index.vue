@@ -72,8 +72,8 @@
             ...dapp,
             address: `<a href="${this.lang}/account/${dapp.address}" target="_blank" title="${dapp.address}">${dapp.shortAddress}</a>`,
             codeStatus: dapp.codeStatus ? 
-            `<div class="is-flex"><div class="img-wrapper"><img src="${require("~/assets/images/code/verified.svg")}" class="veri-img"/></div>已审计</div>` 
-            : `<div class="is-flex"><div class="img-wrapper"><img src="${require("~/assets/images/code/unverified.svg")}" class="veri-img"/></div>未审计</div>` ,
+              `<div class="is-flex"><div class="img-wrapper"><img src="${require("~/assets/images/code/verified.svg")}" class="veri-img"/></div>已审计</div>` 
+              : `<div class="is-flex"><div class="img-wrapper"><img src="${require("~/assets/images/code/unverified.svg")}" class="veri-img"/></div>未审计</div>` ,
           });
         });
         return list;

@@ -381,19 +381,19 @@ export default () => {
         data: {
           totalNumber: 21,
           DappList: [{
-            name: 'aaa',
-            desc: 'assssssssss',
-            address: 'vite_ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a',
+            name: "aaa",
+            desc: "assssssssss",
+            address: "vite_ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a",
             txNumber: 23,
             codeStatus: true,
-            date: '2019-10-1'
+            date: "2019-10-1"
           }, {
-            name: 'bbbb',
-            desc: 'ashdias',
-            address: 'vite_ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a',
+            name: "bbbb",
+            desc: "ashdias",
+            address: "vite_ab24ef68b84e642c0ddca06beec81c9acb1977bbd7da27a87a",
             txNumber: 24,
             codeStatus: false,
-            date: '2019-10-1'
+            date: "2019-10-1"
           }]
         }
       };

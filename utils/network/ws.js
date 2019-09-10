@@ -1,4 +1,4 @@
-import { random } from './random.js';
+import { random } from "./random.js";
 import { mySetInterval, myClearInterval } from "../myInterval.js";
 import { getCookie } from "../cookie.js";
 
@@ -20,7 +20,7 @@ class WsClient {
     this.retryTimes = 0;
 
     this._heartBeat = mySetInterval(()=> {
-      this.send('');
+      this.send("");
     }, HEARTBEAT);
 
     window.onbeforeunload = () => {
@@ -43,19 +43,19 @@ class WsClient {
     this.socket = new WebSocket(this.wsUrl);
 
     this.socket.onopen = () => {
-      this.send('');
+      this.send("");
       // todo 默认获取第一页数据
     };
  
     this.socket.onclose = () => {
-      console.log('[WebSocket closed]');
+      console.log("[WebSocket closed]");
       this.retryConnect();
-    }
+    };
 
     this.socket.onmessage = (e) => {
       let msg = JSON.parse(e.data);
       callback && callback(msg);
-    }
+    };
   }
 
   send(msg) {
@@ -76,7 +76,7 @@ class WsClient {
       return;
     }
     if (navigator && !navigator.onLine) {
-      window.addEventListener('online', () => {
+      window.addEventListener("online", () => {
         this.retryConnect();
       });
       return;
@@ -88,7 +88,7 @@ class WsClient {
     }
 
     setTimeout(()=> {
-      console.log('retry    connect');
+      console.log("retry    connect");
       this.createConnect();
       this.retryTimes++;
     }, RetryInterval);
