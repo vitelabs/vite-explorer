@@ -61,10 +61,10 @@
     mounted() {
       this.getDelayTimeInterval();
       let uuid = getCookie("uuid");
-      this.socket =  new WsClient(`wss://stats.vite.net/ws/user/${uuid}`, (data)=> {
-        console.log("data", data);
-        let method = data.method;
-        let data = data.data;
+      this.socket =  new WsClient(`wss://stats.vite.net/ws/user/${uuid}`, (msg)=> {
+        console.log("msg", msg);
+        let method = msg.method;
+        let data = msg.data;
 
         if (method === "generalview") {
           this.generalView = data;
@@ -96,7 +96,7 @@
 
           let list = [].concat(this.allNodes);
           
-          val.forEach((newitem) => {
+          val && val.forEach((newitem) => {
             
             let olditemIndex = list.findIndex(oldItem=>{
               return oldItem.uniqId === newitem.uniqId;
