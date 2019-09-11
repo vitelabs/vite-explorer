@@ -69,35 +69,56 @@
       this.init();
     },
     watch: {
-      "networkList": {
-        handler: function(val) {
-          if (!this.allNodes){
-            return;
-          }
+      networkList(val) {
+        if (!this.currentPageNodes) {
+          return;
+        }
+        let list = [].concat(this.currentPageNodes);
 
-          let list = [].concat(this.allNodes);
-          
-          val && val.forEach((newitem) => {
-            
-            let olditemIndex = list.findIndex(oldItem=>{
-              return oldItem.uniqId === newitem.uniqId;
-            });
-            if(olditemIndex > -1) {
-              newitem.weight = list[olditemIndex].weight;
-              newitem.originIndex = list[olditemIndex].originIndex;
-              list[olditemIndex] = newitem;
-            } else { 
-              list.push({
-                ...newitem,
-                originIndex:list.length,
-                weight: 0,
-              });
-            }
+        val && val.forEach((newitem) => {
+          let olditemIndex = list.findIndex(oldItem => {
+            return oldItem.uniqId === newitem.uniqId;
           });
-          this.allNodes = list;
-        },
-        deep: true
-      }
+          if (olditemIndex > -1) {
+            // update item
+            list[olditemIndex] = newitem;
+          } else {
+            // add item
+            list.push(newitem);
+          }
+        });
+
+        this.currentPageNodes = list;
+      },
+      // "networkList": {
+      //   handler: function(val) {
+      //     if (!this.allNodes){
+      //       return;
+      //     }
+
+      //     let list = [].concat(this.allNodes);
+          
+      //     val && val.forEach((newitem) => {
+            
+      //       let olditemIndex = list.findIndex(oldItem=>{
+      //         return oldItem.uniqId === newitem.uniqId;
+      //       });
+      //       if(olditemIndex > -1) {
+      //         newitem.weight = list[olditemIndex].weight;
+      //         newitem.originIndex = list[olditemIndex].originIndex;
+      //         list[olditemIndex] = newitem;
+      //       } else { 
+      //         list.push({
+      //           ...newitem,
+      //           originIndex:list.length,
+      //           weight: 0,
+      //         });
+      //       }
+      //     });
+      //     this.allNodes = list;
+      //   },
+      //   deep: true
+      // }
     },
     destroyed() {
       this.client.close();
@@ -121,6 +142,7 @@
         pageIndex: 1,
         pageSize: 10,
         allNodes: [],
+        currentPageNodes: [], // new
         mapList: [],
         generalview: defaultGeneralView,
         networkList: [],
@@ -177,9 +199,16 @@
           }
         });
       },
-      pageChange(pageIndex = 1) {
+      pageChange(pageIndex = 1, filterStr) {
         console.log("pageIndex", pageIndex);
-        this.client.send({ pageIndex, pageSize: this.pageSize});
+        let sendParams = {
+          filter: filterStr,
+          paging: {
+            count: this.pageSize,
+            index: pageIndex
+          }
+        };
+        this.client.send(sendParams);
       },
       getDelayTimeInterval() {
         this.interval = mySetInterval(() => {

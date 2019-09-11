@@ -235,7 +235,7 @@
       },
       _currentChange(index) {
         this.currentInx = index;
-        this.currentChange(index);
+        this.currentChange(index, this.search);
       },
       onClickItem(row) {
         if(row.weight) {
