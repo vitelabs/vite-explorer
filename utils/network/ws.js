@@ -1,6 +1,4 @@
-import { random } from "./random.js";
 import { mySetInterval, myClearInterval } from "../myInterval.js";
-import { getCookie } from "../cookie.js";
 
 const HEARTBEAT = 10000;
 const MaxRetryTimes = 5;
@@ -14,8 +12,9 @@ class WsClient {
   ) {
     this.wsUrl = wsUrl;
     this.isRetry = isRetry;
-
+    
     this.socket = null;
+    this.callback = callback;
 
     this.retryTimes = 0;
 
@@ -44,7 +43,6 @@ class WsClient {
 
     this.socket.onopen = () => {
       this.send("");
-      // todo 默认获取第一页数据
     };
  
     this.socket.onclose = () => {
@@ -54,7 +52,7 @@ class WsClient {
 
     this.socket.onmessage = (e) => {
       let msg = JSON.parse(e.data);
-      callback && callback(msg);
+      this.callback && this.callback(msg);
     };
   }
 
@@ -96,8 +94,3 @@ class WsClient {
 }
 
 export default WsClient;
-
-// let uuid = process.browser && getCookie("uuid") || null;
-// console.log('uuid', uuid);
-
-// export const client = process.browser && new WsClient(`wss://stats.vite.net/ws/user/${uuid}`) || null;

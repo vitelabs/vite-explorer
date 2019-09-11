@@ -48,6 +48,13 @@
   import stats from "~/services/stats.js";
   import { mySetInterval, myClearInterval } from "~/utils/myInterval.js";
 
+  const defaultGeneralView = {
+    latestSnapshotBlockHeight: null,
+    onlineNum: null,
+    sysTime: null,
+    totalNum: null
+  };
+
   export default {
     head() {
       return {
@@ -60,35 +67,10 @@
     
     mounted() {
       this.getDelayTimeInterval();
-      let uuid = getCookie("uuid");
-      this.socket =  new WsClient(`wss://stats.vite.net/ws/user/${uuid}`, (msg)=> {
-        console.log("msg", msg);
-        let method = msg.method;
-        let data = msg.data;
-
-        if (method === "generalview") {
-          this.generalView = data;
-        } else if (method === "blockbroadcastview") {
-          this.percents = data.percents;
-        } else if(method === "nodelocationlistview") {
-          this.mapList = data.nodeViewList;
-        } else if (method === "nodelistview") {
-          this.networkList = data.nodeViewList;
-        }
-      });
-      this.mapList = this.socket.mapList;
+      this.init();
     },
     watch: {
-      "socket.generalView": function(val) {
-        this.generalview = val;
-      },
-      "socket.percents": function(val){
-        this.percents = val;
-      },
-      "socket.mapList": function(val){
-        this.mapList = val;
-      },
-      "socket.networkList": {
+      "networkList": {
         handler: function(val) {
           if (!this.allNodes){
             return;
@@ -138,11 +120,10 @@
           marginLeft: "-40px"
         },
         pageIndex: 1,
-        currentPageList: [],
         allNodes: [],
-        broadcastTimeList: [],
         mapList: [],
-        generalview: {},
+        generalview: defaultGeneralView,
+        networkList: [],
         percents: [],
         interval: null
       };
@@ -181,6 +162,21 @@
       }
     },
     methods: {
+      init() {
+        let uuid = getCookie("uuid");
+        this.socket =  new WsClient(`wss://stats.vite.net/ws/user/${uuid}`, (msg)=> {
+          let { method, data } = msg;
+          if (method === "generalview") {
+            this.generalview = data;
+          } else if (method === "blockbroadcastview") {
+            this.percents = data.percents;
+          } else if(method === "nodelocationlistview") {
+            this.mapList = data.nodeViewList;
+          } else if (method === "nodelistview") {
+            this.networkList = data.nodeViewList;
+          }
+        });
+      },
       pageChange(pageIndex) {
         console.log("pageIndex", pageIndex);
       },
