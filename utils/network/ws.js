@@ -6,7 +6,7 @@ const RetryInterval = 3000;
 
 class WsClient {
   constructor(
-    wsUrl, 
+    wsUrl,
     callback,
     isRetry = true
   ) {

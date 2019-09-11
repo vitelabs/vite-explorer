@@ -26,7 +26,7 @@
       <full-node-table
         :pagination="true"
         :current-change="pageChange"
-        :pageSize="10"
+        :pageSize="pageSize"
         :tableTitles="nodeTitles"
         :tableData="allNodes"
         ref="tableData">
@@ -38,7 +38,6 @@
 
 <script>
   import error from "~/components/error";
-  // import fullNode from "./fullNode.js";
   import card from "~/components/fullNode/card.vue";
   import fullNodeTable from "~/components/fullNode/fullNodeTable.vue";
   import Bar from "~/components/Charts/Bar.vue";
@@ -101,7 +100,7 @@
       }
     },
     destroyed() {
-      this.socket.close();
+      this.client.close();
       if (this.interval) {
         myClearInterval(this.interval);
       }
@@ -109,7 +108,7 @@
     data() {
       return {
         total: 0,
-        socket: null,
+        client: null,
         title: this.$t("fullNode.title"),
         error: "",
         nodeTitles: this.$t("fullNode.nodeTitles"),
@@ -120,6 +119,7 @@
           marginLeft: "-40px"
         },
         pageIndex: 1,
+        pageSize: 10,
         allNodes: [],
         mapList: [],
         generalview: defaultGeneralView,
@@ -164,7 +164,7 @@
     methods: {
       init() {
         let uuid = getCookie("uuid");
-        this.socket =  new WsClient(`wss://stats.vite.net/ws/user/${uuid}`, (msg)=> {
+        this.client =  new WsClient(`wss://stats.vite.net/ws/user/${uuid}`, (msg)=> {
           let { method, data } = msg;
           if (method === "generalview") {
             this.generalview = data;
@@ -177,8 +177,9 @@
           }
         });
       },
-      pageChange(pageIndex) {
+      pageChange(pageIndex = 1) {
         console.log("pageIndex", pageIndex);
+        this.client.send({ pageIndex, pageSize: this.pageSize});
       },
       getDelayTimeInterval() {
         this.interval = mySetInterval(() => {
