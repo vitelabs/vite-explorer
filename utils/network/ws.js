@@ -57,6 +57,8 @@ class WsClient {
   }
 
   send(msg) {
+    if (!this.ready || this.closed) return;
+    
     this.socket.send(JSON.stringify(msg));
   }
 

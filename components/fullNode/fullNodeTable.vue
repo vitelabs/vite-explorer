@@ -103,6 +103,10 @@
         type: Number,
         default: 1
       },
+      client: {
+        type: Object,
+        default: () => {}
+      }
     },
     components: {
       Bar, searchInput, pagination
@@ -163,23 +167,36 @@
     
     methods: {
       filterTable(str) {
+        console.log("filter str", str);
         let filterInput = str || null;
         this.search = filterInput || null;
-        if (!this.search) {
-          this.total = this.tableData.length;
-          this.currentInx = 1;
-          this.filteredTableData  = [].concat(this.tableData);
-          return;
-        }
-        let list = [];
-        for(let i = 0; i < this.tableData.length; i++) {
-          if(this.tableData[i].nodeName.toLowerCase().indexOf(this.search.toLowerCase()) > -1) {
-            list.push(this.tableData[i]);
-          }
-        }
-        this.total = list.length;
         this.currentInx = 1;
-        this.filteredTableData  = list;
+        let sendParams = {
+          filter: this.search,
+          paging: {
+            count: this.pageSize,
+            index: this.currentInx 
+          }
+        };
+        this.total = 100; // test
+
+        console.log("sendParams", sendParams);
+        this.client && this.client.send(sendParams);
+        // if (!this.search) {
+        //   this.total = this.tableData.length;
+        //   this.currentInx = 1;
+        //   this.filteredTableData  = [].concat(this.tableData);
+        //   return;
+        // }
+        // let list = [];
+        // for(let i = 0; i < this.tableData.length; i++) {
+        //   if(this.tableData[i].nodeName.toLowerCase().indexOf(this.search.toLowerCase()) > -1) {
+        //     list.push(this.tableData[i]);
+        //   }
+        // }
+        // this.total = list.length;
+        // this.currentInx = 1;
+        // this.filteredTableData  = list;
       },
       dispatchColor(name) {
         if (name === 0) return "#749AF8";
@@ -235,9 +252,27 @@
       },
       _currentChange(index) {
         this.currentInx = index;
-        this.currentChange(index, this.search);
+        let sendParams = {
+          filter: this.search,
+          paging: {
+            count: this.pageSize,
+            index: this.currentInx
+          }
+        };
+        console.log("sendParams", sendParams);
+        this.client.send(sendParams);
+        // this.currentChange(index, this.search);
       },
       onClickItem(row) {
+        let sendParams = {
+          filter: this.search,
+          paging: {
+            count: this.pageSize,
+            index: this.currentInx
+          }
+        };
+        console.log("sendParams", sendParams);
+        this.client.send(sendParams);
         if(row.weight) {
           row.weight = 0;
         } else{

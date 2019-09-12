@@ -25,10 +25,11 @@
       </div>
       <full-node-table
         :pagination="true"
-        :current-change="pageChange"
+       
         :pageSize="pageSize"
         :tableTitles="nodeTitles"
         :tableData="allNodes"
+        :client="client"
         ref="tableData">
       </full-node-table>
     </div>
