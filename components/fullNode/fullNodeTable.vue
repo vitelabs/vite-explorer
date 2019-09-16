@@ -216,9 +216,10 @@
         return "";
       },
       nodeViewData(list) {
+        let viewList = [].concat(list);
         let lang = this.$i18n.locale !== "en" ? `/${this.$i18n.locale}` : "";
         
-        list && list.forEach((node) => {
+        viewList && viewList.forEach((node) => {
           let latestBlockTime = new Date(node.latestBlockTime);
           let time = moment(latestBlockTime).format().replace("T", " ");
           node.broadcastTimeView = `<span style="color: ${this.dispatchColor(node.broadcastTime / 1000)}">${node.broadcastTime}ms</span>`,
@@ -234,7 +235,7 @@
           //   : node.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
           node.nodeViewName = `<a href="${lang}/account/${node.rewardAddress}" target="_blank">${node.nodeName}</a>`;
         });
-        return list;
+        return viewList;
       },
       // sort(val) {
       //   val.sort(function(left, right) {
@@ -292,7 +293,7 @@
         this.client.send(sendParams);
 
 
-        
+
 
         // if(row.weight) {
         //   row.weight = 0;
