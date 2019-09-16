@@ -49,10 +49,10 @@
       </el-table>
     </div>
 
-    <div v-if="pagination" v-show="total" class="pagination">
+    <div v-if="pagination" v-show="totalSize" class="pagination">
       <pagination 
         :currentPage="currentInx"
-        :totalPage="Math.ceil(total/pageSize)" 
+        :totalPage="Math.ceil(totalSize/pageSize)" 
         :toPage="_currentChange">
       </pagination>
     </div>
@@ -80,6 +80,10 @@
         default: () =>{
           return [];
         }
+      },
+      totalSize: {
+        type: Number,
+        default: 0
       },
       tableData: {
         type: Array,
@@ -124,7 +128,7 @@
           marginLeft: "-20px"
         },
         currentPageData: [],
-        filteredTableData:[],
+        // filteredTableData:[],
         
         search: null
       };
@@ -137,49 +141,54 @@
         this.currentInx = this.currentPage;
       },
       tableData(val) {
-        if(!this.search) {
-          this.filteredTableData = [].concat(val);
-          return;
-        } 
-        
-        let list = [].concat(this.filteredTableData);
+        console.log("network list------newest table origin data", val);
 
-        val.forEach((newitem) => {
-          let olditemIndex = list.findIndex(oldItem=>{
-            return oldItem.uniqId === newitem.uniqId;
-          });
-          if(olditemIndex > -1) {
-            newitem.weight = list[olditemIndex].weight;
-            newitem.originIndex = list[olditemIndex].originIndex;
-            list[olditemIndex] = newitem;
-          }
-        });
-        this.filteredTableData = list;
-      },
-      filteredTableData(val) {
-        let start = 10 * (this.currentInx - 1);
-        let end = start + 10;
-        this.total = val.length;
-        let realEnd = end > val.length ? val.length : end;
-        this.currentPageData = this.sort(this.nodeViewData(val.slice(start, realEnd)));
+        this.currentPageData = this.nodeViewData(val);
+
+        console.log("table view data", this.currentPageData);
+        // if(!this.search) {
+        //   this.filteredTableData = [].concat(val);
+        //   return;
+        // } 
+        
+        // let list = [].concat(this.filteredTableData);
+
+        // val.forEach((newitem) => {
+        //   let olditemIndex = list.findIndex(oldItem=>{
+        //     return oldItem.uniqId === newitem.uniqId;
+        //   });
+        //   if(olditemIndex > -1) {
+        //     newitem.weight = list[olditemIndex].weight;
+        //     newitem.originIndex = list[olditemIndex].originIndex;
+        //     list[olditemIndex] = newitem;
+        //   }
+        // });
+        // this.filteredTableData = list;
       }
+      // filteredTableData(val) {
+      //   let start = 10 * (this.currentInx - 1);
+      //   let end = start + 10;
+      //   this.total = val.length;
+      //   let realEnd = end > val.length ? val.length : end;
+      //   this.currentPageData = this.sort(this.nodeViewData(val.slice(start, realEnd)));
+      // }
     },
     
     methods: {
       filterTable(str) {
-        console.log("filter str", str);
         let filterInput = str || null;
         this.search = filterInput || null;
         this.currentInx = 1;
         let sendParams = {
-          filter: this.search,
-          paging: {
-            count: this.pageSize,
-            index: this.currentInx 
-          }
+          data: {
+            searchExpression: this.search,
+            pageInfo: {
+              curPage: this.currentInx,
+              pageSize: this.pageSize
+            }
+          },
+          type: "SearchCondition"
         };
-        this.total = 100; // test
-
         console.log("sendParams", sendParams);
         this.client && this.client.send(sendParams);
         // if (!this.search) {
@@ -218,32 +227,35 @@
           node.onlinePercentView = `${Math.round(node.onlinePercent * 100)}%`,
           node.latestBlockTimeView = time,
           node.radio = node.status ? 
-            node.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
-            : node.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
+            (node.isFavor ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg"))
+            : (node.isFavor ? require("~/assets/images/fullNode/disable_choice.svg") :  require("~/assets/images/fullNode/disable_unchoice.svg")),
+          // node.radio = node.status ? 
+          //   node.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
+          //   : node.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
           node.nodeViewName = `<a href="${lang}/account/${node.rewardAddress}" target="_blank">${node.nodeName}</a>`;
         });
         return list;
       },
-      sort(val) {
-        val.sort(function(left, right) {
-          if (left.weight > right.weight) {
-            return -1;
-          }
-          if(left.weight < right.weight) {
-            return 1;
-          }
-          if(left.weight === right.weight) {
-            if (left.originIndex > right.originIndex) {
-              return 1;
-            }
-            if(left.originIndex < right.originIndex) {
-              return -1;
-            }
-          }
-          return 0;
-        });
-        return val;
-      },
+      // sort(val) {
+      //   val.sort(function(left, right) {
+      //     if (left.weight > right.weight) {
+      //       return -1;
+      //     }
+      //     if(left.weight < right.weight) {
+      //       return 1;
+      //     }
+      //     if(left.weight === right.weight) {
+      //       if (left.originIndex > right.originIndex) {
+      //         return 1;
+      //       }
+      //       if(left.originIndex < right.originIndex) {
+      //         return -1;
+      //       }
+      //     }
+      //     return 0;
+      //   });
+      //   return val;
+      // },
       tableRowClassName({row}) {
         if (row.status === -1) {
           return "disable-row";
@@ -253,42 +265,51 @@
       _currentChange(index) {
         this.currentInx = index;
         let sendParams = {
-          filter: this.search,
-          paging: {
-            count: this.pageSize,
-            index: this.currentInx
-          }
+          data: {
+            searchExpression: this.search,
+            pageInfo: {
+              curPage: this.currentInx,
+              pageSize: this.pageSize
+            }
+          },
+          type: "SearchCondition"
         };
         console.log("sendParams", sendParams);
-        this.client.send(sendParams);
-        // this.currentChange(index, this.search);
+        this.client && this.client.send(sendParams);
       },
       onClickItem(row) {
         let sendParams = {
-          filter: this.search,
-          paging: {
-            count: this.pageSize,
-            index: this.currentInx
-          }
+          data: {
+            uniqId: row.uniqId
+          },
+          type: row.isFavor ? "CancelFavor" : "Favor"
         };
         console.log("sendParams", sendParams);
-        this.client.send(sendParams);
-        if(row.weight) {
-          row.weight = 0;
-        } else{
-          row.weight = this.currentWeight;
-          this.currentWeight--;
-        }
-        row.radio = row.status ? 
-          row.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
-          : row.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
+        // row.radio = row.status ? 
+        //   (row.isFavor ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg"))
+        //   : (row.isFavor ? require("~/assets/images/fullNode/disable_choice.svg") :  require("~/assets/images/fullNode/disable_unchoice.svg")),
         
-        let findIndex = this.tableData.findIndex(item=>{
-          return item.uniqId === row.uniqId;
-        });
+        this.client.send(sendParams);
 
-        this.tableData[findIndex] = row;
-        this.sort(this.tableData);
+
+        
+
+        // if(row.weight) {
+        //   row.weight = 0;
+        // } else{
+        //   row.weight = this.currentWeight;
+        //   this.currentWeight--;
+        // }
+        // row.radio = row.status ? 
+        //   row.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
+        //   : row.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
+        
+        // let findIndex = this.tableData.findIndex(item=>{
+        //   return item.uniqId === row.uniqId;
+        // });
+
+        // this.tableData[findIndex] = row;
+        // this.sort(this.tableData);
       }
     }
   };

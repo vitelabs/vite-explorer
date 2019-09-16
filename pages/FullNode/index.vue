@@ -25,10 +25,10 @@
       </div>
       <full-node-table
         :pagination="true"
-       
+        :total-size="totalSize"
         :pageSize="pageSize"
         :tableTitles="nodeTitles"
-        :tableData="allNodes"
+        :tableData="currentPageNodes"
         :client="client"
         ref="tableData">
       </full-node-table>
@@ -129,7 +129,7 @@
     },
     data() {
       return {
-        total: 0,
+        totalSize: 0,
         client: null,
         title: this.$t("fullNode.title"),
         error: "",
@@ -142,7 +142,7 @@
         },
         pageIndex: 1,
         pageSize: 10,
-        allNodes: [],
+        // allNodes: [],
         currentPageNodes: [], // new
         mapList: [],
         generalview: defaultGeneralView,
@@ -197,6 +197,7 @@
             this.mapList = data.nodeViewList;
           } else if (method === "nodelistview") {
             this.networkList = data.nodeViewList;
+            this.totalSize = data.totalSize;
           }
         });
       },

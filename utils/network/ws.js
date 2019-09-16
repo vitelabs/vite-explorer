@@ -1,8 +1,10 @@
 import { mySetInterval, myClearInterval } from "../myInterval.js";
 
-const HEARTBEAT = 10000;
+// const HEARTBEAT = 10000;
 const MaxRetryTimes = 5;
 const RetryInterval = 3000;
+const OVERTIME = 60000;
+
 
 class WsClient {
   constructor(
@@ -18,15 +20,21 @@ class WsClient {
 
     this.retryTimes = 0;
 
-    this._heartBeat = mySetInterval(()=> {
-      this.send("");
-    }, HEARTBEAT);
+    this.lastMsgTime = null;
+
+    // this._heartBeat = mySetInterval(()=> {
+    //   this.send("");
+    // }, HEARTBEAT);
 
     window.onbeforeunload = () => {
       this.close();
     };
 
     this.createConnect();
+
+    this.interval = mySetInterval(()=> {
+      this.checkConnect();
+    }, 5000);
 
   }
 
@@ -36,6 +44,13 @@ class WsClient {
 
   get closed() {
     return !this.connect || (this.connect && this.connect.readyState === 3);
+  }
+
+  checkConnect() {
+    if (this.lastMsgTime && (Date.now() - this.lastMsgTime > OVERTIME)) {
+      console.log(`message over ${OVERTIME} ms, reconnect`);
+      this.reconnect();
+    }
   }
 
   createConnect() {
@@ -51,6 +66,7 @@ class WsClient {
     };
 
     this.socket.onmessage = (e) => {
+      this.lastMsgTime = Date.now();
       let msg = JSON.parse(e.data);
       this.callback && this.callback(msg);
     };
@@ -58,7 +74,7 @@ class WsClient {
 
   send(msg) {
     if (!this.ready || this.closed) return;
-    
+
     this.socket.send(JSON.stringify(msg));
   }
 
@@ -66,7 +82,8 @@ class WsClient {
     if (!this.socket) {
       return;
     }
-    this._heartBeat && myClearInterval(this._heartBeat);
+    this.interval && myClearInterval(this.interval);
+    // this._heartBeat && myClearInterval(this._heartBeat);
     console.log("client close connect");
     this.socket.close();
   }
