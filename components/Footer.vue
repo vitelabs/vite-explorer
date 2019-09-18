@@ -55,6 +55,8 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+@import "assets/css/vars.scss";
+
   .footer {
     width: 100%;
     background: #fff;
@@ -90,7 +92,7 @@
     
   }
   /** iPad **/
-  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+  @include tablet {
     .footer {
       .footer-content {
         box-sizing: border-box;
@@ -100,7 +102,7 @@
     }
   }
   /** iPhone **/
-  @media only screen and (min-width: 320px) and (max-width: 767px) {
+  @include mobile{
     .footer {
       .footer-content {
         box-sizing: border-box;

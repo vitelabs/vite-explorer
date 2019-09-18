@@ -182,7 +182,7 @@
         }
       }
     }
-    @media only screen and (min-width: 320px) and (max-width: 767px) {
+    @include mobile {
       .snapshot-item-left {
         width: 100px;
         flex-wrap: wrap;
@@ -220,7 +220,7 @@
         font-weight: 450;
       }
     }
-    @media only screen and (min-width: 320px) and (max-width: 767px) {
+    @include mobile {
       .snapshot-item-right {
         margin-left: 10px;
         .producer {

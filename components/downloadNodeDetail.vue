@@ -146,7 +146,7 @@ export default {
   
 
   /** iPhone **/
-  @media only screen and (min-width: 320px) and (max-width: 767px) {
+  @include mobile{
     .download-node-detail {
       flex-wrap: wrap;
       margin-top: 16px;

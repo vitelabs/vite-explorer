@@ -288,12 +288,12 @@
       width: 1160px;
       margin: 0 auto;
     }
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @include tablet {
       .content {
         width: 728px;
       }
     }
-    @media only screen and (min-width: 320px) and (max-width: 767px) {
+    @include mobile {
       .content {
         width: 290px;
       }
@@ -311,12 +311,12 @@
       width: 1160px;
       margin: 0 auto;
     }
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @include tablet {
       .marquee-content {
         width: 728px;
       }
     }
-    @media only screen and (min-width: 320px) and (max-width: 767px) {
+    @include mobile {
       .marquee-content {
         width: 290px;
       }
@@ -382,7 +382,7 @@
       }
     }
     /** iPad **/
-    @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    @include tablet {
       .home-nav-content {
         box-sizing: border-box;
         padding-left: 20px;
@@ -398,7 +398,7 @@
       }
     }
     /** iPhone **/
-    @media only screen and (min-width: 320px) and (max-width: 767px) {
+    @include mobile {
       .home-nav-content {
         box-sizing: border-box;
         padding-left: 15px;

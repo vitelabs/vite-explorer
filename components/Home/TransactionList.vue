@@ -199,7 +199,7 @@
 }
 
 /** iPhone **/
-@media only screen and (min-width: 320px) and (max-width: 767px) {
+@include mobile{
   .transaction-list {
     .transaction-item {
       padding: 14px 20px 16px 20px ;

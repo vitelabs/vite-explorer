@@ -252,7 +252,7 @@
     }
   }
   /** iPad **/
-  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+  @include tablet {
     .page-home {
       .mb30 {
         margin-bottom: 20px;
@@ -283,7 +283,7 @@
     }
   }
   /** iPhone **/
-  @media only screen and (min-width: 320px) and (max-width: 767px) {
+  @include mobile {
     .page-home {
       .mb30 {
         margin-bottom: 15px;

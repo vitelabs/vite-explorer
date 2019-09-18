@@ -15,3 +15,8 @@ $detail-color: #3498db;
 $table-stripe: #F6F9FE;
 $disabled-color: #E5EDF3;
 
+$mobile: 768px;
+$tablet: 1024px;
+
+@import "mixins";
+

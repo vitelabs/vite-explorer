@@ -92,7 +92,7 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-
+@import "assets/css/vars.scss";
 .invisible {
   display: none;
 }
@@ -134,7 +134,7 @@
 }
 
 /** iPhone **/
-@media only screen and (min-width: 320px) and (max-width: 767px) {
+@include mobile {
   .menu-wrapper {
     .menu-content {
       width: 320px;

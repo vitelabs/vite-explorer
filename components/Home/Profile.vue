@@ -191,7 +191,7 @@
   }
 
   /** iPad **/
-  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+  @include tablet {
     .vite-profile {
       padding: 25px 20px 21px 20px;
       .title {
@@ -260,7 +260,7 @@
   }
 
   /** iPhone **/
-  @media only screen and (min-width: 320px) and (max-width: 767px) {
+  @include mobile{
     .vite-profile {
       padding: 25px 20px 21px 18px;
       .title {
