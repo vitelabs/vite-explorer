@@ -137,11 +137,14 @@
   .row {
     box-sizing: border-box;
     padding-left: 32px;
-    width: 100%;
+    // width: 100%;
     font-size: 14px;
     line-height: 22px;
     margin-bottom: 16px;
     color: #8D9BAE;
+    @include mobile {
+       padding-left: 0px;
+    }
     .name,
     .value {
       display: inline-block;

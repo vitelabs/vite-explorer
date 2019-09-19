@@ -1,22 +1,22 @@
 <template>
   <div class="page-home">
     <div class="top">
-      <div class="profile mb30">
+      <div class="profile">
         <profile 
           :general-detail="generalDetail" 
           :general-market="generalMarket" 
           :pre-general-detail="preGeneralDetail">
         </profile>
       </div>
-      <div class="line-chart ml30 mb30">
+      <div class="line-chart">
         <line-chart :chart-data="chartData" :chart-settings="chartSettings"></line-chart>
       </div>
     </div>
     <div class="bottom">
-      <div class="snapshot mb30">
+      <div class="snapshot">
         <snapshot-list :list="blockList" :pre-list="preBlockList"></snapshot-list>
       </div>
-      <div class="transaction ml30 mb30">
+      <div class="transaction">
         <transaction-list :list="transactionList" :pre-list="preTransactionList"></transaction-list>
       </div>
     </div>
@@ -194,40 +194,36 @@
 <style lang="scss" rel="stylesheet/scss" scoped>
 @import "~assets/css/vars.scss";
   .page-home {
-    .mb30 {
-      margin-bottom: 30px;
-    }
-    .ml30 {
-      margin-left: 30px;
-    }
     .top {
       color: #FFFFFF;
       display: -webkit-flex; /* Safari */
       display: flex;
+      justify-content: space-between;
       flex-wrap: wrap;
-      width: 1160px;
       .profile {
         width: 470px;
         height: 313px;
         background-image: url("../assets/images/bg.svg");
         background-size:470px 313px;
         border-radius: 2px;
+        margin-bottom: 30px;
       }
       .line-chart {
         box-sizing: border-box;
-        width: 660px;
+        width: 55%;
         height: 313px;
         padding-top: 25px;
         background: #FFFFFF;
         border: 1px solid #E5EDF3;
         box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
         border-radius: 4px;
+        margin-bottom: 30px;
       }
     }
     .bottom {
       display: -webkit-flex; /* Safari */
       display: flex;
-      width: 1160px;
+      justify-content: space-between;
       flex-wrap: wrap;
       .snapshot {
         width: 470px;
@@ -238,9 +234,10 @@
         box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
         border-radius: 4px 4px 0 0;
         border-bottom: 4px solid $common-color;
+        margin-bottom: 30px;
       }
       .transaction {
-        width: 660px;
+        width: 55%;
         box-sizing: border-box;
         height: 456px;
         background: #FFFFFF;
@@ -248,36 +245,29 @@
         box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
         border-radius: 4px 4px 0 0;
         border-bottom: 4px solid $common-color;
+        margin-bottom: 30px;
       }
     }
   }
   /** iPad **/
   @include tablet {
     .page-home {
-      .mb30 {
-        margin-bottom: 20px;
-      }
-      .ml30 {
-        margin-left: 20px;
-      }
       .top {
-        width: 728px;
+        width: 100%;
         .profile {
-          width: 294px;
+          width: 42%;
         }
         .line-chart {
-          width: 414px;
+          width: 55%;
         }
       }
       .bottom {
-        width: 728px;
+        width: 100%;
         .snapshot {
-          width: 294px;
-          height: 500px;
+          width: 42%;
         }
         .transaction {
-          width: 414px;
-          height: 500px;
+          width: 55%;
         }
       }
     }
@@ -285,32 +275,29 @@
   /** iPhone **/
   @include mobile {
     .page-home {
-      .mb30 {
-        margin-bottom: 15px;
-      }
-      .ml30 {
-        margin-left: 0;
-      }
       .top {
-        width: 290px;
+        width: 100%;
         .profile {
-          width: 290px;
+          margin-bottom: 20px;
+          width: 100%;
         }
         .line-chart {
-          width: 290px;
+          margin-bottom: 20px;
+          width: 100%;
         }
       }
       .bottom {
-        width: 290px;
+        width: 100%;
         .snapshot {
-          width: 290px;
-          height: 492px;
+          margin-bottom: 20px;
+          width: 100%;
         }
         .transaction {
-          width: 290px;
-          height: 492px;
+          margin-bottom: 20px;
+          width: 100%;
         }
       }
+     
     }
   }
 </style>

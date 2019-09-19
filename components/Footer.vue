@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <div class="footer-content">
+    <div class="footer-content container">
       <div class="offical-website is-flex">
         <div class="website-link"><a href="https://www.vite.org/" target="_blank">Vite {{ $t('footer.official') }}</a></div>
         <div class="website-link ml"><a href="https://x.vite.net/" target="_blank">ViteX {{ $t('footer.vitex') }}</a></div>
@@ -56,7 +56,6 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
-
   .footer {
     width: 100%;
     background: #fff;
@@ -64,12 +63,12 @@
     font-size: 12px;
     color: #3F3F3F;
     .footer-content {
-      width: 1160px;
       margin: auto;
       height: 76px;
       line-height: 76px;
       display: flex;
       display: -webkit-flex;
+      box-sizing: border-box;
       justify-content: space-between;
       .brand {
         opacity: 0.78;
@@ -91,31 +90,19 @@
     }
     
   }
-  /** iPad **/
-  @include tablet {
-    .footer {
-      .footer-content {
-        box-sizing: border-box;
-        padding: 0 20px;
-        width: 768px;
-      }
-    }
-  }
   /** iPhone **/
   @include mobile{
     .footer {
       .footer-content {
         box-sizing: border-box;
-        padding: 0 15px;
-        width: 320px;
         height: 116px;
         position: relative;
         line-height: 20px;
       }
       .offical-website {
         position: absolute;
-        left: 15px;
-        bottom: 18.5px;
+        left: 0px;
+        bottom: 15px;
         flex-direction: column;
       }
       .ml {
@@ -135,8 +122,8 @@
       }
       .brand {
         position: absolute;
-        right: 15px;
-        bottom: 18.5px;
+        right: 0px;
+        bottom: 15px;
       }
       img {
         margin: 0;

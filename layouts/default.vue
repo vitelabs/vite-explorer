@@ -1,7 +1,7 @@
 <template>
   <div class="default-container">
     <div class="home-nav">
-      <div class="home-nav-content">
+      <div class="home-nav-content container">
         <logo-without-words class="logo"></logo-without-words>
         <div class="nav-content">
           <div class="navbar-menu">
@@ -64,7 +64,7 @@
       </div>
     </div>
     <div class="content-wrapper">
-      <nuxt class="content"/>
+      <nuxt class="container"/>
     </div>
     <vite-footer></vite-footer>
   </div>
@@ -284,21 +284,6 @@
     min-height: calc(100vh - 200px);
     background-color: #fafcff;
     padding: 30px 0;
-    .content {
-      width: 1160px;
-      margin: 0 auto;
-    }
-    @include tablet {
-      .content {
-        width: 728px;
-      }
-    }
-    @include mobile {
-      .content {
-        width: 290px;
-      }
-    }
-    
   }
 
   .marquee {
@@ -350,7 +335,6 @@
     background: #FFFFFF;
     box-shadow: 0 6px 36px 0 rgba(0, 62, 100, 0.04);
     .home-nav-content {
-      width: 1160px;
       margin: auto;
       position: relative;
       height: 64px;
@@ -385,8 +369,6 @@
     @include tablet {
       .home-nav-content {
         box-sizing: border-box;
-        padding-left: 20px;
-        width: 768px;
         margin: auto;
       }
       .nav-content {
@@ -401,9 +383,7 @@
     @include mobile {
       .home-nav-content {
         box-sizing: border-box;
-        padding-left: 15px;
-        width: 320px;
-        margin: auto;
+        width: 100%;
       }
       .nav-content {
         display: none;

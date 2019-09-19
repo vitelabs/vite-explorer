@@ -1,6 +1,6 @@
 <template>
   <div :class="classObj">
-    <div class="menu-content">
+    <div class="menu-content container">
       <div :key="index" v-for="(item, index) in navs" class="menu-item" @click="clickMenu">
         <nuxt-link :to="localePath(item)" class="nav-item">
           {{$t(`nav.${item}`)}}
@@ -108,7 +108,6 @@
     background: #FFFFFF;
     border: 1px solid #E5EDF3;
     box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
-    width: 768px;
     margin: auto;
     padding-left: 20px;
     .vite-link {
@@ -137,8 +136,6 @@
 @include mobile {
   .menu-wrapper {
     .menu-content {
-      width: 320px;
-      margin: auto;
       padding-left: 15px;
     }
   }

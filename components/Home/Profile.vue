@@ -230,6 +230,9 @@
           span {
             font-size: 22px;
             letter-spacing: 0;
+            &.avg-time {
+              display: block;
+            }
             &.noData {
               font-size: 22px;
             }
