@@ -141,11 +141,11 @@
         this.currentInx = this.currentPage;
       },
       tableData(val) {
-        console.log("network list------newest table origin data", val);
+        // console.log("network list------newest table origin data", val);
 
         this.currentPageData = this.nodeViewData(val);
 
-        console.log("table view data", this.currentPageData);
+        // console.log("table view data", this.currentPageData);
         // if(!this.search) {
         //   this.filteredTableData = [].concat(val);
         //   return;
@@ -228,8 +228,8 @@
           node.onlinePercentView = `${Math.round(node.onlinePercent * 100)}%`,
           node.latestBlockTimeView = time,
           node.radio = node.status ? 
-            (node.isFavor ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg"))
-            : (node.isFavor ? require("~/assets/images/fullNode/disable_choice.svg") :  require("~/assets/images/fullNode/disable_unchoice.svg")),
+            (node.favor ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg"))
+            : (node.favor ? require("~/assets/images/fullNode/choice.svg") :  require("~/assets/images/fullNode/unchoice.svg")),
           // node.radio = node.status ? 
           //   node.weight ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg")
           //   : node.weight ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg");
@@ -275,7 +275,9 @@
           },
           type: "SearchCondition"
         };
+        console.log("pageChange");
         console.log("sendParams", sendParams);
+        console.log("client", this.client);
         this.client && this.client.send(sendParams);
       },
       onClickItem(row) {
@@ -283,12 +285,12 @@
           data: {
             uniqId: row.uniqId
           },
-          type: row.isFavor ? "CancelFavor" : "Favor"
+          type: row.favor ? "CancelFavor" : "Favor"
         };
         console.log("sendParams", sendParams);
-        // row.radio = row.status ? 
-        //   (row.isFavor ? require("~/assets/images/fullNode/choice.svg") : require("~/assets/images/fullNode/unchoice.svg"))
-        //   : (row.isFavor ? require("~/assets/images/fullNode/disable_choice.svg") :  require("~/assets/images/fullNode/disable_unchoice.svg")),
+        row.radio = row.status ? 
+          (row.favor ? require("~/assets/images/fullNode/disable_choice.svg") : require("~/assets/images/fullNode/disable_unchoice.svg"))
+          : (row.favor ? require("~/assets/images/fullNode/choice.svg") :  require("~/assets/images/fullNode/unchoice.svg")),
         
         this.client.send(sendParams);
 

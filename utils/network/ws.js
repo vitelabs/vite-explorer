@@ -43,21 +43,22 @@ class WsClient {
   }
 
   get closed() {
-    return !this.connect || (this.connect && this.connect.readyState === 3);
+    return !this.socket || (this.socket && this.socket.readyState === 3);
   }
 
   checkConnect() {
     if (this.lastMsgTime && (Date.now() - this.lastMsgTime > OVERTIME)) {
       console.log(`message over ${OVERTIME} ms, reconnect`);
-      this.reconnect();
+      this.retryConnect();
     }
   }
 
   createConnect() {
+    console.log("create connect");
     this.socket = new WebSocket(this.wsUrl);
 
     this.socket.onopen = () => {
-      this.send("");
+      // this.send("");
     };
  
     this.socket.onclose = () => {
@@ -74,7 +75,7 @@ class WsClient {
 
   send(msg) {
     if (!this.ready || this.closed) return;
-
+    console.log("real senddddd", msg);
     this.socket.send(JSON.stringify(msg));
   }
 
