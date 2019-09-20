@@ -737,7 +737,7 @@ module.exports = {
       nodeName: "节点名称"
     },
     filter: {
-      placeholder: "搜索节点名"
+      placeholder: "搜索节点名/奖励地址/版本号"
     }
   },
 

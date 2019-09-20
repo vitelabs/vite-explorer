@@ -739,7 +739,7 @@ module.exports = {
       nodeName: "Node Name"
     },
     filter: {
-      placeholder: "Filter by node name"
+      placeholder: "Filter by node name/ reward address/ version"
     }
   },
 

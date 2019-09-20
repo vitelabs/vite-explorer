@@ -190,6 +190,7 @@
           type: "SearchCondition"
         };
         console.log("sendParams", sendParams);
+        console.log("filter", filterInput);
         this.client && this.client.send(sendParams);
         // if (!this.search) {
         //   this.total = this.tableData.length;
@@ -275,9 +276,7 @@
           },
           type: "SearchCondition"
         };
-        console.log("pageChange");
         console.log("sendParams", sendParams);
-        console.log("client", this.client);
         this.client && this.client.send(sendParams);
       },
       onClickItem(row) {
