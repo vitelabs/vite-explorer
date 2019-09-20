@@ -74,7 +74,7 @@
         if (!this.currentPageNodes) {
           return;
         }
-        let list = [].concat(this.currentPageNodes);
+        let list = [];
 
         val && val.forEach((newitem) => {
           let olditemIndex = list.findIndex(oldItem => {
