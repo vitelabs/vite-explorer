@@ -3,14 +3,14 @@
         placement="bottom"
         trigger="hover">
         <div class="demo-content">
-            <div class="version">{{ $t('logo.v') + version }}</div>
+            <div class="version">{{ $t('logo.v') + '1.5.0' }}</div>
             <div class="top-content">{{ $t('logo.content1') }}</div>
             <i18n path="logo.content2" tag="div" class="title">
-                <span place="version">{{ version }}</span>
+                <span place="version">1.5.0</span>
             </i18n>
             <div class="current-version">
               <span>{{ $t('logo.current') }}</span>
-              <span>{{ $t('logo.v') + version }}</span>
+              <span>{{ $t('logo.v') + '1.5.0' }}</span>
             </div>
             <div class="go-vite">
               <span><a href="https://github.com/vitelabs/go-vite" target="_blank">{{ $t('logo.govite.current') }}</a></span>
