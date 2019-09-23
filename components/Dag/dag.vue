@@ -335,7 +335,7 @@ export default {
     }
 
     .card {
-      width: 350px;
+      width: 320px;
       opacity: 0.85;
       color: #182f48;;
       .card-header {
