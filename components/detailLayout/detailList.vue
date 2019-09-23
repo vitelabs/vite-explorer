@@ -142,9 +142,6 @@
     line-height: 22px;
     margin-bottom: 16px;
     color: #8D9BAE;
-    @include mobile {
-       padding-left: 0px;
-    }
     .name,
     .value {
       display: inline-block;
@@ -233,19 +230,23 @@
       display: inline-block;
       vertical-align: middle;
       width: 90%!important;
-      text-overflow:ellipsis;
-      white-space: nowrap;
-      overflow-x: hidden;
+      overflow: hidden;
     }
     .row {
       margin-left: 15px;
+      margin-bottom: 7px;
+      padding-left: 0px;
+      width: 100%;
+      .name {
+        width: 100%;
+      }
       .lab-list {
         width: 100%;
       }
     }
     .extral-wrapper {
       padding-left: 15px;
-      min-height: 256px;
+      // min-height: 256px;
     }
     .extral-row {
       width: 100%;

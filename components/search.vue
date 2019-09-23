@@ -1,15 +1,17 @@
 <template>
   <div :class="classObj">
-    <div class="phone-close">
-      <span class="img-wrapper" @click="close">
-        <img src="~assets/images/close.svg"/>
-      </span>
-    </div>
-    <div class="search-container">
-      <input class="search-input" :placeholder="$t('search.placeholder')"  @keyup.enter="ensureSearch" v-model="searchStr"/>
-      <span class="img-wrapper" @click="ensureSearch">
-        <img src="~assets/images/search.svg"/>
-      </span>
+    <div class="is-flex phone-search">
+      <div class="phone-close">
+        <span class="img-wrapper" @click="close">
+          <img src="~assets/images/close.svg"/>
+        </span>
+      </div>
+      <div class="search-container">
+        <input class="search-input" :placeholder="$t('search.placeholder')"  @keyup.enter="ensureSearch" v-model="searchStr"/>
+        <span class="img-wrapper" @click="ensureSearch">
+          <img src="~assets/images/search.svg"/>
+        </span>
+      </div>
     </div>
     <div class="drop-list-content" v-if="tokenList.concat(superNodeList) && tokenList.concat(superNodeList).length">
       <div v-if="tokenList.length">
@@ -156,7 +158,7 @@
         case 3: this.jumpTo("block", params); break;
         case 4: 
         case 5: 
-        case 6: this.jumpTo("token", params); 
+        case 6: this.jumpTo("token", params); break;
         case 7: this.jumpTo("SBPDetail", params); break;
         }
       },
@@ -374,30 +376,25 @@
 @include mobile {
   .phone-close {
     display: block;
-    position: absolute;
-    z-index: 999;
-    margin-top: -64px; 
-    margin-left: -40px; 
     background: #fff;
     width: 46px;
     height: 64px;
-    margin-left: -34px;
+    line-height: 64px;
+    padding-left: 0px;
+    box-sizing: border-box;
     &:hover {
       cursor: pointer;
     }
   }
   .whole-search {
     display: block;
+    width: 100%;
   }
   .invisible {
     display: none;
   }
   .search-container {
-    margin-top: -64px; 
-    position: relative;
-    z-index: 999;
     .search-input {
-      width: 272px;
       height: 64px;
       box-sizing: border-box;
       overflow: hidden; 
@@ -405,7 +402,8 @@
       white-space: nowrap;
     }
     .img-wrapper {
-      left: 241px;
+      left: 268px;
+      top: 23px
     }
   }
 }

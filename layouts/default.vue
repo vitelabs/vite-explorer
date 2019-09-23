@@ -1,7 +1,7 @@
 <template>
   <div class="default-container">
     <div class="home-nav">
-      <div class="home-nav-content container">
+      <div class="home-nav-content container" :style="searchOpen ? 'display: none' : 'display: block'">
         <logo-without-words class="logo"></logo-without-words>
         <div class="nav-content">
           <div class="navbar-menu">
@@ -40,7 +40,6 @@
           </div>
           <lang-select class="lang-select"></lang-select>
           <div class="vite-net"><a href="https://vite.org" target="_blank">{{ $t("nav.vitenet") }}</a></div>
-          <search class="search" :visible="searchOpen" @search-open="closeSearch"></search>
           <div :class="phoneSearchClass" @click="openSearch">
             <div class="p-search">
               <img src="~assets/images/search.svg"/>
@@ -48,6 +47,7 @@
           </div>
         </div>
       </div>
+      <search class="search container" :visible="searchOpen" @search-open="closeSearch"></search>
     </div>
     <div class="vertail-menu-content">
       <menu-content :navs="navs" :visible.sync="open" @is-open="closeMenu" :double-navs="doubleNavs" :links="links" :external-navs="externalNavs"></menu-content>

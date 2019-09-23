@@ -102,6 +102,7 @@
         height: 31px;
         margin-left: 0px; 
         vertical-align: top;
+        margin-top: 10px;
       }
     }
   }

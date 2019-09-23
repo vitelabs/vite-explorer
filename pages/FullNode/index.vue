@@ -47,7 +47,7 @@
   import WsClient from "~/utils/network/ws.js";
   import stats from "~/services/stats.js";
   import { mySetInterval, myClearInterval } from "~/utils/myInterval.js";
-
+  import isMobile from "is-mobile";
   const defaultGeneralView = {
     latestSnapshotBlockHeight: null,
     onlineNum: null,
@@ -134,7 +134,12 @@
         title: this.$t("fullNode.title"),
         error: "",
         nodeTitles: this.$t("fullNode.nodeTitles"),
-        barStyle: {
+        barStyle: isMobile() ? {
+          width: "110%",
+          height: "200px",
+          marginTop: "-32px",
+          marginLeft: "-30px"
+        }:{
           width: "110%",
           height: "250px",
           marginTop: "-32px",
@@ -202,7 +207,6 @@
         });
       },
       pageChange(pageIndex = 1, filterStr) {
-        console.log("pageIndex", pageIndex);
         let sendParams = {
           filter: filterStr,
           paging: {
@@ -231,19 +235,35 @@
 </script>
 
 <style lang="scss" rel="stylesheet/scss" scoped>
+@import "~assets/css/vars.scss";
+
 .full-node-container {
   .line {
     display: flex;
     display: -webkit-flex;
     justify-content: space-between;
     margin-bottom: 36px;
+    @include mobile {
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 0px;
+    }
   }
   .card-text {
     width: 362px;
+    @include mobile {
+      width: 100%;
+      margin-bottom: 30px;
+    }
   }
   .card-multi {
     width: 558px;
     height: 286px;
+    @include mobile {
+      width: 100%;
+      margin-bottom: 30px;
+      height: 250px;
+    }
   }
 }
 

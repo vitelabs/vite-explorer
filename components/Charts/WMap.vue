@@ -1,7 +1,7 @@
 <template>
   <div class="map-container">
     <div class="content">
-      <div id="map" style="width: 100%; height: 218px;"></div>
+      <div id="map" :style="isMobile ? 'width: 100%; height: 190px;' : 'width: 100%; height: 218px;'"></div>
     </div>
   </div>
 </template>
@@ -9,6 +9,7 @@
 <script>
 import echarts from "echarts";
 require("echarts/map/js/world.js");
+import isMobile from "is-mobile";
 
 export default {
   props: {
@@ -19,7 +20,8 @@ export default {
   },
   data() {
     return {
-      mapInstance: null
+      mapInstance: null,
+      isMobile: isMobile()
     };
   },
   watch: {
@@ -59,7 +61,7 @@ export default {
           roam: true,
           map: "world",
           layoutCenter: ["50%", "53%"],
-          layoutSize: 500,
+          layoutSize: this.isMobile ? 300 : 500,
           itemStyle: {
             normal: {
               areaColor: "rgba(85,122,198,0.25)",

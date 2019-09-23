@@ -143,7 +143,7 @@
       tableData(val) {
         // console.log("network list------newest table origin data", val);
 
-        this.currentPageData = this.nodeViewData(val);
+        this.currentPageData = [].concat(this.nodeViewData(val));
 
         // console.log("table view data", this.currentPageData);
         // if(!this.search) {

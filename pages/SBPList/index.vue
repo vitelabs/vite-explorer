@@ -10,7 +10,7 @@
       <div class="search-container">
         <search-input @getInput="filterTable" :placeholder="$t('filter.SBP.placeholder')"></search-input>
         <div class="producer-cycle">
-          {{ $t('filter.SBP.cycle.name') }}
+          <div class="producer-name">{{ $t('filter.SBP.cycle.name') }}</div>
           <span 
             :class="{'lab-selected': latestCycle === item.key}" 
             @click="clickLab(item.key)" 
@@ -217,6 +217,9 @@
       font-size: 14px;
       color: #3F3F3F;
       line-height: 22px;
+      .producer-name {
+        display: inline-block;
+      }
       span {
         display: inline-block;
         border: 1px solid #E5EDF3;
@@ -242,13 +245,18 @@
   }
   @include mobile{
     .search-container {
-        flex-wrap: wrap;
-        .producer-cycle {
-          margin-top: 10px;
-        span {
+      flex-wrap: wrap;
+      .producer-cycle {
+        margin-top: 10px;
+        width: 100%;
+        .producer-name {
           display: block;
+        }
+        span {
+          display: inline-block;
           margin-top: 10px;
           margin-left: 0px;
+          margin-right: 10px;
         }
       }
     }

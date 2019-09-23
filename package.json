@@ -24,6 +24,7 @@
     "config": "^3.0.0",
     "echarts": "^4.1.0",
     "element-ui": "^2.4.5",
+    "is-mobile": "^2.1.0",
     "koa": "^2.5.1",
     "koa-bodyparser": "^4.2.1",
     "koa-proxy": "^0.9.0",
