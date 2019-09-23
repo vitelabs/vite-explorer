@@ -48,7 +48,6 @@
           </div>
         </div>
       </div>
-      <!-- <search class="search container" :visible="searchOpen" v-if="isMobile"></search> -->
     </div>
     <div class="vertail-menu-content">
       <menu-content :navs="navs" :visible.sync="open" @is-open="closeMenu" :double-navs="doubleNavs" :links="links" :external-navs="externalNavs"></menu-content>
@@ -79,7 +78,6 @@
   import menuContent from "~/components/menuContent.vue";
   import general from "~/services/general.js";
   import moment from "moment";
-  // import isMobile from "is-mobile";
 
   moment.updateLocale("en", {
     relativeTime: {
@@ -155,9 +153,8 @@
     },
     data() {
       return {
-        // isMobile: isMobile(),
         noticelist: [],
-        navs: ["index", "FullNode", "blockList", "tokenList", "DApps"],
+        navs: ["index", "FullNode", "blockList", "tokenList"],
         externalNavs: [],
         doubleNavs: [{
           key: "mining",
