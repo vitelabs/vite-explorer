@@ -1,6 +1,6 @@
 <template>
   <div :class="classObj">
-    <div class="is-flex phone-search">
+    <div class="is-flex phone-info">
       <div class="phone-close">
         <span class="img-wrapper" @click="close">
           <img src="~assets/images/close.svg"/>
@@ -289,6 +289,13 @@
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "assets/css/vars.scss";
+.phone-info {
+  margin-top: 0px; 
+  @include mobile {
+    margin-top: -64px;
+  }
+}
+
 .drop-list-content {
   position: relative;
   z-index: 99999;
@@ -403,7 +410,6 @@
     }
     .img-wrapper {
       left: 268px;
-      top: 23px
     }
   }
 }

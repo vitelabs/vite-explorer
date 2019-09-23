@@ -96,6 +96,9 @@
     margin-left: 32px;
     margin-top: 24px; 
     margin-bottom: 21px; 
+    @include mobile {
+      margin-left: 15px;
+    }
     .title-icon {
       vertical-align: top;
       margin-right: 3px; 
@@ -109,6 +112,9 @@
      font-size: 14px;
      box-sizing: border-box;
      margin-top: 24px; 
+     @include mobile {
+       padding-right: 15px;
+     }
      img {
        margin-left: 5px; 
      }
@@ -137,6 +143,9 @@
     padding: 8px 0px 7px 32px ;
     display: flex;
     display: -webkit-flex;
+    @include mobile {
+      padding: 8px 0px 7px 15px ;
+    }
     &:last-child
     { 
       border-bottom: none;
@@ -162,8 +171,6 @@
         line-height: 16px;
       }
 
-      
-      
       .height {
         width: 71px;
         height: 45px;
@@ -179,25 +186,6 @@
           color: $common-color;
           letter-spacing: 0;
           line-height: 25px;
-        }
-      }
-    }
-    @include mobile {
-      .snapshot-item-left {
-        width: 100px;
-        flex-wrap: wrap;
-        .timestamp {
-          margin-top: 5px;
-          font-size: 12px;
-          color: #5E6875;
-          letter-spacing: 0;
-          text-align: right;
-          line-height: 16px;
-        }
-        .height {
-          .height-value {
-            margin-top: 5px; 
-          }
         }
       }
     }
@@ -218,19 +206,6 @@
       .pack {
         margin-top: 3px; 
         font-weight: 450;
-      }
-    }
-    @include mobile {
-      .snapshot-item-right {
-        margin-left: 10px;
-        .producer {
-          .producer-value {
-            display: block;
-          }
-        }
-        .pack {
-          margin-top: 10px; 
-        }
       }
     }
   }

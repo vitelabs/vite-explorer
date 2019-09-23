@@ -26,7 +26,7 @@
       <div class="dag-btn" @click="toggleMinus">
         <img src="~assets/images/minus.svg"/>
       </div>
-      <div class="dag-btn" @click="toggleFullscreen">
+      <div class="dag-btn dag-fullscreen" @click="toggleFullscreen">
         <img src="~assets/images/fullscreen.svg"/>
       </div>
     </div>
@@ -300,6 +300,9 @@ export default {
     border: 1px solid #E5EDF3;
     box-shadow: 0 6px 36px 0 rgba(0,62,100,0.04);
     border-radius: 4px 4px 0 0;
+    @include mobile {
+      height: auto;
+    }
     .toolbox {
       position: absolute;
       z-index: 999;
@@ -314,6 +317,11 @@ export default {
       background-color: white;
       &:hover {
         cursor: pointer;
+      }
+    }
+    .dag-fullscreen {
+      @include mobile {
+        display: none;
       }
     }
      canvas:-webkit-full-screen {
@@ -373,11 +381,15 @@ export default {
     .header {
       box-sizing: border-box;
       border-bottom: 1px solid #E5EDF3;
-      height: 70px;
+      // height: 70px;
       padding: 0 34px 0 34px;
       display: flex;
       display: -webkit-flex;
       justify-content: space-between;
+      @include mobile {
+        padding: 0 15px 0 15px;
+        display: block;
+      }
       .left-icon {
         line-height: 70px;
         font-weight: 500;
@@ -394,6 +406,16 @@ export default {
         color: #5E6875;
         line-height: 30px;
         font-size: 12px;
+        @include mobile {
+          line-height: 14px;
+          text-align: left;
+        }
+        .line2 {
+          @include mobile {
+            margin-top: 10px;
+            margin-bottom: 10px;
+          }
+        }
         .icon {
           display: inline-block;
           border: 1px solid #5E6875;

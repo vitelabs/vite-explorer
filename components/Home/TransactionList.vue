@@ -97,6 +97,9 @@
     margin-left: 32px;
     margin-top: 24px; 
     margin-bottom: 21px; 
+    @include mobile {
+       margin-left: 15px;
+    }
     .title-icon {
       vertical-align: top;
       margin-right: 3px; 
@@ -110,6 +113,9 @@
      font-size: 14px;
      box-sizing: border-box;
      margin-top: 24px; 
+     @include mobile {
+       padding-right: 15px;
+     }
      img {
        margin-left: 5px; 
      }
@@ -202,7 +208,7 @@
 @include mobile{
   .transaction-list {
     .transaction-item {
-      padding: 14px 20px 16px 20px ;
+      padding: 14px 15px 16px 15px ;
       .transaction-item-up {
         .up {
           .hash {

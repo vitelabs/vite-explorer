@@ -1,7 +1,7 @@
 @import "vars";
 @import "mixins";
 
-body {
+body,html {
   font-family: $family-primary;
   padding: 0px;
   margin: 0px;

@@ -1,7 +1,7 @@
 <template>
   <div class="default-container">
     <div class="home-nav">
-      <div class="home-nav-content container" :style="searchOpen ? 'display: none' : 'display: block'">
+      <div class="home-nav-content container">
         <logo-without-words class="logo"></logo-without-words>
         <div class="nav-content">
           <div class="navbar-menu">
@@ -40,6 +40,7 @@
           </div>
           <lang-select class="lang-select"></lang-select>
           <div class="vite-net"><a href="https://vite.org" target="_blank">{{ $t("nav.vitenet") }}</a></div>
+          <search class="search container" :visible="searchOpen" @search-open="closeSearch"></search>
           <div :class="phoneSearchClass" @click="openSearch">
             <div class="p-search">
               <img src="~assets/images/search.svg"/>
@@ -47,7 +48,7 @@
           </div>
         </div>
       </div>
-      <search class="search container" :visible="searchOpen" @search-open="closeSearch"></search>
+      <!-- <search class="search container" :visible="searchOpen" v-if="isMobile"></search> -->
     </div>
     <div class="vertail-menu-content">
       <menu-content :navs="navs" :visible.sync="open" @is-open="closeMenu" :double-navs="doubleNavs" :links="links" :external-navs="externalNavs"></menu-content>
@@ -78,6 +79,7 @@
   import menuContent from "~/components/menuContent.vue";
   import general from "~/services/general.js";
   import moment from "moment";
+  // import isMobile from "is-mobile";
 
   moment.updateLocale("en", {
     relativeTime: {
@@ -153,6 +155,7 @@
     },
     data() {
       return {
+        // isMobile: isMobile(),
         noticelist: [],
         navs: ["index", "FullNode", "blockList", "tokenList", "DApps"],
         externalNavs: [],
@@ -281,7 +284,7 @@
   }
 
   .content-wrapper {
-    min-height: calc(100vh - 200px);
+    min-height: calc(100vh - 116px);
     background-color: #fafcff;
     padding: 30px 0;
   }
