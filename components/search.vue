@@ -19,7 +19,7 @@
         <div v-for="(item, index) in tokenList" :key="index">
           <nuxt-link :to="`${langStrPath}/token/${item.fullWord}`">
             <div class="is-flex item-wrapper">
-              <div class="icon-wrapper">{{ item.icon }}</div>
+              <img class="icon-wrapper" :src="item.icon"/>
               <div class="" @click="clearDropList">
                 <div>{{ item.displayName }}</div>
                 <div class="item-fullword">{{ item.fullWord }}</div>
