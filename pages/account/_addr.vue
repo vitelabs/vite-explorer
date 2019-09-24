@@ -84,7 +84,7 @@
       detailLayout, filterAddress, error, transList, blockList, codeEditor
     },
     validate({ params }) {
-      return params.addr;
+      return params.addr.length === 55;
     },
     async asyncData(ctx) {
       try {

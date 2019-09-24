@@ -13,7 +13,19 @@
         </span>
       </div>
     </div>
-    <div class="drop-list-content" v-if="tokenList.concat(superNodeList) && tokenList.concat(superNodeList).length">
+    <div class="drop-list-content" v-if="accountList.concat(tokenList.concat(superNodeList)) && accountList.concat(tokenList.concat(superNodeList)).length">
+      <div v-if="accountList.length">
+        <div class="drop-list-title">Address</div>
+        <div v-for="(item, index) in accountList" :key="index">
+          <nuxt-link :to="`${langStrPath}/account/${item.fullWord}`">
+            <div class="is-flex item-wrapper">
+              <div class="account-content" @click="clearDropList">
+                <div class="item-fullword">{{ item.fullWord }}</div>
+              </div>
+            </div>
+          </nuxt-link>
+        </div>
+      </div>
       <div v-if="tokenList.length">
         <div class="drop-list-title">Tokens</div>
         <div v-for="(item, index) in tokenList" :key="index">
@@ -74,6 +86,7 @@
         searchStr: "",
         valueTimeout: null,
         resultList: [],
+        accountList: [],
         tokenList: [],
         superNodeList: []
       };
@@ -131,6 +144,7 @@
       clearDropList() {
         this.tokenList = [];
         this.superNodeList = [];
+        this.accountList = [];
       },
       async ensureSearch() {
         if (!this.searchStr) {
@@ -144,12 +158,14 @@
           let wd = this.resultList[0].wd;
           if (wd === fullWord) {
             this.jumpSwitch(searchTypeInt, fullWord);
-          } else {
-            this.showDroplist();
           }
         } else {
-          this.jumpTo("searchError");
+          if(this.resultList && !this.resultList.length) {
+            this.jumpTo("searchError");
+          }
+          
         }
+        this.showDroplist();
       },
       jumpSwitch(type, params) {
         switch(type) {
@@ -166,8 +182,11 @@
         this.clearDropList();
         if (this.resultList && this.resultList.length) {
           for(let i = 0; i < this.resultList.length; i++) {
-            if (this.resultList.length === 1 && i.wd === i.fullWord) {
-              return;
+            // if (this.resultList.length === 1 && i.wd === i.fullWord) {
+            //   return;
+            // }
+            if (this.resultList[i].searchTypeInt === 1) {
+              this.accountList.push(this.resultList[i]);
             }
             if ([5, 6].indexOf(this.resultList[i].searchTypeInt) > -1) {
               this.tokenList.push(this.resultList[i]);
@@ -301,6 +320,8 @@
   z-index: 99999;
   background-color: white;
   max-height: 218px;
+  max-width: 300px;
+  text-overflow: ellipsis;
   overflow-y: scroll;
   box-shadow:0px 6px 36px 0px rgba(0,62,100,0.04);
   border-radius:0px 0px 4px 4px;
@@ -332,7 +353,6 @@
       background:rgba(245,247,250,1);
       cursor: pointer;
     }
-    
     .item-fullword {
       color: #8D9BAE;
       font-size: 11px;
