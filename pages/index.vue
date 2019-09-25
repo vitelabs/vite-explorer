@@ -20,9 +20,9 @@
         <transaction-list :list="transactionList" :pre-list="preTransactionList"></transaction-list>
       </div>
     </div>
-    <div>
+    <!-- <div>
       <dag :list="dagTransactionList"></dag>
-    </div>
+    </div> -->
   </div>
 </template>
 
