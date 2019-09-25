@@ -119,7 +119,7 @@
         this.clear();
         this.clearDropList();
         this.valueTimeout = setTimeout(async () => {
-          let str = val.trim();
+          let str = val;
           if (!str) {
             this.searchStr = str;
             this.$message(this.$t("utils.noEmpty"));
@@ -132,7 +132,7 @@
       },
       async getSimilarList() {
         this.resultList = await search.getSimilar({
-          wd: this.searchStr
+          wd: this.searchStr.trim()
         });
       },
       clear() {
