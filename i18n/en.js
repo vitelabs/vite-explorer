@@ -69,7 +69,7 @@ module.exports = {
   // Basic components part: components/
   footer: {
     official: "Official Website",
-    vitex: "交易所"
+    vitex: ""
   },
 
   // Version attached description
