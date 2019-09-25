@@ -47,7 +47,7 @@
     methods: {
       afterConfig (options) {
         options.series[0].smooth = false;
-        options.series[1].smooth = false;
+        // options.series[1].smooth = false;
         return options;
       }
     }

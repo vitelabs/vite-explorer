@@ -59,13 +59,14 @@
       try {
         let lineChart = await transaction.getChartData();
         chartData = {
-          columns: ["date", "transactions", "accountNum"],
+          // columns: ["date", "transactions", "accountNum"],
+          columns: ["date", "transactions"],
           rows: lineChart
         };
         chartSettings = {
           labelMap: {
             transactions: "Transactions",
-            accountNum: "Active Accounts"
+            // accountNum: "Active Accounts"
           }
         };
       }catch(err) {

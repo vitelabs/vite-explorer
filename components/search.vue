@@ -31,7 +31,7 @@
         <div v-for="(item, index) in tokenList" :key="index">
           <nuxt-link :to="`${langStrPath}/token/${item.fullWord}`">
             <div class="is-flex item-wrapper">
-              <img class="icon-wrapper" :src="item.icon"/>
+              <img class="icon-wrapper" :src="item.icon || defaultImg"/>
               <div class="" @click="clearDropList">
                 <div>{{ item.displayName }}</div>
                 <div class="item-fullword">{{ item.fullWord }}</div>
@@ -82,6 +82,7 @@
     },
     data() {
       return {
+        defaultImg: require("~/assets/images/default_icon.png"),
         open: this.visible,
         searchStr: "",
         valueTimeout: null,
