@@ -101,7 +101,7 @@
             };
           }
           list.push(Object.assign({
-            icon: `<img src="${token.icon || ""}" style="width:48px; height:48px; border-radius:24px; border:1px solid rgba(229,237,243,1);"/>`,
+            icon: `<img src="${token.icon || require("~/assets/images/default_icon.png")}" style="width:48px; height:48px; border-radius:24px; border:1px solid rgba(229,237,243,1);"/>`,
             token: `<a href="${lang}/token/${token.id}" target="_blank">${token.name} (${token.indexName})</a><div style="white-space:normal;">${token.introduction || ""}</div>`,
             price: token.usd ? `$${ token.usd }` : "--",
           }, externalTokenInfo));
