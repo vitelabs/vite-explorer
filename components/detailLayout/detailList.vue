@@ -112,7 +112,8 @@
     border-top: 2px solid $common-color;
     border-radius: 2px; 
     background-image: url("~assets/images/detail_bg.svg");
-    background-color: #fff; 
+    background-color: #fff;
+    background-size: cover;
     box-sizing: border-box;
     padding: 25px 0 0 0px;
     margin-top: 30px;
