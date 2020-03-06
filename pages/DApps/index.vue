@@ -30,7 +30,7 @@
     components: {
       pageTable, error
     },
-    async asyncData(ctx) {
+    async asyncData() {
       const pageIndex = 1;
       try {
         let { DappList, totalNumber} = await dapp.getList({

@@ -1,4 +1,4 @@
-import { get, post } from "../api/axios";
+import { post } from "../api/axios";
 
 const PREFIX = "dapp";
 

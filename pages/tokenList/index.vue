@@ -53,7 +53,9 @@
           pageIndex, pageSize
         });
         console.log(tokenList);
-        let generalDetail = await general.getGeneralMarket();
+        let generalDetail = await general.getGeneralMarket().catch(()=> {
+          return {};
+        });
         return {
           pageIndex,
           tokenList,
