@@ -4,6 +4,14 @@ import { toShort, handleBigNum, formatTx } from "../utils/util.js";
 import { mySetInterval, myClearInterval} from "../utils/myInterval.js";
 import fs from "fs";
 import path from "path";
+import NodeCache from "node-cache";
+import axios from "axios";
+import keys from "../keys.json";
+
+// Set a node.js cache, this is used to cache CMC's data
+const cache = new NodeCache();
+const CMC_CACHE_KEY = "cmc-quote-vite";
+const CMC_CACHE_TIME = 60 * 2;
 
 
 process.env["NODE_CONFIG_DIR"] = path.resolve(__dirname , "./config");
@@ -276,21 +284,36 @@ export default () => {
 
 
   router.get("/api/general/market", async(ctx) => {
+    let data = cache.get(CMC_CACHE_KEY);
     try {
-      let result = await get("https://api.coinmarketcap.com/v2/ticker/2937/");
-      ctx.type = "json";
-      let body = result.data;
-      ctx.body = {
-        data: {
-          cirPrice: body.data ? body.data.quotes.USD.price : "",
-          ffmCap: body.data ? handleBigNum(body.data.quotes.USD.market_cap, false, true) : "",
-          volume_24h: body.data ? handleBigNum(body.data.quotes.USD.volume_24h, false, true) : "",
-          percent_change_24h: body.data ? body.data.quotes.USD.percent_change_24h : "",
-          circulating_supply: body.data ? body.data.quotes.USD.circulating_supply : "",
-        }
+      if (!data) {
+        let result = await axios.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest", {
+          params: {
+            id: "2937"
+          },
+          headers: {
+            "X-CMC_PRO_API_KEY": keys.CMCApiKey
+          },
+          responseType: "json"
+        });
+        data = result.data.data["2937"];
+        let dataQuoteUSD = data.quote.USD;
+        data = {
+          cirPrice: dataQuoteUSD.price,
+          ffmCap: handleBigNum(dataQuoteUSD.market_cap, false, true),
+          volume_24h: handleBigNum(dataQuoteUSD.volume_24h, false, true),
+          percent_change_24h: dataQuoteUSD.percent_change_24h,
+          circulating_supply: dataQuoteUSD.circulating_supply
+        };
+        cache.set(CMC_CACHE_KEY, data, CMC_CACHE_TIME);
+      }
+      
+      return ctx.body = {
+        code: 0,
+        data
       };
-    } catch(err) {
-      console.log(err.code);
+    } catch (err) {
+      console.log("err", err);
     }
   });
 

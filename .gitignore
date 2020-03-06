@@ -7,6 +7,10 @@ build/
 assets/.DS_Store
 .DS_Store
 package-lock.json
+test.js
+
+# Keys
+keys.json
 
 # Logs
 logs
