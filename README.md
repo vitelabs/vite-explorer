@@ -1,4 +1,4 @@
-# vite.net
+# The Vite Explorer
 Official Block Explorer of Vite
 
 # Contribute!
