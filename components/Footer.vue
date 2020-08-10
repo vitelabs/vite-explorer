@@ -28,7 +28,7 @@
           <img slot="reference" src="~assets/images/wecht.svg"/>
         </el-popover>
       </div>
-      <div class="brand">©2019 Vite Labs</div>
+      <div class="brand">© 2018-2020 Vite Labs</div>
     </div>
   </footer>
 </template>
@@ -49,7 +49,7 @@
       }
     },
     methods: {
-     
+
     }
   };
 </script>
@@ -80,7 +80,7 @@
     .ml {
       margin-left: 30px;
     }
-    
+
     img {
       margin-left: 18px;
       display: inline-block;
@@ -88,7 +88,7 @@
       height: 36px;
       margin-top: 20px;
     }
-    
+
   }
   /** iPhone **/
   @include mobile{
@@ -115,7 +115,7 @@
         display: -webkit-flex;
         justify-content: space-between;
         box-sizing: border-box;
-        margin-top: 20.4px; 
+        margin-top: 20.4px;
       }
       .img-wrapper {
         height: 36px;
