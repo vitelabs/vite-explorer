@@ -68,8 +68,8 @@ module.exports = {
 
   // Basic components part: components/
   footer: {
-    official: "Official Website",
-    vitex: ""
+    official: "Vite.org",
+    vitex: "ViteX.net"
   },
 
   // Version attached description
@@ -390,7 +390,7 @@ module.exports = {
 
     params: "Contract Parameters",
     sourceCode: "Source Code",
-    
+
     confirm: "Submit",
 
     commonContract: "Contract",

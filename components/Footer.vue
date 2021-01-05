@@ -2,8 +2,8 @@
   <footer class="footer">
     <div class="footer-content container">
       <div class="offical-website is-flex">
-        <div class="website-link"><a href="https://www.vite.org/" target="_blank">Vite {{ $t('footer.official') }}</a></div>
-        <div class="website-link ml"><a href="https://x.vite.net/" target="_blank">ViteX {{ $t('footer.vitex') }}</a></div>
+        <div class="website-link"><a href="https://www.vite.org/" target="_blank">{{ $t('footer.official') }}</a></div>
+        <div class="website-link ml"><a href="https://vitex.net/" target="_blank">{{ $t('footer.vitex') }}</a></div>
       </div>
       <div class="outer-link">
         <a class="img-wrapper" href="https://github.com/vitelabs" target="_blank">

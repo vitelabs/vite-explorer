@@ -64,8 +64,8 @@ module.exports = {
 
   // Basic components part: components/
   footer: {
-    official: "官网",
-    vitex: "交易所"
+    official: "Vite 官网",
+    vitex: "ViteX 官网"
   },
 
   // Version attached description
@@ -355,7 +355,7 @@ module.exports = {
     0: "",
     1: "出块地址",
     2: "出块地址",
-    3: "全节点奖池",  
+    3: "全节点奖池",
     10: "注册SBP合约",
     11: "投票合约",
     12: "获取配额合约",
@@ -386,7 +386,7 @@ module.exports = {
 
     params: "合约参数",
     sourceCode: "源代码",
-    
+
     confirm: "确定",
 
     commonContract: "合约",
