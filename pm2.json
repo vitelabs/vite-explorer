@@ -6,11 +6,11 @@
     "log_date_format"  : "YYYY-MM-DD HH:mm Z",
     "watch"       : true,
     "node_args"   : "--harmony",
-    "cwd"         : "/var/www/vite.net",
+    "cwd"         : "/var/www/vite.net/vite-explorer",
     "env": {
       "NODE_ENV": "qa",
       "NODE_CONFIG_DIR": "./server/config",
-      "PORT": "8080"
+      "PORT": "8081"
     },
     "env_qa": {
       "NODE_ENV": "qa",

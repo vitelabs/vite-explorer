@@ -3,7 +3,7 @@ import config from "./config";
 
 if (process.server) {
   console.log("server");
-  config.baseURL = "http://127.0.0.1:8080/api";
+  config.baseURL = "http://127.0.0.1:8081/api";
 } else {
   console.log("client");
   config.baseURL = "/api";  

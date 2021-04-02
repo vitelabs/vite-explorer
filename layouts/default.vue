@@ -52,7 +52,7 @@
     <div class="vertail-menu-content">
       <menu-content :navs="navs" :visible.sync="open" @is-open="closeMenu" :double-navs="doubleNavs" :links="links" :external-navs="externalNavs"></menu-content>
     </div>
-    <div class="marquee" v-if="noticelist.length">
+    <!-- <div class="marquee" v-if="noticelist.length">
       <div class="marquee-content">
         <img src="~assets/images/marquee.svg"/>
         <marquee>
@@ -62,7 +62,7 @@
           </span>
         </marquee>
       </div>
-    </div>
+    </div> -->
     <div class="content-wrapper">
       <nuxt class="container"/>
     </div>
